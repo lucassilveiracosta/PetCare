@@ -1,4 +1,4 @@
 # PetCare
 
 ## Colaborators
-- Lucas Silevira Costa
+- Lucas Silevira Costa | lucas.silveiracosta@ufrpe.br
