@@ -6,4 +6,5 @@ Principais comando para envio do Local -> Remoto
 
 - git pull                  | trazer alterações do remoto para o local
 
+- git init                  | inicializar um repósitorio git
 - git remote add origin https://github.com/lucassilveiracosta/PetCare
