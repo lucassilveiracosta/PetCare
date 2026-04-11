@@ -5,3 +5,5 @@ Principais comando para envio do Local -> Remoto
 - git push                  | se ja estiver com branch alinhada
 
 - git pull                  | trazer alterações do remoto para o local
+
+- git remote add origin https://github.com/lucassilveiracosta/PetCare
