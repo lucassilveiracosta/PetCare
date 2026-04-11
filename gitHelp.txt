@@ -4,4 +4,4 @@ Principais comando para envio do Local -> Remoto
 - git commit -m "<msg>"     | salvas as mudanças, e dentro das aspas coloca o nome da mensagem ex.: <msg> = feat: initial commit
 - git push                  | se ja estiver com branch alinhada
 
-- git pull | trazer alterações do remoto para o local
+- git pull                  | trazer alterações do remoto para o local
