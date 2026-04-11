@@ -2,4 +2,19 @@ Principais comando para envio do Local -> Remoto
 - git add .                 | o '.' adiciona todas as mudanças feitas no repositório local
 - git add <fileName>        | adiciona um arquivo específico ex.: <fileName> = src/gitHelp.txt
 - git commit -m "<msg>"     | salvas as mudanças, e dentro das aspas coloca o nome da mensagem ex.: <msg> = feat: initial commit
+* boas praticas
+feat: Adiciona uma nova funcionalidade (feature).
+
+fix: Corrige um bug.
+
+chore: Tarefas de manutenção, atualização de dependências ou configurações que não afetam o código de produção.
+
+docs: Alterações apenas na documentação (README, comentários, etc).
+
+refactor: Refatoração de código (não altera o comportamento da funcionalidade, apenas a estrutura do código).
+
+style: Mudanças de formatação que não afetam a lógica (espaços, ponto e vírgula, indentação).
+
+test: Adiciona ou corrige testes automatizados.
+
 - git push                  | se ja estiver com branch alinhada
