@@ -1,4 +1,4 @@
-package model;
+package model.prontuario;
 
 public class Hidratacao {
 
@@ -13,6 +13,21 @@ public class Hidratacao {
         else {
             this.desitratacao = desitratacao;
         }
+    }
 
+    public boolean isEuvolemico() {
+        return euvolemico;
+    }
+
+    public void setEuvolemico(boolean euvolemico) {
+        this.euvolemico = euvolemico;
+    }
+
+    public Double getDesitratacao() {
+        return desitratacao;
+    }
+
+    public void setDesitratacao(Double desitratacao) {
+        this.desitratacao = desitratacao;
     }
 }
