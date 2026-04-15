@@ -1,4 +1,4 @@
 package enums;
 
-public class Sexo {
+public enum Sexo {
 }
