@@ -1,7 +1,4 @@
-package model.teste1.teste2;
-
-import model.Anamnese;
-import model.ExameFisico;
+package model.prontuario;
 
 import java.time.LocalDate;
 
