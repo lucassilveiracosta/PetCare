@@ -1,16 +1,16 @@
-package model;
+package model.prontuario;
 
 import java.util.ArrayList;
 
 public class Prontuario {
 
     private ArrayList<IdaAoVeterinario> prontuario;
-    private Animal paciente;
+    private Animal animal;
     private String descricao;
 
-    public Prontuario(ArrayList<IdaAoVeterinario> prontuario, Animal paciente, String descricao) {
+    public Prontuario(ArrayList<IdaAoVeterinario> prontuario, String descricao, Animal animal) {
         this.prontuario = prontuario;
-        this.paciente = paciente;
+        this.animal = animal;
         this.descricao = descricao;
     }
 
@@ -22,12 +22,12 @@ public class Prontuario {
         this.prontuario = prontuario;
     }
 
-    public Animal getPaciente() {
-        return paciente;
+    public Animal getAnimal() {
+        return animal;
     }
 
-    public void setPaciente(Animal paciente) {
-        this.paciente = paciente;
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     public String getDescricao() {
