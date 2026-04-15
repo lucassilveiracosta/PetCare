@@ -1,4 +1,4 @@
-package model;
+package model.prontuario;
 
 import java.time.LocalDate;
 
