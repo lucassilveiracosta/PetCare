@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDate;
 // Classe abstrata pessoa
 public abstract class Pessoa {
+
+    private static int contadorId = 1;
+
     private int id;
     private String nome;
     private LocalDate dataNascimento;
@@ -11,6 +14,7 @@ public abstract class Pessoa {
 
     // Construtor de pessoa
     public Pessoa(String nome, LocalDate dataNascimento, String cpf, String telefone){
+        this.id = contadorId++; // pensei nessa forma de passar o Id
         setNome(nome);
         setDataNascimento(dataNascimento);
         setCpf(cpf);
@@ -64,10 +68,6 @@ public abstract class Pessoa {
             throw new IllegalArgumentException("Número inválido!");
         }
         this.telefone = telefone;
-    }
-
-    private void setId(){
-
     }
 
 
