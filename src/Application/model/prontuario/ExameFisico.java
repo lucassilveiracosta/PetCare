@@ -5,12 +5,12 @@ import enums.Consciencia;
 public class ExameFisico {
 
     private Consciencia nivelDeConsciencia;
-    private ExameFisico exameFisico;
+    private ParametrosVitais parametrosVitais;
     private String descricao;
 
-    public ExameFisico(Consciencia nivelDeConsciencia, ExameFisico exameFisico, String descricao) {
+    public ExameFisico(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
         this.nivelDeConsciencia = nivelDeConsciencia;
-        this.exameFisico = exameFisico;
+        this.parametrosVitais = parametrosVitais;
         this.descricao = descricao;
     }
 
@@ -22,12 +22,12 @@ public class ExameFisico {
         this.nivelDeConsciencia = nivelDeConsciencia;
     }
 
-    public ExameFisico getExameFisico() {
-        return exameFisico;
+    public ParametrosVitais getParametrosVitais() {
+        return parametrosVitais;
     }
 
-    public void setExameFisico(ExameFisico exameFisico) {
-        this.exameFisico = exameFisico;
+    public void setParametrosVitais(ParametrosVitais parametrosVitais) {
+        this.parametrosVitais = parametrosVitais;
     }
 
     public String getDescricao() {
