@@ -1,4 +1,4 @@
-package model;
+package model.Pessoas;
 
 public class Veterinario {
 }

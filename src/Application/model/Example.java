@@ -1,4 +1,4 @@
-package model.Pessoas;
+package model;
 
 public class Example {
 }

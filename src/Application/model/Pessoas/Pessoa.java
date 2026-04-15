@@ -1,16 +1,16 @@
-package model;
+package model.Pessoas;
 
 import java.time.LocalDate;
 // Classe abstrata pessoa
 public abstract class Pessoa {
 
-    private static int contadorId = 1;
+    protected static int contadorId = 1;
 
-    private int id;
-    private String nome;
-    private LocalDate dataNascimento;
-    private String cpf;
-    private String telefone;
+    protected int id;
+    protected String nome;
+    protected LocalDate dataNascimento;
+    protected String cpf;
+    protected String telefone;
 
     // Construtor de pessoa
     public Pessoa(String nome, LocalDate dataNascimento, String cpf, String telefone){
