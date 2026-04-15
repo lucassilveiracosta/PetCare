@@ -1,0 +1,6 @@
+package model.animal;
+
+public class AnimalExotico {
+    private
+
+}

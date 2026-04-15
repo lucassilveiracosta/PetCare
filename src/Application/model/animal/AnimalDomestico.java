@@ -1,4 +1,5 @@
-package model;
+package model.animal;
 
 public class AnimalDomestico {
+
 }
