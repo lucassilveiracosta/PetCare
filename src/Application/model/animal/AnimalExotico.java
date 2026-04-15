@@ -1,4 +1,4 @@
-package model;
+package model.animal;
 
 public class AnimalExotico {
     private String numeroDeRegistro;
