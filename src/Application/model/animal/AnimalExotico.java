@@ -1,12 +1,17 @@
 package model.animal;
 
 import enums.Origem;
+import enums.Porte;
+import enums.Sexo;
+
+import java.time.LocalDate;
 
 public class AnimalExotico extends Animal {  private boolean requerAmbienteControlado;
     private String descricaoDieta;
     private Origem origem;
 
-    public AnimalExotico(String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem) {
+    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem) {
+        super( idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
         this.numeroDeRegistro = numeroDeRegistro;
         this.microChipId = microChipId;
         this.requerAmbienteControlado = requerAmbienteControlado;

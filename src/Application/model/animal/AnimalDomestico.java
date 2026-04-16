@@ -1,11 +1,17 @@
 package model.animal;
 
+import enums.Porte;
+import enums.Sexo;
+import enums.Temperamento;
+import java.time.LocalDate;
+
 public class AnimalDomestico extends Animal {
     private boolean cadastro;
     private vacinasTomadas CarteiraDeVacina;
     private Temperamento temperamento;
 
-    public AnimalDomestico(Dono dono, vacinasTomadas carteiraDeVacina, Temperamento temperamento, boolean cadastro) {
+    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,Dono dono, vacinasTomadas carteiraDeVacina, Temperamento temperamento, boolean cadastro) {
+        super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
         this.dono = dono;
         CarteiraDeVacina = carteiraDeVacina;
         this.temperamento = temperamento;
