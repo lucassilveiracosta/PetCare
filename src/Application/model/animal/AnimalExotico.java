@@ -2,10 +2,7 @@ package model.animal;
 
 import enums.Origem;
 
-public class AnimalExotico {
-    private String numeroDeRegistro;
-    private String microChipId;
-    private boolean requerAmbienteControlado;
+public class AnimalExotico {  private boolean requerAmbienteControlado;
     private String descricaoDieta;
     private Origem origem;
 
@@ -41,9 +38,6 @@ public class AnimalExotico {
     }
 
     public void setDescricaoDieta(String descricaoDieta) {
-        if(descricaoDieta == null || descr.isBlank()){
-            throw new IllegalArgumentException("A origem não pode ser nula!");
-        }
         this.descricaoDieta = descricaoDieta;
     }
 
