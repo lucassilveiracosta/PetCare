@@ -5,7 +5,7 @@ import enums.Sexo;
 
 import java.time.LocalDate;
 
-public abstract class Animal {
+public  class Animal {
     protected int IdAnimal;
     protected String Nome;
     protected String especie;
@@ -39,6 +39,9 @@ public abstract class Animal {
     }
 
     public void setNome(String nome) {
+        if(nome == null || nome.isBlank()){
+            throw new IllegalArgumentException("Nome do Animal inválido!");
+        }
         Nome = nome;
     }
 
@@ -47,6 +50,9 @@ public abstract class Animal {
     }
 
     public void setRaca(String raca) {
+        if(raca == null || raca.isBlank()){
+            throw new IllegalArgumentException("Nome da raça do animal inválido!");
+        }
         this.raca = raca;
     }
 
@@ -55,6 +61,9 @@ public abstract class Animal {
     }
 
     public void setEspecie(String especie) {
+        if(especie == null || especie.isBlank()){
+            throw new IllegalArgumentException("Nome da especie do animal inválida!");
+        }
         this.especie = especie;
     }
 
@@ -63,7 +72,10 @@ public abstract class Animal {
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-        DataNascimento = dataNascimento;
+
+        if(dataNascimento == null ){
+            throw new IllegalArgumentException("Data de nascimento inválida!");
+        } DataNascimento = dataNascimento;
     }
 
     public double getPeso() {
@@ -71,6 +83,9 @@ public abstract class Animal {
     }
 
     public void setPeso(double peso) {
+        if(peso <= 0 ){
+            throw new IllegalArgumentException("peso do animal inválido!");
+        }
         this.peso = peso;
     }
 
@@ -79,6 +94,9 @@ public abstract class Animal {
     }
 
     public void setPorte(Porte porte) {
+        if(porte == null ){
+            throw new IllegalArgumentException("Porte do animal inválido!");
+        }
         this.porte = porte;
     }
 
@@ -87,6 +105,9 @@ public abstract class Animal {
     }
 
     public void setSexo(Sexo sexo) {
+        if(sexo == null ){
+            throw new IllegalArgumentException("Sexo do animal inválido!");
+        }
         this.sexo = sexo;
     }
 }
