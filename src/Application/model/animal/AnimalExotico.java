@@ -41,6 +41,9 @@ public class AnimalExotico {
     }
 
     public void setDescricaoDieta(String descricaoDieta) {
+        if(descricaoDieta == null || descr.isBlank()){
+            throw new IllegalArgumentException("A origem não pode ser nula!");
+        }
         this.descricaoDieta = descricaoDieta;
     }
 
