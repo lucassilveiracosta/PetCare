@@ -2,7 +2,7 @@ Principais comando para envio do Local -> Remoto
 - git add .                 | o '.' adiciona todas as mudanças feitas no repositório local
 - git add <fileName>        | adiciona um arquivo específico ex.: <fileName> = src/gitHelp.txt
 - git commit -m "<msg>"     | salvas as mudanças, e dentro das aspas coloca o nome da mensagem ex.: <msg> = feat: initial commit
-* boas praticas
+**BOAS PRATICAS**
 feat: Adiciona uma nova funcionalidade (feature).
 
 fix: Corrige um bug.
@@ -16,5 +16,9 @@ refactor: Refatoração de código (não altera o comportamento da funcionalidad
 style: Mudanças de formatação que não afetam a lógica (espaços, ponto e vírgula, indentação).
 
 test: Adiciona ou corrige testes automatizados.
-
 - git push                  | se ja estiver com branch alinhada
+
+- git pull                  | trazer alterações do remoto para o local
+
+- git init                  | inicializar um repósitorio git
+- git remote add origin https://github.com/lucassilveiracosta/PetCare
