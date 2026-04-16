@@ -1,6 +1,6 @@
 package model.animal;
 
-public class AnimalDomestico {
+public class AnimalDomestico extends Animal {
     private boolean cadastro;
     private vacinasTomadas CarteiraDeVacina;
     private Temperamento temperamento;
