@@ -2,7 +2,7 @@ package model.animal;
 
 import enums.Origem;
 
-public class AnimalExotico {  private boolean requerAmbienteControlado;
+public class AnimalExotico extends Animal {  private boolean requerAmbienteControlado;
     private String descricaoDieta;
     private Origem origem;
 
