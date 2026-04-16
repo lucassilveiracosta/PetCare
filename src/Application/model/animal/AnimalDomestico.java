@@ -17,6 +17,9 @@ public class AnimalDomestico {
     }
 
     public void setDono(Dono dono) {
+        if(dono == null ){
+            throw new IllegalArgumentException("Nome não pode ser nulo!");
+        }
         this.dono = dono;
     }
 
@@ -25,6 +28,9 @@ public class AnimalDomestico {
     }
 
     public void setTemperamento(Temperamento temperamento) {
+        if(temperamento == null ){
+            throw new IllegalArgumentException("Insira um temperamento válido!");
+        }
         this.temperamento = temperamento;
     }
 
@@ -33,6 +39,9 @@ public class AnimalDomestico {
     }
 
     public void setCarteiraDeVacina(vacinasTomadas carteiraDeVacina) {
+        if(carteiraDeVacina == null ){
+            throw new IllegalArgumentException("Carteira de Vacina inválida!");
+        }
         CarteiraDeVacina = carteiraDeVacina;
     }
 

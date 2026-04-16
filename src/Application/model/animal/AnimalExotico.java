@@ -19,6 +19,9 @@ public class AnimalExotico {  private boolean requerAmbienteControlado;
     }
 
     public void setNumeroDeRegistro(String numeroDeRegistro) {
+        if(numeroDeRegistro == null || numeroDeRegistro.isBlank()){
+            throw new IllegalArgumentException("Numero do registro inválido!");
+        }
         this.numeroDeRegistro = numeroDeRegistro;
     }
 
@@ -38,6 +41,9 @@ public class AnimalExotico {  private boolean requerAmbienteControlado;
     }
 
     public void setDescricaoDieta(String descricaoDieta) {
+        if(descricaoDieta == null || descricaoDieta.isBlank()){
+            throw new IllegalArgumentException("Insira uma descrição válida!");
+        }
         this.descricaoDieta = descricaoDieta;
     }
 
@@ -46,6 +52,9 @@ public class AnimalExotico {  private boolean requerAmbienteControlado;
     }
 
     public void setMicroChipId(String microChipId) {
+        if(microChipId == null || microChipId.isBlank()){
+            throw new IllegalArgumentException("Microchip inválido!");
+        }
         this.microChipId = microChipId;
     }
 
@@ -54,6 +63,7 @@ public class AnimalExotico {  private boolean requerAmbienteControlado;
     }
 
     public void setRequerAmbienteControlado(boolean requerAmbienteControlado) {
+
         this.requerAmbienteControlado = requerAmbienteControlado;
     }
 }
