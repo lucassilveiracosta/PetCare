@@ -22,7 +22,6 @@ public class IdaAoVeterinario {
     }
 
     public void setDataDePresenca(LocalDate dataDePresenca) { // a data deve vir no formato dd/MM/yyyy
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.dataDePresenca = dataDePresenca;
     }
 
@@ -31,6 +30,9 @@ public class IdaAoVeterinario {
     }
 
     public void setAnamnese(Anamnese anamnese) {
+        if (anamnese == null) {
+            throw new IllegalArgumentException("Anamnese não pode ser nula");
+        }
         this.anamnese = anamnese;
     }
 
@@ -39,6 +41,9 @@ public class IdaAoVeterinario {
     }
 
     public void setExameFisico(ExameFisico exameFisico) {
+        if (exameFisico == null) {
+            throw new IllegalArgumentException("Anamnese não pode ser nula");
+        }
         this.exameFisico = exameFisico;
     }
 
@@ -47,6 +52,9 @@ public class IdaAoVeterinario {
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null || descricao.isBlank()) {
+            throw new IllegalArgumentException("Anamnese não pode ser nula");
+        }
         this.descricao = descricao;
     }
 }
