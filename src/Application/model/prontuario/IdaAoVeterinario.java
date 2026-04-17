@@ -51,6 +51,7 @@ public class IdaAoVeterinario {
         return descricao;
     }
 
+    //Setter ajustado
     public void setDescricao(String descricao) {
         if (descricao == null || descricao.isBlank()) {
             throw new IllegalArgumentException("Anamnese não pode ficar em branco ou ser nula");
