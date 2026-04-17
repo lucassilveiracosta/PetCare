@@ -9,7 +9,7 @@ public class ExameFisico {
     private String descricao;
 
     public ExameFisico(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
-        this.nivelDeConsciencia = nivelDeConsciencia;
+        setNivelDeConsciencia(nivelDeConsciencia);
         this.parametrosVitais = parametrosVitais;
         this.descricao = descricao;
     }
@@ -19,6 +19,9 @@ public class ExameFisico {
     }
 
     public void setNivelDeConsciencia(Consciencia nivelDeConsciencia) {
+        if (nivelDeConsciencia == null) {
+            throw new IllegalArgumentException("Deve ser preenchido um nivel de consciencia!");
+        }
         this.nivelDeConsciencia = nivelDeConsciencia;
     }
 
@@ -27,6 +30,9 @@ public class ExameFisico {
     }
 
     public void setParametrosVitais(ParametrosVitais parametrosVitais) {
+        if (parametrosVitais == null) {
+            throw new IllegalArgumentException("Deve ser preenchido os parametros vitais!");
+        }
         this.parametrosVitais = parametrosVitais;
     }
 
@@ -35,6 +41,9 @@ public class ExameFisico {
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null || descricao.isBlank()) {
+            throw new IllegalArgumentException("A descrição não pode ser nula ou ficar em branco!");
+        }
         this.descricao = descricao;
     }
 }
