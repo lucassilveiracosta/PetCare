@@ -2,22 +2,25 @@ package model.prontuario;
 
 public class Anamnese {
 
-    private String queixaPrinal;
+    private String queixaPrincipal;
     private String restricaoAlimentar;
     private String descricao;
 
-    public Anamnese(String queixaPrinal, String restricaoAlimentar, String descricao) {
-        setQueixaPrinal(queixaPrinal);
+    public Anamnese(String queixaPrincipal, String restricaoAlimentar, String descricao) {
+        setQueixaPrinal(queixaPrincipal);
         setRestricaoAlimentar(restricaoAlimentar);
         setDescricao(descricao);
     }
 
-    public String getQueixaPrinal() {
-        return queixaPrinal;
+    public String getQueixaPrincipal() {
+        return queixaPrincipal;
     }
 
-    public void setQueixaPrinal(String queixaPrinal) {
-        this.queixaPrinal = queixaPrinal;
+    public void setQueixaPrinal(String queixaPrincipal) {
+        if (queixaPrincipal == null || queixaPrincipal.isBlank()){
+            throw new IllegalArgumentException("A queixa não pode estar em branco ou sem resposta");
+        }
+        this.queixaPrincipal = queixaPrincipal;
     }
 
     public String getRestricaoAlimentar() {
@@ -25,6 +28,9 @@ public class Anamnese {
     }
 
     public void setRestricaoAlimentar(String restricaoAlimentar) {
+        if (restricaoAlimentar == null || restricaoAlimentar.isBlank()){
+            throw new IllegalArgumentException("A restrição alimentar não pode estar em branco ou sem resposta");
+        }
         this.restricaoAlimentar = restricaoAlimentar;
     }
 
