@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Prontuario {
 
     private ArrayList<IdaAoVeterinario> prontuario;
-    private Animal animal;
+    //private Animal animal;
     private String descricao;
 
-    public Prontuario(ArrayList<IdaAoVeterinario> prontuario, String descricao, Animal animal) {
+    public Prontuario(ArrayList<IdaAoVeterinario> prontuario, String descricao/*, Animal animal*/) {
         this.prontuario = prontuario;
-        this.animal = animal;
+        //this.animal = animal;
         this.descricao = descricao;
     }
 
@@ -21,7 +21,7 @@ public class Prontuario {
     public void setProntuario(ArrayList<IdaAoVeterinario> prontuario) {
         this.prontuario = prontuario;
     }
-
+    /*
     public Animal getAnimal() {
         return animal;
     }
@@ -29,7 +29,7 @@ public class Prontuario {
     public void setAnimal(Animal animal) {
         this.animal = animal;
     }
-
+    */
     public String getDescricao() {
         return descricao;
     }

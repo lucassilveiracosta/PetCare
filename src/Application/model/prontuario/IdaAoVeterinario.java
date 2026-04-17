@@ -1,6 +1,7 @@
 package model.prontuario;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class IdaAoVeterinario {
 
@@ -20,7 +21,8 @@ public class IdaAoVeterinario {
         return dataDePresenca;
     }
 
-    public void setDataDePresenca(LocalDate dataDePresenca) {
+    public void setDataDePresenca(LocalDate dataDePresenca) { // a data deve vir no formato dd/MM/yyyy
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.dataDePresenca = dataDePresenca;
     }
 
