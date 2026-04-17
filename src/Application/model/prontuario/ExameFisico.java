@@ -10,8 +10,8 @@ public class ExameFisico {
 
     public ExameFisico(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
         setNivelDeConsciencia(nivelDeConsciencia);
-        this.parametrosVitais = parametrosVitais;
-        this.descricao = descricao;
+        setParametrosVitais(parametrosVitais);
+        setDescricao(descricao);
     }
 
     public Consciencia getNivelDeConsciencia() {
