@@ -19,7 +19,7 @@ public class ParametrosVitais {
         this.mucosa = mucosa;
         this.coagulacao = coagulacao;
         this.hidratacao = hidratacao;
-        this.descricao = descricao;
+        setDescricao(descricao);
     }
 
     public String getDescricao() {
@@ -27,6 +27,9 @@ public class ParametrosVitais {
     }
 
     public void setDescricao(String descricao) {
+        if (descricao == null || descricao.isBlank()) {
+            throw new IllegalArgumentException("Descrição não pode ser nula ou ficar em branco");
+        }
         this.descricao = descricao;
     }
 
