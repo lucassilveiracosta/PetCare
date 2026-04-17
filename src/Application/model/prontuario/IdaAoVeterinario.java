@@ -12,9 +12,9 @@ public class IdaAoVeterinario {
 
     public IdaAoVeterinario(LocalDate dataDePresenca, ExameFisico exameFisico, Anamnese anamnese, String descricao) {
         this.dataDePresenca = dataDePresenca;
-        this.exameFisico = exameFisico;
-        this.anamnese = anamnese;
-        this.descricao = descricao;
+        setExameFisico(exameFisico);
+        setAnamnese(anamnese);
+        setDescricao(descricao);
     }
 
     public LocalDate getDataDePresenca() {
@@ -53,7 +53,7 @@ public class IdaAoVeterinario {
 
     public void setDescricao(String descricao) {
         if (descricao == null || descricao.isBlank()) {
-            throw new IllegalArgumentException("Anamnese não pode ser nula");
+            throw new IllegalArgumentException("Anamnese não pode ficar em branco ou ser nula");
         }
         this.descricao = descricao;
     }
