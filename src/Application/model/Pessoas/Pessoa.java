@@ -30,7 +30,7 @@ public abstract class Pessoa {
         return nome;
     }
     // Metodo Set do nome
-    private void setNome(String nome){
+    public void setNome(String nome){
         if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("Nome inválido!");
         }
@@ -63,7 +63,7 @@ public abstract class Pessoa {
         return telefone;
     }
     // Metodo set de Telefone
-    private void setTelefone(String telefone){
+    public void setTelefone(String telefone){
         if(telefone == null || telefone.isBlank()){
             throw new IllegalArgumentException("Número inválido!");
         }

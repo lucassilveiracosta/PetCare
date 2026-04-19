@@ -15,7 +15,7 @@ public class Dono extends Pessoa {
     public String getProfissao(){
         return profissao;
     }
-    private void setProfissao(String profissao){
+    public void setProfissao(String profissao){
         if(profissao == null || profissao.isBlank()){
             throw new IllegalArgumentException("Profissão inválida!");
         }
