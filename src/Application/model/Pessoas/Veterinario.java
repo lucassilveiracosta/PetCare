@@ -1,27 +1,15 @@
 package model.Pessoas;
-import model.Especialidade.RepositorioEspecialidade;
 import model.Pessoas.Pessoa;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Veterinario extends Pessoa {
-    private RepositorioEspecialidade especialidade = new RepositorioEspecialidade();
     private String crmv;
-    public Veterinario(String nome, LocalDate dataNascimento, String cpf, String telefone, RepositorioEspecialidade especialidade, String crmv){
+    private List<String> especialidades;
+    public Veterinario(String nome, LocalDate dataNascimento, String cpf, String telefone, String crmv, List<String> especialidades){
         super(nome, dataNascimento, cpf, telefone);
-
-        setEspecialidade(especialidade);
         setCrmv(crmv);
-    }
-
-    public RepositorioEspecialidade getEspecialidade(){
-        return especialidade;
-    }
-    private void setEspecialidade(RepositorioEspecialidade especialidade){
-        if(especialidade == null){
-            throw new IllegalArgumentException("As especialidades não podem ser nulas!");
-        }
-        this.especialidade = especialidade;
     }
 
     public String getCrmv(){
@@ -33,5 +21,13 @@ public class Veterinario extends Pessoa {
             throw new IllegalArgumentException("CRMV inválido!");
         }
         this.crmv = crmv;
+    }
+
+    public List<String> getEspecialidades() {
+        return especialidades;
+    }
+
+    public void setEspecialidades(List<String> especialidades) {
+        this.especialidades = especialidades;
     }
 }
