@@ -1,6 +1,6 @@
 package enums;
 
-public enum Tempodevida {
+public enum TempoDeVida {
     RECEMNASCIDO,
     ADULTO,
     IDOSO
