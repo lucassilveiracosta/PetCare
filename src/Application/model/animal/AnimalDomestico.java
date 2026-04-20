@@ -3,16 +3,19 @@ package model.animal;
 import enums.Porte;
 import enums.Sexo;
 import enums.Temperamento;
+import model.Pessoas.Dono;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AnimalDomestico extends Animal {
+    private Dono dono;
     private boolean castrado;
-    private ArrayList<String> vacinas;
+    private ArrayList<Vacina> vacinas;
     private Temperamento temperamento;
 
-    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,Dono dono, ArrayList<String> vacinas, Temperamento temperamento, boolean castrado) {
-        super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
+    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, Double peso, Porte porte, Sexo sexo,Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado) {
+        super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempodevida);
         setDono(dono);
         setVacinas(vacinas);
         setTemperamento(temperamento);
@@ -53,11 +56,11 @@ public class AnimalDomestico extends Animal {
     }
 
 
-    public ArrayList<String> getVacinas() {
+    public ArrayList<Vacina> getVacinas() {
         return vacinas;
     }
 
-    public void setVacinas(ArrayList<String> vacinas) {
+    public void setVacinas(ArrayList<Vacina> vacinas) {
         this.vacinas = vacinas;
     }
 }

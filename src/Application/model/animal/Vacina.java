@@ -6,8 +6,35 @@ import java.util.ArrayList;
 public class Vacina {
     private String nomeDaVacina;
     private LocalDate dataDaVacina;
-    ArrayList<String> vacinasPendentes = new ArrayList<>();
-    ArrayList<String> vacinasTomadas = new ArrayList<>();
-    ArrayList<String> vacinasAtrasadas = new ArrayList<>();
+    private String descricao;
 
+    public Vacina(String nomeDaVacina, LocalDate dataDaVacina, String descricao) {
+        this.nomeDaVacina = nomeDaVacina;
+        this.dataDaVacina = dataDaVacina;
+        this.descricao = descricao;
+    }
+
+    public String getNomeDaVacina() {
+        return nomeDaVacina;
+    }
+
+    public void setNomeDaVacina(String nomeDaVacina) {
+        this.nomeDaVacina = nomeDaVacina;
+    }
+
+    public LocalDate getDataDaVacina() {
+        return dataDaVacina;
+    }
+
+    public void setDataDaVacina(LocalDate dataDaVacina) {
+        this.dataDaVacina = dataDaVacina;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

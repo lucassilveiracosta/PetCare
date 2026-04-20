@@ -2,10 +2,9 @@ package model.animal;
 
 import enums.Porte;
 import enums.Sexo;
+import enums.Tempodevida;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 
 public  class Animal {
@@ -16,11 +15,11 @@ public  class Animal {
     protected String especie;
     protected String raca;
     protected LocalDate DataNascimento;
-    protected double peso;
+    protected Double peso;
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal( String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo) {
+    public Animal(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, Tempodevida tempodevida) {
         this.id = contadorId++;
         setNome(nome);
         setEspecie(especie);
