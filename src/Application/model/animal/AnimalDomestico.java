@@ -4,18 +4,19 @@ import enums.Porte;
 import enums.Sexo;
 import enums.Temperamento;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class AnimalDomestico extends Animal {
-    private boolean cadastro;
-    private vacinasTomadas CarteiraDeVacina;
+    private boolean castrado;
+    private ArrayList<String> vacinas;
     private Temperamento temperamento;
 
-    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,Dono dono, vacinasTomadas carteiraDeVacina, Temperamento temperamento, boolean cadastro) {
+    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,Dono dono, ArrayList<String> vacinas, Temperamento temperamento, boolean castrado) {
         super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
         this.dono = dono;
-        CarteiraDeVacina = carteiraDeVacina;
+        setVacinas(vacinas);
         this.temperamento = temperamento;
-        this.cadastro = cadastro;
+        this.castrado = castrado;
     }
 
     public Dono getDono() {
@@ -40,24 +41,23 @@ public class AnimalDomestico extends Animal {
         this.temperamento = temperamento;
     }
 
-    public vacinasTomadas getCarteiraDeVacina() {
-        return CarteiraDeVacina;
+    public boolean isCastrado() {
+        return castrado;
     }
 
-    public void setCarteiraDeVacina(vacinasTomadas carteiraDeVacina) {
-        if(carteiraDeVacina == null ){
-            throw new IllegalArgumentException("Carteira de Vacina inválida!");
+    public void setCastrado(boolean castrado) {
+        if(temperamento == null ){
+            throw new IllegalArgumentException("Insira uma expressão válida, para animal doéstico castrado!");
         }
-        CarteiraDeVacina = carteiraDeVacina;
-    }
-
-    public boolean isCadastro() {
-        return cadastro;
-    }
-
-    public void setCadastro(boolean cadastro) {
-        this.cadastro = cadastro;
+        this.castrado = castrado;
     }
 
 
+    public ArrayList<String> getVacinas() {
+        return vacinas;
+    }
+
+    public void setVacinas(ArrayList<String> vacinas) {
+        this.vacinas = vacinas;
+    }
 }
