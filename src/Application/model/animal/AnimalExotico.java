@@ -4,7 +4,7 @@ import enums.Origem;
 import enums.Porte;
 import enums.Sexo;
 
-import enums.Tempodevida;
+import enums.TempoDeVida;
 import java.time.LocalDate;
 
 public class AnimalExotico extends Animal {
@@ -14,8 +14,8 @@ public class AnimalExotico extends Animal {
     private String microChipId;
     private String numeroDeRegistro;
 
-    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem, Tempodevida tempodevida) {
-        super( idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempodevida);
+    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem, TempoDeVida tempodevida) {
+        super(nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempodevida);
         setNumeroDeRegistro(numeroDeRegistro);
         setMicroChipId(microChipId);
         setRequerAmbienteControlado(requerAmbienteControlado);

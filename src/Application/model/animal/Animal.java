@@ -2,15 +2,15 @@ package model.animal;
 
 import enums.Porte;
 import enums.Sexo;
-import enums.Tempodevida;
+import enums.TempoDeVida;
 
 import java.time.LocalDate;
 
 
-public  class Animal {
+public abstract class Animal {
     protected static int contadorId = 1;
 
-    protected int id;
+    protected int id = contadorId++;
     protected String Nome;
     protected String especie;
     protected String raca;
@@ -19,8 +19,7 @@ public  class Animal {
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, Tempodevida tempodevida) {
-        this.id = contadorId++;
+    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, TempoDeVida tempodevida) {
         setNome(nome);
         setEspecie(especie);
         setRaca(raca);

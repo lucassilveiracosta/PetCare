@@ -3,6 +3,7 @@ package model.animal;
 import enums.Porte;
 import enums.Sexo;
 import enums.Temperamento;
+import enums.TempoDeVida;
 import model.Pessoas.Dono;
 
 import java.time.LocalDate;
@@ -14,8 +15,8 @@ public class AnimalDomestico extends Animal {
     private ArrayList<Vacina> vacinas;
     private Temperamento temperamento;
 
-    public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, Double peso, Porte porte, Sexo sexo,Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado) {
-        super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempodevida);
+    public AnimalDomestico(String nome, String especie, String raca, LocalDate dataNascimento, Double peso, Porte porte, Sexo sexo, Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado, TempoDeVida tempoDeVida) {
+        super(  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempoDeVida);
         setDono(dono);
         setVacinas(vacinas);
         setTemperamento(temperamento);
