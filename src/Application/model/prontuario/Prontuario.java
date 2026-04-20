@@ -6,22 +6,22 @@ import java.util.ArrayList;
 
 public class Prontuario {
 
-    private ArrayList<IdaAoVeterinario> prontuario;
+    private ArrayList<IdaAoVeterinario> idasAoVeterinario;
     private Animal animal;
     private String descricao;
 
-    public Prontuario(ArrayList<IdaAoVeterinario> prontuario, String descricao/*, Animal animal*/) {
-        this.prontuario = prontuario;
-        //this.animal = animal;
+    public Prontuario(ArrayList<IdaAoVeterinario> idasAoVeterinarios, String descricao, Animal animal) {
+        this.idasAoVeterinario = idasAoVeterinarios;
+        this.animal = animal;
         this.descricao = descricao;
     }
 
     public ArrayList<IdaAoVeterinario> getProntuario() {
-        return prontuario;
+        return idasAoVeterinario;
     }
 
-    public void setProntuario(ArrayList<IdaAoVeterinario> prontuario) {
-        this.prontuario = prontuario;
+    public void setProntuario(ArrayList<IdaAoVeterinario> idasAoVeterinarios) {
+        this.idasAoVeterinario = idasAoVeterinarios;
     }
 
     public Animal getAnimal() {
@@ -38,5 +38,9 @@ public class Prontuario {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public ArrayList<IdaAoVeterinario> getIdasAoVeterinario() {
+        return idasAoVeterinario;
     }
 }
