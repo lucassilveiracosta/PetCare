@@ -2,11 +2,16 @@ package model.animal;
 
 import enums.Porte;
 import enums.Sexo;
-
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
 
 public  class Animal {
-    protected int IdAnimal;
+    protected static int contadorId = 1;
+
+    protected int id;
     protected String Nome;
     protected String especie;
     protected String raca;
@@ -15,23 +20,16 @@ public  class Animal {
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo) {
-        IdAnimal = idAnimal;
-        Nome = nome;
-        this.especie = especie;
-        this.raca = raca;
-        DataNascimento = dataNascimento;
-        this.peso = peso;
-        this.porte = porte;
-        this.sexo = sexo;
-    }
+    public Animal( String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo) {
+        this.id = contadorId++;
+        setNome(nome);
+        setEspecie(especie);
+        setRaca(raca);
+        setDataNascimento(dataNascimento);
+        setPeso(peso);
+        setPorte(porte);
+        setSexo(sexo);
 
-    public int getIdAnimal() {
-        return IdAnimal;
-    }
-
-    public void setIdAnimal(int idAnimal) {
-        IdAnimal = idAnimal;
     }
 
     public String getNome() {
@@ -110,4 +108,30 @@ public  class Animal {
         }
         this.sexo = sexo;
     }
+
+    public int getId() {
+        return id;
+    }
+
+/*
+            try {
+                // formato que o usuário digita
+                DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                // converter string para data
+                LocalDate data = LocalDate.parse(DataNascimento, formatoEntrada);
+
+                // formato padrão desejado
+                DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                // exibir formatado
+                String dataFormatada = data.format(formatoSaida);
+
+                System.out.println("Data formatada: " + dataFormatada);
+
+            } catch (DateTimeParseException e) {
+                System.out.println("Erro: Data inválida! Use o formato dd/MM/yyyy.");
+            }
+       */
 }
+

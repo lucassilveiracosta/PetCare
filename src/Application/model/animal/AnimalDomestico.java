@@ -13,10 +13,10 @@ public class AnimalDomestico extends Animal {
 
     public AnimalDomestico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,Dono dono, ArrayList<String> vacinas, Temperamento temperamento, boolean castrado) {
         super(idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
-        this.dono = dono;
+        setDono(dono);
         setVacinas(vacinas);
-        this.temperamento = temperamento;
-        this.castrado = castrado;
+        setTemperamento(temperamento);
+        setCastrado(castrado);
     }
 
     public Dono getDono() {

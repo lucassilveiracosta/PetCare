@@ -4,19 +4,20 @@ import enums.Origem;
 import enums.Porte;
 import enums.Sexo;
 
+import enums.Tempodevida;
 import java.time.LocalDate;
 
 public class AnimalExotico extends Animal {  private boolean requerAmbienteControlado;
     private String descricaoDieta;
     private Origem origem;
 
-    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem) {
-        super( idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo);
-        this.numeroDeRegistro = numeroDeRegistro;
-        this.microChipId = microChipId;
-        this.requerAmbienteControlado = requerAmbienteControlado;
-        this.descricaoDieta = descricaoDieta;
-        this.origem = origem;
+    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem, Tempodevida tempodevida) {
+        super( idAnimal,  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, tempodevida);
+        setNumeroDeRegistro(numeroDeRegistro);
+        setMicroChipId(microChipId);
+        setRequerAmbienteControlado(requerAmbienteControlado);
+        setDescricaoDieta(descricaoDieta);
+        setOrigem(origem);
     }
 
     public String getNumeroDeRegistro() {
