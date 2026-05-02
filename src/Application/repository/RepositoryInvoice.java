@@ -31,7 +31,6 @@ public class RepositoryInvoice implements IRepositoryInvoice {
 
     @Override
     public void update(int id, NotaFiscal nf) { // avaliar como implementar update, sem prints na camada de dados
-        NotaFiscal notaFiscal = findById(id);
         notasFiscais.set(id, nf);
     }
 
@@ -42,8 +41,7 @@ public class RepositoryInvoice implements IRepositoryInvoice {
     }
 
     @Override
-    public void delete(int id) {
-        NotaFiscal nf = findById(id);
+    public void remove(NotaFiscal nf) {
         if (nf != null) notasFiscais.remove(nf);
     }
 }

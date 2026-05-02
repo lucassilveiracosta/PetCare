@@ -10,5 +10,5 @@ public interface IRepositoryInvoice {
     public ArrayList<NotaFiscal> findAll();
     public void update(int id, NotaFiscal nf);
     public void create(NotaFiscal nf);
-    public void delete(int id);
+    public void remove(NotaFiscal nf);
 }

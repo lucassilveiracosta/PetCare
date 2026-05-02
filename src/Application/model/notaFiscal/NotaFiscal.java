@@ -80,4 +80,6 @@ public class NotaFiscal {
                          BUISSNESS
     ------------------------------------------------------
      */
+
+    public get
 }
