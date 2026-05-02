@@ -1,0 +1,56 @@
+package repository;
+
+import model.animal.Animal;
+import repository.Interface.IRepositoryAnimal;
+import java.util.ArrayList;
+import java.util.List;
+
+public class RepositoryAnimal implements IRepositoryAnimal {
+
+    private List<Animal> animais;
+
+    public RepositoryAnimal() {
+        this.animais = new ArrayList<>();
+    }
+
+    @Override
+    public void create(Animal animal) {
+        this.animais.add(animal);
+    }
+
+    @Override
+    public Animal findById(int id) {
+        for (int i = 0; i < animais.size(); i++) {
+            Animal a = animais.get(i);
+            if (a.getId() == id) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Animal> findAll() {
+        return new ArrayList<>(animais);
+    }
+
+    @Override
+    public void update(Animal animal) {
+        for (int i = 0; i < animais.size(); i++) {
+            if(animais.get(i).getId() == animal.getId()) {
+                animais.set(i, animal);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        Animal a = findById(id);
+        if (a != null) {
+            animais.remove(a);
+        }
+
+
+    }
+}
