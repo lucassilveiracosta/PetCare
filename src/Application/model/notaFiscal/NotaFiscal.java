@@ -23,6 +23,10 @@ public class NotaFiscal {
         this.produtos = produtos;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public ResponsavelPagador getResponsavelPagador() {
         return responsavelPagador;
     }
