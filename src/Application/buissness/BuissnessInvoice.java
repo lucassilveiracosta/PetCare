@@ -17,7 +17,6 @@ public class BuissnessInvoice {
 
         if (nf == null) throw new InvoiceNotFoundException("404 - ID not found");
 
-
         return nf;
     }
 
@@ -27,9 +26,10 @@ public class BuissnessInvoice {
 
     public void patch(int id, NotaFiscal nf) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (nf == null) throw new IllegalArgumentException("Invoice can't be null");
         NotaFiscal notaFiscal = repositoryInvoice.findById(id);
         if (notaFiscal == null) throw new InvoiceNotFoundException("404 - ID not found");
-        if (nf == null) throw new IllegalArgumentException("Invoice can't be null");
+
         repositoryInvoice.update(id, nf);
     }
 
