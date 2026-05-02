@@ -1,15 +1,15 @@
 package repository;
 
 import model.notaFiscal.NotaFiscal;
-import repository.Interface.IRepositorioNotaFiscal;
+import repository.Interface.IRepositoryInvoice;
 
 import java.util.ArrayList;
 
-public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
+public class RepositoryInvoice implements IRepositoryInvoice {
 
     private ArrayList<NotaFiscal> notasFiscais;
 
-    public RepositorioNotaFiscal(ArrayList<NotaFiscal> notasFiscais) {
+    public RepositoryInvoice(ArrayList<NotaFiscal> notasFiscais) {
         this.notasFiscais = notasFiscais;
     }
 

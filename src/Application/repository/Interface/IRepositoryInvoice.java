@@ -4,7 +4,7 @@ import model.notaFiscal.NotaFiscal;
 
 import java.util.ArrayList;
 
-public interface IRepositorioNotaFiscal {
+public interface IRepositoryInvoice {
 
     public NotaFiscal findById(int id);
     public ArrayList<NotaFiscal> findAll();
