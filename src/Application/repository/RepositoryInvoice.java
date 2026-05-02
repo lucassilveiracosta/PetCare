@@ -35,6 +35,7 @@ public class RepositoryInvoice implements IRepositoryInvoice {
         notasFiscais.set(id, nf);
     }
 
+
     @Override
     public void create(NotaFiscal nf) {
         notasFiscais.add(nf);
