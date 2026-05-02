@@ -4,7 +4,7 @@ import model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public class Procedimento {
+public abstract class Procedimento {
 
     private Animal paciente;
     private LocalDateTime dataHora;
