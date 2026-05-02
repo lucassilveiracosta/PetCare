@@ -9,6 +9,9 @@ public class RepositorioNotaFiscal implements IRepositorioNotaFiscal {
 
     private ArrayList<NotaFiscal> notasFiscais;
 
+    public RepositorioNotaFiscal(ArrayList<NotaFiscal> notasFiscais) {
+        this.notasFiscais = notasFiscais;
+    }
 
     @Override
     public NotaFiscal findById(int id) {
