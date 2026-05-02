@@ -12,6 +12,7 @@ public class BuissnessInvoice {
     private IRepositoryInvoice repositoryInvoice;
 
     public NotaFiscal getById(int id) {
+        if (id < 0) throw new IllegalArgumentException("ID must be positive");
         NotaFiscal nf = repositoryInvoice.findById(id);
 
         if (nf == null) throw new InvoiceNotFoundException("404 - ID not found");
@@ -25,6 +26,7 @@ public class BuissnessInvoice {
     }
 
     public void patch(int id, NotaFiscal nf) {
+        if (id < 0) throw new IllegalArgumentException("ID must be positive");
         NotaFiscal notaFiscal = repositoryInvoice.findById(id);
         if (notaFiscal == null) throw new InvoiceNotFoundException("404 - ID not found");
         if (nf == null) throw new IllegalArgumentException("Invoice can't be null");
@@ -32,6 +34,7 @@ public class BuissnessInvoice {
     }
 
     public void delete(int id) {
+        if (id < 0) throw new IllegalArgumentException("ID must be positive");
         NotaFiscal notaFiscal = repositoryInvoice.findById(id);
         if (notaFiscal == null) throw new InvoiceNotFoundException("404 - ID not found");
 
