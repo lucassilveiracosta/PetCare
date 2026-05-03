@@ -30,8 +30,8 @@ public class RepositoryInvoice implements IRepositoryInvoice {
     }
 
     @Override
-    public void update(int id, NotaFiscal nf) { // avaliar como implementar update, sem prints na camada de dados
-        notasFiscais.set(id, nf);
+    public void update(int index, NotaFiscal nf) { // avaliar como implementar update, sem prints na camada de dados
+        notasFiscais.set(index, nf);
     }
 
 

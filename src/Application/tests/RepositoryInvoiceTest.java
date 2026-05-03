@@ -127,15 +127,14 @@ public class RepositoryInvoiceTest {
                     break;
 
                 case 4:
-                    System.out.print("\n[AÇÃO] Digite o INDEX (começando de 0) da Nota Fiscal a ser atualizada: ");
+                    System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal a ser atualizada: ");
                     try {
-                        int indexAt = Integer.parseInt(scanner.nextLine());
-                        if (indexAt >= 0 && indexAt < repository.findAll().size()) {
-                            NotaFiscal nfOriginal = repository.findAll().get(indexAt);
+                        int id = Integer.parseInt(scanner.nextLine());
+                        if (id >= 1 && id < repository.findAll().size()) {
+                            NotaFiscal nfOriginal = repository.findById(id);
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
-                            
                             NotaFiscal nfAtualizada = new NotaFiscal(pagador2, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
-                            repository.update(indexAt, nfAtualizada);
+                            repository.update(repository.findAll().indexOf(repository.findById(id)), nfAtualizada);
                             System.out.println("   -> Atualização concluída.");
                         } else {
                             System.out.println("   -> Index inválido ou fora dos limites.");
