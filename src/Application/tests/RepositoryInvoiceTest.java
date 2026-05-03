@@ -13,70 +13,166 @@ import repository.RepositoryInvoice;
 import repository.Interface.IRepositoryInvoice;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class RepositoryInvoiceTest {
 
     public static void listarNotasFiscais(IRepositoryInvoice repository) {
-        System.out.println("   -> Estado atual do repositório:");
+        System.out.println("\n   -> Estado atual do repositório:");
         if (repository.findAll().isEmpty()) {
             System.out.println("      (Repositório vazio)");
         } else {
             for (NotaFiscal nf : repository.findAll()) {
-                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getResponsavelPagador().getNome());
+                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getResponsavelPagador().getNome() + " | Qtd Procedimentos: " + nf.getProcedimentos().size() + " | Qtd Produtos: " + nf.getProdutos().size());
             }
         }
     }
 
     public static void main(String[] args) {
-        System.out.println("=== Iniciando Testes do RepositoryInvoice ===");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=== Iniciando Teste Interativo do RepositoryInvoice ===");
 
-        // 1. Setup - Criando objetos dummy necessários para a NotaFiscal
+        // Setup - Banco de Dados
         ArrayList<NotaFiscal> bancoDeDados = new ArrayList<>();
         IRepositoryInvoice repository = new RepositoryInvoice(bancoDeDados);
 
+        // Setup - Criando dados robustos
         LocalDate data = LocalDate.now();
-        ResponsavelPagador pagador = new ResponsavelPagador("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Descrição Pagador");
-        Dono dono = new Dono("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono do animal");
-        Animal animal = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true, TempoDeVida.ADULTO);
+        LocalDateTime dataHora = LocalDateTime.now();
+        
+        ResponsavelPagador pagador1 = new ResponsavelPagador("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Titular do plano");
+        ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
+        
+        Dono dono = new Dono("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true, TempoDeVida.ADULTO);
+        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false, TempoDeVida.RECEMNASCIDO);
 
-        NotaFiscal nf1 = new NotaFiscal(pagador, animal, new ArrayList<Procedimento>(), new ArrayList<Produto>());
-        NotaFiscal nf2 = new NotaFiscal(pagador, animal, new ArrayList<Procedimento>(), new ArrayList<Produto>());
+        ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
+        procedimentos1.add(new Procedimento(150.0, animal1, dataHora, "Consulta de Rotina"));
+        procedimentos1.add(new Procedimento(80.0, animal1, dataHora, "Vacinação Anual"));
 
-        // 2. Testando CREATE
-        System.out.println("\n[TESTE] Adicionando Notas Fiscais...");
+        ArrayList<Produto> produtos1 = new ArrayList<>();
+        produtos1.add(new Produto(dataHora, "Ração Premium 15kg", 200.0));
+        produtos1.add(new Produto(dataHora, "Brinquedo de Borracha", 35.0));
+
+        ArrayList<Procedimento> procedimentos2 = new ArrayList<>();
+        procedimentos2.add(new Procedimento(300.0, animal2, dataHora, "Exame de Sangue"));
+
+        ArrayList<Produto> produtos2 = new ArrayList<>();
+        produtos2.add(new Produto(dataHora, "Antibiótico Pet", 85.0));
+
+        NotaFiscal nf1 = new NotaFiscal(pagador1, animal1, procedimentos1, produtos1);
+        NotaFiscal nf2 = new NotaFiscal(pagador2, animal2, procedimentos2, produtos2);
+
+        // Pre-populando para ter dados
         repository.create(nf1);
         repository.create(nf2);
-        listarNotasFiscais(repository);
 
-        // 3. Testando FIND ALL
-        System.out.println("\n[TESTE] Listando todas as Notas Fiscais...");
-        listarNotasFiscais(repository);
+        int opcao = -1;
 
-        // 4. Testando FIND BY ID
-        System.out.println("\n[TESTE] Buscando Nota Fiscal por ID...");
-        int idBusca = 4;
-        NotaFiscal encontrada = repository.findById(idBusca);
-        if (encontrada != null) {
-            System.out.println("Nota Fiscal encontrada com sucesso! ID: " + encontrada.getId());
-        } else {
-            System.out.println("Nota Fiscal não encontrada.");
+        while (opcao != 0) {
+            System.out.println("\n=================================");
+            System.out.println(" MENU - TESTE REPOSITÓRIO INVOICE");
+            System.out.println("=================================");
+            System.out.println("1. Adicionar nova Nota Fiscal (Dummy)");
+            System.out.println("2. Listar todas as Notas Fiscais");
+            System.out.println("3. Buscar Nota Fiscal por ID");
+            System.out.println("4. Atualizar Nota Fiscal por Index");
+            System.out.println("5. Remover Nota Fiscal por ID");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            
+            try {
+                opcao = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Opção inválida! Digite um número.");
+                continue;
+            }
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("\n[AÇÃO] Adicionando uma nova Nota Fiscal...");
+                    ArrayList<Procedimento> novosProc = new ArrayList<>();
+                    novosProc.add(new Procedimento(200.0, animal1, dataHora, "Limpeza de Tártaro"));
+                    ArrayList<Produto> novosProd = new ArrayList<>();
+                    novosProd.add(new Produto(dataHora, "Shampoo Pet", 45.0));
+                    NotaFiscal novaNf = new NotaFiscal(pagador1, animal1, novosProc, novosProd);
+                    repository.create(novaNf);
+                    System.out.println("Nota Fiscal criada e adicionada com sucesso!");
+                    listarNotasFiscais(repository);
+                    break;
+
+                case 2:
+                    System.out.println("\n[AÇÃO] Listando todas as Notas Fiscais...");
+                    listarNotasFiscais(repository);
+                    break;
+
+                case 3:
+                    System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal que deseja buscar: ");
+                    try {
+                        int idBusca = Integer.parseInt(scanner.nextLine());
+                        NotaFiscal encontrada = repository.findById(idBusca);
+                        if (encontrada != null) {
+                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getResponsavelPagador().getNome());
+                            System.out.println("      Procedimentos: " + encontrada.getProcedimentos().size() + " | Produtos: " + encontrada.getProdutos().size());
+                        } else {
+                            System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + idBusca);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("   -> ID inválido.");
+                    }
+                    listarNotasFiscais(repository);
+                    break;
+
+                case 4:
+                    System.out.print("\n[AÇÃO] Digite o INDEX (começando de 0) da Nota Fiscal a ser atualizada: ");
+                    try {
+                        int indexAt = Integer.parseInt(scanner.nextLine());
+                        if (indexAt >= 0 && indexAt < repository.findAll().size()) {
+                            NotaFiscal nfOriginal = repository.findAll().get(indexAt);
+                            System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
+                            
+                            NotaFiscal nfAtualizada = new NotaFiscal(pagador2, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
+                            repository.update(indexAt, nfAtualizada);
+                            System.out.println("   -> Atualização concluída.");
+                        } else {
+                            System.out.println("   -> Index inválido ou fora dos limites.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("   -> Index inválido.");
+                    }
+                    listarNotasFiscais(repository);
+                    break;
+
+                case 5:
+                    System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal que deseja remover: ");
+                    try {
+                        int idRemover = Integer.parseInt(scanner.nextLine());
+                        NotaFiscal nfParaRemover = repository.findById(idRemover);
+                        if (nfParaRemover != null) {
+                            repository.remove(nfParaRemover);
+                            System.out.println("   -> Nota Fiscal removida com sucesso!");
+                        } else {
+                            System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + idRemover + " para remoção.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("   -> ID inválido.");
+                    }
+                    listarNotasFiscais(repository);
+                    break;
+
+                case 0:
+                    System.out.println("Saindo do teste interativo...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
         }
-        listarNotasFiscais(repository);
-
-        // 5. Testando UPDATE
-        System.out.println("\n[TESTE] Atualizando Nota Fiscal...");
-        ResponsavelPagador pagadorNovo = new ResponsavelPagador("Maria Souza", data.minusYears(25), "09876543211", "81888888888", "Médica", "Nova Pagadora");
-        NotaFiscal nfAtualizada = new NotaFiscal(pagadorNovo, animal, new ArrayList<Procedimento>(), new ArrayList<Produto>());
-        // O método update no repositório utiliza o index da lista, então vamos atualizar o index 0
-        repository.update(0, nfAtualizada);
-        listarNotasFiscais(repository);
-
-        // 6. Testando REMOVE
-        System.out.println("\n[TESTE] Removendo Nota Fiscal...");
-        repository.remove(nfAtualizada);
-        listarNotasFiscais(repository);
-
-        System.out.println("\n=== Fim dos Testes do RepositoryInvoice ===");
+        
+        scanner.close();
     }
 }
