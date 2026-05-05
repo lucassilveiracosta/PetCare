@@ -21,8 +21,12 @@ public class ServicoPetShop extends Procedimento {
         return pelagem;
     }
 
-    public void setPelagem(String pelagem) {
-        pelagem = pelagem;
+    public void setPelagem(String pelagem)
+    {
+        if(pelagem == null || pelagem.isBlank()){
+            throw new IllegalArgumentException("A pelagem não pode ser nula!");
+        }
+        this.pelagem = pelagem;
     }
 
     public String getTipoServico() {
@@ -30,6 +34,9 @@ public class ServicoPetShop extends Procedimento {
     }
 
     public void setTipoServico(String tipoServico) {
+        if(tipoServico == null || tipoServico.isBlank()){
+            throw new IllegalArgumentException("O tipo do serviço não pode ser nulo!");
+        }
         this.tipoServico = tipoServico;
     }
 
@@ -38,6 +45,9 @@ public class ServicoPetShop extends Procedimento {
     }
 
     public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
+        if(funcionarioResponsavel == null){
+            throw new IllegalArgumentException("Funcionário responsável não pode ser nulo!");
+        }
         this.funcionarioResponsavel = funcionarioResponsavel;
     }
 }

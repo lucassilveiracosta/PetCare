@@ -23,6 +23,9 @@ public class Cirurgia extends Procedimento{
     }
 
     public void setRiscoCirurgico(String riscoCirurgico) {
+        if(riscoCirurgico == null || riscoCirurgico.isBlank()){
+            throw new IllegalArgumentException("O risco cirurgico não pode ser nulo!");
+        }
         this.riscoCirurgico = riscoCirurgico;
     }
 
@@ -31,6 +34,9 @@ public class Cirurgia extends Procedimento{
     }
 
     public void setVeterinarioResponsavel(Veterinario veterinarioResponsavel) {
+        if(veterinarioResponsavel == null){
+            throw new IllegalArgumentException("Veterinario responsável não pode ser nulo!");
+        }
         this.veterinarioResponsavel = veterinarioResponsavel;
     }
 
@@ -39,6 +45,9 @@ public class Cirurgia extends Procedimento{
     }
 
     public void setTipoAnestesia(String tipoAnestesia) {
+        if(tipoAnestesia == null || tipoAnestesia.isBlank()){
+            throw new IllegalArgumentException("O tipo da anestesia não pode ser nula!");
+        }
         this.tipoAnestesia = tipoAnestesia;
     }
 }
