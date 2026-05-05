@@ -16,7 +16,11 @@ public class Funcionario extends Pessoa{
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(String cargo)
+    {
+        if(cargo == null || cargo.isBlank()){
+            throw new IllegalArgumentException("Cargo não pode ser nulo");
+        }
         this.cargo = cargo;
     }
 
@@ -25,6 +29,9 @@ public class Funcionario extends Pessoa{
     }
 
     public void setTurnoTrabalho(String turnoTrabalho) {
+        if(turnoTrabalho == null || turnoTrabalho.isBlank()){
+            throw new IllegalArgumentException("O turno do trabalho não pode ser nulo!");
+        }
         this.turnoTrabalho = turnoTrabalho;
     }
 }
