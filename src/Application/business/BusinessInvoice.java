@@ -1,4 +1,4 @@
-package buissness;
+package business;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
@@ -7,7 +7,7 @@ import repository.Interface.IRepositoryInvoice;
 
 import java.util.ArrayList;
 
-public class BuissnessInvoice {
+public class BusinessInvoice {
 
     private IRepositoryInvoice repositoryInvoice;
 
