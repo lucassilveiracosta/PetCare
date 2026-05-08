@@ -25,6 +25,44 @@ public class BusinessAnimal {
 
         return animal;
     }
+    public void patch(int id, Animal dadosParciais) {
+
+        Animal animalExistente = repositoryAnimal.findById(id);
+        if (animalExistente == null) {
+            throw new AnimalNotFoundException("404 - Animal com ID " + id + " não encontrado.");
+        }
+
+
+
+        if (dadosParciais.getNome() != null && !dadosParciais.getNome().isBlank()) {
+            animalExistente.setNome(dadosParciais.getNome());
+        }
+
+        if (dadosParciais.getEspecie() != null && !dadosParciais.getEspecie().isBlank()) {
+            animalExistente.setEspecie(dadosParciais.getEspecie());
+        }
+
+        if (dadosParciais.getRaca() != null && !dadosParciais.getRaca().isBlank()) {
+            animalExistente.setRaca(dadosParciais.getRaca());
+        }
+
+
+        if (dadosParciais.getPeso() != 0.0) {
+            animalExistente.setPeso(dadosParciais.getPeso());
+        }
+
+        if (dadosParciais.getPorte() != null) {
+            animalExistente.setPorte(dadosParciais.getPorte());
+        }
+
+        if (dadosParciais.getSexo() != null) {
+            animalExistente.setSexo(dadosParciais.getSexo());
+        }
+
+
+        int index = repositoryAnimal.findAll().indexOf(animalExistente);
+        repositoryAnimal.update(index, animalExistente);
+    }
 
     public List<Animal> getAll() {
         return repositoryAnimal.findAll();
