@@ -11,6 +11,10 @@ public class BusinessStockVetProducts {
 
     private IRepositoryStockVetProducts repositoryStockVetProducts;
 
+    public BusinessStockVetProducts(IRepositoryStockVetProducts repository) {
+        this.repositoryStockVetProducts = repository;
+    }
+
     public Produto getById(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
         Produto nf = repositoryStockVetProducts.findById(id);
@@ -27,23 +31,28 @@ public class BusinessStockVetProducts {
     public void patch(int id, Produto nf) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
         if (nf == null) throw new IllegalArgumentException("Invoice can't be null");
-        Produto produtos = repositoryStockVetProducts.findById(id);
-        if (produtos == null) throw new StockVetProductsNotFoundException("404 - ID not found");
+
+        Produto existente = repositoryStockVetProducts.findById(id);
+        if (existente == null) throw new StockVetProductsNotFoundException("404 - ID not found");
 
         repositoryStockVetProducts.update(id, nf);
     }
 
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Produto produtos = repositoryStockVetProducts.findById(id);
-        if (produtos == null) throw new StockVetProductsNotFoundException("404 - ID not found");
+
+        Produto produto = repositoryStockVetProducts.findById(id);
+        if (produto == null) throw new StockVetProductsNotFoundException("404 - ID not found");
 
         repositoryStockVetProducts.remove(produto);
     }
 
     public void post(Produto nf) {
+        if (nf == null) throw new IllegalArgumentException("Product cannot be null");
+
         Produto exists = repositoryStockVetProducts.findById(nf.getId());
-        if (nf == exists) throw new StockVetProductsConflictException("This invoice already exists");
+        if (exists != null) throw new StockVetProductsConflictException("This invoice already exists");
+
         repositoryStockVetProducts.create(nf);
     }
 }

@@ -11,39 +11,51 @@ public class BusinessStockGeneralProducts {
 
     private IRepositoryStockGeneralProducts repositoryStockGeneralProducts;
 
+    public BusinessStockGeneralProducts(IRepositoryStockGeneralProducts repository) {
+        this.repositoryStockGeneralProducts = repository;
+    }
+
     public Produto getById(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Produto nf = repositoryStockGeneralProducts.findById(id);
+        Produto produto = repositoryStockGeneralProducts.findById(id);
 
-        if (nf == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
+        if (produto == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
-        return nf;
+        return produto;
     }
 
     public ArrayList<Produto> getAll() {
         return repositoryStockGeneralProducts.findAll();
     }
 
-    public void patch(int id, Produto nf) {
+    public void patch(int id, Produto novoProduto) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        if (nf == null) throw new IllegalArgumentException("Invoice can't be null");
-        Produto produtos = repositoryStockGeneralProducts.findById(id);
-        if (produtos == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
+        if (novoProduto == null) throw new IllegalArgumentException("Product can't be null");
 
-        repositoryStockGeneralProducts.update(id, nf);
+        Produto existente = repositoryStockGeneralProducts.findById(id);
+        if (existente == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
+
+        repositoryStockGeneralProducts.update(id, novoProduto);
     }
 
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Produto produtos = repositoryStockGeneralProducts.findById(id);
-        if (produtos == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
+
+        Produto produto = repositoryStockGeneralProducts.findById(id);
+        if (produto == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
         repositoryStockGeneralProducts.remove(produto);
     }
 
-    public void post(Produto nf) {
-        Produto exists = repositoryStockGeneralProducts.findById(nf.getId());
-        if (nf == exists) throw new StockGeneralProductsConflictException("This invoice already exists");
-        repositoryStockGeneralProducts.create(nf);
+    public void post(Produto novoProduto) {
+        if (novoProduto == null) throw new IllegalArgumentException("Product can't be null");
+
+        Produto exists = repositoryStockGeneralProducts.findById(novoProduto.getId());
+
+        if (exists != null) {
+            throw new StockGeneralProductsConflictException("This product already exists");
+        }
+
+        repositoryStockGeneralProducts.create(novoProduto);
     }
 }
