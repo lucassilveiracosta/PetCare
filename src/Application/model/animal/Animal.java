@@ -7,7 +7,7 @@ import enums.TempoDeVida;
 import java.time.LocalDate;
 
 
-public abstract class Animal {
+public class Animal {
     protected static int contadorId = 1;
 
     protected int id = contadorId++;
@@ -105,6 +105,10 @@ public abstract class Animal {
             throw new IllegalArgumentException("Sexo do animal inválido!");
         }
         this.sexo = sexo;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

@@ -7,11 +7,11 @@ import repository.Interface.IRepositoryAnimal;
 
 import java.util.List;
 
-public class Businessanimal {
+public class BusinessAnimal {
     private IRepositoryAnimal repositoryAnimal;
 
 
-    public Businessanimal(IRepositoryAnimal repositoryAnimal) {
+    public BusinessAnimal(IRepositoryAnimal repositoryAnimal) {
         this.repositoryAnimal = repositoryAnimal;
     }
 
@@ -30,16 +30,15 @@ public class Businessanimal {
         return repositoryAnimal.findAll();
     }
 
-    public void update(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("Animal cannot be null");
+    public void update(int id, Animal novosDados) {
+        Animal antigo = repositoryAnimal.findById(id);
+        if (antigo == null) throw new AnimalNotFoundException("...");
 
+        // Garante que o objeto novo terá o mesmo ID do antigo
+        novosDados.setId(id);
 
-        Animal exists = repositoryAnimal.findById(animal.getId());
-        if (exists == null) {
-            throw new AnimalNotFoundException("404 - Cannot update: Animal not found");
-        }
-
-        repositoryAnimal.update(animal);
+        int index = repositoryAnimal.findAll().indexOf(antigo);
+        repositoryAnimal.update(index, novosDados);
     }
 
     public void delete(int id) {
