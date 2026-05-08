@@ -35,7 +35,7 @@ public class RepositoryAnimal implements IRepositoryAnimal {
     }
 
     @Override
-    public void update(Animal animal) {
+    public  update(Animal animal) {
         for (int i = 0; i < animais.size(); i++) {
             if(animais.get(i).getId() == animal.getId()) {
                 animais.set(i, animal);
