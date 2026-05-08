@@ -1,12 +1,14 @@
 package repository.Interface;
 
 import model.notaFiscal.Produto;
-import java.util.List;
+
+import java.util.ArrayList;
 
 public interface IRepositoryStockVetProducts {
-    Produto findById(int id);
-    void save(Produto produto);
-    List<Produto> listAll();
-    void delete(int id);
 
+    public Produto findById(int id);
+    public ArrayList<Produto> findAll();
+    public void update (int id, Produto p);
+    public void create (Produto p);
+    public void  remove (Produto p);
 }
