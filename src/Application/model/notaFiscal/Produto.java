@@ -8,11 +8,13 @@ public class Produto {
     private LocalDateTime dataHora;
     private String descricao;
     private Double preco;
+    private int id;
 
-    public Produto(LocalDateTime dataHora, String descricao, Double preco){
+    public Produto(LocalDateTime dataHora, String descricao, Double preco, int id){
     this.dataHora = dataHora;
     setDescricao(descricao);
     this.preco = preco;
+    this.id = id;
     }
 
     public LocalDateTime getDataHora() {
@@ -40,5 +42,9 @@ public class Produto {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public int getId() {
+        return id;
     }
 }
