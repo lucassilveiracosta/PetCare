@@ -34,6 +34,9 @@ public abstract class Procedimento {
     }
 
     public void setDataHora(LocalDateTime dataHora) {
+        if (dataHora == null) {
+            throw new IllegalArgumentException("A data não pode ser nula");
+        }
         this.dataHora = dataHora;
     }
 
