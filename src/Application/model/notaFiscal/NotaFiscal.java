@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class NotaFiscal {
+    protected static int contadorId = 1;
+
+    protected int id = contadorId++;
     private ResponsavelPagador responsavelPagador;
     private Animal paciente;
     private final LocalDateTime dataHora = LocalDateTime.now();
@@ -18,6 +21,10 @@ public class NotaFiscal {
         setPaciente(paciente);
         this.procedimentos = procedimentos;
         this.produtos = produtos;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public ResponsavelPagador getResponsavelPagador() {
