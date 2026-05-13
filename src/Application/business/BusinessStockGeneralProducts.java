@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class BusinessStockGeneralProducts {
 
-    private IRepositoryStockGeneralProducts repositoryStockGeneralProducts;
+    private final IRepositoryStockGeneralProducts repositoryStockGeneralProducts;
 
     public BusinessStockGeneralProducts(IRepositoryStockGeneralProducts repository) {
         this.repositoryStockGeneralProducts = repository;

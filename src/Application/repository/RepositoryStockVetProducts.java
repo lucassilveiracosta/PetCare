@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class RepositoryStockVetProducts implements IRepositoryStockVetProducts {
 
-    private ArrayList<Produto> produtos;
+    private final ArrayList<Produto> produtos;
     public RepositoryStockVetProducts(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
@@ -30,8 +30,8 @@ public class RepositoryStockVetProducts implements IRepositoryStockVetProducts {
     }
 
     @Override
-    public void update(int id, Produto p) {
-        produtos.set(id, p);
+    public void update(int index, Produto p) {
+        produtos.set(index, p);
     }
 
     @Override
