@@ -69,7 +69,7 @@ public class BusinessAnimal {
 
     public void update(int id, Animal novosDados) {
         Animal antigo = repositoryAnimal.findById(id);
-        if (antigo == null) throw new AnimalNotFoundException("...");
+        if (antigo == null) throw new AnimalNotFoundException("404 - ID not found");
 
         // Garante que o objeto novo terá o mesmo ID do antigo
         novosDados.setId(id);
