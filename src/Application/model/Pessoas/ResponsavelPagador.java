@@ -1,5 +1,4 @@
 package model.Pessoas;
-import model.Pessoas.Pessoa;
 import java.time.LocalDate;
 public class ResponsavelPagador extends Pessoa {
     private String pagador;
