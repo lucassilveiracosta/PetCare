@@ -1,7 +1,6 @@
 package model.animal;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Vacina {
     private String nomeDaVacina;
