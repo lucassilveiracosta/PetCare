@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class RepositorioPessoa implements IRepositoryPerson {
 
-    private ArrayList<Pessoa> pessoas;
+    private final ArrayList<Pessoa> pessoas;
     public RepositorioPessoa(ArrayList<Pessoa> pessoas) {
         this.pessoas = pessoas;
     }
@@ -30,8 +30,8 @@ public class RepositorioPessoa implements IRepositoryPerson {
     }
 
     @Override
-    public void update(int id, Pessoa p) {
-        pessoas.set(id, p);
+    public void update(int index, Pessoa p) {
+        pessoas.set(index, p);
     }
 
     @Override
