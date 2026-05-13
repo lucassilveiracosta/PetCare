@@ -15,8 +15,8 @@ public class AnimalDomestico extends Animal {
     private ArrayList<Vacina> vacinas;
     private Temperamento temperamento;
 
-    public AnimalDomestico(String nome, String especie, String raca, LocalDate dataNascimento, Double peso, Porte porte, Sexo sexo, Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado, FaseDaVida faseDaVida) {
-        super(  nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, faseDaVida);
+    public AnimalDomestico(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, Double peso, Porte porte, Sexo sexo, Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado) {
+        super(nome,  especie,  raca,  dataNascimento, faseDaVida,  peso,  porte,  sexo);
         setDono(dono);
         setVacinas(vacinas);
         setTemperamento(temperamento);

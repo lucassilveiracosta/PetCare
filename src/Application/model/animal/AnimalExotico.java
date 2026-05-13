@@ -14,8 +14,8 @@ public class AnimalExotico extends Animal {
     private String microChipId;
     private String numeroDeRegistro;
 
-    public AnimalExotico(int idAnimal, String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem, FaseDaVida faseDaVida) {
-        super(nome,  especie,  raca,  dataNascimento,  peso,  porte,  sexo, faseDaVida);
+    public AnimalExotico(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem) {
+        super(nome,  especie,  raca,  dataNascimento, faseDaVida, peso,  porte,  sexo);
         setNumeroDeRegistro(numeroDeRegistro);
         setMicroChipId(microChipId);
         setRequerAmbienteControlado(requerAmbienteControlado);

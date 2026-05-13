@@ -15,19 +15,39 @@ public class Animal {
     protected String especie;
     protected String raca;
     protected LocalDate DataNascimento;
+    protected FaseDaVida faseDaVida;
     protected Double peso;
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, FaseDaVida faseDaVida) {
+    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, double peso, Porte porte, Sexo sexo) {
         setNome(nome);
         setEspecie(especie);
         setRaca(raca);
         setDataNascimento(dataNascimento);
+        setFaseDaVida(faseDaVida);
         setPeso(peso);
         setPorte(porte);
         setSexo(sexo);
 
+    }
+
+    public FaseDaVida getFaseDaVida() {
+        return faseDaVida;
+    }
+
+    public void setPeso(Double peso) {
+        if(peso <= 0 ){
+            throw new IllegalArgumentException("peso do animal inválido!");
+        }
+        this.peso = peso;
+    }
+
+    public void setFaseDaVida(FaseDaVida faseDaVida) {
+        if(faseDaVida == null){
+            throw new IllegalArgumentException("Fase da Vida do Animal inválida!");
+        }
+        this.faseDaVida = faseDaVida;
     }
 
     public String getNome() {
@@ -68,21 +88,11 @@ public class Animal {
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-
-        if(dataNascimento == null ){
-            throw new IllegalArgumentException("Data de nascimento inválida!");
-        } DataNascimento = dataNascimento;
+        DataNascimento = dataNascimento;
     }
 
     public double getPeso() {
         return peso;
-    }
-
-    public void setPeso(double peso) {
-        if(peso <= 0 ){
-            throw new IllegalArgumentException("peso do animal inválido!");
-        }
-        this.peso = peso;
     }
 
     public Porte getPorte() {
