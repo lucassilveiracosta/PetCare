@@ -1,8 +1,8 @@
 package model.animal;
 
+import enums.FaseDaVida;
 import enums.Porte;
 import enums.Sexo;
-import enums.TempoDeVida;
 
 import java.time.LocalDate;
 
@@ -19,7 +19,7 @@ public class Animal {
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, TempoDeVida tempodevida) {
+    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, FaseDaVida faseDaVida) {
         setNome(nome);
         setEspecie(especie);
         setRaca(raca);

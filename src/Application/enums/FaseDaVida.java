@@ -1,6 +1,6 @@
 package enums;
 
-public enum TempoDeVida {
+public enum FaseDaVida {
     RECEMNASCIDO,
     ADULTO,
     IDOSO

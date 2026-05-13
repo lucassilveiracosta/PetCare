@@ -8,7 +8,7 @@ import repository.Interface.IRepositoryAnimal;
 import java.util.List;
 
 public class BusinessAnimal {
-    private IRepositoryAnimal repositoryAnimal;
+    private final IRepositoryAnimal repositoryAnimal;
 
 
     public BusinessAnimal(IRepositoryAnimal repositoryAnimal) {
@@ -46,8 +46,7 @@ public class BusinessAnimal {
             animalExistente.setRaca(dadosParciais.getRaca());
         }
 
-
-        if (dadosParciais.getPeso() != 0.0) {
+        if (dadosParciais.getPeso() > 0.0) {
             animalExistente.setPeso(dadosParciais.getPeso());
         }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class RepositoryAnimal implements IRepositoryAnimal {
 
-    private List<Animal> animais;
+    private final List<Animal> animais;
 
     public RepositoryAnimal() {
         this.animais = new ArrayList<>();
@@ -20,8 +20,7 @@ public class RepositoryAnimal implements IRepositoryAnimal {
 
     @Override
     public Animal findById(int id) {
-        for (int i = 0; i < animais.size(); i++) {
-            Animal a = animais.get(i);
+        for (Animal a : animais) {
             if (a.getId() == id) {
                 return a;
             }
