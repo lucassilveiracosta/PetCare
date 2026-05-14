@@ -1,8 +1,15 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
+import business.model.Pessoas.Dono;
 import business.model.Pessoas.Pessoa;
-import exceptions.LoginConflictException;
+import business.model.Pessoas.ResponsavelPagador;
+import business.model.Pessoas.Veterinario;
+import business.model.Pessoas.Funcionario;
+
+import enums.TypePerson;
+import exceptions.ClassPersonNotExists;
+import exceptions.WrongPasswordOrEmailException;
 
 public class Login {
 
@@ -16,15 +23,21 @@ public class Login {
     public Pessoa logar(String email, String password) {
         Pessoa emailPessoa = controllerPessoa.getByEmail(email);
 
-        if (emailPessoa == null) {
-            throw new LoginConflictException("Usuário não encontrado");
-        }
-
-        if (!(emailPessoa.getPassword().equals(password))) {
-            throw new LoginConflictException("Wrong password");
+        if (emailPessoa == null || !(emailPessoa.getPassword().equals(password))) {
+            throw new WrongPasswordOrEmailException("E-mail ou senha incorretos");
         }
 
         return emailPessoa;
     }
-    
+
+    public TypePerson loginPersonType(Pessoa person) {
+
+        return switch (person) {
+            case Veterinario veterinario -> TypePerson.VETERINARIO;
+            case Dono dono -> TypePerson.DONO;
+            case ResponsavelPagador responsavelPagador -> TypePerson.RESPONSAVEL_PAGADOR;
+            case Funcionario funcionario -> TypePerson.FUNCIONARIO;
+            case null, default -> throw new ClassPersonNotExists("This person doesn't have a subclass");
+        };
+    }
 }

@@ -1,4 +1,4 @@
-package model.Pessoas;
+package business.model.Pessoas;
 
 import business.model.Pessoas.Pessoa;
 

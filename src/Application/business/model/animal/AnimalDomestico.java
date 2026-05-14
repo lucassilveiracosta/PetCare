@@ -50,9 +50,6 @@ public class AnimalDomestico extends Animal {
     }
 
     public void setCastrado(boolean castrado) {
-        if(temperamento == null ){
-            throw new IllegalArgumentException("Insira uma expressão válida, para animal doéstico castrado!");
-        }
         this.castrado = castrado;
     }
 

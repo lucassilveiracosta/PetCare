@@ -30,8 +30,13 @@ public class RepositoryStockVetProducts implements IRepositoryStockVetProducts {
     }
 
     @Override
-    public void update(int index, Produto p) {
-        produtos.set(index, p);
+    public void update(int id, Produto p) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getId() == id) {
+                produtos.set(i, p);
+                return;
+            }
+        }
     }
 
     @Override
