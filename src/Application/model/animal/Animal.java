@@ -1,13 +1,13 @@
 package model.animal;
 
+import enums.FaseDaVida;
 import enums.Porte;
 import enums.Sexo;
-import enums.TempoDeVida;
 
 import java.time.LocalDate;
 
 
-public abstract class Animal {
+public class Animal {
     protected static int contadorId = 1;
 
     protected int id = contadorId++;
@@ -15,19 +15,39 @@ public abstract class Animal {
     protected String especie;
     protected String raca;
     protected LocalDate DataNascimento;
+    protected FaseDaVida faseDaVida;
     protected Double peso;
     protected Porte porte;
     protected Sexo sexo;
 
-    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, double peso, Porte porte, Sexo sexo, TempoDeVida tempodevida) {
+    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, double peso, Porte porte, Sexo sexo) {
         setNome(nome);
         setEspecie(especie);
         setRaca(raca);
         setDataNascimento(dataNascimento);
+        setFaseDaVida(faseDaVida);
         setPeso(peso);
         setPorte(porte);
         setSexo(sexo);
 
+    }
+
+    public FaseDaVida getFaseDaVida() {
+        return faseDaVida;
+    }
+
+    public void setPeso(Double peso) {
+        if(peso <= 0 ){
+            throw new IllegalArgumentException("peso do animal inválido!");
+        }
+        this.peso = peso;
+    }
+
+    public void setFaseDaVida(FaseDaVida faseDaVida) {
+        if(faseDaVida == null){
+            throw new IllegalArgumentException("Fase da Vida do Animal inválida!");
+        }
+        this.faseDaVida = faseDaVida;
     }
 
     public String getNome() {
@@ -68,21 +88,11 @@ public abstract class Animal {
     }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-
-        if(dataNascimento == null ){
-            throw new IllegalArgumentException("Data de nascimento inválida!");
-        } DataNascimento = dataNascimento;
+        DataNascimento = dataNascimento;
     }
 
     public double getPeso() {
         return peso;
-    }
-
-    public void setPeso(double peso) {
-        if(peso <= 0 ){
-            throw new IllegalArgumentException("peso do animal inválido!");
-        }
-        this.peso = peso;
     }
 
     public Porte getPorte() {
@@ -105,6 +115,10 @@ public abstract class Animal {
             throw new IllegalArgumentException("Sexo do animal inválido!");
         }
         this.sexo = sexo;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

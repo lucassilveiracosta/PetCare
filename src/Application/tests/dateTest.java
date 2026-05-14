@@ -26,7 +26,7 @@ public class dateTest {
 
         ArrayList<Vacina> vacinas = new ArrayList<>();
         vacinas.add(new Vacina("Covid", date.minusDays(5),"Não se queixou"));
-        Animal animalTeste = new AnimalDomestico("Bob", "Bulldog", "preto", date.minusYears(2), 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true, TempoDeVida.ADULTO);
+        Animal animalTeste = new AnimalDomestico("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true );
 
 
         Hidratacao hidratacao = new Hidratacao(true,null);
