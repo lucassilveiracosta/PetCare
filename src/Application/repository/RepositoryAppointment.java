@@ -30,7 +30,8 @@ public class RepositoryAppointment implements IRepositoryAppointment {
 
     @Override
     public void update(int index, Consulta c) {
-        consultas.set(index, c);
+        int id = consultas.indexOf(this.findById(index));
+        consultas.set(id, c);
     }
 
     @Override
