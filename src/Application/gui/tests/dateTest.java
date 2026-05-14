@@ -22,7 +22,7 @@ public class dateTest {
         LocalDate date = LocalDate.parse(sc.next(), fmt); // ----> trecho de codigo para receber uma data no formato dd/MM/yyyy
         System.out.println(date);
 
-        Pessoa donoTeste = new Dono("Laercio", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
+        Pessoa donoTeste = new Dono("Laercio", "laercio@gmail.com", "larceio123", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
 
         ArrayList<Vacina> vacinas = new ArrayList<>();
         vacinas.add(new Vacina("Covid", date.minusDays(5),"Não se queixou"));
