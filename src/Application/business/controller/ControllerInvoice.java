@@ -49,7 +49,7 @@ public class ControllerInvoice implements IControllerInvoice {
 
     public void post(NotaFiscal nf) {
         NotaFiscal exists = repositoryInvoice.findById(nf.getId());
-        if (nf == exists) throw new InvoiceConflictException("This invoice already exists");
+        if (exists != null) throw new InvoiceConflictException("This invoice already exists");
         repositoryInvoice.create(nf);
     }
 }
