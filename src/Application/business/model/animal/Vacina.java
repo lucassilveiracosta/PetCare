@@ -18,6 +18,9 @@ public class Vacina {
     }
 
     public void setNomeDaVacina(String nomeDaVacina) {
+        if(nomeDaVacina == null || nomeDaVacina.isBlank()){
+            throw new IllegalArgumentException("Vacina não pode ser nula!");
+        }
         this.nomeDaVacina = nomeDaVacina;
     }
 
@@ -26,6 +29,9 @@ public class Vacina {
     }
 
     public void setDataDaVacina(LocalDate dataDaVacina) {
+        if(dataDaVacina == null){
+            throw new IllegalArgumentException("Data da vacina não pode ser nula!");
+        }
         this.dataDaVacina = dataDaVacina;
     }
 
@@ -34,6 +40,9 @@ public class Vacina {
     }
 
     public void setDescricao(String descricao) {
+        if(descricao == null || descricao.isBlank()){
+            throw new IllegalArgumentException("Descrição da vacina não pode ser nula!");
+        }
         this.descricao = descricao;
     }
 }

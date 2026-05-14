@@ -2,7 +2,6 @@ package gui.tests;
 
 import business.model.Pessoas.Dono;
 import business.model.Pessoas.Especialidade;
-import business.model.Pessoas.ResponsavelPagador;
 import business.model.Pessoas.Veterinario;
 import business.model.animal.Animal;
 import business.model.animal.AnimalDomestico;
@@ -43,8 +42,7 @@ public class RepositoryInvoiceTest {
         LocalDate data = LocalDate.now();
         LocalDateTime dataHora = LocalDateTime.now();
 
-        ResponsavelPagador pagador1 = new ResponsavelPagador("João Silva","joaoSilva@hotmail.com", "silvajoao", data.minusYears(30), "12345678900", "81999999999", "Professor", "Titular do plano");
-        ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", "maria@gmail.com.br", "maria123", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
+
         ArrayList<Especialidade> especialidades1 = new ArrayList<>();
         Veterinario veterinario = new Veterinario("Jorge", "jorge@gmail.com", "jorgecookies", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
         Dono dono = new Dono("João Silva","joao@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
@@ -64,8 +62,8 @@ public class RepositoryInvoiceTest {
         ArrayList<Produto> produtos2 = new ArrayList<>();
         produtos2.add(new Produto(dataHora, "Antibiótico Pet", 85.0));
 
-        NotaFiscal nf1 = new NotaFiscal(pagador1, animal1, procedimentos1, produtos1);
-        NotaFiscal nf2 = new NotaFiscal(pagador2, animal2, procedimentos2, produtos2);
+        NotaFiscal nf1 = new NotaFiscal(dono, animal1, procedimentos1, produtos1);
+        NotaFiscal nf2 = new NotaFiscal(dono, animal2, procedimentos2, produtos2);
 
         // Pre-populando para ter dados
         repository.create(nf1);
@@ -99,7 +97,7 @@ public class RepositoryInvoiceTest {
                     novosProc.add(new Consulta(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
                     ArrayList<Produto> novosProd = new ArrayList<>();
                     novosProd.add(new Produto(dataHora, "Shampoo Pet", 45.0));
-                    NotaFiscal novaNf = new NotaFiscal(pagador1, animal1, novosProc, novosProd);
+                    NotaFiscal novaNf = new NotaFiscal(dono, animal1, novosProc, novosProd);
                     repository.create(novaNf);
                     System.out.println("Nota Fiscal criada e adicionada com sucesso!");
                     listarNotasFiscais(repository);
@@ -137,7 +135,7 @@ public class RepositoryInvoiceTest {
                         if (nfOriginal != null) {
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
 
-                            NotaFiscal nfAtualizada = new NotaFiscal(pagador2, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
+                            NotaFiscal nfAtualizada = new NotaFiscal(dono, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
 
                             int index = repository.findAll().indexOf(nfOriginal);
 
