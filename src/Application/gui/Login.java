@@ -33,20 +33,12 @@ public class Login {
 
     public TypePerson loginPersonType(Pessoa person) {
 
-        if (person instanceof Veterinario) {
-            return TypePerson.VETERINARIO;
-        }
-        else if (person instanceof Dono) {
-            return TypePerson.DONO;
-        }
-        else if (person instanceof ResponsavelPagador) {
-            return TypePerson.RESPONSAVEL_PAGADOR;
-        }
-        else if (person instanceof Funcionario) {
-            return TypePerson.FUNCIONARIO;
-        }
-        else {
-            throw new ClassPersonNotExists("This person doesn't have a subclass");
-        }
+        return switch (person) {
+            case Veterinario veterinario -> TypePerson.VETERINARIO;
+            case Dono dono -> TypePerson.DONO;
+            case ResponsavelPagador responsavelPagador -> TypePerson.RESPONSAVEL_PAGADOR;
+            case Funcionario funcionario -> TypePerson.FUNCIONARIO;
+            case null, default -> throw new ClassPersonNotExists("This person doesn't have a subclass");
+        };
     }
 }
