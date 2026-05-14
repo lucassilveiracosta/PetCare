@@ -1,9 +1,11 @@
 package business;
 
+import business.model.notaFiscal.Consulta;
+import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
-import model.notaFiscal.Consulta;
-import repository.Interface.IRepositoryAppointment;
+
+
 
 import java.util.ArrayList;
 

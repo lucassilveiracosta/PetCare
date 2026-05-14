@@ -1,20 +1,22 @@
 package gui.tests;
 
+import business.model.Pessoas.Dono;
+import business.model.Pessoas.Especialidade;
+import business.model.Pessoas.ResponsavelPagador;
+import business.model.Pessoas.Veterinario;
+import business.model.animal.Animal;
+import business.model.animal.AnimalDomestico;
+import business.model.animal.Vacina;
+import business.model.notaFiscal.*;
+import data.interfaces.IRepositoryInvoice;
+import data.repository.RepositoryInvoice;
 import enums.*;
-import model.Pessoas.Dono;
-import model.Pessoas.ResponsavelPagador;
-import model.animal.Animal;
-import model.animal.AnimalDomestico;
-import model.animal.Vacina;
-import model.notaFiscal.NotaFiscal;
-import model.notaFiscal.Procedimento;
-import model.notaFiscal.Produto;
-import repository.RepositoryInvoice;
-import repository.Interface.IRepositoryInvoice;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryInvoiceTest {
@@ -41,24 +43,24 @@ public class RepositoryInvoiceTest {
         // Setup - Criando dados robustos
         LocalDate data = LocalDate.now();
         LocalDateTime dataHora = LocalDateTime.now();
-        
+
         ResponsavelPagador pagador1 = new ResponsavelPagador("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Titular do plano");
         ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
-        
+        ArrayList<Especialidade> especialidades1 = new ArrayList<>();
+        Veterinario veterinario = new Veterinario("Jorge", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
         Dono dono = new Dono("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
         Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
         Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
 
         ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
-        procedimentos1.add(new Procedimento(150.0, animal1, dataHora, "Consulta de Rotina"));
-        procedimentos1.add(new Procedimento(80.0, animal1, dataHora, "Vacinação Anual"));
-
+        procedimentos1.add(new Consulta(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
+        procedimentos1.add(new Consulta(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente"));
         ArrayList<Produto> produtos1 = new ArrayList<>();
         produtos1.add(new Produto(dataHora, "Ração Premium 15kg", 200.0));
         produtos1.add(new Produto(dataHora, "Brinquedo de Borracha", 35.0));
 
         ArrayList<Procedimento> procedimentos2 = new ArrayList<>();
-        procedimentos2.add(new Procedimento(300.0, animal2, dataHora, "Exame de Sangue"));
+        procedimentos2.add(new Cirurgia(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", "Alto risco"));
 
         ArrayList<Produto> produtos2 = new ArrayList<>();
         produtos2.add(new Produto(dataHora, "Antibiótico Pet", 85.0));
@@ -83,7 +85,7 @@ public class RepositoryInvoiceTest {
             System.out.println("5. Remover Nota Fiscal por ID");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            
+
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
@@ -95,7 +97,7 @@ public class RepositoryInvoiceTest {
                 case 1:
                     System.out.println("\n[AÇÃO] Adicionando uma nova Nota Fiscal...");
                     ArrayList<Procedimento> novosProc = new ArrayList<>();
-                    novosProc.add(new Procedimento(200.0, animal1, dataHora, "Limpeza de Tártaro"));
+                    novosProc.add(new Consulta(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
                     ArrayList<Produto> novosProd = new ArrayList<>();
                     novosProd.add(new Produto(dataHora, "Shampoo Pet", 45.0));
                     NotaFiscal novaNf = new NotaFiscal(pagador1, animal1, novosProc, novosProd);
@@ -130,7 +132,7 @@ public class RepositoryInvoiceTest {
                     System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal a ser atualizada: ");
                     try {
                         int id = Integer.parseInt(scanner.nextLine());
-                        if (id >= 1 && id < repository.findAll().size()) {
+                        if (id >= 1 && id <= repository.findAll().size()) {
                             NotaFiscal nfOriginal = repository.findById(id);
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
                             NotaFiscal nfAtualizada = new NotaFiscal(pagador2, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
@@ -171,7 +173,7 @@ public class RepositoryInvoiceTest {
                     break;
             }
         }
-        
+
         scanner.close();
     }
 }
