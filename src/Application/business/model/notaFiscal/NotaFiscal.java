@@ -1,6 +1,6 @@
 package business.model.notaFiscal;
 
-import business.model.Pessoas.ResponsavelPagador;
+import business.model.Pessoas.Dono;
 import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
@@ -10,15 +10,15 @@ public class NotaFiscal {
     protected static int contadorId = 1;
 
     protected int id;
-    private ResponsavelPagador responsavelPagador;
+    private Dono pagador;
     private Animal paciente;
     private final LocalDateTime dataHora = LocalDateTime.now();
     private ArrayList<Procedimento> procedimentos;
     private ArrayList<Produto> produtos;
 
-    public NotaFiscal(ResponsavelPagador responsavelPagador, Animal paciente, ArrayList<Procedimento> procedimentos, ArrayList<Produto> produtos) {
+    public NotaFiscal(Dono pagador, Animal paciente, ArrayList<Procedimento> procedimentos, ArrayList<Produto> produtos) {
         this.id = contadorId++;
-        setResponsavelPagador(responsavelPagador);
+        setResponsavelPagador(NotaFiscal.this.pagador);
         setPaciente(paciente);
         this.procedimentos = procedimentos;
         this.produtos = produtos;
@@ -28,15 +28,15 @@ public class NotaFiscal {
         return id;
     }
 
-    public ResponsavelPagador getResponsavelPagador() {
-        return responsavelPagador;
+    public Dono getResponsavelPagador() {
+        return pagador;
     }
 
-    public void setResponsavelPagador(ResponsavelPagador responsavelPagador) {
-        if (responsavelPagador == null) {
+    public void setResponsavelPagador(Dono pagador) {
+        if (NotaFiscal.this.pagador == null) {
             throw new IllegalArgumentException("O Responsavel Pagador não pode ser nulo");
         }
-        this.responsavelPagador = responsavelPagador;
+        this.pagador = NotaFiscal.this.pagador;
     }
 
     public Animal getPaciente() {

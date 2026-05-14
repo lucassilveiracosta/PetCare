@@ -3,7 +3,6 @@ package gui;
 import business.interfaces.IControllerPessoa;
 import business.model.Pessoas.Dono;
 import business.model.Pessoas.Pessoa;
-import business.model.Pessoas.ResponsavelPagador;
 import business.model.Pessoas.Veterinario;
 import business.model.Pessoas.Funcionario;
 
@@ -35,7 +34,6 @@ public class Login {
         return switch (person) {
             case Veterinario veterinario -> TypePerson.VETERINARIO;
             case Dono dono -> TypePerson.DONO;
-            case ResponsavelPagador responsavelPagador -> TypePerson.RESPONSAVEL_PAGADOR;
             case Funcionario funcionario -> TypePerson.FUNCIONARIO;
             case null, default -> throw new ClassPersonNotExists("This person doesn't have a subclass");
         };
