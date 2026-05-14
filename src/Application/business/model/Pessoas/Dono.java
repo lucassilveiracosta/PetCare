@@ -6,8 +6,8 @@ public class Dono extends Pessoa {
     private String profissao;
     private String descricao;
 
-    public Dono(String nome, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
-        super(nome, dataNascimento, cpf, telefone);
+    public Dono(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
+        super(nome, email, password, dataNascimento, cpf, telefone);
         setProfissao(profissao);
         setDescricao(descricao);
     }

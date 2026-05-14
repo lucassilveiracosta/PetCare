@@ -8,8 +8,8 @@ public class Veterinario extends Pessoa {
     private ArrayList<Especialidade> especialidades;
 
 
-    public Veterinario(String nome, LocalDate dataNascimento, String cpf, String telefone, String crmv, ArrayList<Especialidade> especialidades){
-        super(nome, dataNascimento, cpf, telefone);
+    public Veterinario(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String crmv, ArrayList<Especialidade> especialidades){
+        super(nome, email, password, dataNascimento, cpf, telefone);
         setCrmv(crmv);
         setEspecialidades(especialidades);
     }
