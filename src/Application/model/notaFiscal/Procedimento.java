@@ -5,7 +5,9 @@ import model.animal.Animal;
 import java.time.LocalDateTime;
 
 public abstract class Procedimento {
+    protected static int contadorId = 1;
 
+    protected int id = contadorId++;
     private Animal paciente;
     private LocalDateTime dataHora;
     private String descricao;
@@ -57,5 +59,9 @@ public abstract class Procedimento {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public int getId() {
+        return id;
     }
 }
