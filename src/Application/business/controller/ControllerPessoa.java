@@ -61,7 +61,7 @@ public class ControllerPessoa implements IControllerPessoa {
 
     public void post(Pessoa p) {
         Pessoa exists = repositoryPerson.findById(p.getId());
-        if (p == exists) throw new PersonConflictException("This Person already exists");
+        if (exists != null) throw new PersonConflictException("This Person already exists");
         repositoryPerson.create(p);
     }
 }
