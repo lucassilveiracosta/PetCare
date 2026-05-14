@@ -3,8 +3,8 @@ import java.time.LocalDate;
 public class ResponsavelPagador extends Pessoa {
     private String pagador;
     private String descricao;
-    public ResponsavelPagador(String nome, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
-        super(nome, dataNascimento, cpf, telefone);
+    public ResponsavelPagador(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
+        super(nome, email, password, dataNascimento, cpf, telefone);
         setPagador(profissao);
         setDescricao(descricao);
     }

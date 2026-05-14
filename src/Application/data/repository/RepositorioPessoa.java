@@ -2,6 +2,7 @@ package data.repository;
 
 import business.model.Pessoas.Pessoa;
 import data.interfaces.IRepositoryPerson;
+import exceptions.EmailNotFoundException;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,17 @@ public class RepositorioPessoa implements IRepositoryPerson {
     }
 
     @Override
+    public Pessoa findByEmail(String email) {
+        Pessoa pessoa = null;
+        for(Pessoa p: pessoas) {
+            if(p.getEmail().equals(email)) {
+                pessoa = p;
+            }
+        }
+        return pessoa;
+    }
+
+    @Override
     public ArrayList<Pessoa> findAll() {
         return pessoas;
     }
@@ -36,6 +48,8 @@ public class RepositorioPessoa implements IRepositoryPerson {
 
     @Override
     public void create(Pessoa p) {
+        Pessoa exists = this.findByEmail(p.getEmail());
+        if (exists != null) throw new EmailNotFoundException("Esse email ja existe");
         pessoas.add(p);
     }
 

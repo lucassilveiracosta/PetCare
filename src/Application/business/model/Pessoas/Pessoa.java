@@ -1,5 +1,7 @@
 package business.model.Pessoas;
 
+import exceptions.PasswordException;
+
 import java.time.LocalDate;
 // Classe abstrata pessoa
 public abstract class Pessoa {
@@ -8,18 +10,25 @@ public abstract class Pessoa {
 
     protected int id;
     protected String nome;
+    protected String email;
+    protected String password;
     protected LocalDate dataNascimento;
     protected String cpf;
     protected String telefone;
 
     // Construtor de pessoa
-    public Pessoa(String nome, LocalDate dataNascimento, String cpf, String telefone){
+    public Pessoa(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone){
         this.id = contadorId++; // pensei nessa forma de passar o Id
         setNome(nome);
+        setEmail(email);
+        setPassword(password);
         setDataNascimento(dataNascimento);
         setCpf(cpf);
         setTelefone(telefone);
+
     }
+
+
 
     // Metodo get do ID
     public int getId(){
@@ -70,6 +79,28 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if(email == null || email.isBlank()) {
+            throw new IllegalArgumentException("Email não pode ser nulo ou ficar em branco");
+        }
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        if (password.length() < 7) {
+            throw new PasswordException("Password must be 8 or more characters");
+        }
+        this.password = password;
+    }
 
 
 

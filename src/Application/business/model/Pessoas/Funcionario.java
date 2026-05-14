@@ -1,12 +1,15 @@
-package business.model.Pessoas;
+package model.Pessoas;
+
+import business.model.Pessoas.Pessoa;
+
 import java.time.LocalDate;
 
 public class Funcionario extends Pessoa {
     private String cargo;
     private String turnoTrabalho;
 
-    public Funcionario(String nome, LocalDate dataNascimento, String cpf, String telefone, String cargo, String turnoTrabalho) {
-        super(nome, dataNascimento, cpf, telefone);
+    public Funcionario(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String cargo, String turnoTrabalho) {
+        super(nome, email, password, dataNascimento, cpf, telefone);
         setCargo(cargo);
         setTurnoTrabalho(turnoTrabalho);
     }
