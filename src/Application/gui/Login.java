@@ -24,7 +24,7 @@ public class Login {
         Pessoa emailPessoa = controllerPessoa.getByEmail(email);
 
         if (!(emailPessoa.getPassword().equals(password))) {
-            throw new LoginConflictException("Wrong password");
+            throw new WrongPasswordException("Wrong password");
         }
 
         return emailPessoa;
