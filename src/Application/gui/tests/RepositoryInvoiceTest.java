@@ -43,11 +43,11 @@ public class RepositoryInvoiceTest {
         LocalDate data = LocalDate.now();
         LocalDateTime dataHora = LocalDateTime.now();
 
-        ResponsavelPagador pagador1 = new ResponsavelPagador("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Titular do plano");
-        ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
+        ResponsavelPagador pagador1 = new ResponsavelPagador("João Silva","joaoSilva@hotmail.com", "silvajoao", data.minusYears(30), "12345678900", "81999999999", "Professor", "Titular do plano");
+        ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", "maria@gmail.com.br", "maria123", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
         ArrayList<Especialidade> especialidades1 = new ArrayList<>();
-        Veterinario veterinario = new Veterinario("Jorge", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
-        Dono dono = new Dono("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Veterinario veterinario = new Veterinario("Jorge", "jorge@gmail.com", "jorgecookies", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
+        Dono dono = new Dono("João Silva","joao@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
         Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
         Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
 
