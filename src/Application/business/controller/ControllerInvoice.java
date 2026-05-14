@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ControllerInvoice implements IControllerInvoice {
 
-    private IRepositoryInvoice repositoryInvoice;
+    private final IRepositoryInvoice repositoryInvoice;
 
     public ControllerInvoice(IRepositoryInvoice repositoryInvoice) {
         this.repositoryInvoice = repositoryInvoice;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class RepositoryInvoice implements IRepositoryInvoice {
 
-    private ArrayList<NotaFiscal> notasFiscais;
+    private final ArrayList<NotaFiscal> notasFiscais;
 
     public RepositoryInvoice(ArrayList<NotaFiscal> notasFiscais) {
         this.notasFiscais = notasFiscais;
