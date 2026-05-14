@@ -33,7 +33,6 @@ public class Login {
 
         return switch (person) {
             case Veterinario veterinario -> TypePerson.VETERINARIO;
-            case Dono dono -> TypePerson.DONO;
             case Funcionario funcionario -> TypePerson.FUNCIONARIO;
             case null, default -> throw new ClassPersonNotExists("This person doesn't have a subclass");
         };
