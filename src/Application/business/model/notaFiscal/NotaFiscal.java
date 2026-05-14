@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class NotaFiscal {
     protected static int contadorId = 1;
 
-    protected int id = contadorId++;
+    protected int id;
     private ResponsavelPagador responsavelPagador;
     private Animal paciente;
     private final LocalDateTime dataHora = LocalDateTime.now();
@@ -17,6 +17,7 @@ public class NotaFiscal {
     private ArrayList<Produto> produtos;
 
     public NotaFiscal(ResponsavelPagador responsavelPagador, Animal paciente, ArrayList<Procedimento> procedimentos, ArrayList<Produto> produtos) {
+        this.id = contadorId++;
         setResponsavelPagador(responsavelPagador);
         setPaciente(paciente);
         this.procedimentos = procedimentos;

@@ -16,7 +16,6 @@ import enums.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryInvoiceTest {
@@ -132,17 +131,27 @@ public class RepositoryInvoiceTest {
                     System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal a ser atualizada: ");
                     try {
                         int id = Integer.parseInt(scanner.nextLine());
-                        if (id >= 1 && id <= repository.findAll().size()) {
-                            NotaFiscal nfOriginal = repository.findById(id);
+
+                        NotaFiscal nfOriginal = repository.findById(id);
+
+                        if (nfOriginal != null) {
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
+
                             NotaFiscal nfAtualizada = new NotaFiscal(pagador2, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
-                            repository.update(repository.findAll().indexOf(repository.findById(id)), nfAtualizada);
-                            System.out.println("   -> Atualização concluída.");
+
+                            int index = repository.findAll().indexOf(nfOriginal);
+
+                            if (index != -1) {
+                                repository.update(index, nfAtualizada);
+                                System.out.println("   -> Atualização concluída com sucesso.");
+                            } else {
+                                System.out.println("   -> Erro interno: Nota Fiscal encontrada, mas não está mapeada na lista.");
+                            }
                         } else {
-                            System.out.println("   -> Index inválido ou fora dos limites.");
+                            System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + id + ".");
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("   -> Index inválido.");
+                        System.out.println("   -> ID inválido. Por favor, digite um número inteiro.");
                     }
                     listarNotasFiscais(repository);
                     break;
