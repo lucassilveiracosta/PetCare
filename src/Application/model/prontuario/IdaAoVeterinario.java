@@ -42,7 +42,7 @@ public class IdaAoVeterinario {
 
     public void setExameFisico(ExameFisico exameFisico) {
         if (exameFisico == null) {
-            throw new IllegalArgumentException("Anamnese não pode ser nula");
+            throw new IllegalArgumentException("Exame físico não pode ser nulo");
         }
         this.exameFisico = exameFisico;
     }
@@ -54,7 +54,7 @@ public class IdaAoVeterinario {
     //Setter ajustado
     public void setDescricao(String descricao) {
         if (descricao == null || descricao.isBlank()) {
-            throw new IllegalArgumentException("Anamnese não pode ficar em branco ou ser nula");
+            throw new IllegalArgumentException("Descrição não pode ficar em branco ou ser nulo");
         }
         this.descricao = descricao;
     }

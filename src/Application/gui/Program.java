@@ -1,3 +1,5 @@
+package gui;
+
 import business.BusinessAnimal;
 import model.animal.Animal;
 import repository.RepositoryAnimal;

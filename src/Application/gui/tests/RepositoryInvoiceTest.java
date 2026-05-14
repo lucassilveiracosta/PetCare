@@ -1,4 +1,4 @@
-package tests;
+package gui.tests;
 
 import enums.*;
 import model.Pessoas.Dono;
