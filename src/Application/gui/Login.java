@@ -10,6 +10,7 @@ import business.model.Pessoas.Funcionario;
 import enums.TypePerson;
 import exceptions.ClassPersonNotExists;
 import exceptions.LoginConflictException;
+import exceptions.WrongPasswordException;
 
 public class Login {
 
