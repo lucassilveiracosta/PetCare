@@ -1,4 +1,4 @@
-package repository.Interface;
+package interfaces;
 
 import model.Pessoas.Pessoa;
 

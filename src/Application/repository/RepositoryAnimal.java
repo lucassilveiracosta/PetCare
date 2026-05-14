@@ -1,7 +1,7 @@
 package repository;
 
 import model.animal.Animal;
-import repository.Interface.IRepositoryAnimal;
+import interfaces.IRepositoryAnimal;
 import java.util.ArrayList;
 import java.util.List;
 

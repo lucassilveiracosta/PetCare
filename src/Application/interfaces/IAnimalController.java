@@ -1,4 +1,4 @@
-package gui.controller.interfaces;
+package interfaces;
 
 import model.animal.Animal;
 

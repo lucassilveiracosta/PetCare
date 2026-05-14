@@ -1,12 +1,12 @@
 package gui;
 
 import business.BusinessAnimal;
+import enums.FaseDaVida;
 import model.animal.Animal;
 import repository.RepositoryAnimal;
-import repository.Interface.IRepositoryAnimal;
+import interfaces.IRepositoryAnimal;
 import enums.Porte;
 import enums.Sexo;
-import enums.TempoDeVida;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,14 +23,14 @@ public class Program {
             // Ordem: nome, especie, raca, dataNascimento, peso, porte, sexo, tempoDeVida
             Animal pet1 = new Animal(
                     "Rex", "Cachorro", "Labrador",
-                    LocalDate.of(2020, 5, 15), 25.5,
-                    Porte.GRANDE, Sexo.MACHO, TempoDeVida.ADULTO
+                    LocalDate.of(2020, 5, 15), FaseDaVida.ADULTO, 25.5,
+                    Porte.GRANDE, Sexo.MACHO
             );
 
             Animal pet2 = new Animal(
                     "Mingau", "Gato", "Siamês",
-                    LocalDate.of(2022, 1, 10), 4.2,
-                    Porte.PEQUENO, Sexo.MACHO, TempoDeVida.ADULTO
+                    LocalDate.of(2022, 1, 10), FaseDaVida.ADULTO, 4.2,
+                    Porte.PEQUENO, Sexo.MACHO
             );
 
             // Salvando

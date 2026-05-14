@@ -1,7 +1,7 @@
-package gui.controller;
+package business.controller;
 
 import business.BusinessAnimal;
-import gui.controller.interfaces.IAnimalController;
+import interfaces.IAnimalController;
 import model.animal.Animal;
 
 import java.util.List;

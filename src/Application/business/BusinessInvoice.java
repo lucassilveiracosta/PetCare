@@ -3,7 +3,7 @@ package business;
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
 import model.notaFiscal.NotaFiscal;
-import repository.Interface.IRepositoryInvoice;
+import interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
 

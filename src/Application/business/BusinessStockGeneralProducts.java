@@ -3,7 +3,7 @@ package business;
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
 import model.notaFiscal.Produto;
-import repository.Interface.IRepositoryStockGeneralProducts;
+import interfaces.IRepositoryStockGeneralProducts;
 
 import java.util.ArrayList;
 

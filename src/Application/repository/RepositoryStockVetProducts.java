@@ -1,7 +1,7 @@
 package repository;
 
 import model.notaFiscal.Produto;
-import repository.Interface.IRepositoryStockVetProducts;
+import interfaces.IRepositoryStockVetProducts;
 
 import java.util.ArrayList;
 

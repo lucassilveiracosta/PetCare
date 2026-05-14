@@ -3,7 +3,7 @@ package business;
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
 import model.animal.Animal;
-import repository.Interface.IRepositoryAnimal;
+import interfaces.IRepositoryAnimal;
 
 import java.util.List;
 

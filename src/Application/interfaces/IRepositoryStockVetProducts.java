@@ -1,10 +1,10 @@
-package repository.Interface;
+package interfaces;
 
 import model.notaFiscal.Produto;
 
 import java.util.ArrayList;
 
-public interface IRepositoryStockGeneralProducts{
+public interface IRepositoryStockVetProducts {
 
     Produto findById(int id);
     ArrayList<Produto> findAll();

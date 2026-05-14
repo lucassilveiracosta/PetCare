@@ -1,4 +1,4 @@
-package repository.Interface;
+package interfaces;
 
 import model.animal.Animal;
 import java.util.List;
