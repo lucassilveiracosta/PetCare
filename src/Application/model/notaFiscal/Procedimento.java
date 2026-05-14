@@ -4,8 +4,10 @@ import model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public class Procedimento {
+public abstract class Procedimento {
+    protected static int contadorId = 1;
 
+    protected int id = contadorId++;
     private Animal paciente;
     private LocalDateTime dataHora;
     private String descricao;
@@ -34,6 +36,9 @@ public class Procedimento {
     }
 
     public void setDataHora(LocalDateTime dataHora) {
+        if (dataHora == null) {
+            throw new IllegalArgumentException("A data não pode ser nula");
+        }
         this.dataHora = dataHora;
     }
 
@@ -54,5 +59,9 @@ public class Procedimento {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public int getId() {
+        return id;
     }
 }
