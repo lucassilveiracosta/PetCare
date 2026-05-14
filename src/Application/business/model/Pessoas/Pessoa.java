@@ -96,7 +96,7 @@ public abstract class Pessoa {
     }
 
     public void setPassword(String password) {
-        if (password.length() < 7) {
+        if (password.length() < 8) {
             throw new PasswordException("Password must be 8 or more characters");
         }
         this.password = password;

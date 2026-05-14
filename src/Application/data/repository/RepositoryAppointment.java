@@ -31,9 +31,13 @@ public class RepositoryAppointment implements IRepositoryAppointment {
     }
 
     @Override
-    public void update(int index, Consulta c) {
-        int id = consultas.indexOf(this.findById(index));
-        consultas.set(id, c);
+    public void update(int id, Consulta c) {
+        for (int i = 0; i < consultas.size(); i++) {
+            if (consultas.get(i).getId() == id) {
+                consultas.set(i, c);
+                return;
+            }
+        }
     }
 
     @Override
