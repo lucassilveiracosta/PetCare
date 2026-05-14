@@ -43,9 +43,9 @@ public class RepositorioPessoa implements IRepositoryPerson {
     }
 
     @Override
-    public void update(int index, Pessoa p) {
+    public void update(int id, Pessoa p) {
         for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i).getId() == index) {
+            if (pessoas.get(i).getId() == id) {
                 pessoas.set(i, p);
                 return;
             }
