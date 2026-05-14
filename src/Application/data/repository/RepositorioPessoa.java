@@ -25,6 +25,17 @@ public class RepositorioPessoa implements IRepositoryPerson {
     }
 
     @Override
+    public Pessoa findByEmail(String email) {
+        Pessoa pessoa = null;
+        for(Pessoa p: pessoas) {
+            if(p.getEmail().equals(email)) {
+                pessoa = p;
+            }
+        }
+        return pessoa;
+    }
+
+    @Override
     public ArrayList<Pessoa> findAll() {
         return pessoas;
     }

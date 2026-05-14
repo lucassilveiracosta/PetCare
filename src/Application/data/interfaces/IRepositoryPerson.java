@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public interface IRepositoryPerson {
 
     Pessoa findById(int id);
+    Pessoa findByEmail(String email);
     ArrayList<Pessoa> findAll();
     void update (int index, Pessoa p);
     void create (Pessoa p);
