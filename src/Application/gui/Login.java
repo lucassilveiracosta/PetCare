@@ -23,10 +23,6 @@ public class Login {
     public Pessoa logar(String email, String password) {
         Pessoa emailPessoa = controllerPessoa.getByEmail(email);
 
-        if (emailPessoa == null) {
-            throw new LoginConflictException("Usuário não encontrado");
-        }
-
         if (!(emailPessoa.getPassword().equals(password))) {
             throw new LoginConflictException("Wrong password");
         }
