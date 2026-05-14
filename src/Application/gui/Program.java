@@ -1,6 +1,6 @@
 package gui;
 
-import business.ControllerAnimal;
+import business.controller.ControllerAnimal;
 import business.interfaces.IControllerAnimal;
 import enums.FaseDaVida;
 import business.model.animal.Animal;

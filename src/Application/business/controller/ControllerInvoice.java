@@ -1,4 +1,4 @@
-package business;
+package business.controller;
 
 import business.interfaces.IControllerInvoice;
 
