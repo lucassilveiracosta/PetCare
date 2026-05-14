@@ -2,10 +2,13 @@ package business.controller;
 
 import business.interfaces.IControllerPessoa;
 
+import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
 import business.model.Pessoas.Pessoa;
 import data.interfaces.IRepositoryPerson;
+import org.apache.commons.validator.routines.EmailValidator;
+
 
 import java.util.ArrayList;
 
@@ -24,6 +27,15 @@ public class ControllerPessoa implements IControllerPessoa {
         if (nf == null) throw new PersonNotFoundException("404 - ID not found");
 
         return nf;
+    }
+
+    public Pessoa getByEmail(String email) {
+        EmailValidator validator = EmailValidator.getInstance();
+        if(!validator.isValid(email)) throw new IllegalArgumentException("Não esta no formato de email");
+        Pessoa exists = repositoryPerson.findByEmail(email);
+        if(exists == null) throw new EmailNotFoundException("404 - Email not found");
+
+        return exists;
     }
 
     public ArrayList<Pessoa> getAll() {
