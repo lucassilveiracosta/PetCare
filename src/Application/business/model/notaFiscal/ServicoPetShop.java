@@ -1,14 +1,14 @@
 package business.model.notaFiscal;
 
+import business.model.Pessoas.Funcionario;
 import business.model.animal.Animal;
-import model.Pessoas.Funcionario;
 
 import java.time.LocalDateTime;
 
 public class ServicoPetShop extends Procedimento {
     private String tipoServico;
     private String pelagem;
-    private model.Pessoas.Funcionario funcionarioResponsavel;
+    private Funcionario funcionarioResponsavel;
 
     public ServicoPetShop(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, String tipoServico, String pelagem, Funcionario funcionarioResponsavel){
         super(preco, paciente, dataHora, descricao);
