@@ -1,10 +1,15 @@
 package business.model.Pessoas;
 
+import exceptions.EmailConflictException;
+import exceptions.EmailFormatException;
 import exceptions.PasswordException;
+import data.interfaces.IRepositoryPerson;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.time.LocalDate;
+
 // Classe abstrata pessoa
-public abstract class Pessoa {
+public abstract class Pessoa implements IRepositoryPerson {
 
     protected static int contadorId = 1;
 
@@ -15,6 +20,7 @@ public abstract class Pessoa {
     protected LocalDate dataNascimento;
     protected String cpf;
     protected String telefone;
+    protected IRepositoryPerson repositoryPerson;
 
     // Construtor de pessoa
     public Pessoa(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone){
@@ -85,9 +91,13 @@ public abstract class Pessoa {
     }
 
     public void setEmail(String email) {
-        if(email == null || email.isBlank()) {
-            throw new IllegalArgumentException("Email não pode ser nulo ou ficar em branco");
-        }
+
+        EmailValidator validator = EmailValidator.getInstance();
+        if (!validator.isValid(email)) throw new EmailFormatException("Email must be in email format");
+
+        Pessoa pessoa = repositoryPerson.findByEmail(email);
+        if (pessoa != null) throw new EmailConflictException("409 - This email already exists");
+
         this.email = email;
     }
 

@@ -3,7 +3,6 @@ package data.repository;
 import business.model.Pessoas.Pessoa;
 import data.interfaces.IRepositoryPerson;
 import exceptions.EmailConflictException;
-import exceptions.EmailNotFoundException;
 
 import java.util.ArrayList;
 
