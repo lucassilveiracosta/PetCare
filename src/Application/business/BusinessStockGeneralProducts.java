@@ -1,13 +1,15 @@
 package business;
 
+import business.interfaces.IBusinessStockGeneralProducts;
+
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
 import model.notaFiscal.Produto;
-import interfaces.IRepositoryStockGeneralProducts;
+import repository.interfaces.IRepositoryStockGeneralProducts;
 
 import java.util.ArrayList;
 
-public class BusinessStockGeneralProducts {
+public class BusinessStockGeneralProducts implements IBusinessStockGeneralProducts {
 
     private final IRepositoryStockGeneralProducts repositoryStockGeneralProducts;
 

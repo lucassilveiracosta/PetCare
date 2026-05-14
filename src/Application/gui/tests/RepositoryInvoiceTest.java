@@ -10,7 +10,7 @@ import model.notaFiscal.NotaFiscal;
 import model.notaFiscal.Procedimento;
 import model.notaFiscal.Produto;
 import repository.RepositoryInvoice;
-import interfaces.IRepositoryInvoice;
+import repository.interfaces.IRepositoryInvoice;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

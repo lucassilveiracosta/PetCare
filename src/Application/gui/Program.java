@@ -1,10 +1,11 @@
 package gui;
 
 import business.BusinessAnimal;
+import business.interfaces.IBusinessAnimal;
 import enums.FaseDaVida;
 import model.animal.Animal;
 import repository.RepositoryAnimal;
-import interfaces.IRepositoryAnimal;
+import repository.interfaces.IRepositoryAnimal;
 import enums.Porte;
 import enums.Sexo;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Program {
     public static void main(String[] args) {
         IRepositoryAnimal repo = new RepositoryAnimal();
-        BusinessAnimal business = new BusinessAnimal(repo);
+        IBusinessAnimal business = new BusinessAnimal(repo);
 
         try {
             System.out.println("--- Testando Cadastro de Animal com Auto-ID ---");

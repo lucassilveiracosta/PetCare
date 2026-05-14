@@ -1,13 +1,15 @@
 package business;
 
+import business.interfaces.IBusinessAnimal;
+
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
 import model.animal.Animal;
-import interfaces.IRepositoryAnimal;
+import repository.interfaces.IRepositoryAnimal;
 
 import java.util.List;
 
-public class BusinessAnimal {
+public class BusinessAnimal implements IBusinessAnimal {
     private final IRepositoryAnimal repositoryAnimal;
 
 

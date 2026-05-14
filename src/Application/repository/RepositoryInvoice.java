@@ -1,7 +1,7 @@
 package repository;
 
 import model.notaFiscal.NotaFiscal;
-import interfaces.IRepositoryInvoice;
+import repository.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
 

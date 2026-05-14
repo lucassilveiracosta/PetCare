@@ -1,7 +1,7 @@
 package repository;
 
 import model.Pessoas.Pessoa;
-import interfaces.IRepositoryPerson;
+import repository.interfaces.IRepositoryPerson;
 
 import java.util.ArrayList;
 

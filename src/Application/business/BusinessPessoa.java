@@ -1,13 +1,15 @@
 package business;
 
+import business.interfaces.IBusinessPessoa;
+
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
 import model.Pessoas.Pessoa;
-import interfaces.IRepositoryPerson;
+import repository.interfaces.IRepositoryPerson;
 
 import java.util.ArrayList;
 
-public class BusinessPessoa {
+public class BusinessPessoa implements IBusinessPessoa {
 
         private IRepositoryPerson repositoryPerson;
 

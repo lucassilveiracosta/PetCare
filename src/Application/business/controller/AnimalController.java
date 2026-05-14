@@ -1,7 +1,6 @@
 package business.controller;
 
 import business.BusinessAnimal;
-import interfaces.IAnimalController;
 import model.animal.Animal;
 
 import java.util.List;

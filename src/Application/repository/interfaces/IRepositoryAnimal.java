@@ -1,4 +1,4 @@
-package interfaces;
+package repository.interfaces;
 
 import model.animal.Animal;
 import java.util.List;
@@ -7,8 +7,6 @@ public interface IRepositoryAnimal {
     Animal findById(int id);
     List<Animal> findAll();
     void  update( int index, Animal animal);
-
-
     void delete(int id);
 
 }
