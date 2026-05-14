@@ -9,8 +9,7 @@ import business.model.Pessoas.Funcionario;
 
 import enums.TypePerson;
 import exceptions.ClassPersonNotExists;
-import exceptions.LoginConflictException;
-import exceptions.WrongPasswordException;
+import exceptions.WrongPasswordOrEmailException;
 
 public class Login {
 
@@ -25,7 +24,7 @@ public class Login {
         Pessoa emailPessoa = controllerPessoa.getByEmail(email);
 
         if (emailPessoa == null || !(emailPessoa.getPassword().equals(password))) {
-            throw new WrongPasswordException("E-mail ou senha incorretos");
+            throw new WrongPasswordOrEmailException("E-mail ou senha incorretos");
         }
 
         return emailPessoa;
