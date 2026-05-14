@@ -10,5 +10,5 @@ public interface IRepositoryStockGeneralProducts{
     ArrayList<Produto> findAll();
     void update(int index, Produto p);
     void create(Produto p);
-    void  remove(Produto p);
+    void remove(Produto p);
 }

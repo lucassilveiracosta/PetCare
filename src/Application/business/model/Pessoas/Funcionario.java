@@ -1,8 +1,7 @@
-package model.Pessoas;
-
+package business.model.Pessoas;
 import java.time.LocalDate;
 
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa {
     private String cargo;
     private String turnoTrabalho;
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ControllerPessoa implements IControllerPessoa {
 
-        private IRepositoryPerson repositoryPerson;
+        private final IRepositoryPerson repositoryPerson;
 
     public ControllerPessoa(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public interface IRepositoryInvoice {
 
-    public NotaFiscal findById(int id);
-    public ArrayList<NotaFiscal> findAll();
-    public void update(int index, NotaFiscal nf);
-    public void create(NotaFiscal nf);
-    public void remove(NotaFiscal nf);
+     NotaFiscal findById(int id);
+     ArrayList<NotaFiscal> findAll();
+     void update(int index, NotaFiscal nf);
+     void create(NotaFiscal nf);
+     void remove(NotaFiscal nf);
 }
