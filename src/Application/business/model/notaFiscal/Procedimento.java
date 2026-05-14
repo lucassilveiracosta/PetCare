@@ -1,6 +1,6 @@
-package model.notaFiscal;
+package business.model.notaFiscal;
 
-import model.animal.Animal;
+import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
