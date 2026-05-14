@@ -41,9 +41,11 @@ public class LoginUI {
                 MenuPrincipal menu = new MenuPrincipal(pessoaLogada, tipo, controllerPessoa);
                 menu.exibir();
                 break;
+
             } catch (WrongPasswordOrEmailException e) {
                 System.err.println("\nErro: " + e.getMessage());
                 System.out.println("Tente novamente.\n");
+
             } catch (Exception e) {
                 e.printStackTrace();
                 // Removendo o break para permitir que tente logar novamente mesmo com erro genérico, 

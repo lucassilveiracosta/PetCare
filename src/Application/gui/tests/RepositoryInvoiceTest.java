@@ -25,7 +25,7 @@ public class RepositoryInvoiceTest {
             System.out.println("      (Repositório vazio)");
         } else {
             for (NotaFiscal nf : repository.findAll()) {
-                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getResponsavelPagador().getNome() + " | Qtd Procedimentos: " + nf.getProcedimentos().size() + " | Qtd Produtos: " + nf.getProdutos().size());
+                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getDono().getNome() + " | Qtd Procedimentos: " + nf.getProcedimentos().size() + " | Qtd Produtos: " + nf.getProdutos().size());
             }
         }
     }
@@ -46,8 +46,13 @@ public class RepositoryInvoiceTest {
         ArrayList<Especialidade> especialidades1 = new ArrayList<>();
         Veterinario veterinario = new Veterinario("Jorge", "jorge@gmail.com", "jorgecookies", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
         Dono dono = new Dono("João Silva","joao@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Dono dono1 = new Dono("Lucas Costa","lucas@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Dono dono2 = new Dono("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Dono dono3 = new Dono("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+
         Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
-        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
+        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
+        Animal animal3 = new AnimalDomestico("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
 
         ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
         procedimentos1.add(new Consulta(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
@@ -63,11 +68,13 @@ public class RepositoryInvoiceTest {
         produtos2.add(new Produto(dataHora, "Antibiótico Pet", 85.0));
 
         NotaFiscal nf1 = new NotaFiscal(dono, animal1, procedimentos1, produtos1);
-        NotaFiscal nf2 = new NotaFiscal(dono, animal2, procedimentos2, produtos2);
+        NotaFiscal nf2 = new NotaFiscal(dono1, animal2, procedimentos2, produtos2);
+        NotaFiscal nf3 = new NotaFiscal(dono2, animal3, procedimentos2, produtos2);
 
         // Pre-populando para ter dados
         repository.create(nf1);
         repository.create(nf2);
+        repository.create(nf3);
 
         int opcao = -1;
 
@@ -97,7 +104,7 @@ public class RepositoryInvoiceTest {
                     novosProc.add(new Consulta(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
                     ArrayList<Produto> novosProd = new ArrayList<>();
                     novosProd.add(new Produto(dataHora, "Shampoo Pet", 45.0));
-                    NotaFiscal novaNf = new NotaFiscal(dono, animal1, novosProc, novosProd);
+                    NotaFiscal novaNf = new NotaFiscal(dono3, animal3, novosProc, novosProd);
                     repository.create(novaNf);
                     System.out.println("Nota Fiscal criada e adicionada com sucesso!");
                     listarNotasFiscais(repository);
@@ -114,7 +121,7 @@ public class RepositoryInvoiceTest {
                         int idBusca = Integer.parseInt(scanner.nextLine());
                         NotaFiscal encontrada = repository.findById(idBusca);
                         if (encontrada != null) {
-                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getResponsavelPagador().getNome());
+                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getDono().getNome());
                             System.out.println("      Procedimentos: " + encontrada.getProcedimentos().size() + " | Produtos: " + encontrada.getProdutos().size());
                         } else {
                             System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + idBusca);

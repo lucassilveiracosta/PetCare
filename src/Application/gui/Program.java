@@ -19,7 +19,7 @@ public class Program {
         try {
             Funcionario func = new Funcionario("Maria Func", "func@pet.com", "senha123", LocalDate.of(1995, 2, 2), "222.222.222-22", "8888-8888", "Atendente", "Manhã");
             Veterinario vet = new Veterinario("Ana Vet", "vet@pet.com", "senha123", LocalDate.of(1980, 4, 4), "444.444.444-44", "6666-6666", "CRMV-123", new ArrayList<>());
-
+            Funcionario adm = new Funcionario("Admin", "admin@pet.com", "admin123", LocalDate.of(1980, 4, 4), "444.444.444-44","8888-8888", "Atendente", "Manhã"); // admin
 
             controllerPessoa.post(func);
             controllerPessoa.post(vet);

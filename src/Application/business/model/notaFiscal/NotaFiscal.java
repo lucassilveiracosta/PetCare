@@ -18,7 +18,7 @@ public class NotaFiscal {
 
     public NotaFiscal(Dono pagador, Animal paciente, ArrayList<Procedimento> procedimentos, ArrayList<Produto> produtos) {
         this.id = contadorId++;
-        setResponsavelPagador(NotaFiscal.this.pagador);
+        setDono(pagador);
         setPaciente(paciente);
         this.procedimentos = procedimentos;
         this.produtos = produtos;
@@ -28,15 +28,15 @@ public class NotaFiscal {
         return id;
     }
 
-    public Dono getResponsavelPagador() {
+    public Dono getDono() {
         return pagador;
     }
 
-    public void setResponsavelPagador(Dono pagador) {
-        if (NotaFiscal.this.pagador == null) {
+    public void setDono(Dono pagador) {
+        if (pagador == null) {
             throw new IllegalArgumentException("O Responsavel Pagador não pode ser nulo");
         }
-        this.pagador = NotaFiscal.this.pagador;
+        this.pagador = pagador;
     }
 
     public Animal getPaciente() {
