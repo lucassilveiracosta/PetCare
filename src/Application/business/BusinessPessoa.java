@@ -11,7 +11,11 @@ public class BusinessPessoa {
 
         private IRepositoryPerson repositoryPerson;
 
-        public Pessoa getById(int id) {
+    public BusinessPessoa(IRepositoryPerson repositoryPerson) {
+        this.repositoryPerson = repositoryPerson;
+    }
+
+    public Pessoa getById(int id) {
             if (id < 0) throw new IllegalArgumentException("ID must be positive");
             Pessoa nf = repositoryPerson.findById(id);
 

@@ -11,6 +11,10 @@ public class BusinessInvoice {
 
     private IRepositoryInvoice repositoryInvoice;
 
+    public BusinessInvoice(IRepositoryInvoice repositoryInvoice) {
+        this.repositoryInvoice = repositoryInvoice;
+    }
+
     public NotaFiscal getById(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
         NotaFiscal nf = repositoryInvoice.findById(id);
