@@ -46,8 +46,8 @@ public class RepositoryInvoiceTest {
         ResponsavelPagador pagador2 = new ResponsavelPagador("Maria Oliveira", data.minusYears(25), "09876543211", "81888888888", "Médica Veterinária", "Pagadora avulsa");
         
         Dono dono = new Dono("João Silva", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
-        Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true, TempoDeVida.ADULTO);
-        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false, TempoDeVida.RECEMNASCIDO);
+        Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
+        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
 
         ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
         procedimentos1.add(new Procedimento(150.0, animal1, dataHora, "Consulta de Rotina"));
