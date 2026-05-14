@@ -1,6 +1,6 @@
 package business.interfaces;
 
-import model.notaFiscal.Produto;
+import business.model.notaFiscal.Produto;
 import java.util.List;
 
 public interface IBusinessStockGeneralProducts {

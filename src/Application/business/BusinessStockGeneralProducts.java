@@ -4,8 +4,8 @@ import business.interfaces.IBusinessStockGeneralProducts;
 
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
-import model.notaFiscal.Produto;
-import repository.interfaces.IRepositoryStockGeneralProducts;
+import business.model.notaFiscal.Produto;
+import data.interfaces.IRepositoryStockGeneralProducts;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package business.interfaces;
 
-import model.notaFiscal.NotaFiscal;
+import business.model.notaFiscal.NotaFiscal;
 import java.util.List;
 
 public interface IBusinessInvoice {

@@ -1,12 +1,12 @@
 package gui.tests;
 
 import enums.*;
-import model.Pessoas.Dono;
-import model.Pessoas.Pessoa;
-import model.animal.Animal;
-import model.animal.AnimalDomestico;
-import model.animal.Vacina;
-import model.prontuario.*;
+import business.model.Pessoas.Dono;
+import business.model.Pessoas.Pessoa;
+import business.model.animal.Animal;
+import business.model.animal.AnimalDomestico;
+import business.model.animal.Vacina;
+import business.model.prontuario.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

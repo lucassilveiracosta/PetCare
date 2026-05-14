@@ -1,6 +1,6 @@
 package business.interfaces;
 
-import model.Pessoas.Pessoa;
+import business.model.Pessoas.Pessoa;
 import java.util.List;
 
 public interface IBusinessPessoa {

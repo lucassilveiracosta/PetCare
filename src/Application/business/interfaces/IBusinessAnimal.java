@@ -1,6 +1,6 @@
 package business.interfaces;
 
-import model.animal.Animal;
+import business.model.animal.Animal;
 import java.util.List;
 
 public interface IBusinessAnimal {

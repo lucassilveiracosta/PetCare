@@ -4,8 +4,8 @@ import business.interfaces.IBusinessAnimal;
 
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
-import model.animal.Animal;
-import repository.interfaces.IRepositoryAnimal;
+import business.model.animal.Animal;
+import data.interfaces.IRepositoryAnimal;
 
 import java.util.List;
 

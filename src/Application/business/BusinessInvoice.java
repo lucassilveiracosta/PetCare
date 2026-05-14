@@ -4,8 +4,8 @@ import business.interfaces.IBusinessInvoice;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
-import model.notaFiscal.NotaFiscal;
-import repository.interfaces.IRepositoryInvoice;
+import business.model.notaFiscal.NotaFiscal;
+import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
 

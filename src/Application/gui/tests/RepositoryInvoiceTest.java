@@ -1,16 +1,16 @@
 package gui.tests;
 
 import enums.*;
-import model.Pessoas.Dono;
-import model.Pessoas.ResponsavelPagador;
-import model.animal.Animal;
-import model.animal.AnimalDomestico;
-import model.animal.Vacina;
-import model.notaFiscal.NotaFiscal;
-import model.notaFiscal.Procedimento;
-import model.notaFiscal.Produto;
-import repository.RepositoryInvoice;
-import repository.interfaces.IRepositoryInvoice;
+import business.model.Pessoas.Dono;
+import business.model.Pessoas.ResponsavelPagador;
+import business.model.animal.Animal;
+import business.model.animal.AnimalDomestico;
+import business.model.animal.Vacina;
+import business.model.notaFiscal.NotaFiscal;
+import business.model.notaFiscal.Procedimento;
+import business.model.notaFiscal.Produto;
+import data.repository.RepositoryInvoice;
+import data.interfaces.IRepositoryInvoice;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

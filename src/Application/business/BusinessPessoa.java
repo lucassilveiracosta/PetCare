@@ -4,8 +4,8 @@ import business.interfaces.IBusinessPessoa;
 
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
-import model.Pessoas.Pessoa;
-import repository.interfaces.IRepositoryPerson;
+import business.model.Pessoas.Pessoa;
+import data.interfaces.IRepositoryPerson;
 
 import java.util.ArrayList;
 

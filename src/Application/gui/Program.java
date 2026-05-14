@@ -3,9 +3,9 @@ package gui;
 import business.BusinessAnimal;
 import business.interfaces.IBusinessAnimal;
 import enums.FaseDaVida;
-import model.animal.Animal;
-import repository.RepositoryAnimal;
-import repository.interfaces.IRepositoryAnimal;
+import business.model.animal.Animal;
+import data.repository.RepositoryAnimal;
+import data.interfaces.IRepositoryAnimal;
 import enums.Porte;
 import enums.Sexo;
 
