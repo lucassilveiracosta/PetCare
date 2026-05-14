@@ -1,4 +1,4 @@
-package business;
+package business.controller;
 
 import business.model.notaFiscal.Consulta;
 import data.interfaces.IRepositoryAppointment;
@@ -9,11 +9,11 @@ import exceptions.AppointmentNotFoundException;
 
 import java.util.ArrayList;
 
-public class BusinessAppointment {
+public class ControllerAppointment {
 
     private final IRepositoryAppointment repositoryAppointment;
 
-    public BusinessAppointment(IRepositoryAppointment repository) {
+    public ControllerAppointment(IRepositoryAppointment repository) {
         this.repositoryAppointment = repository;
     }
 
