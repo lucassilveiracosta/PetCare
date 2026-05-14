@@ -7,7 +7,7 @@ public class Anamnese {
     private String descricao;
 
     public Anamnese(String queixaPrincipal, String restricaoAlimentar, String descricao) {
-        setQueixaPrinal(queixaPrincipal);
+        setQueixaPrincipal(queixaPrincipal);
         setRestricaoAlimentar(restricaoAlimentar);
         setDescricao(descricao);
     }
@@ -16,7 +16,7 @@ public class Anamnese {
         return queixaPrincipal;
     }
 
-    public void setQueixaPrinal(String queixaPrincipal) {
+    public void setQueixaPrincipal(String queixaPrincipal) {
         if (queixaPrincipal == null || queixaPrincipal.isBlank()){
             throw new IllegalArgumentException("A queixa não pode estar em branco ou sem resposta");
         }
