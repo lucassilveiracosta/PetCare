@@ -1,6 +1,6 @@
 package business;
 
-import business.interfaces.IBusinessInvoice;
+import business.interfaces.IControllerInvoice;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
@@ -9,11 +9,11 @@ import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
 
-public class BusinessInvoice implements IBusinessInvoice {
+public class ControllerInvoice implements IControllerInvoice {
 
     private IRepositoryInvoice repositoryInvoice;
 
-    public BusinessInvoice(IRepositoryInvoice repositoryInvoice) {
+    public ControllerInvoice(IRepositoryInvoice repositoryInvoice) {
         this.repositoryInvoice = repositoryInvoice;
     }
 

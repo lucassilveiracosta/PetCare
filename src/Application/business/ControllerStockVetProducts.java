@@ -1,6 +1,6 @@
 package business;
 
-import business.interfaces.IBusinessStockVetProducts;
+import business.interfaces.IControllerStockVetProducts;
 
 import exceptions.StockVetProductsConflictException;
 import exceptions.StockVetProductsNotFoundException;
@@ -9,11 +9,11 @@ import data.interfaces.IRepositoryStockVetProducts;
 
 import java.util.ArrayList;
 
-public class BusinessStockVetProducts implements IBusinessStockVetProducts {
+public class ControllerStockVetProducts implements IControllerStockVetProducts {
 
     private final IRepositoryStockVetProducts repositoryStockVetProducts;
 
-    public BusinessStockVetProducts(IRepositoryStockVetProducts repository) {
+    public ControllerStockVetProducts(IRepositoryStockVetProducts repository) {
         this.repositoryStockVetProducts = repository;
     }
 

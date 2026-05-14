@@ -1,6 +1,6 @@
 package business;
 
-import business.interfaces.IBusinessPessoa;
+import business.interfaces.IControllerPessoa;
 
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
@@ -9,11 +9,11 @@ import data.interfaces.IRepositoryPerson;
 
 import java.util.ArrayList;
 
-public class BusinessPessoa implements IBusinessPessoa {
+public class ControllerPessoa implements IControllerPessoa {
 
         private IRepositoryPerson repositoryPerson;
 
-    public BusinessPessoa(IRepositoryPerson repositoryPerson) {
+    public ControllerPessoa(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;
     }
 

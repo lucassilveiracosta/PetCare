@@ -1,14 +1,14 @@
 package business.controller;
 
-import business.BusinessAnimal;
+import business.ControllerAnimal;
 import business.model.animal.Animal;
 
 import java.util.List;
 
 public class AnimalController implements IAnimalController {
-    private final BusinessAnimal businessAnimal;
+    private final ControllerAnimal businessAnimal;
 
-    public AnimalController(BusinessAnimal businessAnimal) {
+    public AnimalController(ControllerAnimal businessAnimal) {
         this.businessAnimal = businessAnimal;
     }
 

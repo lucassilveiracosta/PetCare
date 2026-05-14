@@ -1,6 +1,6 @@
 package business;
 
-import business.interfaces.IBusinessAnimal;
+import business.interfaces.IControllerAnimal;
 
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
@@ -9,11 +9,11 @@ import data.interfaces.IRepositoryAnimal;
 
 import java.util.List;
 
-public class BusinessAnimal implements IBusinessAnimal {
+public class ControllerAnimal implements IControllerAnimal {
     private final IRepositoryAnimal repositoryAnimal;
 
 
-    public BusinessAnimal(IRepositoryAnimal repositoryAnimal) {
+    public ControllerAnimal(IRepositoryAnimal repositoryAnimal) {
         this.repositoryAnimal = repositoryAnimal;
     }
 

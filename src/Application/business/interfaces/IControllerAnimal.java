@@ -3,7 +3,7 @@ package business.interfaces;
 import business.model.animal.Animal;
 import java.util.List;
 
-public interface IBusinessAnimal {
+public interface IControllerAnimal {
     Animal getById(int id);
     void patch(int id, Animal dadosParciais);
     List<Animal> getAll();

@@ -1,6 +1,6 @@
 package business;
 
-import business.interfaces.IBusinessStockGeneralProducts;
+import business.interfaces.IControllerStockGeneralProducts;
 
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
@@ -9,11 +9,11 @@ import data.interfaces.IRepositoryStockGeneralProducts;
 
 import java.util.ArrayList;
 
-public class BusinessStockGeneralProducts implements IBusinessStockGeneralProducts {
+public class ControllerStockGeneralProducts implements IControllerStockGeneralProducts {
 
     private final IRepositoryStockGeneralProducts repositoryStockGeneralProducts;
 
-    public BusinessStockGeneralProducts(IRepositoryStockGeneralProducts repository) {
+    public ControllerStockGeneralProducts(IRepositoryStockGeneralProducts repository) {
         this.repositoryStockGeneralProducts = repository;
     }
 

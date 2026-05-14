@@ -3,10 +3,10 @@ package business.interfaces;
 import business.model.notaFiscal.Produto;
 import java.util.List;
 
-public interface IBusinessStockVetProducts {
+public interface IControllerStockGeneralProducts {
     Produto getById(int id);
     List<Produto> getAll();
-    void patch(int id, Produto nf);
+    void patch(int id, Produto novoProduto);
     void delete(int id);
-    void post(Produto nf);
+    void post(Produto novoProduto);
 }
