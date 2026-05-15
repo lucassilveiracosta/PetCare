@@ -8,52 +8,52 @@ import enums.FaseDaVida;
 import java.time.LocalDate;
 
 public class AnimalExotico extends Animal {
-    private boolean requerAmbienteControlado;
-    private String descricaoDieta;
-    private Origem origem;
+    private boolean requiresControlEnviroment;
+    private String dietDescription;
+    private Origem origin;
     private String microChipId;
-    private String numeroDeRegistro;
+    private String registrationNumber;
 
-    public AnimalExotico(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, double peso, Porte porte, Sexo sexo,String numeroDeRegistro, String microChipId, boolean requerAmbienteControlado, String descricaoDieta, Origem origem) {
-        super(nome,  especie,  raca,  dataNascimento, faseDaVida, peso,  porte,  sexo);
-        setNumeroDeRegistro(numeroDeRegistro);
+    public AnimalExotico(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, double weight, Porte size, Sexo sex,String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origem origin) {
+        super(name,  species,  race,  birthDate, stageOfLife, weight,  size,  sex);
+        setRegistrationNumber(registrationNumber);
         setMicroChipId(microChipId);
-        setRequerAmbienteControlado(requerAmbienteControlado);
-        setDescricaoDieta(descricaoDieta);
-        setOrigem(origem);
+        setRequiresControlEnviroment(requiresControlEnviroment);
+        setDescricaoDieta(dietDescription);
+        setOrigin(origin);
     }
 
-    public String getNumeroDeRegistro() {
-        return numeroDeRegistro;
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setNumeroDeRegistro(String numeroDeRegistro) {
-        if(numeroDeRegistro == null || numeroDeRegistro.isBlank()){
-            throw new IllegalArgumentException("Numero do registro inválido!");
+    public void setRegistrationNumber(String registrationNumber) {
+        if(registrationNumber == null || registrationNumber.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid registration number");
         }
-        this.numeroDeRegistro = numeroDeRegistro;
+        this.registrationNumber = AnimalExotico.this.registrationNumber;
     }
 
-    public Origem getOrigem() {
-        return origem;
+    public Origem getOrigin() {
+        return origin;
     }
 
-    public void setOrigem(Origem origem) {
-        if(origem == null){
-            throw new IllegalArgumentException("A origem não pode ser nula!");
+    public void setOrigin(Origem origin) {
+        if(origin == null){
+            throw new IllegalArgumentException("400 - Invalid origin");
         }
-        this.origem = origem;
+        this.origin = origin;
     }
 
-    public String getDescricaoDieta() {
-        return descricaoDieta;
+    public String getDietDescription() {
+        return dietDescription;
     }
 
-    public void setDescricaoDieta(String descricaoDieta) {
-        if(descricaoDieta == null || descricaoDieta.isBlank()){
-            throw new IllegalArgumentException("Insira uma descrição válida!");
+    public void setDescricaoDieta(String dietDescription) {
+        if(dietDescription == null || dietDescription.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid diet description");
         }
-        this.descricaoDieta = descricaoDieta;
+        this.dietDescription = dietDescription;
     }
 
     public String getMicroChipId() {
@@ -67,12 +67,12 @@ public class AnimalExotico extends Animal {
         this.microChipId = microChipId;
     }
 
-    public boolean isRequerAmbienteControlado() {
-        return requerAmbienteControlado;
+    public boolean isRequiresControlEnviroment() {
+        return requiresControlEnviroment;
     }
 
-    public void setRequerAmbienteControlado(boolean requerAmbienteControlado) {
+    public void setRequiresControlEnviroment(boolean requiresControlEnviroment) {
 
-        this.requerAmbienteControlado = requerAmbienteControlado;
+        this.requiresControlEnviroment = requiresControlEnviroment;
     }
 }
