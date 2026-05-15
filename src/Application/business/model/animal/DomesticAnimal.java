@@ -9,13 +9,13 @@ import business.model.Pessoas.Dono;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class AnimalDomestico extends Animal {
+public class DomesticAnimal extends Animal {
     private Dono owner;
     private boolean castrated;
     private ArrayList<Vacina> vaccines;
     private Temperamento temperament;
 
-    public AnimalDomestico(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Dono owner, ArrayList<Vacina> vaccines, Temperamento temperament, boolean castrated) {
+    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Dono owner, ArrayList<Vacina> vaccines, Temperamento temperament, boolean castrated) {
         super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex);
         setOwner(owner);
         setVaccines(vaccines);

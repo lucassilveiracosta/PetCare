@@ -4,7 +4,7 @@ import business.model.Pessoas.Dono;
 import business.model.Pessoas.Especialidade;
 import business.model.Pessoas.Veterinario;
 import business.model.animal.Animal;
-import business.model.animal.AnimalDomestico;
+import business.model.animal.DomesticAnimal;
 import business.model.animal.Vacina;
 import business.model.notaFiscal.*;
 import data.interfaces.IRepositoryInvoice;
@@ -50,9 +50,9 @@ public class RepositoryInvoiceTest {
         Dono dono2 = new Dono("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
         Dono dono3 = new Dono("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
 
-        Animal animal1 = new AnimalDomestico("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
-        Animal animal2 = new AnimalDomestico("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
-        Animal animal3 = new AnimalDomestico("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
+        Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vacina>(), Temperamento.DOCIL, true);
+        Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
+        Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vacina>(), Temperamento.DOCIL, false);
 
         ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
         procedimentos1.add(new Consulta(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));

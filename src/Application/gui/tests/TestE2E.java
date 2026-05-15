@@ -66,7 +66,7 @@ public class TestE2E {
                 "CRMV-PE-1234", especialidades
         );
 
-        AnimalDomestico rex = new AnimalDomestico(
+        DomesticAnimal rex = new DomesticAnimal(
                 "Rex", "Cachorro", "Labrador", hoje.minusYears(4),
                 FaseDaVida.ADULTO, 30.0, Porte.GRANDE, Sexo.MACHO,
                 dono, new ArrayList<>(), Temperamento.DOCIL, true
@@ -106,7 +106,7 @@ public class TestE2E {
         });
 
         testar("Rex e instancia de AnimalDomestico (heranca REQ02)", () -> {
-            if (!(rex instanceof AnimalDomestico))
+            if (!(rex instanceof DomesticAnimal))
                 throw new RuntimeException("Rex deveria ser AnimalDomestico");
         });
 
@@ -123,31 +123,31 @@ public class TestE2E {
         // ─── Validacoes do modelo ─────────────────────────────────────────────
         testarExcecao("Nome nulo em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico(null, "Cachorro", "SRD", hoje.minusYears(1),
+                        new DomesticAnimal(null, "Cachorro", "SRD", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 10.0, Porte.MEDIO, Sexo.FEMEA,
                                 dono, new ArrayList<>(), Temperamento.DOCIL, false));
 
         testarExcecao("Peso zero em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Luna", "Cachorro", "SRD", hoje.minusYears(1),
+                        new DomesticAnimal("Luna", "Cachorro", "SRD", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 0.0, Porte.MEDIO, Sexo.FEMEA,
                                 dono, new ArrayList<>(), Temperamento.DOCIL, false));
 
         testarExcecao("Porte null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 5.0, null, Sexo.MACHO,
                                 dono, new ArrayList<>(), Temperamento.DOCIL, false));
 
         testarExcecao("Sexo null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, null,
                                 dono, new ArrayList<>(), Temperamento.DOCIL, false));
 
         testarExcecao("Dono null em AnimalDomestico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, Sexo.MACHO,
                                 null, new ArrayList<>(), Temperamento.DOCIL, false));
 
@@ -555,7 +555,7 @@ public class TestE2E {
         secao("CRUD de Animal - Patch, Update e Delete");
 
         testar("Atualizar peso de Rex via patch()", () -> {
-            AnimalDomestico rexComNovaRaca = new AnimalDomestico(
+            DomesticAnimal rexComNovaRaca = new DomesticAnimal(
                     "Rex", "Cachorro", "Labrador Retriever", hoje.minusYears(4),
                     FaseDaVida.ADULTO, 32.0, Porte.GRANDE, Sexo.MACHO,
                     dono, rex.getVaccines(), Temperamento.DOCIL, true
@@ -566,7 +566,7 @@ public class TestE2E {
         });
 
         testar("Substituir Rex completamente via update()", () -> {
-            AnimalDomestico rexAtualizado = new AnimalDomestico(
+            DomesticAnimal rexAtualizado = new DomesticAnimal(
                     "Rex II", "Cachorro", "Golden Retriever", hoje.minusYears(5),
                     FaseDaVida.ADULTO, 35.0, Porte.GRANDE, Sexo.MACHO,
                     dono, new ArrayList<>(), Temperamento.DOCIL, true

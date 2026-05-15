@@ -4,7 +4,7 @@ import enums.*;
 import business.model.Pessoas.Dono;
 import business.model.Pessoas.Pessoa;
 import business.model.animal.Animal;
-import business.model.animal.AnimalDomestico;
+import business.model.animal.DomesticAnimal;
 import business.model.animal.Vacina;
 import business.model.prontuario.*;
 
@@ -26,7 +26,7 @@ public class dateTest {
 
         ArrayList<Vacina> vacinas = new ArrayList<>();
         vacinas.add(new Vacina("Covid", date.minusDays(5),"Não se queixou"));
-        Animal animalTeste = new AnimalDomestico("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true );
+        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true );
 
 
         Hidratacao hidratacao = new Hidratacao(true,null);
@@ -47,10 +47,10 @@ public class dateTest {
         System.out.println("Nome: " + prontuario.getAnimal().getName());
         System.out.println("Raça: " + prontuario.getAnimal().getRace());
         System.out.println("Porte: " + prontuario.getAnimal().getSize());
-        System.out.println("Dono: " + ( (AnimalDomestico) prontuario.getAnimal()).getOwner().getNome());
+        System.out.println("Dono: " + ( (DomesticAnimal) prontuario.getAnimal()).getOwner().getNome());
 
         System.out.println("\n--- HISTÓRICO DE VACINAS ---");
-        for (Vacina v : ((AnimalDomestico) prontuario.getAnimal()).getVaccines()) {
+        for (Vacina v : ((DomesticAnimal) prontuario.getAnimal()).getVaccines()) {
             System.out.println("- Vacina: " + v.getNomeDaVacina() + " | Data: " + v.getDataDaVacina().format(fmt));
         }
 
