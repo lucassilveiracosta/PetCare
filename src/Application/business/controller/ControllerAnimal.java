@@ -18,7 +18,7 @@ public class ControllerAnimal implements IControllerAnimal {
     }
 
     public Animal getById(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
         Animal animal = repositoryAnimal.findById(id);
         if (animal == null) {
@@ -84,7 +84,7 @@ public class ControllerAnimal implements IControllerAnimal {
     }
 
     public void delete(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
         Animal animal = repositoryAnimal.findById(id);
         if (animal == null) {
@@ -95,12 +95,12 @@ public class ControllerAnimal implements IControllerAnimal {
     }
 
     public void post(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("Animal cannot be null");
+        if (animal == null) throw new IllegalArgumentException("400 - Animal cannot be null");
 
 
         Animal exists = repositoryAnimal.findById(animal.getId());
         if (exists != null) {
-            throw new AnimalConflictException("An animal with this ID already exists");
+            throw new AnimalConflictException("409 - An animal with this ID already exists");
         }
 
         repositoryAnimal.create(animal);
