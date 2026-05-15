@@ -3,35 +3,35 @@ package business.model.Pessoas;
 import java.time.LocalDate;
 
 public class Employee extends Person {
-    private String cargo;
-    private String turnoTrabalho;
+    private String position;
+    private String workShift;
 
-    public Employee(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String cargo, String turnoTrabalho) {
-        super(nome, email, password, dataNascimento, cpf, telefone);
-        setCargo(cargo);
-        setTurnoTrabalho(turnoTrabalho);
+    public Employee(String name, String email, String password, LocalDate birthDate, String cpf, String telephone, String position, String workShift) {
+        super(name, email, password, birthDate, cpf, telephone);
+        setPosition(position);
+        setWorkShift(workShift);
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getPosition() {
+        return position;
     }
 
-    public void setCargo(String cargo)
+    public void setPosition(String position)
     {
-        if(cargo == null || cargo.isBlank()){
-            throw new IllegalArgumentException("Cargo não pode ser nulo");
+        if(position == null || position.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid position");
         }
-        this.cargo = cargo;
+        this.position = position;
     }
 
-    public String getTurnoTrabalho() {
-        return turnoTrabalho;
+    public String getWorkShift() {
+        return workShift;
     }
 
-    public void setTurnoTrabalho(String turnoTrabalho) {
-        if(turnoTrabalho == null || turnoTrabalho.isBlank()){
-            throw new IllegalArgumentException("O turno do trabalho não pode ser nulo!");
+    public void setWorkShift(String workShift) {
+        if(workShift == null || workShift.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid work shift");
         }
-        this.turnoTrabalho = turnoTrabalho;
+        this.workShift = workShift;
     }
 }
