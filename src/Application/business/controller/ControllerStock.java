@@ -41,14 +41,12 @@ public class ControllerStock implements IControllerStock {
             throw new AppointmentNotFoundException("404 - Appointment with ID " + id + " not found");
         }
 
-
-
-        if (partialData.getPreco() < 0.0) {
-            exists.setPreco(partialData.getPreco());
+        if (partialData.getPrice() < 0.0) {
+            exists.setPrice(partialData.getPrice());
         }
 
-        if (partialData.getDescricao() != null && !partialData.getDescricao().isBlank()) {
-            exists.setDescricao(partialData.getDescricao());
+        if (partialData.getDescription() != null && !partialData.getDescription().isBlank()) {
+            exists.setDescription(partialData.getDescription());
         }
 
         if (partialData.getQuantity() > 0 ) {

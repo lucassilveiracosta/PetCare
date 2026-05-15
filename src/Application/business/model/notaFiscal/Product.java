@@ -7,12 +7,12 @@ public class Product {
     private int id = contador_id++;
     private Integer quantity;
     private String description;
-    private Double preco;
+    private Double price;
 
-    public Product(Integer quantity, String description, Double preco){
+    public Product(Integer quantity, String description, Double price){
         setQuantity(quantity);
-        setDescricao(description);
-        this.preco = preco;
+        setDescription(description);
+        this.price = price;
     }
 
     public int getQuantity() {
@@ -24,26 +24,26 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getDescricao() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescricao(String description) {
+    public void setDescription(String description) {
         if (description == null || description.isBlank()) {
             throw new IllegalArgumentException("A descrição do produto não pode ser nula");
         }
         this.description = description;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPreco(Double preco) {
-        if(preco == null || preco < 0){
+    public void setPrice(Double price) {
+        if(price == null || price < 0){
             throw new IllegalArgumentException("O preço do produto não pode ser nulo ou negativo");
         }
-        this.preco = preco;
+        this.price = price;
     }
 
     public int getId() {

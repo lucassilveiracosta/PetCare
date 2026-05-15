@@ -398,10 +398,10 @@ public class TestE2E {
         // =====================================================================
         secao("REQ09/REQ10 - Estoque de Produtos (Geral e Veterinario)");
 
-        Product racaoPremium = new Product(agora, "Racao Premium 15kg", 180.0);
-        Product shampooAnt   = new Product(agora, "Shampoo Antisseptico", 28.0);
-        Product antibiotico  = new Product(agora, "Amoxicilina Vet 500mg", 45.0);
-        Product antifungico  = new Product(agora, "Antifungico Vet 250mg", 60.0);
+        Product racaoPremium = new Product(1, "Racao Premium 15kg", 180.0);
+        Product shampooAnt   = new Product(2, "Shampoo Antisseptico", 28.0);
+        Product antibiotico  = new Product(3, "Amoxicilina Vet 500mg", 45.0);
+        Product antifungico  = new Product(4, "Antifungico Vet 250mg", 60.0);
 
         // -- Estoque Geral
         testar("Cadastrar Racao no estoque geral", () ->
@@ -431,7 +431,7 @@ public class TestE2E {
                         ctrlStockGeral.getById(99999));
 
         testar("Atualizar produto no estoque geral (patch)", () -> {
-            Product racaoAtualizada = new Product(agora, "Racao Premium 20kg", 220.0);
+            Product racaoAtualizada = new Product(2, "Racao Premium 20kg", 220.0);
             ctrlStockGeral.put(racaoPremium.getId(), racaoAtualizada);
             assertEquals(2, ctrlStockGeral.getAll().size(), "tamanho do estoque apos patch");
         });
@@ -501,7 +501,7 @@ public class TestE2E {
             procs.add(new Appointment(150.0, rex, agora, "Consulta Rotina", vet, "Saudavel", "Vitamina A"));
 
             ArrayList<Product> prods = new ArrayList<>();
-            prods.add(new Product(agora, "Suplemento Vitaminico", 55.0));
+            prods.add(new Product(4, "Suplemento Vitaminico", 55.0));
 
             Invoice nf = new Invoice(pagador, rex, procs, prods);
             ctrlInvoice.post(nf);

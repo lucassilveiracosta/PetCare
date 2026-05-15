@@ -58,14 +58,14 @@ public class RepositoryInvoiceTest {
         procedimentos1.add(new Appointment(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
         procedimentos1.add(new Appointment(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente"));
         ArrayList<Product> produtos1 = new ArrayList<>();
-        produtos1.add(new Product(dataHora, "Ração Premium 15kg", 200.0));
-        produtos1.add(new Product(dataHora, "Brinquedo de Borracha", 35.0));
+        produtos1.add(new Product(3, "Ração Premium 15kg", 200.0));
+        produtos1.add(new Product(2, "Brinquedo de Borracha", 35.0));
 
         ArrayList<Procedure> procedimentos2 = new ArrayList<>();
         procedimentos2.add(new Surgery(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", "Alto risco"));
 
         ArrayList<Product> produtos2 = new ArrayList<>();
-        produtos2.add(new Product(dataHora, "Antibiótico Pet", 85.0));
+        produtos2.add(new Product(2, "Antibiótico Pet", 85.0));
 
         Invoice nf1 = new Invoice(dono, animal1, procedimentos1, produtos1);
         Invoice nf2 = new Invoice(dono1, animal2, procedimentos2, produtos2);
@@ -103,7 +103,7 @@ public class RepositoryInvoiceTest {
                     ArrayList<Procedure> novosProc = new ArrayList<>();
                     novosProc.add(new Appointment(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
                     ArrayList<Product> novosProd = new ArrayList<>();
-                    novosProd.add(new Product(dataHora, "Shampoo Pet", 45.0));
+                    novosProd.add(new Product(1, "Shampoo Pet", 45.0));
                     Invoice novaNf = new Invoice(dono3, animal3, novosProc, novosProd);
                     repository.create(novaNf);
                     System.out.println("Nota Fiscal criada e adicionada com sucesso!");
