@@ -1,9 +1,9 @@
 package business.model.animal;
 
-import enums.Porte;
-import enums.Sexo;
-import enums.Temperamento;
-import enums.FaseDaVida;
+import enums.Size;
+import enums.Sex;
+import enums.Temperament;
+import enums.StageOfLife;
 import business.model.Pessoas.Owner;
 
 import java.time.LocalDate;
@@ -13,9 +13,9 @@ public class DomesticAnimal extends Animal {
     private Owner owner;
     private boolean castrated;
     private ArrayList<Vaccine> vaccines;
-    private Temperamento temperament;
+    private Temperament temperament;
 
-    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Owner owner, ArrayList<Vaccine> vaccines, Temperamento temperament, boolean castrated) {
+    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, Double weight, Size size, Sex sex, Owner owner, ArrayList<Vaccine> vaccines, Temperament temperament, boolean castrated) {
         super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex);
         setOwner(owner);
         setVaccines(vaccines);
@@ -34,11 +34,11 @@ public class DomesticAnimal extends Animal {
         this.owner = owner;
     }
 
-    public Temperamento getTemperament() {
+    public Temperament getTemperament() {
         return temperament;
     }
 
-    public void setTemperament(Temperamento temperament) {
+    public void setTemperament(Temperament temperament) {
         if(temperament == null ){
             throw new IllegalArgumentException("400 - Invalid temperament");
         }

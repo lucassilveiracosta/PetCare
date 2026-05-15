@@ -68,14 +68,14 @@ public class TestE2E {
 
         DomesticAnimal rex = new DomesticAnimal(
                 "Rex", "Cachorro", "Labrador", hoje.minusYears(4),
-                FaseDaVida.ADULTO, 30.0, Porte.GRANDE, Sexo.MACHO,
-                dono, new ArrayList<>(), Temperamento.DOCIL, true
+                StageOfLife.ADULTO, 30.0, Size.GRANDE, Sex.MACHO,
+                dono, new ArrayList<>(), Temperament.DOCIL, true
         );
         ExoticAnimal iguana = new ExoticAnimal(
                 "Igu", "Iguana", "Verde", hoje.minusYears(2),
-                FaseDaVida.ADULTO, 1.5, Porte.PEQUENO, Sexo.MACHO,
+                StageOfLife.ADULTO, 1.5, Size.PEQUENO, Sex.MACHO,
                 "REG-001", "CHIP-001", true, "Herbivora",
-                Origem.CATIVEIRO  // [BUG] MainE2ETest original usava Origem.SILVESTRE (nao existe no enum)
+                Origin.CATIVEIRO  // [BUG] MainE2ETest original usava Origem.SILVESTRE (nao existe no enum)
         );
 
         // =====================================================================
@@ -124,38 +124,38 @@ public class TestE2E {
         testarExcecao("Nome nulo em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new DomesticAnimal(null, "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 10.0, Porte.MEDIO, Sexo.FEMEA,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                                StageOfLife.ADULTO, 10.0, Size.MEDIO, Sex.FEMEA,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Peso zero em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new DomesticAnimal("Luna", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 0.0, Porte.MEDIO, Sexo.FEMEA,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                                StageOfLife.ADULTO, 0.0, Size.MEDIO, Sex.FEMEA,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Porte null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, null, Sexo.MACHO,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                                StageOfLife.ADULTO, 5.0, null, Sex.MACHO,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Sexo null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, null,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                                StageOfLife.ADULTO, 5.0, Size.PEQUENO, null,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Dono null em AnimalDomestico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, Sexo.MACHO,
-                                null, new ArrayList<>(), Temperamento.DOCIL, false));
+                                StageOfLife.ADULTO, 5.0, Size.PEQUENO, Sex.MACHO,
+                                null, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Numero de registro nulo em AnimalExotico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
                         new ExoticAnimal("Cobra", "Cobra", "Jiboia", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.MEDIO, Sexo.MACHO,
-                                null, "CHIP-999", false, "Carnivora", Origem.CATIVEIRO));
+                                StageOfLife.ADULTO, 5.0, Size.MEDIO, Sex.MACHO,
+                                null, "CHIP-999", false, "Carnivora", Origin.CATIVEIRO));
 
         // ─── Erros de CRUD de Animal ──────────────────────────────────────────
         testarExcecao("Conflito: cadastrar Rex novamente (AnimalConflictException)",
@@ -214,7 +214,7 @@ public class TestE2E {
             VitalParameters parametros = new VitalParameters(
                     80, 20, 38.5, Mucosa.NORMACORADAS, 5, hidratacao, "Parametros normais"
             );
-            PhysicalExamination exame = new PhysicalExamination(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
+            PhysicalExamination exame = new PhysicalExamination(Conscience.ALERTA, parametros, "Animal responsivo e alerta");
             Anamnesis anamnese = new Anamnesis("Sem apetite", "Sem restricao", "Consulta de rotina");
             Appointment ida = new Appointment(hoje, exame, anamnese, "Primeira consulta do ano");
             ArrayList<Appointment> idas = new ArrayList<>();
@@ -233,7 +233,7 @@ public class TestE2E {
         testar("Adicionar segunda consulta ao prontuario", () -> {
             Hydration h2 = new Hydration(false, 5.0);
             VitalParameters pv2 = new VitalParameters(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
-            PhysicalExamination ex2 = new PhysicalExamination(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
+            PhysicalExamination ex2 = new PhysicalExamination(Conscience.APATICO, pv2, "Animal apático, desidratacao leve");
             Anamnesis an2 = new Anamnesis("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
             Appointment ida2 = new Appointment(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
             prontuarioRex.getIdasAoVeterinario().add(ida2);
@@ -257,7 +257,7 @@ public class TestE2E {
 
         testarExcecao("ExameFisico sem parametros vitais lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new PhysicalExamination(Consciencia.ALERTA, null, "descricao"));
+                        new PhysicalExamination(Conscience.ALERTA, null, "descricao"));
 
         testarExcecao("Appointment sem ExameFisico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
@@ -267,7 +267,7 @@ public class TestE2E {
                 IllegalArgumentException.class, () -> {
                     Hydration h = new Hydration(true, null);
                     VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
-                    PhysicalExamination ex = new PhysicalExamination(Consciencia.ALERTA, pv, "ok");
+                    PhysicalExamination ex = new PhysicalExamination(Conscience.ALERTA, pv, "ok");
                     new Appointment(hoje, ex, null, "desc");
                 });
 
@@ -279,12 +279,12 @@ public class TestE2E {
         Appointment consulta1 = new Appointment(
                 150.0, rex, agora.plusDays(1),
                 "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A",
-                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
         Appointment consulta2 = new Appointment(
                 200.0, iguana, agora.plusDays(3),
                 "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma",
-                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
 
         testar("Agendar consulta para Rex", () ->
@@ -327,7 +327,7 @@ public class TestE2E {
             Appointment consultaAtualizada = new Appointment(
                     175.0, rex, agora.plusDays(2),
                     "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma",
-                    new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
+                    new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
             );
             ctrlConsulta.patch(consulta1.getId(), consultaAtualizada);
             // Verifica que a lista ainda tem 2 elementos apos update
@@ -350,15 +350,15 @@ public class TestE2E {
         // ─── Validacoes do modelo Consulta ────────────────────────────────────
         testarExcecao("Veterinario null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Diagnostico nulo em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Paciente null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
+                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         // =====================================================================
         //  REQ08 - Cirurgia
@@ -560,8 +560,8 @@ public class TestE2E {
         testar("Atualizar peso de Rex via patch()", () -> {
             DomesticAnimal rexComNovaRaca = new DomesticAnimal(
                     "Rex", "Cachorro", "Labrador Retriever", hoje.minusYears(4),
-                    FaseDaVida.ADULTO, 32.0, Porte.GRANDE, Sexo.MACHO,
-                    dono, rex.getVaccines(), Temperamento.DOCIL, true
+                    StageOfLife.ADULTO, 32.0, Size.GRANDE, Sex.MACHO,
+                    dono, rex.getVaccines(), Temperament.DOCIL, true
             );
             ctrlAnimal.patch(rex.getId(), rexComNovaRaca);
             Animal verificado = ctrlAnimal.getById(rex.getId());
@@ -571,8 +571,8 @@ public class TestE2E {
         testar("Substituir Rex completamente via update()", () -> {
             DomesticAnimal rexAtualizado = new DomesticAnimal(
                     "Rex II", "Cachorro", "Golden Retriever", hoje.minusYears(5),
-                    FaseDaVida.ADULTO, 35.0, Porte.GRANDE, Sexo.MACHO,
-                    dono, new ArrayList<>(), Temperamento.DOCIL, true
+                    StageOfLife.ADULTO, 35.0, Size.GRANDE, Sex.MACHO,
+                    dono, new ArrayList<>(), Temperament.DOCIL, true
             );
             ctrlAnimal.update(rex.getId(), rexAtualizado);
             Animal verificado = ctrlAnimal.getById(rex.getId());

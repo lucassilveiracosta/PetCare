@@ -1,6 +1,6 @@
 package enums;
 
-public enum Porte {
+public enum Size {
     MINI,
     PEQUENO,
     MEDIO,

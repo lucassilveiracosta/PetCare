@@ -1,8 +1,8 @@
 package business.model.animal;
 
-import enums.FaseDaVida;
-import enums.Porte;
-import enums.Sexo;
+import enums.StageOfLife;
+import enums.Size;
+import enums.Sex;
 import exceptions.InvoiceConflictException;
 
 import java.time.LocalDate;
@@ -16,12 +16,12 @@ public class Animal {
     protected String species;
     protected String race;
     protected LocalDate birthDate;
-    protected FaseDaVida stageOfLife;
+    protected StageOfLife stageOfLife;
     protected Double weight;
-    protected Porte size;
-    protected Sexo sex;
+    protected Size size;
+    protected Sex sex;
 
-    public Animal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, double weight, Porte size, Sexo sex) {
+    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex) {
         setName(name);
         setSpecies(species);
         setRace(race);
@@ -33,7 +33,7 @@ public class Animal {
 
     }
 
-    public FaseDaVida getStageOfLife() {
+    public StageOfLife getStageOfLife() {
         return stageOfLife;
     }
 
@@ -44,7 +44,7 @@ public class Animal {
         this.weight = weight;
     }
 
-    public void setStageOfLife(FaseDaVida stageOfLife) {
+    public void setStageOfLife(StageOfLife stageOfLife) {
         if(stageOfLife == null){
             throw new IllegalArgumentException("400 - Invalid stage of life");
         }
@@ -97,22 +97,22 @@ public class Animal {
         return weight;
     }
 
-    public Porte getSize() {
+    public Size getSize() {
         return size;
     }
 
-    public void setSize(Porte size) {
+    public void setSize(Size size) {
         if(size == null ){
             throw new IllegalArgumentException("400 - Invalid size");
         }
         this.size = size;
     }
 
-    public Sexo getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(Sexo sex) {
+    public void setSex(Sex sex) {
         if(sex == null ){
             throw new IllegalArgumentException("400 - Invalid sex");
         }

@@ -1,6 +1,6 @@
 package enums;
 
-public enum Consciencia {
+public enum Conscience {
     ALERTA,
     APATICO,
     COMATOSO

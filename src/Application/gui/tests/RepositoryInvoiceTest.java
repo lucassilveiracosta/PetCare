@@ -54,13 +54,13 @@ public class RepositoryInvoiceTest {
         Owner dono2 = new Owner("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
         Owner dono3 = new Owner("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
 
-        Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vaccine>(), Temperamento.DOCIL, true);
-        Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
-        Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
+        Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), StageOfLife.ADULTO, 15.0, Size.MEDIO, Sex.MACHO, dono, new ArrayList<Vaccine>(), Temperament.DOCIL, true);
+        Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono1, new ArrayList<Vaccine>(), Temperament.DOCIL, false);
+        Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono2, new ArrayList<Vaccine>(), Temperament.DOCIL, false);
 
         Anamnesis anamnesis = new Anamnesis("Dor do ouvido", "Carnivoro", "Isso ai");
         VitalParameters vitalParameters = new VitalParameters(60, 40, 35.1, Mucosa.PALIDAS, 100, null, "Todo bom");
-        PhysicalExamination physicalExamination = new PhysicalExamination(Consciencia.COMATOSO, vitalParameters, "Tudo tranquilo");
+        PhysicalExamination physicalExamination = new PhysicalExamination(Conscience.COMATOSO, vitalParameters, "Tudo tranquilo");
 
         ArrayList<Procedure> procedimentos1 = new ArrayList<>();
         procedimentos1.add(new Appointment(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente", anamnesis, physicalExamination));

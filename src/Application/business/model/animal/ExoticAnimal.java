@@ -1,20 +1,20 @@
 package business.model.animal;
 
-import enums.Origem;
-import enums.Porte;
-import enums.Sexo;
+import enums.Origin;
+import enums.Size;
+import enums.Sex;
 
-import enums.FaseDaVida;
+import enums.StageOfLife;
 import java.time.LocalDate;
 
 public class ExoticAnimal extends Animal {
     private boolean requiresControlEnviroment;
     private String dietDescription;
-    private Origem origin;
+    private Origin origin;
     private String microChipId;
     private String registrationNumber;
 
-    public ExoticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, double weight, Porte size, Sexo sex, String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origem origin) {
+    public ExoticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origin origin) {
         super(name,  species,  race,  birthDate, stageOfLife, weight,  size,  sex);
         setRegistrationNumber(registrationNumber);
         setMicroChipId(microChipId);
@@ -34,11 +34,11 @@ public class ExoticAnimal extends Animal {
         this.registrationNumber = ExoticAnimal.this.registrationNumber;
     }
 
-    public Origem getOrigin() {
+    public Origin getOrigin() {
         return origin;
     }
 
-    public void setOrigin(Origem origin) {
+    public void setOrigin(Origin origin) {
         if(origin == null){
             throw new IllegalArgumentException("400 - Invalid origin");
         }

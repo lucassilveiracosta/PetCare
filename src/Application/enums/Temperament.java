@@ -1,6 +1,6 @@
 package enums;
 
-public enum Temperamento {
+public enum Temperament {
     DOCIL,
     REATIVO,
     ANSIOSO

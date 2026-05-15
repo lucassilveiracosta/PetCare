@@ -1,24 +1,24 @@
 package business.model.prontuario;
 
-import enums.Consciencia;
+import enums.Conscience;
 
 public class PhysicalExamination {
 
-    private Consciencia levelOfConsciousness;
+    private Conscience levelOfConsciousness;
     private VitalParameters vitalParameters;
     private String description;
 
-    public PhysicalExamination(Consciencia levelOfConsciousness, VitalParameters vitalParameters, String description) {
+    public PhysicalExamination(Conscience levelOfConsciousness, VitalParameters vitalParameters, String description) {
         setLevelOfConsciousness(levelOfConsciousness);
         setVitalParameters(vitalParameters);
         setDescription(description);
     }
 
-    public Consciencia getLevelOfConsciousness() {
+    public Conscience getLevelOfConsciousness() {
         return levelOfConsciousness;
     }
 
-    public void setLevelOfConsciousness(Consciencia levelOfConsciousness) {
+    public void setLevelOfConsciousness(Conscience levelOfConsciousness) {
         if (levelOfConsciousness == null) {
             throw new IllegalArgumentException("400 - Invalid level of consciousness");
         }

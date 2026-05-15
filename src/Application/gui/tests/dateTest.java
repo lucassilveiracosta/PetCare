@@ -26,12 +26,12 @@ public class dateTest {
 
         ArrayList<Vaccine> vacinas = new ArrayList<>();
         vacinas.add(new Vaccine("Covid", date.minusDays(5),"Não se queixou"));
-        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Owner) donoTeste), vacinas, Temperamento.DOCIL, true );
+        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), StageOfLife.ADULTO, 20.0, Size.GIGANTE, Sex.MACHO, ((Owner) donoTeste), vacinas, Temperament.DOCIL, true );
 
 
         Hydration hidratacao = new Hydration(true,null);
         VitalParameters parametrosVitais = new VitalParameters(50, 60, 34.3, Mucosa.NORMACORADAS, 50, hidratacao, "Paramtros estão normais");
-        PhysicalExamination exameFisico = new PhysicalExamination(Consciencia.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
+        PhysicalExamination exameFisico = new PhysicalExamination(Conscience.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
         Anamnesis anamnese = new Anamnesis("Dor no ouvido", "Nenhuma", "Suspeita de ...");
         Appointment idaAoVeterinario = new Appointment(date, exameFisico, anamnese, "Foi um alarme falso, apenas uma dor temporaria");
         ArrayList<Appointment> idasAoVeterinario = new ArrayList<>();

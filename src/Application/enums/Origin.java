@@ -1,6 +1,6 @@
 package enums;
 
-public enum Origem {
+public enum Origin {
     CATIVEIRO,
     LEGALIZADO,
     IMPORTADO
