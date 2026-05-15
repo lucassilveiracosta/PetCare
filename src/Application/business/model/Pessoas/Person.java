@@ -9,28 +9,26 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.time.LocalDate;
 
 // Classe abstrata pessoa
-public abstract class Person implements IRepositoryPerson {
+public abstract class Person {
 
-    protected static int contadorId = 1;
+    protected static int countId = 1;
 
-    protected int id;
-    protected String nome;
+    protected int id = countId++;
+    protected String name;
     protected String email;
     protected String password;
-    protected LocalDate dataNascimento;
+    protected LocalDate birthDate;
     protected String cpf;
-    protected String telefone;
-    protected IRepositoryPerson repositoryPerson;
+    protected String telephone;
 
     // Construtor de pessoa
-    public Person(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone){
-        this.id = contadorId++; // pensei nessa forma de passar o Id
-        setNome(nome);
+    public Person(String name, String email, String password, LocalDate birthDate, String cpf, String telephone){
+        setName(name);
         setEmail(email);
         setPassword(password);
-        setDataNascimento(dataNascimento);
+        setBirthDate(birthDate);
         setCpf(cpf);
-        setTelefone(telefone);
+        setTelephone(telephone);
 
     }
 
@@ -41,26 +39,26 @@ public abstract class Person implements IRepositoryPerson {
         return id;
     }
     // Metodo get do Nome
-    public String getNome(){
-        return nome;
+    public String getName(){
+        return name;
     }
-    // Metodo Set do nome
-    public void setNome(String nome){
-        if(nome == null || nome.isBlank()){
-            throw new IllegalArgumentException("Nome inválido!");
+    // Metodo Set do name
+    public void setName(String name){
+        if(name == null || name.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid name");
         }
-        this.nome = nome;
+        this.name = name;
     }
     // Metodo get da data de nascimento
-    public LocalDate getDataNascimento(){
-        return dataNascimento;
+    public LocalDate getBirthDate(){
+        return birthDate;
     }
     // Metodo set da data de nascimento
-    private void setDataNascimento(LocalDate dataNascimento){
-        if(dataNascimento == null){
-            throw new IllegalArgumentException("Data De nascimento inválida!");
+    private void setBirthDate(LocalDate birthDate){
+        if(birthDate == null){
+            throw new IllegalArgumentException("400 - Invalid birthDate");
         }
-        this.dataNascimento = dataNascimento;
+        this.birthDate = birthDate;
     }
     // Metodo get de Cpf
     public String getCpf(){
@@ -69,20 +67,20 @@ public abstract class Person implements IRepositoryPerson {
     // Metodo Set de Cpf
     private void setCpf(String cpf){
         if(cpf == null || cpf.isBlank()){
-            throw new IllegalArgumentException("Cpf inválido!");
+            throw new IllegalArgumentException("400 - Invalid CPF");
         }
         this.cpf = cpf;
     }
     // Metodo get de Telefone
-    public String getTelefone(){
-        return telefone;
+    public String getTelephone(){
+        return telephone;
     }
     // Metodo set de Telefone
-    public void setTelefone(String telefone){
-        if(telefone == null || telefone.isBlank()){
-            throw new IllegalArgumentException("Número inválido!");
+    public void setTelephone(String telephone){
+        if(telephone == null || telephone.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid telephone");
         }
-        this.telefone = telefone;
+        this.telephone = telephone;
     }
 
 
@@ -93,10 +91,7 @@ public abstract class Person implements IRepositoryPerson {
     public void setEmail(String email) {
 
         EmailValidator validator = EmailValidator.getInstance();
-        if (!validator.isValid(email)) throw new EmailFormatException("Email must be in email format");
-
-        Person pessoa = repositoryPerson.findByEmail(email);
-        if (pessoa != null) throw new EmailConflictException("409 - This email already exists");
+        if (!validator.isValid(email)) throw new EmailFormatException("400 - Email must be in email format");
 
         this.email = email;
     }
@@ -107,7 +102,7 @@ public abstract class Person implements IRepositoryPerson {
 
     public void setPassword(String password) {
         if (password.length() < 8) {
-            throw new PasswordException("Password must be 8 or more characters");
+            throw new PasswordException("400 - Password must be 8 or more characters");
         }
         this.password = password;
     }
