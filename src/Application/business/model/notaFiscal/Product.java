@@ -20,7 +20,7 @@ public class Product {
     }
 
     public void setQuantity(Integer quantity) {
-        if (quantity < 0) throw new IllegalArgumentException("The quantity must be positive");
+        if (quantity < 0) throw new IllegalArgumentException("400 - The quantity must be positive");
         this.quantity = quantity;
     }
 
@@ -30,7 +30,7 @@ public class Product {
 
     public void setDescription(String description) {
         if (description == null || description.isBlank()) {
-            throw new IllegalArgumentException("A descrição do produto não pode ser nula");
+            throw new IllegalArgumentException("400 - A descrição do produto não pode ser nula");
         }
         this.description = description;
     }
@@ -41,7 +41,7 @@ public class Product {
 
     public void setPrice(Double price) {
         if(price == null || price < 0){
-            throw new IllegalArgumentException("O preço do produto não pode ser nulo ou negativo");
+            throw new IllegalArgumentException("400 - O preço do produto não pode ser nulo ou negativo");
         }
         this.price = price;
     }
