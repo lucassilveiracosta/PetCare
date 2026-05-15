@@ -38,16 +38,16 @@ public class TestE2E {
         RepositorioPessoa         repoPessoa       = new RepositorioPessoa(new ArrayList<>());
         RepositoryAppointment     repoConsulta     = new RepositoryAppointment(new ArrayList<>());
         RepositoryInvoice         repoInvoice      = new RepositoryInvoice(new ArrayList<>());
-        RepositoryStockGeneralProducts repoStockGeral = new RepositoryStockGeneralProducts(new ArrayList<>());
-        RepositoryStockVetProducts     repoStockVet   = new RepositoryStockVetProducts(new ArrayList<>());
+        RepositoryStock repoStockGeral = new RepositoryStock(new ArrayList<>());
+        RepositoryStock    repoStockVet   = new RepositoryStock(new ArrayList<>());
 
         // ── Controllers ───────────────────────────────────────────────────────
         ControllerAnimal               ctrlAnimal    = new ControllerAnimal(repoAnimal);
         ControllerPessoa               ctrlPessoa    = new ControllerPessoa(repoPessoa);
         ControllerAppointment          ctrlConsulta  = new ControllerAppointment(repoConsulta);
         ControllerInvoice              ctrlInvoice   = new ControllerInvoice(repoInvoice);
-        ControllerStockGeneralProducts ctrlStockGeral = new ControllerStockGeneralProducts(repoStockGeral);
-        ControllerStockVetProducts     ctrlStockVet   = new ControllerStockVetProducts(repoStockVet);
+        ControllerStock ctrlStockGeral = new ControllerStock(repoStockGeral);
+        ControllerStock     ctrlStockVet   = new ControllerStock(repoStockVet);
 
         // ── Dados compartilhados (criados uma única vez) ──────────────────────
         LocalDate hoje = LocalDate.now();
@@ -432,7 +432,7 @@ public class TestE2E {
 
         testar("Atualizar produto no estoque geral (patch)", () -> {
             Produto racaoAtualizada = new Produto(agora, "Racao Premium 20kg", 220.0);
-            ctrlStockGeral.patch(racaoPremium.getId(), racaoAtualizada);
+            ctrlStockGeral.put(racaoPremium.getId(), racaoAtualizada);
             assertEquals(2, ctrlStockGeral.getAll().size(), "tamanho do estoque apos patch");
         });
 

@@ -24,7 +24,7 @@ public class Consulta extends Procedimento {
         return veterinarioResponsavel;
     }
 
-    private void setVeterinarioResponsavel(Veterinario veterinarioResponsavel) {
+    public void setVeterinarioResponsavel(Veterinario veterinarioResponsavel) {
         if(veterinarioResponsavel == null){
             throw new IllegalArgumentException("Veterinario Responsável não pode ser nulo!");
         }
@@ -35,7 +35,7 @@ public class Consulta extends Procedimento {
         return diagnostico;
     }
 
-    private void setDiagnostico(String diagnostico) {
+    public void setDiagnostico(String diagnostico) {
         if(diagnostico == null || diagnostico.isBlank()){
             throw new IllegalArgumentException("Diagnóstico não pode ser nulo!");
         }
@@ -46,7 +46,7 @@ public class Consulta extends Procedimento {
         return prescricaoMedica;
     }
 
-    private void setPrescricaoMedica(String prescricaoMedica) {
+    public void setPrescricaoMedica(String prescricaoMedica) {
 
         this.prescricaoMedica = prescricaoMedica;
     }

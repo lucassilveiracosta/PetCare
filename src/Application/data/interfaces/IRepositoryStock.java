@@ -4,7 +4,7 @@ import business.model.notaFiscal.Produto;
 
 import java.util.ArrayList;
 
-public interface IRepositoryStockGeneralProducts{
+public interface IRepositoryStock {
 
     Produto findById(int id);
     ArrayList<Produto> findAll();

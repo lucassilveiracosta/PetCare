@@ -17,6 +17,7 @@ public class ControllerAnimal implements IControllerAnimal {
         this.repositoryAnimal = repositoryAnimal;
     }
 
+    @Override
     public Animal getById(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
@@ -28,6 +29,7 @@ public class ControllerAnimal implements IControllerAnimal {
         return animal;
     }
 
+    @Override
     public void patch(int id, Animal partialData) {
 
         if (partialData == null) throw new IllegalArgumentException("400 - Animal can't be null");
@@ -68,10 +70,12 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.update(index, animalExists);
     }
 
+    @Override
     public List<Animal> getAll() {
         return repositoryAnimal.findAll();
     }
 
+    @Override
     public void update(int id, Animal newData) {
         Animal old = repositoryAnimal.findById(id);
         if (old == null) throw new AnimalNotFoundException("404 - ID not found");
@@ -83,6 +87,7 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.update(index, newData);
     }
 
+    @Override
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
@@ -94,6 +99,7 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.delete(id);
     }
 
+    @Override
     public void post(Animal animal) {
         if (animal == null) throw new IllegalArgumentException("400 - Animal cannot be null");
 

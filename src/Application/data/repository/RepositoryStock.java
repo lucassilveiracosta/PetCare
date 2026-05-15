@@ -1,14 +1,14 @@
 package data.repository;
 
 import business.model.notaFiscal.Produto;
-import data.interfaces.IRepositoryStockVetProducts;
+import data.interfaces.IRepositoryStock;
 
 import java.util.ArrayList;
 
-public class RepositoryStockVetProducts implements IRepositoryStockVetProducts {
+public class RepositoryStock implements IRepositoryStock {
 
     private final ArrayList<Produto> produtos;
-    public RepositoryStockVetProducts(ArrayList<Produto> produtos) {
+    public RepositoryStock(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
 
