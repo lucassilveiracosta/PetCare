@@ -71,7 +71,7 @@ public class TestE2E {
                 FaseDaVida.ADULTO, 30.0, Porte.GRANDE, Sexo.MACHO,
                 dono, new ArrayList<>(), Temperamento.DOCIL, true
         );
-        AnimalExotico iguana = new AnimalExotico(
+        ExoticAnimal iguana = new ExoticAnimal(
                 "Igu", "Iguana", "Verde", hoje.minusYears(2),
                 FaseDaVida.ADULTO, 1.5, Porte.PEQUENO, Sexo.MACHO,
                 "REG-001", "CHIP-001", true, "Herbivora",
@@ -111,7 +111,7 @@ public class TestE2E {
         });
 
         testar("Iguana e instancia de AnimalExotico (heranca REQ02)", () -> {
-            if (!(iguana instanceof AnimalExotico))
+            if (!(iguana instanceof ExoticAnimal))
                 throw new RuntimeException("Iguana deveria ser AnimalExotico");
         });
 
@@ -153,7 +153,7 @@ public class TestE2E {
 
         testarExcecao("Numero de registro nulo em AnimalExotico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalExotico("Cobra", "Cobra", "Jiboia", hoje.minusYears(1),
+                        new ExoticAnimal("Cobra", "Cobra", "Jiboia", hoje.minusYears(1),
                                 FaseDaVida.ADULTO, 5.0, Porte.MEDIO, Sexo.MACHO,
                                 null, "CHIP-999", false, "Carnivora", Origem.CATIVEIRO));
 

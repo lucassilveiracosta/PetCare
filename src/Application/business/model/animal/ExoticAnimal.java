@@ -7,14 +7,14 @@ import enums.Sexo;
 import enums.FaseDaVida;
 import java.time.LocalDate;
 
-public class AnimalExotico extends Animal {
+public class ExoticAnimal extends Animal {
     private boolean requiresControlEnviroment;
     private String dietDescription;
     private Origem origin;
     private String microChipId;
     private String registrationNumber;
 
-    public AnimalExotico(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, double weight, Porte size, Sexo sex,String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origem origin) {
+    public ExoticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, double weight, Porte size, Sexo sex, String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origem origin) {
         super(name,  species,  race,  birthDate, stageOfLife, weight,  size,  sex);
         setRegistrationNumber(registrationNumber);
         setMicroChipId(microChipId);
@@ -31,7 +31,7 @@ public class AnimalExotico extends Animal {
         if(registrationNumber == null || registrationNumber.isBlank()){
             throw new IllegalArgumentException("400 - Invalid registration number");
         }
-        this.registrationNumber = AnimalExotico.this.registrationNumber;
+        this.registrationNumber = ExoticAnimal.this.registrationNumber;
     }
 
     public Origem getOrigin() {
