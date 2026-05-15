@@ -6,49 +6,49 @@ import java.time.LocalDateTime;
 
 public class Surgery extends Procedure {
 
-    private Veterinarian veterinarioResponsavel;
-    private String tipoAnestesia;
-    private String riscoCirurgico;
+    private Veterinarian responsableVeterinarian;
+    private String anesthesiaType;
+    private String surgeryRisk;
 
-    public Surgery(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinarian veterinarioResponsavel, String tipoAnestesia, String riscoCirurgico) {
-        super(preco, paciente, dataHora, descricao);
-        setRiscoCirurgico(riscoCirurgico);
-        setTipoAnestesia(tipoAnestesia);
-        setVeterinarioResponsavel(veterinarioResponsavel);
+    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsebleVeterinarian, String anesthesiaType, String surgeryRisk) {
+        super(price, patient, dateHour, description);
+        setSurgeryRisk(surgeryRisk);
+        setAnesthesiaType(anesthesiaType);
+        setResponsableVeterinarian(responsebleVeterinarian);
 
     }
 
-    public String getRiscoCirurgico() {
-        return riscoCirurgico;
+    public String getSurgeryRisk() {
+        return surgeryRisk;
     }
 
-    public void setRiscoCirurgico(String riscoCirurgico) {
-        if(riscoCirurgico == null || riscoCirurgico.isBlank()){
-            throw new IllegalArgumentException("O risco cirurgico não pode ser nulo!");
+    public void setSurgeryRisk(String surgeryRisk) {
+        if(surgeryRisk == null || surgeryRisk.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid surgery risk");
         }
-        this.riscoCirurgico = riscoCirurgico;
+        this.surgeryRisk = surgeryRisk;
     }
 
-    public Veterinarian getVeterinarioResponsavel() {
-        return veterinarioResponsavel;
+    public Veterinarian getResponsebleVeterinarian() {
+        return responsableVeterinarian;
     }
 
-    public void setVeterinarioResponsavel(Veterinarian veterinarioResponsavel) {
-        if(veterinarioResponsavel == null){
-            throw new IllegalArgumentException("Veterinario responsável não pode ser nulo!");
+    public void setResponsableVeterinarian(Veterinarian responsebleVeterinarian) {
+        if(responsebleVeterinarian == null){
+            throw new IllegalArgumentException("400 - Invalid responsable vatarinarian");
         }
-        this.veterinarioResponsavel = veterinarioResponsavel;
+        this.responsableVeterinarian = responsebleVeterinarian;
     }
 
-    public String getTipoAnestesia() {
-        return tipoAnestesia;
+    public String getAnesthesiaType() {
+        return anesthesiaType;
     }
 
-    public void setTipoAnestesia(String tipoAnestesia) {
-        if(tipoAnestesia == null || tipoAnestesia.isBlank()){
-            throw new IllegalArgumentException("O tipo da anestesia não pode ser nula!");
+    public void setAnesthesiaType(String anesthesiaType) {
+        if(anesthesiaType == null || anesthesiaType.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid anesthesia type");
         }
-        this.tipoAnestesia = tipoAnestesia;
+        this.anesthesiaType = anesthesiaType;
     }
 }
 
