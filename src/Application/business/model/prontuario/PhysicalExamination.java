@@ -4,46 +4,46 @@ import enums.Consciencia;
 
 public class PhysicalExamination {
 
-    private Consciencia nivelDeConsciencia;
-    private ParametrosVitais parametrosVitais;
-    private String descricao;
+    private Consciencia levelOfConsciousness;
+    private ParametrosVitais vitalParameters;
+    private String description;
 
-    public PhysicalExamination(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
-        setNivelDeConsciencia(nivelDeConsciencia);
-        setParametrosVitais(parametrosVitais);
-        setDescricao(descricao);
+    public PhysicalExamination(Consciencia levelOfConsciousness, ParametrosVitais vitalParameters, String description) {
+        setLevelOfConsciousness(levelOfConsciousness);
+        setVitalParameters(vitalParameters);
+        setDescription(description);
     }
 
-    public Consciencia getNivelDeConsciencia() {
-        return nivelDeConsciencia;
+    public Consciencia getLevelOfConsciousness() {
+        return levelOfConsciousness;
     }
 
-    public void setNivelDeConsciencia(Consciencia nivelDeConsciencia) {
-        if (nivelDeConsciencia == null) {
+    public void setLevelOfConsciousness(Consciencia levelOfConsciousness) {
+        if (levelOfConsciousness == null) {
             throw new IllegalArgumentException("Deve ser preenchido um nivel de consciencia!");
         }
-        this.nivelDeConsciencia = nivelDeConsciencia;
+        this.levelOfConsciousness = levelOfConsciousness;
     }
 
-    public ParametrosVitais getParametrosVitais() {
-        return parametrosVitais;
+    public ParametrosVitais getVitalParameters() {
+        return vitalParameters;
     }
 
-    public void setParametrosVitais(ParametrosVitais parametrosVitais) {
-        if (parametrosVitais == null) {
+    public void setVitalParameters(ParametrosVitais vitalParameters) {
+        if (vitalParameters == null) {
             throw new IllegalArgumentException("Deve ser preenchido os parametros vitais!");
         }
-        this.parametrosVitais = parametrosVitais;
+        this.vitalParameters = vitalParameters;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.isBlank()) {
+    public void setDescription(String description) {
+        if (description == null || description.isBlank()) {
             throw new IllegalArgumentException("A descrição não pode ser nula ou ficar em branco!");
         }
-        this.descricao = descricao;
+        this.description = description;
     }
 }
