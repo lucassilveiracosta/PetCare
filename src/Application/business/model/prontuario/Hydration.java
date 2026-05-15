@@ -2,32 +2,32 @@ package business.model.prontuario;
 
 public class Hydration {
 
-    private boolean euvolemico;
-    private Double desitratacao;
+    private boolean euvolemic;
+    private Double dehydration;
 
-    public Hydration(boolean euvolemico, Double desitratacao) {
-        this.euvolemico = euvolemico;
-        if(euvolemico) {
-            this.desitratacao = null;
+    public Hydration(boolean euvolemic, Double dehydration) {
+        this.euvolemic = euvolemic;
+        if(euvolemic) {
+            this.dehydration = null;
         }
         else {
-            this.desitratacao = desitratacao;
+            this.dehydration = dehydration;
         }
     }
 
-    public boolean isEuvolemico() {
-        return euvolemico;
+    public boolean isEuvolemic() {
+        return euvolemic;
     }
 
-    public void setEuvolemico(boolean euvolemico) {
-        this.euvolemico = euvolemico;
+    public void setEuvolemic(boolean euvolemic) {
+        this.euvolemic = euvolemic;
     }
 
-    public Double getDesitratacao() {
-        return desitratacao;
+    public Double getDehydration() {
+        return dehydration;
     }
 
-    public void setDesitratacao(Double desitratacao) {
-        this.desitratacao = desitratacao;
+    public void setDehydration(Double dehydration) {
+        this.dehydration = dehydration;
     }
 }
