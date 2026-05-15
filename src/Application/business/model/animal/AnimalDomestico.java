@@ -10,55 +10,55 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AnimalDomestico extends Animal {
-    private Dono dono;
-    private boolean castrado;
-    private ArrayList<Vacina> vacinas;
-    private Temperamento temperamento;
+    private Dono owner;
+    private boolean castrated;
+    private ArrayList<Vacina> vaccines;
+    private Temperamento temperament;
 
-    public AnimalDomestico(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, Double peso, Porte porte, Sexo sexo, Dono dono, ArrayList<Vacina> vacinas, Temperamento temperamento, boolean castrado) {
-        super(nome,  especie,  raca,  dataNascimento, faseDaVida,  peso,  porte,  sexo);
-        setDono(dono);
-        setVacinas(vacinas);
-        setTemperamento(temperamento);
-        setCastrado(castrado);
+    public AnimalDomestico(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Dono owner, ArrayList<Vacina> vaccines, Temperamento temperament, boolean castrated) {
+        super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex);
+        setOwner(owner);
+        setVaccines(vaccines);
+        setTemperament(temperament);
+        setCastrated(castrated);
     }
 
-    public Dono getDono() {
-        return dono;
+    public Dono getOwner() {
+        return owner;
     }
 
-    public void setDono(Dono dono) {
-        if(dono == null ){
-            throw new IllegalArgumentException("Nome não pode ser nulo!");
+    public void setOwner(Dono owner) {
+        if(owner == null ){
+            throw new IllegalArgumentException("400 - Invalid owner");
         }
-        this.dono = dono;
+        this.owner = owner;
     }
 
-    public Temperamento getTemperamento() {
-        return temperamento;
+    public Temperamento getTemperament() {
+        return temperament;
     }
 
-    public void setTemperamento(Temperamento temperamento) {
-        if(temperamento == null ){
-            throw new IllegalArgumentException("Insira um temperamento válido!");
+    public void setTemperament(Temperamento temperament) {
+        if(temperament == null ){
+            throw new IllegalArgumentException("400 - Invalid temperament");
         }
-        this.temperamento = temperamento;
+        this.temperament = temperament;
     }
 
-    public boolean isCastrado() {
-        return castrado;
+    public boolean isCastrated() {
+        return castrated;
     }
 
-    public void setCastrado(boolean castrado) {
-        this.castrado = castrado;
+    public void setCastrated(boolean castrated) {
+        this.castrated = castrated;
     }
 
 
-    public ArrayList<Vacina> getVacinas() {
-        return vacinas;
+    public ArrayList<Vacina> getVaccines() {
+        return vaccines;
     }
 
-    public void setVacinas(ArrayList<Vacina> vacinas) {
-        this.vacinas = vacinas;
+    public void setVaccines(ArrayList<Vacina> vaccines) {
+        this.vaccines = vaccines;
     }
 }

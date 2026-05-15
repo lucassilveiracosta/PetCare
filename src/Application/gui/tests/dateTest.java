@@ -44,13 +44,13 @@ public class dateTest {
         System.out.println("Observação Geral: " + prontuario.getDescricao());
 
         System.out.println("\n--- DADOS DO ANIMAL ---");
-        System.out.println("Nome: " + prontuario.getAnimal().getNome());
-        System.out.println("Raça: " + prontuario.getAnimal().getRaca());
-        System.out.println("Porte: " + prontuario.getAnimal().getPorte());
-        System.out.println("Dono: " + ( (AnimalDomestico) prontuario.getAnimal()).getDono().getNome());
+        System.out.println("Nome: " + prontuario.getAnimal().getName());
+        System.out.println("Raça: " + prontuario.getAnimal().getRace());
+        System.out.println("Porte: " + prontuario.getAnimal().getSize());
+        System.out.println("Dono: " + ( (AnimalDomestico) prontuario.getAnimal()).getOwner().getNome());
 
         System.out.println("\n--- HISTÓRICO DE VACINAS ---");
-        for (Vacina v : ((AnimalDomestico) prontuario.getAnimal()).getVacinas()) {
+        for (Vacina v : ((AnimalDomestico) prontuario.getAnimal()).getVaccines()) {
             System.out.println("- Vacina: " + v.getNomeDaVacina() + " | Data: " + v.getDataDaVacina().format(fmt));
         }
 

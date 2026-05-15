@@ -102,7 +102,7 @@ public class TestE2E {
 
         testar("Buscar Rex por ID retorna animal correto", () -> {
             Animal encontrado = ctrlAnimal.getById(rex.getId());
-            assertEquals("Rex", encontrado.getNome(), "nome do animal");
+            assertEquals("Rex", encontrado.getName(), "nome do animal");
         });
 
         testar("Rex e instancia de AnimalDomestico (heranca REQ02)", () -> {
@@ -181,23 +181,23 @@ public class TestE2E {
 
         testar("Adicionar vacina antirabica a Rex", () -> {
             Vacina vacinaRabica = new Vacina("Antirabica", hoje.minusMonths(3), "Dose anual obrigatoria");
-            rex.getVacinas().add(vacinaRabica);
-            assertEquals(1, rex.getVacinas().size(), "quantidade de vacinas");
+            rex.getVaccines().add(vacinaRabica);
+            assertEquals(1, rex.getVaccines().size(), "quantidade de vacinas");
         });
 
         testar("Adicionar vacina V10 a Rex", () -> {
             Vacina v10 = new Vacina("V10", hoje.minusMonths(6), "Multipla anual");
-            rex.getVacinas().add(v10);
-            assertEquals(2, rex.getVacinas().size(), "quantidade de vacinas apos segunda");
+            rex.getVaccines().add(v10);
+            assertEquals(2, rex.getVaccines().size(), "quantidade de vacinas apos segunda");
         });
 
         testar("Verificar nome da primeira vacina registrada", () -> {
-            String nome = rex.getVacinas().get(0).getNomeDaVacina();
+            String nome = rex.getVaccines().get(0).getNomeDaVacina();
             assertEquals("Antirabica", nome, "nome da vacina");
         });
 
         testar("Verificar data de vacina e alerta de reforco (12 meses)", () -> {
-            LocalDate dataVacina = rex.getVacinas().get(0).getDataDaVacina();
+            LocalDate dataVacina = rex.getVaccines().get(0).getDataDaVacina();
             LocalDate reforco = dataVacina.plusMonths(12);
             if (reforco.isBefore(hoje))
                 throw new RuntimeException("Vacina vencida! Reforco deveria ter sido em " + reforco);
@@ -227,7 +227,7 @@ public class TestE2E {
         });
 
         testar("Prontuario vinculado ao animal correto", () -> {
-            assertEquals("Rex", prontuarioRex.getAnimal().getNome(), "animal no prontuario");
+            assertEquals("Rex", prontuarioRex.getAnimal().getName(), "animal no prontuario");
         });
 
         testar("Adicionar segunda consulta ao prontuario", () -> {
@@ -296,12 +296,12 @@ public class TestE2E {
 
         testar("Buscar consulta por ID retorna paciente correto", () -> {
             Consulta c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Rex", c.getPaciente().getNome(), "paciente da consulta");
+            assertEquals("Rex", c.getPaciente().getName(), "paciente da consulta");
         });
 
         testar("Veterinario responsavel esta correto", () -> {
             Consulta c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Dra. Ana Lima", c.getVeterinarioResponsavel().getNome(), "vet da consulta");
+            assertEquals("Dra. Ana Lima", c.getVeterinarioResponsavel().getName(), "vet da consulta");
         });
 
         testarExcecao("Conflito: agendar mesma consulta (AppointmentConflictException)",
@@ -367,7 +367,7 @@ public class TestE2E {
                     800.0, rex, agora.plusDays(7),
                     "Castracao eletiva", vet, "Anestesia geral inalatoria", "Baixo"
             );
-            assertEquals("Dra. Ana Lima", cirurgia.getVeterinarioResponsavel().getNome(), "vet da cirurgia");
+            assertEquals("Dra. Ana Lima", cirurgia.getVeterinarioResponsavel().getName(), "vet da cirurgia");
             assertEquals("Baixo", cirurgia.getRiscoCirurgico(), "risco cirurgico");
         });
 
@@ -524,7 +524,7 @@ public class TestE2E {
         testar("Buscar NF por ID retorna pagador correto", () -> {
             NotaFiscal nf = ctrlInvoice.getAll().get(0);
             NotaFiscal encontrada = ctrlInvoice.getById(nf.getId());
-            assertEquals(pagador.getNome(), encontrada.getDono().getNome(), "pagador da NF");
+            assertEquals(pagador.getName(), encontrada.getDono().getName(), "pagador da NF");
         });
 
         testar("Remover primeira NF da lista", () -> {
@@ -558,11 +558,11 @@ public class TestE2E {
             AnimalDomestico rexComNovaRaca = new AnimalDomestico(
                     "Rex", "Cachorro", "Labrador Retriever", hoje.minusYears(4),
                     FaseDaVida.ADULTO, 32.0, Porte.GRANDE, Sexo.MACHO,
-                    dono, rex.getVacinas(), Temperamento.DOCIL, true
+                    dono, rex.getVaccines(), Temperamento.DOCIL, true
             );
             ctrlAnimal.patch(rex.getId(), rexComNovaRaca);
             Animal verificado = ctrlAnimal.getById(rex.getId());
-            assertEquals(32.0, verificado.getPeso(), "peso atualizado via patch");
+            assertEquals(32.0, verificado.getWeight(), "peso atualizado via patch");
         });
 
         testar("Substituir Rex completamente via update()", () -> {
@@ -573,7 +573,7 @@ public class TestE2E {
             );
             ctrlAnimal.update(rex.getId(), rexAtualizado);
             Animal verificado = ctrlAnimal.getById(rex.getId());
-            assertEquals("Rex II", verificado.getNome(), "nome apos update");
+            assertEquals("Rex II", verificado.getName(), "nome apos update");
         });
 
         testar("Excluir Iguana do sistema", () -> {
