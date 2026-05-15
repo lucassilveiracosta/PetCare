@@ -5,60 +5,60 @@ import business.model.animal.Animal;
 import java.time.LocalDateTime;
 
 public abstract class Procedure {
-    protected static int contadorId = 1;
+    protected static int countId = 1;
 
-    protected int id = contadorId++;
-    private Animal paciente;
-    private LocalDateTime dataHora;
-    private String descricao;
-    private Double preco;
+    protected int id = countId++;
+    private Animal patient;
+    private LocalDateTime dateHour;
+    private String description;
+    private Double price;
 
-    public Procedure(Double preco, Animal paciente, LocalDateTime dataHora, String descricao) {
-        this.preco = preco;
-        setPaciente(paciente);
-        this.dataHora = dataHora;
-        setDescricao(descricao);
+    public Procedure(Double price, Animal patient, LocalDateTime dateHour, String description) {
+        this.price = price;
+        setPatient(patient);
+        this.dateHour = dateHour;
+        setDescription(description);
     }
 
-    public Animal getPaciente() {
-        return paciente;
+    public Animal getPatient() {
+        return patient;
     }
 
-    public void setPaciente(Animal paciente) {
-        if(paciente == null){
-            throw new IllegalArgumentException("O paciente nao pode ser nulo");
+    public void setPatient(Animal patient) {
+        if(patient == null){
+            throw new IllegalArgumentException("400 - Invalid patient");
         }
-        this.paciente = paciente;
+        this.patient = patient;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDateTime getDateHour() {
+        return dateHour;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        if (dataHora == null) {
-            throw new IllegalArgumentException("A data não pode ser nula");
+    public void setDateHour(LocalDateTime dateHour) {
+        if (dateHour == null) {
+            throw new IllegalArgumentException("400 - Invalid dateHour");
         }
-        this.dataHora = dataHora;
+        this.dateHour = dateHour;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.isBlank()) {
-            throw new IllegalArgumentException("A descrição do procedimento não pode ser nula");
+    public void setDescription(String description) {
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("400 - Invalid description");
         }
-        this.descricao = descricao;
+        this.description = description;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public int getId() {

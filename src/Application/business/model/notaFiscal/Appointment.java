@@ -8,46 +8,46 @@ import business.model.animal.Animal;
 import java.time.LocalDateTime;
 
 public class Appointment extends Procedure {
-    private Veterinarian veterinarioResponsavel;
-    private String diagnostico;
-    private String prescricaoMedica;
+    private Veterinarian responsableVeterinarian;
+    private String diagnosis;
+    private String medicalPrescription;
 
-    public Appointment(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinarian veterinarioResponsavel, String diagnostico, String prescricaoMedica) {
-        super(preco, paciente, dataHora, descricao);
-        setDiagnostico(diagnostico);
-        setVeterinarioResponsavel(veterinarioResponsavel);
-        setPrescricaoMedica(prescricaoMedica);
+    public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsableVeterinarian, String diagnosis, String medicalPrescription) {
+        super(price, patient, dateHour, description);
+        setDiagnostico(diagnosis);
+        setVeterinarioResponsavel(responsableVeterinarian);
+        setPrescricaoMedica(medicalPrescription);
 
     }
 
     public Veterinarian getVeterinarioResponsavel() {
-        return veterinarioResponsavel;
+        return responsableVeterinarian;
     }
 
-    public void setVeterinarioResponsavel(Veterinarian veterinarioResponsavel) {
-        if(veterinarioResponsavel == null){
+    public void setVeterinarioResponsavel(Veterinarian responsableVeterinarian) {
+        if(responsableVeterinarian == null){
             throw new IllegalArgumentException("Veterinario Responsável não pode ser nulo!");
         }
-        this.veterinarioResponsavel = veterinarioResponsavel;
+        this.responsableVeterinarian = responsableVeterinarian;
     }
 
     public String getDiagnostico() {
-        return diagnostico;
+        return diagnosis;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        if(diagnostico == null || diagnostico.isBlank()){
+    public void setDiagnostico(String diagnosis) {
+        if(diagnosis == null || diagnosis.isBlank()){
             throw new IllegalArgumentException("Diagnóstico não pode ser nulo!");
         }
-        this.diagnostico = diagnostico;
+        this.diagnosis = diagnosis;
     }
 
     public String getPrescricaoMedica() {
-        return prescricaoMedica;
+        return medicalPrescription;
     }
 
-    public void setPrescricaoMedica(String prescricaoMedica) {
+    public void setPrescricaoMedica(String medicalPrescription) {
 
-        this.prescricaoMedica = prescricaoMedica;
+        this.medicalPrescription = medicalPrescription;
     }
 }
