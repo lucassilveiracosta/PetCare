@@ -5,7 +5,7 @@ import business.model.Pessoas.Dono;
 import business.model.Pessoas.Pessoa;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
-import business.model.animal.Vacina;
+import business.model.animal.Vaccine;
 import business.model.prontuario.*;
 
 import java.time.LocalDate;
@@ -24,8 +24,8 @@ public class dateTest {
 
         Pessoa donoTeste = new Dono("Laercio", "laercio@gmail.com", "larceio123", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
 
-        ArrayList<Vacina> vacinas = new ArrayList<>();
-        vacinas.add(new Vacina("Covid", date.minusDays(5),"Não se queixou"));
+        ArrayList<Vaccine> vacinas = new ArrayList<>();
+        vacinas.add(new Vaccine("Covid", date.minusDays(5),"Não se queixou"));
         Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true );
 
 
@@ -50,7 +50,7 @@ public class dateTest {
         System.out.println("Dono: " + ( (DomesticAnimal) prontuario.getAnimal()).getOwner().getNome());
 
         System.out.println("\n--- HISTÓRICO DE VACINAS ---");
-        for (Vacina v : ((DomesticAnimal) prontuario.getAnimal()).getVaccines()) {
+        for (Vaccine v : ((DomesticAnimal) prontuario.getAnimal()).getVaccines()) {
             System.out.println("- Vacina: " + v.getNomeDaVacina() + " | Data: " + v.getDataDaVacina().format(fmt));
         }
 

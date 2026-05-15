@@ -2,12 +2,12 @@ package business.model.animal;
 
 import java.time.LocalDate;
 
-public class Vacina {
+public class Vaccine {
     private String nomeDaVacina;
     private LocalDate dataDaVacina;
     private String descricao;
 
-    public Vacina(String nomeDaVacina, LocalDate dataDaVacina, String descricao) {
+    public Vaccine(String nomeDaVacina, LocalDate dataDaVacina, String descricao) {
         this.nomeDaVacina = nomeDaVacina;
         this.dataDaVacina = dataDaVacina;
         this.descricao = descricao;

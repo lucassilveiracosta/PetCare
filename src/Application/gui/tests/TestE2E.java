@@ -180,13 +180,13 @@ public class TestE2E {
         secao("REQ06 - Registro de Vacinas");
 
         testar("Adicionar vacina antirabica a Rex", () -> {
-            Vacina vacinaRabica = new Vacina("Antirabica", hoje.minusMonths(3), "Dose anual obrigatoria");
+            Vaccine vacinaRabica = new Vaccine("Antirabica", hoje.minusMonths(3), "Dose anual obrigatoria");
             rex.getVaccines().add(vacinaRabica);
             assertEquals(1, rex.getVaccines().size(), "quantidade de vacinas");
         });
 
         testar("Adicionar vacina V10 a Rex", () -> {
-            Vacina v10 = new Vacina("V10", hoje.minusMonths(6), "Multipla anual");
+            Vaccine v10 = new Vaccine("V10", hoje.minusMonths(6), "Multipla anual");
             rex.getVaccines().add(v10);
             assertEquals(2, rex.getVaccines().size(), "quantidade de vacinas apos segunda");
         });
