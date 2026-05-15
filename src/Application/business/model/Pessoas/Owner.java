@@ -3,32 +3,32 @@ package business.model.Pessoas;
 import java.time.LocalDate;
 
 public class Owner extends Person {
-    private String profissao;
-    private String descricao;
+    private String job;
+    private String description;
 
-    public Owner(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
-        super(nome, email, password, dataNascimento, cpf, telefone);
-        setProfissao(profissao);
-        setDescricao(descricao);
+    public Owner(String name, String email, String password, LocalDate birthdate, String cpf, String telephone, String job, String description){
+        super(name, email, password, birthdate, cpf, telephone);
+        setJob(job);
+        setDescription(description);
     }
-    public String getProfissao(){
-        return profissao;
+    public String getJob(){
+        return job;
     }
-    public void setProfissao(String profissao){
-        if(profissao == null || profissao.isBlank()){
-            throw new IllegalArgumentException("Profissão inválida!");
+    public void setJob(String job){
+        if(job == null || job.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid job");
         }
-        this.profissao = profissao;
+        this.job = job;
     }
 
-    public String getDescricao(){
-        return descricao;
+    public String getDescription(){
+        return description;
     }
-    private void setDescricao(String descricao){
-        if(descricao == null || descricao.isBlank()){
-            throw new IllegalArgumentException("Descrição inválida!");
+    private void setDescription(String description){
+        if(description == null || description.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid description");
         }
-        this.descricao = descricao;
+        this.description = description;
     }
 
 }
