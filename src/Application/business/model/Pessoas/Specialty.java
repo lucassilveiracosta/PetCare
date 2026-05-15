@@ -1,30 +1,30 @@
 package business.model.Pessoas;
 
 public class Specialty {
-    private String nome;
-    private String descricao;
+    private String name;
+    private String description;
 
-    public Specialty(String nome, String descricao) {
-        setNome(nome);
-        this.descricao = descricao;
+    public Specialty(String name, String description) {
+        setName(name);
+        this.description = description;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        if (nome == null || nome.isBlank()){
-            throw new IllegalArgumentException("O nome da especialidade não pode ser em branco ou nulo");
+    public void setName(String name) {
+        if (name == null || name.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid name");
         }
-        this.nome = nome;
+        this.name = name;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
