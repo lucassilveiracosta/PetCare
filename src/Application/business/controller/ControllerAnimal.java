@@ -41,28 +41,28 @@ public class ControllerAnimal implements IControllerAnimal {
 
 
 
-        if (partialData.getNome() != null && !partialData.getNome().isBlank()) {
-            animalExists.setNome(partialData.getNome());
+        if (partialData.getName() != null && !partialData.getName().isBlank()) {
+            animalExists.setName(partialData.getName());
         }
 
-        if (partialData.getEspecie() != null && !partialData.getEspecie().isBlank()) {
-            animalExists.setEspecie(partialData.getEspecie());
+        if (partialData.getSpecies() != null && !partialData.getSpecies().isBlank()) {
+            animalExists.setSpecies(partialData.getSpecies());
         }
 
-        if (partialData.getRaca() != null && !partialData.getRaca().isBlank()) {
-            animalExists.setRaca(partialData.getRaca());
+        if (partialData.getRace() != null && !partialData.getRace().isBlank()) {
+            animalExists.setRace(partialData.getRace());
         }
 
-        if (partialData.getPeso() > 0.0) {
-            animalExists.setPeso(partialData.getPeso());
+        if (partialData.getWeight() > 0.0) {
+            animalExists.setWeight(partialData.getWeight());
         }
 
-        if (partialData.getPorte() != null) {
-            animalExists.setPorte(partialData.getPorte());
+        if (partialData.getSize() != null) {
+            animalExists.setSize(partialData.getSize());
         }
 
-        if (partialData.getSexo() != null) {
-            animalExists.setSexo(partialData.getSexo());
+        if (partialData.getSex() != null) {
+            animalExists.setSex(partialData.getSex());
         }
 
 
