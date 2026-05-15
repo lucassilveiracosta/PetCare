@@ -211,7 +211,7 @@ public class TestE2E {
         MedicalRecord prontuarioRex;
         {
             Hydration hidratacao = new Hydration(true, null);
-            ParametrosVitais parametros = new ParametrosVitais(
+            VitalParameters parametros = new VitalParameters(
                     80, 20, 38.5, Mucosa.NORMACORADAS, 5, hidratacao, "Parametros normais"
             );
             PhysicalExamination exame = new PhysicalExamination(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
@@ -232,7 +232,7 @@ public class TestE2E {
 
         testar("Adicionar segunda consulta ao prontuario", () -> {
             Hydration h2 = new Hydration(false, 5.0);
-            ParametrosVitais pv2 = new ParametrosVitais(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
+            VitalParameters pv2 = new VitalParameters(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
             PhysicalExamination ex2 = new PhysicalExamination(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
             Anamnesis an2 = new Anamnesis("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
             IdaAoVeterinario ida2 = new IdaAoVeterinario(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
@@ -251,7 +251,7 @@ public class TestE2E {
         testarExcecao("ExameFisico sem nivel de consciencia lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
                     Hydration h = new Hydration(true, null);
-                    ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
+                    VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
                     new PhysicalExamination(null, pv, "descricao");
                 });
 
@@ -266,7 +266,7 @@ public class TestE2E {
         testarExcecao("IdaAoVeterinario sem Anamnese lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
                     Hydration h = new Hydration(true, null);
-                    ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
+                    VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
                     PhysicalExamination ex = new PhysicalExamination(Consciencia.ALERTA, pv, "ok");
                     new IdaAoVeterinario(hoje, ex, null, "desc");
                 });

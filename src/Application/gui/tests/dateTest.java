@@ -30,7 +30,7 @@ public class dateTest {
 
 
         Hydration hidratacao = new Hydration(true,null);
-        ParametrosVitais parametrosVitais = new ParametrosVitais(50, 60, 34.3, Mucosa.NORMACORADAS, 50, hidratacao, "Paramtros estão normais");
+        VitalParameters parametrosVitais = new VitalParameters(50, 60, 34.3, Mucosa.NORMACORADAS, 50, hidratacao, "Paramtros estão normais");
         PhysicalExamination exameFisico = new PhysicalExamination(Consciencia.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
         Anamnesis anamnese = new Anamnesis("Dor no ouvido", "Nenhuma", "Suspeita de ...");
         IdaAoVeterinario idaAoVeterinario = new IdaAoVeterinario(date, exameFisico, anamnese, "Foi um alarme falso, apenas uma dor temporaria");

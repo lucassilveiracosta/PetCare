@@ -5,10 +5,10 @@ import enums.Consciencia;
 public class PhysicalExamination {
 
     private Consciencia levelOfConsciousness;
-    private ParametrosVitais vitalParameters;
+    private VitalParameters vitalParameters;
     private String description;
 
-    public PhysicalExamination(Consciencia levelOfConsciousness, ParametrosVitais vitalParameters, String description) {
+    public PhysicalExamination(Consciencia levelOfConsciousness, VitalParameters vitalParameters, String description) {
         setLevelOfConsciousness(levelOfConsciousness);
         setVitalParameters(vitalParameters);
         setDescription(description);
@@ -25,11 +25,11 @@ public class PhysicalExamination {
         this.levelOfConsciousness = levelOfConsciousness;
     }
 
-    public ParametrosVitais getVitalParameters() {
+    public VitalParameters getVitalParameters() {
         return vitalParameters;
     }
 
-    public void setVitalParameters(ParametrosVitais vitalParameters) {
+    public void setVitalParameters(VitalParameters vitalParameters) {
         if (vitalParameters == null) {
             throw new IllegalArgumentException("Deve ser preenchido os parametros vitais!");
         }

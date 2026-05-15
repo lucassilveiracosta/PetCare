@@ -2,7 +2,7 @@ package business.model.prontuario;
 
 import enums.Mucosa;
 
-public class ParametrosVitais {
+public class VitalParameters {
 
     private Integer frequenciaCardiaca;
     private Integer frequenciaRespiratoria;
@@ -12,7 +12,7 @@ public class ParametrosVitais {
     private Hydration hidratacao;
     private String descricao;
 
-    public ParametrosVitais(Integer frequenciaCardiaca, Integer frequenciaRespiratoria, Double temperaturaCelcius, Mucosa mucosa, Integer coagulacao, Hydration hidratacao, String descricao) {
+    public VitalParameters(Integer frequenciaCardiaca, Integer frequenciaRespiratoria, Double temperaturaCelcius, Mucosa mucosa, Integer coagulacao, Hydration hidratacao, String descricao) {
         this.frequenciaCardiaca = frequenciaCardiaca;
         this.frequenciaRespiratoria = frequenciaRespiratoria;
         this.temperaturaCelcius = temperaturaCelcius;
