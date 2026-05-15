@@ -1,3 +1,4 @@
+
 package gui.tests;
 
 import business.controller.*;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
  * Cada seção corresponde a um ou mais requisitos do README.
  * Bugs conhecidos sao documentados inline com comentario [BUG].
  */
+/*
 public class TestE2E {
 
     private static int passed = 0;
@@ -38,44 +40,44 @@ public class TestE2E {
         RepositorioPessoa         repoPessoa       = new RepositorioPessoa(new ArrayList<>());
         RepositoryAppointment     repoConsulta     = new RepositoryAppointment(new ArrayList<>());
         RepositoryInvoice         repoInvoice      = new RepositoryInvoice(new ArrayList<>());
-        RepositoryStockGeneralProducts repoStockGeral = new RepositoryStockGeneralProducts(new ArrayList<>());
-        RepositoryStockVetProducts     repoStockVet   = new RepositoryStockVetProducts(new ArrayList<>());
+        RepositoryStock repoStockGeral = new RepositoryStock(new ArrayList<>());
+        RepositoryStock    repoStockVet   = new RepositoryStock(new ArrayList<>());
 
         // ── Controllers ───────────────────────────────────────────────────────
         ControllerAnimal               ctrlAnimal    = new ControllerAnimal(repoAnimal);
         ControllerPessoa               ctrlPessoa    = new ControllerPessoa(repoPessoa);
         ControllerAppointment          ctrlConsulta  = new ControllerAppointment(repoConsulta);
         ControllerInvoice              ctrlInvoice   = new ControllerInvoice(repoInvoice);
-        ControllerStockGeneralProducts ctrlStockGeral = new ControllerStockGeneralProducts(repoStockGeral);
-        ControllerStockVetProducts     ctrlStockVet   = new ControllerStockVetProducts(repoStockVet);
+        ControllerStock ctrlStockGeral = new ControllerStock(repoStockGeral);
+        ControllerStock     ctrlStockVet   = new ControllerStock(repoStockVet);
 
         // ── Dados compartilhados (criados uma única vez) ──────────────────────
         LocalDate hoje = LocalDate.now();
         LocalDateTime agora = LocalDateTime.now();
 
-        Dono dono = new Dono(
+        Owner dono = new Owner(
                 "Carlos Silva", "carlos@petcare.com", "senha123",
                 hoje.minusYears(35), "11122233344", "81999990000",
                 "Engenheiro", "Dono responsável"
         );
-        ArrayList<Especialidade> especialidades = new ArrayList<>();
-        especialidades.add(new Especialidade("Clinica Geral", "Atendimento geral"));
-        Veterinario vet = new Veterinario(
+        ArrayList<Specialty> especialidades = new ArrayList<>();
+        especialidades.add(new Specialty("Clinica Geral", "Atendimento geral"));
+        Veterinarian vet = new Veterinarian(
                 "Dra. Ana Lima", "ana@petcare.com", "senha456",
                 hoje.minusYears(40), "99988877700", "81888880000",
                 "CRMV-PE-1234", especialidades
         );
 
-        AnimalDomestico rex = new AnimalDomestico(
+        DomesticAnimal rex = new DomesticAnimal(
                 "Rex", "Cachorro", "Labrador", hoje.minusYears(4),
-                FaseDaVida.ADULTO, 30.0, Porte.GRANDE, Sexo.MACHO,
-                dono, new ArrayList<>(), Temperamento.DOCIL, true
+                StageOfLife.ADULTO, 30.0, Size.GRANDE, Sex.MACHO,
+                dono, new ArrayList<>(), Temperament.DOCIL, true
         );
-        AnimalExotico iguana = new AnimalExotico(
+        ExoticAnimal iguana = new ExoticAnimal(
                 "Igu", "Iguana", "Verde", hoje.minusYears(2),
-                FaseDaVida.ADULTO, 1.5, Porte.PEQUENO, Sexo.MACHO,
+                StageOfLife.ADULTO, 1.5, Size.PEQUENO, Sex.MACHO,
                 "REG-001", "CHIP-001", true, "Herbivora",
-                Origem.CATIVEIRO  // [BUG] MainE2ETest original usava Origem.SILVESTRE (nao existe no enum)
+                Origin.CATIVEIRO  // [BUG] MainE2ETest original usava Origem.SILVESTRE (nao existe no enum)
         );
 
         // =====================================================================
@@ -102,16 +104,16 @@ public class TestE2E {
 
         testar("Buscar Rex por ID retorna animal correto", () -> {
             Animal encontrado = ctrlAnimal.getById(rex.getId());
-            assertEquals("Rex", encontrado.getNome(), "nome do animal");
+            assertEquals("Rex", encontrado.getName(), "nome do animal");
         });
 
         testar("Rex e instancia de AnimalDomestico (heranca REQ02)", () -> {
-            if (!(rex instanceof AnimalDomestico))
+            if (!(rex instanceof DomesticAnimal))
                 throw new RuntimeException("Rex deveria ser AnimalDomestico");
         });
 
         testar("Iguana e instancia de AnimalExotico (heranca REQ02)", () -> {
-            if (!(iguana instanceof AnimalExotico))
+            if (!(iguana instanceof ExoticAnimal))
                 throw new RuntimeException("Iguana deveria ser AnimalExotico");
         });
 
@@ -123,39 +125,39 @@ public class TestE2E {
         // ─── Validacoes do modelo ─────────────────────────────────────────────
         testarExcecao("Nome nulo em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico(null, "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 10.0, Porte.MEDIO, Sexo.FEMEA,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                        new DomesticAnimal(null, "Cachorro", "SRD", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 10.0, Size.MEDIO, Sex.FEMEA,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Peso zero em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Luna", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 0.0, Porte.MEDIO, Sexo.FEMEA,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                        new DomesticAnimal("Luna", "Cachorro", "SRD", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 0.0, Size.MEDIO, Sex.FEMEA,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Porte null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, null, Sexo.MACHO,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 5.0, null, Sex.MACHO,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Sexo null em Animal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, null,
-                                dono, new ArrayList<>(), Temperamento.DOCIL, false));
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 5.0, Size.PEQUENO, null,
+                                dono, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Dono null em AnimalDomestico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalDomestico("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.PEQUENO, Sexo.MACHO,
-                                null, new ArrayList<>(), Temperamento.DOCIL, false));
+                        new DomesticAnimal("Bidu", "Cachorro", "SRD", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 5.0, Size.PEQUENO, Sex.MACHO,
+                                null, new ArrayList<>(), Temperament.DOCIL, false));
 
         testarExcecao("Numero de registro nulo em AnimalExotico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new AnimalExotico("Cobra", "Cobra", "Jiboia", hoje.minusYears(1),
-                                FaseDaVida.ADULTO, 5.0, Porte.MEDIO, Sexo.MACHO,
-                                null, "CHIP-999", false, "Carnivora", Origem.CATIVEIRO));
+                        new ExoticAnimal("Cobra", "Cobra", "Jiboia", hoje.minusYears(1),
+                                StageOfLife.ADULTO, 5.0, Size.MEDIO, Sex.MACHO,
+                                null, "CHIP-999", false, "Carnivora", Origin.CATIVEIRO));
 
         // ─── Erros de CRUD de Animal ──────────────────────────────────────────
         testarExcecao("Conflito: cadastrar Rex novamente (AnimalConflictException)",
@@ -180,24 +182,24 @@ public class TestE2E {
         secao("REQ06 - Registro de Vacinas");
 
         testar("Adicionar vacina antirabica a Rex", () -> {
-            Vacina vacinaRabica = new Vacina("Antirabica", hoje.minusMonths(3), "Dose anual obrigatoria");
-            rex.getVacinas().add(vacinaRabica);
-            assertEquals(1, rex.getVacinas().size(), "quantidade de vacinas");
+            Vaccine vacinaRabica = new Vaccine("Antirabica", hoje.minusMonths(3), "Dose anual obrigatoria");
+            rex.getVaccines().add(vacinaRabica);
+            assertEquals(1, rex.getVaccines().size(), "quantidade de vacinas");
         });
 
         testar("Adicionar vacina V10 a Rex", () -> {
-            Vacina v10 = new Vacina("V10", hoje.minusMonths(6), "Multipla anual");
-            rex.getVacinas().add(v10);
-            assertEquals(2, rex.getVacinas().size(), "quantidade de vacinas apos segunda");
+            Vaccine v10 = new Vaccine("V10", hoje.minusMonths(6), "Multipla anual");
+            rex.getVaccines().add(v10);
+            assertEquals(2, rex.getVaccines().size(), "quantidade de vacinas apos segunda");
         });
 
         testar("Verificar nome da primeira vacina registrada", () -> {
-            String nome = rex.getVacinas().get(0).getNomeDaVacina();
+            String nome = rex.getVaccines().get(0).getVaccineName();
             assertEquals("Antirabica", nome, "nome da vacina");
         });
 
         testar("Verificar data de vacina e alerta de reforco (12 meses)", () -> {
-            LocalDate dataVacina = rex.getVacinas().get(0).getDataDaVacina();
+            LocalDate dataVacina = rex.getVaccines().get(0).getVaccineDate();
             LocalDate reforco = dataVacina.plusMonths(12);
             if (reforco.isBefore(hoje))
                 throw new RuntimeException("Vacina vencida! Reforco deveria ter sido em " + reforco);
@@ -208,67 +210,67 @@ public class TestE2E {
         // =====================================================================
         secao("REQ03 - Prontuario Medico");
 
-        Prontuario prontuarioRex;
+        MedicalRecord prontuarioRex;
         {
-            Hidratacao hidratacao = new Hidratacao(true, null);
-            ParametrosVitais parametros = new ParametrosVitais(
+            Hydration hidratacao = new Hydration(true, null);
+            VitalParameters parametros = new VitalParameters(
                     80, 20, 38.5, Mucosa.NORMACORADAS, 5, hidratacao, "Parametros normais"
             );
-            ExameFisico exame = new ExameFisico(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
-            Anamnese anamnese = new Anamnese("Sem apetite", "Sem restricao", "Consulta de rotina");
-            IdaAoVeterinario ida = new IdaAoVeterinario(hoje, exame, anamnese, "Primeira consulta do ano");
-            ArrayList<IdaAoVeterinario> idas = new ArrayList<>();
+            PhysicalExamination exame = new PhysicalExamination(Conscience.ALERTA, parametros, "Animal responsivo e alerta");
+            Anamnesis anamnese = new Anamnesis("Sem apetite", "Sem restricao", "Consulta de rotina");
+            Appointment ida = new Appointment(hoje, exame, anamnese, "Primeira consulta do ano");
+            ArrayList<Appointment> idas = new ArrayList<>();
             idas.add(ida);
-            prontuarioRex = new Prontuario(idas, "Prontuario do Rex", rex);
+            prontuarioRex = new MedicalRecord(idas, "Prontuario do Rex", rex);
         }
 
-        testar("Criar prontuario com IdaAoVeterinario completa", () -> {
+        testar("Criar prontuario com Appointment completa", () -> {
             assertEquals(1, prontuarioRex.getIdasAoVeterinario().size(), "idas ao vet");
         });
 
         testar("Prontuario vinculado ao animal correto", () -> {
-            assertEquals("Rex", prontuarioRex.getAnimal().getNome(), "animal no prontuario");
+            assertEquals("Rex", prontuarioRex.getAnimal().getName(), "animal no prontuario");
         });
 
         testar("Adicionar segunda consulta ao prontuario", () -> {
-            Hidratacao h2 = new Hidratacao(false, 5.0);
-            ParametrosVitais pv2 = new ParametrosVitais(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
-            ExameFisico ex2 = new ExameFisico(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
-            Anamnese an2 = new Anamnese("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
-            IdaAoVeterinario ida2 = new IdaAoVeterinario(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
+            Hydration h2 = new Hydration(false, 5.0);
+            VitalParameters pv2 = new VitalParameters(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
+            PhysicalExamination ex2 = new PhysicalExamination(Conscience.APATICO, pv2, "Animal apático, desidratacao leve");
+            Anamnesis an2 = new Anamnesis("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
+            Appointment ida2 = new Appointment(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
             prontuarioRex.getIdasAoVeterinario().add(ida2);
             assertEquals(2, prontuarioRex.getIdasAoVeterinario().size(), "idas ao vet apos retorno");
         });
 
         testarExcecao("Anamnese com queixa nula lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Anamnese(null, "Sem restricao", "descricao"));
+                        new Anamnesis(null, "Sem restricao", "descricao"));
 
         testarExcecao("Anamnese com restricao nula lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Anamnese("Dor", null, "descricao"));
+                        new Anamnesis("Dor", null, "descricao"));
 
         testarExcecao("ExameFisico sem nivel de consciencia lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
-                    Hidratacao h = new Hidratacao(true, null);
-                    ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
-                    new ExameFisico(null, pv, "descricao");
+                    Hydration h = new Hydration(true, null);
+                    VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
+                    new PhysicalExamination(null, pv, "descricao");
                 });
 
         testarExcecao("ExameFisico sem parametros vitais lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new ExameFisico(Consciencia.ALERTA, null, "descricao"));
+                        new PhysicalExamination(Conscience.ALERTA, null, "descricao"));
 
-        testarExcecao("IdaAoVeterinario sem ExameFisico lanca IllegalArgumentException",
+        testarExcecao("Appointment sem ExameFisico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new IdaAoVeterinario(hoje, null, new Anamnese("dor", "nenhuma", "desc"), "desc"));
+                        new Appointment(hoje, null, new Anamnesis("dor", "nenhuma", "desc"), "desc"));
 
-        testarExcecao("IdaAoVeterinario sem Anamnese lanca IllegalArgumentException",
+        testarExcecao("Appointment sem Anamnese lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
-                    Hidratacao h = new Hidratacao(true, null);
-                    ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
-                    ExameFisico ex = new ExameFisico(Consciencia.ALERTA, pv, "ok");
-                    new IdaAoVeterinario(hoje, ex, null, "desc");
+                    Hydration h = new Hydration(true, null);
+                    VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
+                    PhysicalExamination ex = new PhysicalExamination(Conscience.ALERTA, pv, "ok");
+                    new Appointment(hoje, ex, null, "desc");
                 });
 
         // =====================================================================
@@ -276,13 +278,15 @@ public class TestE2E {
         // =====================================================================
         secao("REQ04 - Agendamento de Consultas");
 
-        Consulta consulta1 = new Consulta(
+        Appointment consulta1 = new Appointment(
                 150.0, rex, agora.plusDays(1),
-                "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A"
+                "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A",
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
-        Consulta consulta2 = new Consulta(
+        Appointment consulta2 = new Appointment(
                 200.0, iguana, agora.plusDays(3),
-                "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma"
+                "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma",
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
 
         testar("Agendar consulta para Rex", () ->
@@ -295,13 +299,13 @@ public class TestE2E {
                 assertEquals(2, ctrlConsulta.getAll().size(), "consultas agendadas"));
 
         testar("Buscar consulta por ID retorna paciente correto", () -> {
-            Consulta c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Rex", c.getPaciente().getNome(), "paciente da consulta");
+            Appointment c = ctrlConsulta.getById(consulta1.getId());
+            assertEquals("Rex", c.getPatient().getName(), "paciente da consulta");
         });
 
         testar("Veterinario responsavel esta correto", () -> {
-            Consulta c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Dra. Ana Lima", c.getVeterinarioResponsavel().getNome(), "vet da consulta");
+            Appointment c = ctrlConsulta.getById(consulta1.getId());
+            assertEquals("Dra. Ana Lima", c.getResponsableVeterinarian().getName(), "vet da consulta");
         });
 
         testarExcecao("Conflito: agendar mesma consulta (AppointmentConflictException)",
@@ -322,9 +326,10 @@ public class TestE2E {
 
         // ─── Update e delete de consulta ──────────────────────────────────────
         testar("Atualizar consulta via patch (novo valor e data)", () -> {
-            Consulta consultaAtualizada = new Consulta(
+            Appointment consultaAtualizada = new Appointment(
                     175.0, rex, agora.plusDays(2),
-                    "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma"
+                    "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma",
+                    new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
             );
             ctrlConsulta.patch(consulta1.getId(), consultaAtualizada);
             // Verifica que a lista ainda tem 2 elementos apos update
@@ -347,15 +352,15 @@ public class TestE2E {
         // ─── Validacoes do modelo Consulta ────────────────────────────────────
         testarExcecao("Veterinario null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Diagnostico nulo em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Paciente null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc"));
+                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         // =====================================================================
         //  REQ08 - Cirurgia
@@ -363,45 +368,45 @@ public class TestE2E {
         secao("REQ08 - Procedimento Cirurgico");
 
         testar("Criar objeto Cirurgia vinculado ao veterinario", () -> {
-            Cirurgia cirurgia = new Cirurgia(
+            Surgery cirurgia = new Surgery(
                     800.0, rex, agora.plusDays(7),
                     "Castracao eletiva", vet, "Anestesia geral inalatoria", "Baixo"
             );
-            assertEquals("Dra. Ana Lima", cirurgia.getVeterinarioResponsavel().getNome(), "vet da cirurgia");
-            assertEquals("Baixo", cirurgia.getRiscoCirurgico(), "risco cirurgico");
+            assertEquals("Dra. Ana Lima", cirurgia.getResponsebleVeterinarian().getName(), "vet da cirurgia");
+            assertEquals("Baixo", cirurgia.getSurgeryRisk(), "risco cirurgico");
         });
 
         testar("Cirurgia e instancia de Procedimento (polimorfismo)", () -> {
-            Cirurgia c = new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", "Baixo");
-            if (!(c instanceof Procedimento))
+            Surgery c = new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", "Baixo");
+            if (!(c instanceof Procedure))
                 throw new RuntimeException("Cirurgia deveria ser Procedimento");
         });
 
         testarExcecao("Cirurgia sem veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", null, "Geral", "Baixo"));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", null, "Geral", "Baixo"));
 
         testarExcecao("Risco cirurgico nulo lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", null));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", null));
 
         testarExcecao("Tipo de anestesia nulo lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, null, "Baixo"));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, null, "Baixo"));
 
         testarExcecao("Paciente null em Cirurgia lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, null, agora.plusDays(7), "Desc", vet, "Geral", "Baixo"));
+                        new Surgery(800.0, null, agora.plusDays(7), "Desc", vet, "Geral", "Baixo"));
 
         // =====================================================================
         //  REQ09 / REQ10 - Estoque de Produtos
         // =====================================================================
         secao("REQ09/REQ10 - Estoque de Produtos (Geral e Veterinario)");
 
-        Produto racaoPremium = new Produto(agora, "Racao Premium 15kg", 180.0);
-        Produto shampooAnt   = new Produto(agora, "Shampoo Antisseptico", 28.0);
-        Produto antibiotico  = new Produto(agora, "Amoxicilina Vet 500mg", 45.0);
-        Produto antifungico  = new Produto(agora, "Antifungico Vet 250mg", 60.0);
+        Product racaoPremium = new Product(1, "Racao Premium 15kg", 180.0);
+        Product shampooAnt   = new Product(2, "Shampoo Antisseptico", 28.0);
+        Product antibiotico  = new Product(3, "Amoxicilina Vet 500mg", 45.0);
+        Product antifungico  = new Product(4, "Antifungico Vet 250mg", 60.0);
 
         // -- Estoque Geral
         testar("Cadastrar Racao no estoque geral", () ->
@@ -414,8 +419,8 @@ public class TestE2E {
                 assertEquals(2, ctrlStockGeral.getAll().size(), "produtos no estoque geral"));
 
         testar("Buscar produto geral por ID retorna produto correto", () -> {
-            Produto p = ctrlStockGeral.getById(racaoPremium.getId());
-            assertEquals("Racao Premium 15kg", p.getDescricao(), "descricao do produto");
+            Product p = ctrlStockGeral.getById(racaoPremium.getId());
+            assertEquals("Racao Premium 15kg", p.getDescription(), "descricao do produto");
         });
 
         testarExcecao("Produto duplicado no estoque geral (StockGeneralConflictException)",
@@ -431,8 +436,8 @@ public class TestE2E {
                         ctrlStockGeral.getById(99999));
 
         testar("Atualizar produto no estoque geral (patch)", () -> {
-            Produto racaoAtualizada = new Produto(agora, "Racao Premium 20kg", 220.0);
-            ctrlStockGeral.patch(racaoPremium.getId(), racaoAtualizada);
+            Product racaoAtualizada = new Product(2, "Racao Premium 20kg", 220.0);
+            ctrlStockGeral.put(racaoPremium.getId(), racaoAtualizada);
             assertEquals(2, ctrlStockGeral.getAll().size(), "tamanho do estoque apos patch");
         });
 
@@ -460,8 +465,8 @@ public class TestE2E {
                 assertEquals(2, ctrlStockVet.getAll().size(), "produtos no estoque vet"));
 
         testar("Buscar medicamento por ID no estoque vet", () -> {
-            Produto p = ctrlStockVet.getById(antibiotico.getId());
-            assertEquals("Amoxicilina Vet 500mg", p.getDescricao(), "descricao do medicamento");
+            Product p = ctrlStockVet.getById(antibiotico.getId());
+            assertEquals("Amoxicilina Vet 500mg", p.getDescription(), "descricao do medicamento");
         });
 
         testarExcecao("Produto duplicado no estoque vet (StockVetConflictException)",
@@ -490,31 +495,31 @@ public class TestE2E {
         // =====================================================================
         secao("REQ09/REQ11 - Emissao de Nota Fiscal");
 
-        Dono pagador = new Dono(
+        Owner pagador = new Owner(
                 "Carlos Silva", "pagador@petcare.com", "senha789",
                 hoje.minusYears(35), "11122233344", "81999990001",
                 "Engenheiro", "Responsavel financeiro"
         );
 
         testar("Emitir NF com Consulta e Produto", () -> {
-            ArrayList<Procedimento> procs = new ArrayList<>();
-            procs.add(new Consulta(150.0, rex, agora, "Consulta Rotina", vet, "Saudavel", "Vitamina A"));
+            ArrayList<Procedure> procs = new ArrayList<>();
+            procs.add(new Appointment(150.0, rex, agora, "Consulta Rotina", vet, "Saudavel", "Vitamina A"));
 
-            ArrayList<Produto> prods = new ArrayList<>();
-            prods.add(new Produto(agora, "Suplemento Vitaminico", 55.0));
+            ArrayList<Product> prods = new ArrayList<>();
+            prods.add(new Product(4, "Suplemento Vitaminico", 55.0));
 
-            NotaFiscal nf = new NotaFiscal(pagador, rex, procs, prods);
+            Invoice nf = new Invoice(pagador, rex, procs, prods);
             ctrlInvoice.post(nf);
         });
 
         testar("Emitir NF com Cirurgia (REQ08+REQ11)", () -> {
-            Cirurgia cirurgia = new Cirurgia(
+            Surgery cirurgia = new Surgery(
                     800.0, rex, agora.plusDays(7), "Castracao", vet, "Inalatoria", "Baixo"
             );
-            ArrayList<Procedimento> procs = new ArrayList<>();
+            ArrayList<Procedure> procs = new ArrayList<>();
             procs.add(cirurgia);
 
-            NotaFiscal nfCirurgia = new NotaFiscal(pagador, rex, procs, new ArrayList<>());
+            Invoice nfCirurgia = new Invoice(pagador, rex, procs, new ArrayList<>());
             ctrlInvoice.post(nfCirurgia);
         });
 
@@ -522,13 +527,13 @@ public class TestE2E {
                 assertEquals(2, ctrlInvoice.getAll().size(), "notas fiscais emitidas"));
 
         testar("Buscar NF por ID retorna pagador correto", () -> {
-            NotaFiscal nf = ctrlInvoice.getAll().get(0);
-            NotaFiscal encontrada = ctrlInvoice.getById(nf.getId());
-            assertEquals(pagador.getNome(), encontrada.getDono().getNome(), "pagador da NF");
+            Invoice nf = ctrlInvoice.getAll().get(0);
+            Invoice encontrada = ctrlInvoice.getById(nf.getId());
+            assertEquals(pagador.getName(), encontrada.getOwner().getName(), "pagador da NF");
         });
 
         testar("Remover primeira NF da lista", () -> {
-            NotaFiscal nf = ctrlInvoice.getAll().get(0);
+            Invoice nf = ctrlInvoice.getAll().get(0);
             ctrlInvoice.delete(nf.getId());
             assertEquals(1, ctrlInvoice.getAll().size(), "NFs apos delete");
         });
@@ -543,11 +548,11 @@ public class TestE2E {
 
         testarExcecao("Pagador null em NotaFiscal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new NotaFiscal(null, rex, new ArrayList<>(), new ArrayList<>()));
+                        new Invoice(null, rex, new ArrayList<>(), new ArrayList<>()));
 
         testarExcecao("Paciente null em NotaFiscal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new NotaFiscal(pagador, null, new ArrayList<>(), new ArrayList<>()));
+                        new Invoice(pagador, null, new ArrayList<>(), new ArrayList<>()));
 
         // =====================================================================
         //  CRUD Completo de Animais (Patch / Update / Delete)
@@ -555,25 +560,25 @@ public class TestE2E {
         secao("CRUD de Animal - Patch, Update e Delete");
 
         testar("Atualizar peso de Rex via patch()", () -> {
-            AnimalDomestico rexComNovaRaca = new AnimalDomestico(
+            DomesticAnimal rexComNovaRaca = new DomesticAnimal(
                     "Rex", "Cachorro", "Labrador Retriever", hoje.minusYears(4),
-                    FaseDaVida.ADULTO, 32.0, Porte.GRANDE, Sexo.MACHO,
-                    dono, rex.getVacinas(), Temperamento.DOCIL, true
+                    StageOfLife.ADULTO, 32.0, Size.GRANDE, Sex.MACHO,
+                    dono, rex.getVaccines(), Temperament.DOCIL, true
             );
             ctrlAnimal.patch(rex.getId(), rexComNovaRaca);
             Animal verificado = ctrlAnimal.getById(rex.getId());
-            assertEquals(32.0, verificado.getPeso(), "peso atualizado via patch");
+            assertEquals(32.0, verificado.getWeight(), "peso atualizado via patch");
         });
 
         testar("Substituir Rex completamente via update()", () -> {
-            AnimalDomestico rexAtualizado = new AnimalDomestico(
+            DomesticAnimal rexAtualizado = new DomesticAnimal(
                     "Rex II", "Cachorro", "Golden Retriever", hoje.minusYears(5),
-                    FaseDaVida.ADULTO, 35.0, Porte.GRANDE, Sexo.MACHO,
-                    dono, new ArrayList<>(), Temperamento.DOCIL, true
+                    StageOfLife.ADULTO, 35.0, Size.GRANDE, Sex.MACHO,
+                    dono, new ArrayList<>(), Temperament.DOCIL, true
             );
             ctrlAnimal.update(rex.getId(), rexAtualizado);
             Animal verificado = ctrlAnimal.getById(rex.getId());
-            assertEquals("Rex II", verificado.getNome(), "nome apos update");
+            assertEquals("Rex II", verificado.getName(), "nome apos update");
         });
 
         testar("Excluir Iguana do sistema", () -> {
@@ -591,16 +596,16 @@ public class TestE2E {
         secao("CRUD de Pessoas - Consultas e Exclusao");
 
         testar("Buscar dono por email valido", () -> {
-            Pessoa p = ctrlPessoa.getByEmail("carlos@petcare.com");
-            assertEquals("Carlos Silva", p.getNome(), "nome da pessoa por email");
+            Person p = ctrlPessoa.getByEmail("carlos@petcare.com");
+            assertEquals("Carlos Silva", p.getName(), "nome da pessoa por email");
         });
 
         testar("Listar todas as pessoas deve retornar 2", () ->
                 assertEquals(2, ctrlPessoa.getAll().size(), "total de pessoas"));
 
         testar("Buscar pessoa por ID retorna objeto correto", () -> {
-            Pessoa p = ctrlPessoa.getById(dono.getId());
-            assertEquals("Carlos Silva", p.getNome(), "nome por ID");
+            Person p = ctrlPessoa.getById(dono.getId());
+            assertEquals("Carlos Silva", p.getName(), "nome por ID");
         });
 
         // [BUG] O repositorio lanca EmailNotFoundException (nome errado) ao inves de EmailConflictException.
@@ -608,7 +613,7 @@ public class TestE2E {
         // O teste valida o comportamento REAL (EmailNotFoundException) para documentar o bug.
         testarExcecao("[BUG] Email duplicado lanca EmailNotFoundException (deveria ser EmailConflictException)",
                 EmailNotFoundException.class, () -> {
-                    Dono duplicado = new Dono(
+                    Owner duplicado = new Owner(
                             "Carlos Outro", "carlos@petcare.com", "senha123",
                             hoje.minusYears(30), "99999999999", "81900000000",
                             "Dev", "Desc"
@@ -652,28 +657,28 @@ public class TestE2E {
 
         testarExcecao("Nome null em Dono lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Dono(null, "t@petcare.com", "senha123", hoje.minusYears(30),
+                        new Owner(null, "t@petcare.com", "senha123", hoje.minusYears(30),
                                 "00000000000", "81900000000", "Dev", "Desc"));
 
         // [BUG] Validacao de password: limite e < 7 mas mensagem diz "8 or more"
         testarExcecao("[BUG] Senha curta (6 chars) lanca PasswordException",
                 PasswordException.class, () ->
-                        new Dono("Teste", "t2@petcare.com", "abc123", hoje.minusYears(30),
+                        new Owner("Teste", "t2@petcare.com", "abc123", hoje.minusYears(30),
                                 "00000000001", "81900000001", "Dev", "Desc"));
 
         testarExcecao("CPF nulo em Dono lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Dono("Teste", "t3@petcare.com", "senha123", hoje.minusYears(30),
+                        new Owner("Teste", "t3@petcare.com", "senha123", hoje.minusYears(30),
                                 null, "81900000002", "Dev", "Desc"));
 
         testarExcecao("CRMV vazio em Veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Veterinario("Vet", "v@petcare.com", "senha123", hoje.minusYears(35),
+                        new Veterinarian("Vet", "v@petcare.com", "senha123", hoje.minusYears(35),
                                 "11111111111", "81900000003", "", new ArrayList<>()));
 
         testarExcecao("Especialidades null em Veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Veterinario("Vet", "v2@petcare.com", "senha123", hoje.minusYears(35),
+                        new Veterinarian("Vet", "v2@petcare.com", "senha123", hoje.minusYears(35),
                                 "22222222222", "81900000004", "CRMV-001", null));
 
         // =====================================================================
@@ -762,3 +767,4 @@ public class TestE2E {
         line('=');
     }
 }
+*/

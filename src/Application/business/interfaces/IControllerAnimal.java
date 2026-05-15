@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface IControllerAnimal {
     Animal getById(int id);
-    void patch(int id, Animal dadosParciais);
+    void patch(int id, Animal partialData);
     List<Animal> getAll();
-    void update(int id, Animal novosDados);
+    void update(int id, Animal newData);
     void delete(int id);
     void post(Animal animal);
 }

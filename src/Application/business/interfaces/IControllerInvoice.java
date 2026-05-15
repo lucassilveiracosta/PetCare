@@ -1,12 +1,12 @@
 package business.interfaces;
 
-import business.model.notaFiscal.NotaFiscal;
+import business.model.notaFiscal.Invoice;
 import java.util.List;
 
 public interface IControllerInvoice {
-    NotaFiscal getById(int id);
-    List<NotaFiscal> getAll();
-    void patch(int id, NotaFiscal nf);
+    Invoice getById(int id);
+    List<Invoice> getAll();
+    void patch(int id, Invoice nf);
     void delete(int id);
-    void post(NotaFiscal nf);
+    void post(Invoice nf);
 }

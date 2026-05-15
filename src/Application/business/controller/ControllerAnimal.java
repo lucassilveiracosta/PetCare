@@ -17,8 +17,9 @@ public class ControllerAnimal implements IControllerAnimal {
         this.repositoryAnimal = repositoryAnimal;
     }
 
+    @Override
     public Animal getById(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
         Animal animal = repositoryAnimal.findById(id);
         if (animal == null) {
@@ -27,61 +28,68 @@ public class ControllerAnimal implements IControllerAnimal {
 
         return animal;
     }
-    public void patch(int id, Animal dadosParciais) {
 
-        Animal animalExistente = repositoryAnimal.findById(id);
-        if (animalExistente == null) {
+    @Override
+    public void patch(int id, Animal partialData) {
+
+        if (partialData == null) throw new IllegalArgumentException("400 - Animal can't be null");
+
+        Animal animalExists = repositoryAnimal.findById(id);
+        if (animalExists == null) {
             throw new AnimalNotFoundException("404 - Animal com ID " + id + " não encontrado.");
         }
 
 
 
-        if (dadosParciais.getNome() != null && !dadosParciais.getNome().isBlank()) {
-            animalExistente.setNome(dadosParciais.getNome());
+        if (partialData.getName() != null && !partialData.getName().isBlank()) {
+            animalExists.setName(partialData.getName());
         }
 
-        if (dadosParciais.getEspecie() != null && !dadosParciais.getEspecie().isBlank()) {
-            animalExistente.setEspecie(dadosParciais.getEspecie());
+        if (partialData.getSpecies() != null && !partialData.getSpecies().isBlank()) {
+            animalExists.setSpecies(partialData.getSpecies());
         }
 
-        if (dadosParciais.getRaca() != null && !dadosParciais.getRaca().isBlank()) {
-            animalExistente.setRaca(dadosParciais.getRaca());
+        if (partialData.getRace() != null && !partialData.getRace().isBlank()) {
+            animalExists.setRace(partialData.getRace());
         }
 
-        if (dadosParciais.getPeso() > 0.0) {
-            animalExistente.setPeso(dadosParciais.getPeso());
+        if (partialData.getWeight() > 0.0) {
+            animalExists.setWeight(partialData.getWeight());
         }
 
-        if (dadosParciais.getPorte() != null) {
-            animalExistente.setPorte(dadosParciais.getPorte());
+        if (partialData.getSize() != null) {
+            animalExists.setSize(partialData.getSize());
         }
 
-        if (dadosParciais.getSexo() != null) {
-            animalExistente.setSexo(dadosParciais.getSexo());
+        if (partialData.getSex() != null) {
+            animalExists.setSex(partialData.getSex());
         }
 
 
-        int index = repositoryAnimal.findAll().indexOf(animalExistente);
-        repositoryAnimal.update(index, animalExistente);
+        int index = repositoryAnimal.findAll().indexOf(animalExists);
+        repositoryAnimal.update(index, animalExists);
     }
 
+    @Override
     public List<Animal> getAll() {
         return repositoryAnimal.findAll();
     }
 
-    public void update(int id, Animal novosDados) {
-        Animal antigo = repositoryAnimal.findById(id);
-        if (antigo == null) throw new AnimalNotFoundException("404 - ID not found");
+    @Override
+    public void update(int id, Animal newData) {
+        Animal old = repositoryAnimal.findById(id);
+        if (old == null) throw new AnimalNotFoundException("404 - ID not found");
 
-        // Garante que o objeto novo terá o mesmo ID do antigo
-        novosDados.setId(id);
+        // Garante que o objeto novo terá o mesmo ID do old
+        newData.setId(id);
 
-        int index = repositoryAnimal.findAll().indexOf(antigo);
-        repositoryAnimal.update(index, novosDados);
+        int index = repositoryAnimal.findAll().indexOf(old);
+        repositoryAnimal.update(index, newData);
     }
 
+    @Override
     public void delete(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
         Animal animal = repositoryAnimal.findById(id);
         if (animal == null) {
@@ -91,13 +99,14 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.delete(id);
     }
 
+    @Override
     public void post(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("Animal cannot be null");
+        if (animal == null) throw new IllegalArgumentException("400 - Animal cannot be null");
 
 
         Animal exists = repositoryAnimal.findById(animal.getId());
         if (exists != null) {
-            throw new AnimalConflictException("An animal with this ID already exists");
+            throw new AnimalConflictException("409 - An animal with this ID already exists");
         }
 
         repositoryAnimal.create(animal);

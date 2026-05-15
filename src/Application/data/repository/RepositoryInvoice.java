@@ -1,22 +1,22 @@
 package data.repository;
 
-import business.model.notaFiscal.NotaFiscal;
+import business.model.notaFiscal.Invoice;
 import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
 
 public class RepositoryInvoice implements IRepositoryInvoice {
 
-    private final ArrayList<NotaFiscal> notasFiscais;
+    private final ArrayList<Invoice> notasFiscais;
 
-    public RepositoryInvoice(ArrayList<NotaFiscal> notasFiscais) {
+    public RepositoryInvoice(ArrayList<Invoice> notasFiscais) {
         this.notasFiscais = notasFiscais;
     }
 
     @Override
-    public NotaFiscal findById(int id) {
-        NotaFiscal notaFiscal = null;
-        for (NotaFiscal nf: notasFiscais) {
+    public Invoice findById(int id) {
+        Invoice notaFiscal = null;
+        for (Invoice nf: notasFiscais) {
             if (nf.getId() == id) {
                 notaFiscal = nf;
             }
@@ -25,12 +25,12 @@ public class RepositoryInvoice implements IRepositoryInvoice {
     }
 
     @Override
-    public ArrayList<NotaFiscal> findAll() {
+    public ArrayList<Invoice> findAll() {
         return notasFiscais;
     }
 
     @Override
-    public void update(int id, NotaFiscal nf) {
+    public void update(int id, Invoice nf) {
         for (int i = 0; i < notasFiscais.size(); i++) {
             if (notasFiscais.get(i).getId() == id) {
                 notasFiscais.set(i, nf);
@@ -41,12 +41,12 @@ public class RepositoryInvoice implements IRepositoryInvoice {
 
 
     @Override
-    public void create(NotaFiscal nf) {
+    public void create(Invoice nf) {
         notasFiscais.add(nf);
     }
 
     @Override
-    public void remove(NotaFiscal nf) {
+    public void remove(Invoice nf) {
         if (nf != null) notasFiscais.remove(nf);
     }
 }

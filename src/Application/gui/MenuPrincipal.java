@@ -1,18 +1,18 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Pessoa;
+import business.model.Pessoas.Person;
 import enums.TypePerson;
 
 import java.util.Scanner;
 
 public class MenuPrincipal {
-    private Pessoa usuarioLogado;
+    private Person usuarioLogado;
     private TypePerson tipo;
     private IControllerPessoa controllerPessoa;
     private Scanner scanner;
 
-    public MenuPrincipal(Pessoa usuarioLogado, TypePerson tipo, IControllerPessoa controllerPessoa) {
+    public MenuPrincipal(Person usuarioLogado, TypePerson tipo, IControllerPessoa controllerPessoa) {
         this.usuarioLogado = usuarioLogado;
         this.tipo = tipo;
         this.controllerPessoa = controllerPessoa;
@@ -59,9 +59,9 @@ public class MenuPrincipal {
 
     private void exibirPerfil() {
         System.out.println("\n-- Meu Perfil --");
-        System.out.println("Nome: " + usuarioLogado.getNome());
+        System.out.println("Nome: " + usuarioLogado.getName());
         System.out.println("Email: " + usuarioLogado.getEmail());
-        System.out.println("Telefone: " + usuarioLogado.getTelefone());
+        System.out.println("Telefone: " + usuarioLogado.getTelephone());
         System.out.println("CPF: " + usuarioLogado.getCpf());
         System.out.println("Tipo de Conta: " + tipo);
     }

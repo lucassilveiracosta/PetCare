@@ -1,53 +1,40 @@
 package business.model.notaFiscal;
 
-import business.model.Pessoas.Funcionario;
+import business.model.Pessoas.Employee;
 import business.model.animal.Animal;
+import enums.PetShopServices;
 
 import java.time.LocalDateTime;
 
-public class ServicoPetShop extends Procedimento {
-    private String tipoServico;
-    private String pelagem;
-    private Funcionario funcionarioResponsavel;
+public class ServicoPetShop extends Procedure {
+    private PetShopServices serviceType;
+    private Employee responsableEmployee;
 
-    public ServicoPetShop(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, String tipoServico, String pelagem, Funcionario funcionarioResponsavel){
-        super(preco, paciente, dataHora, descricao);
-        setPelagem(pelagem);
-        setTipoServico(tipoServico);
-        setFuncionarioResponsavel(funcionarioResponsavel);
+    public ServicoPetShop(Double price, Animal patient, LocalDateTime dateHour, String description, PetShopServices serviceType, Employee responsableEmployee){
+        super(price, patient, dateHour, description);
+        setServiceType(serviceType);
+        setResponsableEmployee(responsableEmployee);
     }
 
-    public String getPelagem() {
-        return pelagem;
+    public PetShopServices getServiceType() {
+        return serviceType;
     }
 
-    public void setPelagem(String pelagem)
-    {
-        if(pelagem == null || pelagem.isBlank()){
-            throw new IllegalArgumentException("A pelagem não pode ser nula!");
+    public void setServiceType(PetShopServices serviceType) {
+        if(serviceType == null){
+            throw new IllegalArgumentException("400 - Invalid service type");
         }
-        this.pelagem = pelagem;
+        this.serviceType = serviceType;
     }
 
-    public String getTipoServico() {
-        return tipoServico;
+    public Employee getResponsableEmployee() {
+        return responsableEmployee;
     }
 
-    public void setTipoServico(String tipoServico) {
-        if(tipoServico == null || tipoServico.isBlank()){
-            throw new IllegalArgumentException("O tipo do serviço não pode ser nulo!");
+    public void setResponsableEmployee(Employee responsableEmployee) {
+        if(responsableEmployee == null){
+            throw new IllegalArgumentException("400 - Invalid responsable employee");
         }
-        this.tipoServico = tipoServico;
-    }
-
-    public Funcionario getFuncionarioResponsavel() {
-        return funcionarioResponsavel;
-    }
-
-    public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
-        if(funcionarioResponsavel == null){
-            throw new IllegalArgumentException("Funcionário responsável não pode ser nulo!");
-        }
-        this.funcionarioResponsavel = funcionarioResponsavel;
+        this.responsableEmployee = responsableEmployee;
     }
 }
