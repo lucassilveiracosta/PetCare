@@ -19,45 +19,45 @@ public class ControllerAppointment {
 
     public Consulta getById(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Consulta consulta = repositoryAppointment.findById(id);
+        Consulta appointment = repositoryAppointment.findById(id);
 
-        if (consulta == null) throw new AppointmentNotFoundException("404 - ID not found");
+        if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
-        return consulta;
+        return appointment;
     }
 
     public ArrayList<Consulta> getAll() {
         return repositoryAppointment.findAll();
     }
 
-    public void patch(int id, Consulta novaConsulta) {
+    public void patch(int id, Consulta newAppointment) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        if (novaConsulta == null) throw new IllegalArgumentException("Appointment can't be null");
+        if (newAppointment == null) throw new IllegalArgumentException("Appointment can't be null");
 
-        Consulta existente = repositoryAppointment.findById(id);
-        if (existente == null) throw new AppointmentNotFoundException("404 - ID not found");
+        Consulta exists = repositoryAppointment.findById(id);
+        if (exists == null) throw new AppointmentNotFoundException("404 - ID not found");
 
-        repositoryAppointment.update(id, novaConsulta);
+        repositoryAppointment.update(id, newAppointment);
     }
 
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("ID must be positive");
 
-        Consulta consulta = repositoryAppointment.findById(id);
-        if (consulta == null) throw new AppointmentNotFoundException("404 - ID not found");
+        Consulta appointment = repositoryAppointment.findById(id);
+        if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
-        repositoryAppointment.remove(consulta);
+        repositoryAppointment.remove(appointment);
     }
 
-    public void post(Consulta novaConsulta) {
-        if (novaConsulta == null) throw new IllegalArgumentException("\n" + "\"Appointment cannot be null and void.\"");
+    public void post(Consulta newAppointment) {
+        if (newAppointment == null) throw new IllegalArgumentException("Appointment cannot be null");
 
-        Consulta exists = repositoryAppointment.findById(novaConsulta.getId());
+        Consulta exists = repositoryAppointment.findById(newAppointment.getId());
 
         if (exists != null) {
             throw new AppointmentConflictException("This appointment already exists");
         }
 
-        repositoryAppointment.create(novaConsulta);
+        repositoryAppointment.create(newAppointment);
     }
 }
