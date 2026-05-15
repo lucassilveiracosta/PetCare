@@ -30,6 +30,8 @@ public class ControllerAnimal implements IControllerAnimal {
 
     public void patch(int id, Animal partialData) {
 
+        if (partialData == null) throw new IllegalArgumentException("400 - Animal can't be null");
+
         Animal animalExists = repositoryAnimal.findById(id);
         if (animalExists == null) {
             throw new AnimalNotFoundException("404 - Animal com ID " + id + " não encontrado.");
