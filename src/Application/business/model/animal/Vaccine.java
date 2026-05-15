@@ -3,46 +3,46 @@ package business.model.animal;
 import java.time.LocalDate;
 
 public class Vaccine {
-    private String nomeDaVacina;
-    private LocalDate dataDaVacina;
-    private String descricao;
+    private String vaccineName;
+    private LocalDate vaccineDate;
+    private String description;
 
-    public Vaccine(String nomeDaVacina, LocalDate dataDaVacina, String descricao) {
-        this.nomeDaVacina = nomeDaVacina;
-        this.dataDaVacina = dataDaVacina;
-        this.descricao = descricao;
+    public Vaccine(String vaccineName, LocalDate vaccineDate, String description) {
+        this.vaccineName = vaccineName;
+        this.vaccineDate = vaccineDate;
+        this.description = description;
     }
 
-    public String getNomeDaVacina() {
-        return nomeDaVacina;
+    public String getVaccineName() {
+        return vaccineName;
     }
 
-    public void setNomeDaVacina(String nomeDaVacina) {
-        if(nomeDaVacina == null || nomeDaVacina.isBlank()){
-            throw new IllegalArgumentException("Vacina não pode ser nula!");
+    public void setVaccineName(String vaccineName) {
+        if(vaccineName == null || vaccineName.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid vaccine name");
         }
-        this.nomeDaVacina = nomeDaVacina;
+        this.vaccineName = vaccineName;
     }
 
-    public LocalDate getDataDaVacina() {
-        return dataDaVacina;
+    public LocalDate getVaccineDate() {
+        return vaccineDate;
     }
 
-    public void setDataDaVacina(LocalDate dataDaVacina) {
-        if(dataDaVacina == null){
-            throw new IllegalArgumentException("Data da vacina não pode ser nula!");
+    public void setVaccineDate(LocalDate vaccineDate) {
+        if(vaccineDate == null){
+            throw new IllegalArgumentException("400 - Invalid vaccine date");
         }
-        this.dataDaVacina = dataDaVacina;
+        this.vaccineDate = vaccineDate;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        if(descricao == null || descricao.isBlank()){
-            throw new IllegalArgumentException("Descrição da vacina não pode ser nula!");
+    public void setDescription(String description) {
+        if(description == null || description.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid description");
         }
-        this.descricao = descricao;
+        this.description = description;
     }
 }
