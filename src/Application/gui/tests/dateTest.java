@@ -1,5 +1,7 @@
 package gui.tests;
 
+import business.model.Pessoas.Specialty;
+import business.model.Pessoas.Veterinarian;
 import enums.*;
 import business.model.Pessoas.Owner;
 import business.model.Pessoas.Person;
@@ -9,8 +11,10 @@ import business.model.animal.Vaccine;
 import business.model.prontuario.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,18 +26,24 @@ public class dateTest {
         LocalDate date = LocalDate.parse(sc.next(), fmt); // ----> trecho de codigo para receber uma data no formato dd/MM/yyyy
         System.out.println(date);
 
-        Person donoTeste = new Owner("Laercio", "laercio@gmail.com", "larceio123", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
+        LocalDate date1 = LocalDate.now();
+        Person donoTeste = new Owner("Laercio", "laercio@gmail.com", "larceio123", date1.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
 
         ArrayList<Vaccine> vacinas = new ArrayList<>();
-        vacinas.add(new Vaccine("Covid", date.minusDays(5),"Não se queixou"));
-        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), StageOfLife.ADULTO, 20.0, Size.GIGANTE, Sex.MACHO, ((Owner) donoTeste), vacinas, Temperament.DOCIL, true );
+        vacinas.add(new Vaccine("Covid", date1,"Não se queixou"));
+        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date1.minusYears(2), StageOfLife.ADULTO, 20.0, Size.GIGANTE, Sex.MACHO, ((Owner) donoTeste), vacinas, Temperament.DOCIL, true );
+
+        Specialty specialty = new Specialty("Cirurgiao", "Faz cirurgias");
+        ArrayList arrayListSpecialty = new ArrayList<>();
+        arrayListSpecialty.add(specialty);
+        Veterinarian veterinarian = new Veterinarian("Lucas",  "laercio@gmail.com", "larceio123", date1.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "92310231", arrayListSpecialty);
 
 
         Hydration hidratacao = new Hydration(true,null);
         VitalParameters parametrosVitais = new VitalParameters(50, 60, 34.3, Mucosa.NORMACORADAS, 50, hidratacao, "Paramtros estão normais");
         PhysicalExamination exameFisico = new PhysicalExamination(Conscience.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
         Anamnesis anamnese = new Anamnesis("Dor no ouvido", "Nenhuma", "Suspeita de ...");
-        Appointment idaAoVeterinario = new Appointment(date, exameFisico, anamnese, "Foi um alarme falso, apenas uma dor temporaria");
+        Appointment idaAoVeterinario = new Appointment(150.0, animalTeste, date.atStartOfDay(), "Desc",  veterinarian,"Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Conscience.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks"));
         ArrayList<Appointment> idasAoVeterinario = new ArrayList<>();
         idasAoVeterinario.add(idaAoVeterinario);
         MedicalRecord prontuario = new MedicalRecord(idasAoVeterinario, "Compareceu uma vez", animalTeste);
@@ -41,7 +51,7 @@ public class dateTest {
         // --- Início dos Prints de Teste ---
         System.out.println("--- RELATÓRIO DO PRONTUÁRIO ---");
         System.out.println("ID do Prontuário: " + prontuario.hashCode()); // Apenas para identificação
-        System.out.println("Observação Geral: " + prontuario.getDescricao());
+        System.out.println("Observação Geral: " + prontuario.getDescription());
 
         System.out.println("\n--- DADOS DO ANIMAL ---");
         System.out.println("Nome: " + prontuario.getAnimal().getName());
@@ -54,14 +64,14 @@ public class dateTest {
             System.out.println("- Vacina: " + v.getVaccineName() + " | Data: " + v.getVaccineDate().format(fmt));
         }
 
-        System.out.println("\n--- DETALHES DA ÚLTIMA CONSULTA ---");
+        System.out.println("\n--- DETALHES DAS ÚLTIMAS CONSULTA ---");
         for (Appointment consulta : prontuario.getIdasAoVeterinario()) {
-            System.out.println("Data da Consulta: " + consulta.getDataDePresenca().format(fmt));
-            System.out.println("Queixa Principal (Anamnese): " + consulta.getAnamnese().getQueixaPrincipal());
-            System.out.println("Estado de Consciência: " + consulta.getExameFisico().getNivelDeConsciencia());
-            System.out.println("Temperatura: " + consulta.getExameFisico().getParametrosVitais().getTemperaturaCelcius() + "°C");
-            System.out.println("Frequência Cardíaca: " + consulta.getExameFisico().getParametrosVitais().getFrequenciaCardiaca() + " bpm");
-            System.out.println("Diagnóstico/Conclusão: " + consulta.getDescricao());
+            System.out.println("Data da Consulta: " + consulta.getDateHour().format(fmt));
+            System.out.println("Queixa Principal (Anamnese): " + consulta.getAnamnesis().getMainComplaint());
+            System.out.println("Estado de Consciência: " + consulta.getPhisicalExam().getLevelOfConsciousness());
+            System.out.println("Temperatura: " + consulta.getPhisicalExam().getVitalParameters().getCelciusTemperature() + "°C");
+            System.out.println("Frequência Cardíaca: " + consulta.getPhisicalExam().getVitalParameters().getHeartRate() + " bpm");
+            System.out.println("Diagnóstico/Conclusão: " + consulta.getDescription());
         }
         // --- Fim dos Prints de Teste ---
 

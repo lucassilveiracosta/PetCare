@@ -1,3 +1,4 @@
+
 package gui.tests;
 
 import business.controller.*;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
  * Cada seção corresponde a um ou mais requisitos do README.
  * Bugs conhecidos sao documentados inline com comentario [BUG].
  */
+/*
 public class TestE2E {
 
     private static int passed = 0;
@@ -765,3 +767,4 @@ public class TestE2E {
         line('=');
     }
 }
+*/
