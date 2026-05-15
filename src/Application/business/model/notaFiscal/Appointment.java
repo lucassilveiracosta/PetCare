@@ -14,39 +14,39 @@ public class Appointment extends Procedure {
 
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsableVeterinarian, String diagnosis, String medicalPrescription) {
         super(price, patient, dateHour, description);
-        setDiagnostico(diagnosis);
-        setVeterinarioResponsavel(responsableVeterinarian);
-        setPrescricaoMedica(medicalPrescription);
+        setDiagnosis(diagnosis);
+        setResponsableVeterinarian(responsableVeterinarian);
+        setMedicalPrescription(medicalPrescription);
 
     }
 
-    public Veterinarian getVeterinarioResponsavel() {
+    public Veterinarian getResponsableVeterinarian() {
         return responsableVeterinarian;
     }
 
-    public void setVeterinarioResponsavel(Veterinarian responsableVeterinarian) {
+    public void setResponsableVeterinarian(Veterinarian responsableVeterinarian) {
         if(responsableVeterinarian == null){
-            throw new IllegalArgumentException("Veterinario Responsável não pode ser nulo!");
+            throw new IllegalArgumentException("400 - Invalid responsable veterinarian");
         }
         this.responsableVeterinarian = responsableVeterinarian;
     }
 
-    public String getDiagnostico() {
+    public String getDiagnosis() {
         return diagnosis;
     }
 
-    public void setDiagnostico(String diagnosis) {
+    public void setDiagnosis(String diagnosis) {
         if(diagnosis == null || diagnosis.isBlank()){
-            throw new IllegalArgumentException("Diagnóstico não pode ser nulo!");
+            throw new IllegalArgumentException("400 - Invalid diagnosis");
         }
         this.diagnosis = diagnosis;
     }
 
-    public String getPrescricaoMedica() {
+    public String getMedicalPrescription() {
         return medicalPrescription;
     }
 
-    public void setPrescricaoMedica(String medicalPrescription) {
+    public void setMedicalPrescription(String medicalPrescription) {
 
         this.medicalPrescription = medicalPrescription;
     }

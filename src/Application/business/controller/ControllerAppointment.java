@@ -46,28 +46,28 @@ public class ControllerAppointment implements IControllerAppointment {
 
 
 
-        if (partialData.getDiagnostico() != null && !partialData.getDiagnostico().isBlank()) {
-            exists.setDiagnostico(partialData.getDiagnostico());
+        if (partialData.getDiagnosis() != null && !partialData.getDiagnosis().isBlank()) {
+            exists.setDiagnosis(partialData.getDiagnosis());
         }
 
-        if (partialData.getPrescricaoMedica() != null && !partialData.getPrescricaoMedica().isBlank()) {
-            exists.setPrescricaoMedica(partialData.getPrescricaoMedica());
+        if (partialData.getMedicalPrescription() != null && !partialData.getMedicalPrescription().isBlank()) {
+            exists.setMedicalPrescription(partialData.getMedicalPrescription());
         }
 
-        if (partialData.getVeterinarioResponsavel() != null) {
-            exists.setVeterinarioResponsavel(partialData.getVeterinarioResponsavel());
+        if (partialData.getResponsableVeterinarian() != null) {
+            exists.setResponsableVeterinarian(partialData.getResponsableVeterinarian());
         }
 
-        if (partialData.getPreco() > 0.0) {
-            exists.setPreco(partialData.getPreco());
+        if (partialData.getPrice() > 0.0) {
+            exists.setPrice(partialData.getPrice());
         }
 
-        if (partialData.getPaciente() != null) {
-            exists.setPaciente(partialData.getPaciente());
+        if (partialData.getPatient() != null) {
+            exists.setPatient(partialData.getPatient());
         }
 
-        if (partialData.getDataHora() != null) {
-            exists.setDataHora(partialData.getDataHora());
+        if (partialData.getDateHour() != null) {
+            exists.setDateHour(partialData.getDateHour());
         }
 
 
