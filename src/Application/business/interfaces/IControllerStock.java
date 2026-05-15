@@ -7,7 +7,7 @@ import java.util.List;
 public interface IControllerStock {
     Produto getById(int id);
     List<Produto> getAll();
-    void patch(int id, Animal partialData);
+    void patch(int id, Produto partialData);
     void put(int id, Produto newProduct);
     void delete(int id);
     void post(Produto newProduct);
