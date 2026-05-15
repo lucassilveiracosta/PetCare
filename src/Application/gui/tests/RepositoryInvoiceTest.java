@@ -24,7 +24,7 @@ public class RepositoryInvoiceTest {
         if (repository.findAll().isEmpty()) {
             System.out.println("      (Repositório vazio)");
         } else {
-            for (NotaFiscal nf : repository.findAll()) {
+            for (Invoice nf : repository.findAll()) {
                 System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getDono().getNome() + " | Qtd Procedimentos: " + nf.getProcedimentos().size() + " | Qtd Produtos: " + nf.getProdutos().size());
             }
         }
@@ -35,7 +35,7 @@ public class RepositoryInvoiceTest {
         System.out.println("=== Iniciando Teste Interativo do RepositoryInvoice ===");
 
         // Setup - Banco de Dados
-        ArrayList<NotaFiscal> bancoDeDados = new ArrayList<>();
+        ArrayList<Invoice> bancoDeDados = new ArrayList<>();
         IRepositoryInvoice repository = new RepositoryInvoice(bancoDeDados);
 
         // Setup - Criando dados robustos
@@ -54,22 +54,22 @@ public class RepositoryInvoiceTest {
         Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
         Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
 
-        ArrayList<Procedimento> procedimentos1 = new ArrayList<>();
-        procedimentos1.add(new Consulta(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
-        procedimentos1.add(new Consulta(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente"));
-        ArrayList<Produto> produtos1 = new ArrayList<>();
-        produtos1.add(new Produto(dataHora, "Ração Premium 15kg", 200.0));
-        produtos1.add(new Produto(dataHora, "Brinquedo de Borracha", 35.0));
+        ArrayList<Procedure> procedimentos1 = new ArrayList<>();
+        procedimentos1.add(new Appointment(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
+        procedimentos1.add(new Appointment(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente"));
+        ArrayList<Product> produtos1 = new ArrayList<>();
+        produtos1.add(new Product(dataHora, "Ração Premium 15kg", 200.0));
+        produtos1.add(new Product(dataHora, "Brinquedo de Borracha", 35.0));
 
-        ArrayList<Procedimento> procedimentos2 = new ArrayList<>();
-        procedimentos2.add(new Cirurgia(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", "Alto risco"));
+        ArrayList<Procedure> procedimentos2 = new ArrayList<>();
+        procedimentos2.add(new Surgery(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", "Alto risco"));
 
-        ArrayList<Produto> produtos2 = new ArrayList<>();
-        produtos2.add(new Produto(dataHora, "Antibiótico Pet", 85.0));
+        ArrayList<Product> produtos2 = new ArrayList<>();
+        produtos2.add(new Product(dataHora, "Antibiótico Pet", 85.0));
 
-        NotaFiscal nf1 = new NotaFiscal(dono, animal1, procedimentos1, produtos1);
-        NotaFiscal nf2 = new NotaFiscal(dono1, animal2, procedimentos2, produtos2);
-        NotaFiscal nf3 = new NotaFiscal(dono2, animal3, procedimentos2, produtos2);
+        Invoice nf1 = new Invoice(dono, animal1, procedimentos1, produtos1);
+        Invoice nf2 = new Invoice(dono1, animal2, procedimentos2, produtos2);
+        Invoice nf3 = new Invoice(dono2, animal3, procedimentos2, produtos2);
 
         // Pre-populando para ter dados
         repository.create(nf1);
@@ -100,11 +100,11 @@ public class RepositoryInvoiceTest {
             switch (opcao) {
                 case 1:
                     System.out.println("\n[AÇÃO] Adicionando uma nova Nota Fiscal...");
-                    ArrayList<Procedimento> novosProc = new ArrayList<>();
-                    novosProc.add(new Consulta(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
-                    ArrayList<Produto> novosProd = new ArrayList<>();
-                    novosProd.add(new Produto(dataHora, "Shampoo Pet", 45.0));
-                    NotaFiscal novaNf = new NotaFiscal(dono3, animal3, novosProc, novosProd);
+                    ArrayList<Procedure> novosProc = new ArrayList<>();
+                    novosProc.add(new Appointment(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
+                    ArrayList<Product> novosProd = new ArrayList<>();
+                    novosProd.add(new Product(dataHora, "Shampoo Pet", 45.0));
+                    Invoice novaNf = new Invoice(dono3, animal3, novosProc, novosProd);
                     repository.create(novaNf);
                     System.out.println("Nota Fiscal criada e adicionada com sucesso!");
                     listarNotasFiscais(repository);
@@ -119,7 +119,7 @@ public class RepositoryInvoiceTest {
                     System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal que deseja buscar: ");
                     try {
                         int idBusca = Integer.parseInt(scanner.nextLine());
-                        NotaFiscal encontrada = repository.findById(idBusca);
+                        Invoice encontrada = repository.findById(idBusca);
                         if (encontrada != null) {
                             System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getDono().getNome());
                             System.out.println("      Procedimentos: " + encontrada.getProcedimentos().size() + " | Produtos: " + encontrada.getProdutos().size());
@@ -137,12 +137,12 @@ public class RepositoryInvoiceTest {
                     try {
                         int id = Integer.parseInt(scanner.nextLine());
 
-                        NotaFiscal nfOriginal = repository.findById(id);
+                        Invoice nfOriginal = repository.findById(id);
 
                         if (nfOriginal != null) {
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
 
-                            NotaFiscal nfAtualizada = new NotaFiscal(dono, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
+                            Invoice nfAtualizada = new Invoice(dono, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
 
                             int index = repository.findAll().indexOf(nfOriginal);
 
@@ -165,7 +165,7 @@ public class RepositoryInvoiceTest {
                     System.out.print("\n[AÇÃO] Digite o ID da Nota Fiscal que deseja remover: ");
                     try {
                         int idRemover = Integer.parseInt(scanner.nextLine());
-                        NotaFiscal nfParaRemover = repository.findById(idRemover);
+                        Invoice nfParaRemover = repository.findById(idRemover);
                         if (nfParaRemover != null) {
                             repository.remove(nfParaRemover);
                             System.out.println("   -> Nota Fiscal removida com sucesso!");

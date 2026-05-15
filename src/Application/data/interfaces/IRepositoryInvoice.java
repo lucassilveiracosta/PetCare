@@ -1,14 +1,14 @@
 package data.interfaces;
 
-import business.model.notaFiscal.NotaFiscal;
+import business.model.notaFiscal.Invoice;
 
 import java.util.ArrayList;
 
 public interface IRepositoryInvoice {
 
-     NotaFiscal findById(int id);
-     ArrayList<NotaFiscal> findAll();
-     void update(int index, NotaFiscal nf);
-     void create(NotaFiscal nf);
-     void remove(NotaFiscal nf);
+     Invoice findById(int id);
+     ArrayList<Invoice> findAll();
+     void update(int index, Invoice nf);
+     void create(Invoice nf);
+     void remove(Invoice nf);
 }

@@ -7,12 +7,12 @@ import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public class Consulta extends Procedimento {
+public class Appointment extends Procedure {
     private Veterinario veterinarioResponsavel;
     private String diagnostico;
     private String prescricaoMedica;
 
-    public Consulta(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinario veterinarioResponsavel, String diagnostico, String prescricaoMedica) {
+    public Appointment(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinario veterinarioResponsavel, String diagnostico, String prescricaoMedica) {
         super(preco, paciente, dataHora, descricao);
         setDiagnostico(diagnostico);
         setVeterinarioResponsavel(veterinarioResponsavel);

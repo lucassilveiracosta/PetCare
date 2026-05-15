@@ -1,14 +1,13 @@
 package business.interfaces;
 
-import business.model.animal.Animal;
-import business.model.notaFiscal.Produto;
+import business.model.notaFiscal.Product;
 import java.util.List;
 
 public interface IControllerStock {
-    Produto getById(int id);
-    List<Produto> getAll();
-    void patch(int id, Produto partialData);
-    void put(int id, Produto newProduct);
+    Product getById(int id);
+    List<Product> getAll();
+    void patch(int id, Product partialData);
+    void put(int id, Product newProduct);
     void delete(int id);
-    void post(Produto newProduct);
+    void post(Product newProduct);
 }

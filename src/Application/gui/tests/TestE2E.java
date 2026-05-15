@@ -276,11 +276,11 @@ public class TestE2E {
         // =====================================================================
         secao("REQ04 - Agendamento de Consultas");
 
-        Consulta consulta1 = new Consulta(
+        Appointment consulta1 = new Appointment(
                 150.0, rex, agora.plusDays(1),
                 "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A"
         );
-        Consulta consulta2 = new Consulta(
+        Appointment consulta2 = new Appointment(
                 200.0, iguana, agora.plusDays(3),
                 "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma"
         );
@@ -295,12 +295,12 @@ public class TestE2E {
                 assertEquals(2, ctrlConsulta.getAll().size(), "consultas agendadas"));
 
         testar("Buscar consulta por ID retorna paciente correto", () -> {
-            Consulta c = ctrlConsulta.getById(consulta1.getId());
+            Appointment c = ctrlConsulta.getById(consulta1.getId());
             assertEquals("Rex", c.getPaciente().getName(), "paciente da consulta");
         });
 
         testar("Veterinario responsavel esta correto", () -> {
-            Consulta c = ctrlConsulta.getById(consulta1.getId());
+            Appointment c = ctrlConsulta.getById(consulta1.getId());
             assertEquals("Dra. Ana Lima", c.getVeterinarioResponsavel().getName(), "vet da consulta");
         });
 
@@ -322,7 +322,7 @@ public class TestE2E {
 
         // ─── Update e delete de consulta ──────────────────────────────────────
         testar("Atualizar consulta via patch (novo valor e data)", () -> {
-            Consulta consultaAtualizada = new Consulta(
+            Appointment consultaAtualizada = new Appointment(
                     175.0, rex, agora.plusDays(2),
                     "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma"
             );
@@ -347,15 +347,15 @@ public class TestE2E {
         // ─── Validacoes do modelo Consulta ────────────────────────────────────
         testarExcecao("Veterinario null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc"));
 
         testarExcecao("Diagnostico nulo em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc"));
 
         testarExcecao("Paciente null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Consulta(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc"));
+                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc"));
 
         // =====================================================================
         //  REQ08 - Cirurgia
@@ -363,7 +363,7 @@ public class TestE2E {
         secao("REQ08 - Procedimento Cirurgico");
 
         testar("Criar objeto Cirurgia vinculado ao veterinario", () -> {
-            Cirurgia cirurgia = new Cirurgia(
+            Surgery cirurgia = new Surgery(
                     800.0, rex, agora.plusDays(7),
                     "Castracao eletiva", vet, "Anestesia geral inalatoria", "Baixo"
             );
@@ -372,36 +372,36 @@ public class TestE2E {
         });
 
         testar("Cirurgia e instancia de Procedimento (polimorfismo)", () -> {
-            Cirurgia c = new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", "Baixo");
-            if (!(c instanceof Procedimento))
+            Surgery c = new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", "Baixo");
+            if (!(c instanceof Procedure))
                 throw new RuntimeException("Cirurgia deveria ser Procedimento");
         });
 
         testarExcecao("Cirurgia sem veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", null, "Geral", "Baixo"));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", null, "Geral", "Baixo"));
 
         testarExcecao("Risco cirurgico nulo lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", null));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, "Geral", null));
 
         testarExcecao("Tipo de anestesia nulo lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, rex, agora.plusDays(7), "Desc", vet, null, "Baixo"));
+                        new Surgery(800.0, rex, agora.plusDays(7), "Desc", vet, null, "Baixo"));
 
         testarExcecao("Paciente null em Cirurgia lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Cirurgia(800.0, null, agora.plusDays(7), "Desc", vet, "Geral", "Baixo"));
+                        new Surgery(800.0, null, agora.plusDays(7), "Desc", vet, "Geral", "Baixo"));
 
         // =====================================================================
         //  REQ09 / REQ10 - Estoque de Produtos
         // =====================================================================
         secao("REQ09/REQ10 - Estoque de Produtos (Geral e Veterinario)");
 
-        Produto racaoPremium = new Produto(agora, "Racao Premium 15kg", 180.0);
-        Produto shampooAnt   = new Produto(agora, "Shampoo Antisseptico", 28.0);
-        Produto antibiotico  = new Produto(agora, "Amoxicilina Vet 500mg", 45.0);
-        Produto antifungico  = new Produto(agora, "Antifungico Vet 250mg", 60.0);
+        Product racaoPremium = new Product(agora, "Racao Premium 15kg", 180.0);
+        Product shampooAnt   = new Product(agora, "Shampoo Antisseptico", 28.0);
+        Product antibiotico  = new Product(agora, "Amoxicilina Vet 500mg", 45.0);
+        Product antifungico  = new Product(agora, "Antifungico Vet 250mg", 60.0);
 
         // -- Estoque Geral
         testar("Cadastrar Racao no estoque geral", () ->
@@ -414,7 +414,7 @@ public class TestE2E {
                 assertEquals(2, ctrlStockGeral.getAll().size(), "produtos no estoque geral"));
 
         testar("Buscar produto geral por ID retorna produto correto", () -> {
-            Produto p = ctrlStockGeral.getById(racaoPremium.getId());
+            Product p = ctrlStockGeral.getById(racaoPremium.getId());
             assertEquals("Racao Premium 15kg", p.getDescricao(), "descricao do produto");
         });
 
@@ -431,7 +431,7 @@ public class TestE2E {
                         ctrlStockGeral.getById(99999));
 
         testar("Atualizar produto no estoque geral (patch)", () -> {
-            Produto racaoAtualizada = new Produto(agora, "Racao Premium 20kg", 220.0);
+            Product racaoAtualizada = new Product(agora, "Racao Premium 20kg", 220.0);
             ctrlStockGeral.put(racaoPremium.getId(), racaoAtualizada);
             assertEquals(2, ctrlStockGeral.getAll().size(), "tamanho do estoque apos patch");
         });
@@ -460,7 +460,7 @@ public class TestE2E {
                 assertEquals(2, ctrlStockVet.getAll().size(), "produtos no estoque vet"));
 
         testar("Buscar medicamento por ID no estoque vet", () -> {
-            Produto p = ctrlStockVet.getById(antibiotico.getId());
+            Product p = ctrlStockVet.getById(antibiotico.getId());
             assertEquals("Amoxicilina Vet 500mg", p.getDescricao(), "descricao do medicamento");
         });
 
@@ -497,24 +497,24 @@ public class TestE2E {
         );
 
         testar("Emitir NF com Consulta e Produto", () -> {
-            ArrayList<Procedimento> procs = new ArrayList<>();
-            procs.add(new Consulta(150.0, rex, agora, "Consulta Rotina", vet, "Saudavel", "Vitamina A"));
+            ArrayList<Procedure> procs = new ArrayList<>();
+            procs.add(new Appointment(150.0, rex, agora, "Consulta Rotina", vet, "Saudavel", "Vitamina A"));
 
-            ArrayList<Produto> prods = new ArrayList<>();
-            prods.add(new Produto(agora, "Suplemento Vitaminico", 55.0));
+            ArrayList<Product> prods = new ArrayList<>();
+            prods.add(new Product(agora, "Suplemento Vitaminico", 55.0));
 
-            NotaFiscal nf = new NotaFiscal(pagador, rex, procs, prods);
+            Invoice nf = new Invoice(pagador, rex, procs, prods);
             ctrlInvoice.post(nf);
         });
 
         testar("Emitir NF com Cirurgia (REQ08+REQ11)", () -> {
-            Cirurgia cirurgia = new Cirurgia(
+            Surgery cirurgia = new Surgery(
                     800.0, rex, agora.plusDays(7), "Castracao", vet, "Inalatoria", "Baixo"
             );
-            ArrayList<Procedimento> procs = new ArrayList<>();
+            ArrayList<Procedure> procs = new ArrayList<>();
             procs.add(cirurgia);
 
-            NotaFiscal nfCirurgia = new NotaFiscal(pagador, rex, procs, new ArrayList<>());
+            Invoice nfCirurgia = new Invoice(pagador, rex, procs, new ArrayList<>());
             ctrlInvoice.post(nfCirurgia);
         });
 
@@ -522,13 +522,13 @@ public class TestE2E {
                 assertEquals(2, ctrlInvoice.getAll().size(), "notas fiscais emitidas"));
 
         testar("Buscar NF por ID retorna pagador correto", () -> {
-            NotaFiscal nf = ctrlInvoice.getAll().get(0);
-            NotaFiscal encontrada = ctrlInvoice.getById(nf.getId());
+            Invoice nf = ctrlInvoice.getAll().get(0);
+            Invoice encontrada = ctrlInvoice.getById(nf.getId());
             assertEquals(pagador.getName(), encontrada.getDono().getName(), "pagador da NF");
         });
 
         testar("Remover primeira NF da lista", () -> {
-            NotaFiscal nf = ctrlInvoice.getAll().get(0);
+            Invoice nf = ctrlInvoice.getAll().get(0);
             ctrlInvoice.delete(nf.getId());
             assertEquals(1, ctrlInvoice.getAll().size(), "NFs apos delete");
         });
@@ -543,11 +543,11 @@ public class TestE2E {
 
         testarExcecao("Pagador null em NotaFiscal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new NotaFiscal(null, rex, new ArrayList<>(), new ArrayList<>()));
+                        new Invoice(null, rex, new ArrayList<>(), new ArrayList<>()));
 
         testarExcecao("Paciente null em NotaFiscal lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new NotaFiscal(pagador, null, new ArrayList<>(), new ArrayList<>()));
+                        new Invoice(pagador, null, new ArrayList<>(), new ArrayList<>()));
 
         // =====================================================================
         //  CRUD Completo de Animais (Patch / Update / Delete)

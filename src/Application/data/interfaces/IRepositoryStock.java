@@ -1,14 +1,14 @@
 package data.interfaces;
 
-import business.model.notaFiscal.Produto;
+import business.model.notaFiscal.Product;
 
 import java.util.ArrayList;
 
 public interface IRepositoryStock {
 
-    Produto findById(int id);
-    ArrayList<Produto> findAll();
-    void update(int index, Produto p);
-    void create(Produto p);
-    void remove(Produto p);
+    Product findById(int id);
+    ArrayList<Product> findAll();
+    void update(int index, Product p);
+    void create(Product p);
+    void remove(Product p);
 }

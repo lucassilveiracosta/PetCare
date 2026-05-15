@@ -1,22 +1,22 @@
 package data.repository;
 
-import business.model.notaFiscal.Produto;
+import business.model.notaFiscal.Product;
 import data.interfaces.IRepositoryStock;
 
 import java.util.ArrayList;
 
 public class RepositoryStock implements IRepositoryStock {
 
-    private final ArrayList<Produto> produtos;
-    public RepositoryStock(ArrayList<Produto> produtos) {
+    private final ArrayList<Product> produtos;
+    public RepositoryStock(ArrayList<Product> produtos) {
         this.produtos = produtos;
     }
 
 
     @Override
-    public Produto findById(int id) {
-        Produto produto = null;
-        for (Produto p : produtos) {
+    public Product findById(int id) {
+        Product produto = null;
+        for (Product p : produtos) {
             if (p.getId() == id) {
                 produto = p;
             }
@@ -25,12 +25,12 @@ public class RepositoryStock implements IRepositoryStock {
     }
 
     @Override
-    public ArrayList<Produto> findAll() {
+    public ArrayList<Product> findAll() {
         return produtos;
     }
 
     @Override
-    public void update(int id, Produto p) {
+    public void update(int id, Product p) {
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getId() == id) {
                 produtos.set(i, p);
@@ -40,12 +40,12 @@ public class RepositoryStock implements IRepositoryStock {
     }
 
     @Override
-    public void create(Produto p) {
+    public void create(Product p) {
         produtos.add(p);
     }
 
     @Override
-    public void remove(Produto p) {
+    public void remove(Product p) {
         if (p != null) {
             produtos.remove(p);
         }

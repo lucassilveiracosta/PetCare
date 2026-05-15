@@ -5,7 +5,7 @@ import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public class ServicoPetShop extends Procedimento {
+public class ServicoPetShop extends Procedure {
     private String tipoServico;
     private String pelagem;
     private Funcionario funcionarioResponsavel;

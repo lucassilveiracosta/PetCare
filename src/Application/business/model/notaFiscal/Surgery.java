@@ -4,13 +4,13 @@ import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public class Cirurgia extends Procedimento {
+public class Surgery extends Procedure {
 
     private Veterinario veterinarioResponsavel;
     private String tipoAnestesia;
     private String riscoCirurgico;
 
-    public Cirurgia(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinario veterinarioResponsavel, String tipoAnestesia, String riscoCirurgico) {
+    public Surgery(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinario veterinarioResponsavel, String tipoAnestesia, String riscoCirurgico) {
         super(preco, paciente, dataHora, descricao);
         setRiscoCirurgico(riscoCirurgico);
         setTipoAnestesia(tipoAnestesia);

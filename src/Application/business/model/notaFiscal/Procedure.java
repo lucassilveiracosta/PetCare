@@ -4,7 +4,7 @@ import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
-public abstract class Procedimento {
+public abstract class Procedure {
     protected static int contadorId = 1;
 
     protected int id = contadorId++;
@@ -13,7 +13,7 @@ public abstract class Procedimento {
     private String descricao;
     private Double preco;
 
-    public Procedimento(Double preco, Animal paciente, LocalDateTime dataHora, String descricao) {
+    public Procedure(Double preco, Animal paciente, LocalDateTime dataHora, String descricao) {
         this.preco = preco;
         setPaciente(paciente);
         this.dataHora = dataHora;

@@ -6,17 +6,17 @@ import business.model.animal.Animal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class NotaFiscal {
+public class Invoice {
     protected static int contadorId = 1;
 
     protected int id;
     private Dono pagador;
     private Animal paciente;
     private final LocalDateTime dataHora = LocalDateTime.now();
-    private ArrayList<Procedimento> procedimentos;
-    private ArrayList<Produto> produtos;
+    private ArrayList<Procedure> procedimentos;
+    private ArrayList<Product> produtos;
 
-    public NotaFiscal(Dono pagador, Animal paciente, ArrayList<Procedimento> procedimentos, ArrayList<Produto> produtos) {
+    public Invoice(Dono pagador, Animal paciente, ArrayList<Procedure> procedimentos, ArrayList<Product> produtos) {
         this.id = contadorId++;
         setDono(pagador);
         setPaciente(paciente);
@@ -54,22 +54,22 @@ public class NotaFiscal {
         return dataHora;
     }
 
-    public ArrayList<Procedimento> getProcedimentos() {
+    public ArrayList<Procedure> getProcedimentos() {
         return procedimentos;
     }
 
-    public void setProcedimentos(ArrayList<Procedimento> procedimentos) {
+    public void setProcedimentos(ArrayList<Procedure> procedimentos) {
         if (procedimentos == null) {
             throw new IllegalArgumentException("O procedimento não pode ser nulo");
         }
         this.procedimentos = procedimentos;
     }
 
-    public ArrayList<Produto> getProdutos() {
+    public ArrayList<Product> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(ArrayList<Produto> produtos) {
+    public void setProdutos(ArrayList<Product> produtos) {
         if (produtos == null) {
             throw new IllegalArgumentException("O produto não pode ser nulo");
         }

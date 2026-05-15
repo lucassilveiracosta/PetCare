@@ -1,15 +1,14 @@
 package business.interfaces;
 import java.util.ArrayList;
-import java.util.List;
 
-import business.model.notaFiscal.Consulta;
-import business.model.notaFiscal.Procedimento;
+import business.model.notaFiscal.Appointment;
+import business.model.notaFiscal.Procedure;
 
 public interface IControllerAppointment {
-    Procedimento getById(int id);
-    void patch(int id, Consulta partialData);
-    void put(int id, Consulta newAppointment);
-    ArrayList<Consulta> getAll();
+    Procedure getById(int id);
+    void patch(int id, Appointment partialData);
+    void put(int id, Appointment newAppointment);
+    ArrayList<Appointment> getAll();
     void delete(int id);
-    void post(Consulta appointment);
+    void post(Appointment appointment);
 }

@@ -1,9 +1,7 @@
 package business.model.notaFiscal;
 
 
-import java.time.LocalDateTime;
-
-public class Produto {
+public class Product {
 
     private static int contador_id = 1;
     private int id = contador_id++;
@@ -11,7 +9,7 @@ public class Produto {
     private String description;
     private Double preco;
 
-    public Produto(Integer quantity, String description, Double preco){
+    public Product(Integer quantity, String description, Double preco){
         setQuantity(quantity);
         setDescricao(description);
         this.preco = preco;

@@ -1,7 +1,7 @@
 package business.controller;
 
 import business.interfaces.IControllerAppointment;
-import business.model.notaFiscal.Consulta;
+import business.model.notaFiscal.Appointment;
 import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
@@ -19,9 +19,9 @@ public class ControllerAppointment implements IControllerAppointment {
     }
 
     @Override
-    public Consulta getById(int id) {
+    public Appointment getById(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
-        Consulta appointment = repositoryAppointment.findById(id);
+        Appointment appointment = repositoryAppointment.findById(id);
 
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
@@ -29,17 +29,17 @@ public class ControllerAppointment implements IControllerAppointment {
     }
 
     @Override
-    public ArrayList<Consulta> getAll() {
+    public ArrayList<Appointment> getAll() {
         return repositoryAppointment.findAll();
     }
 
 
     @Override
-    public void patch(int id, Consulta partialData) {
+    public void patch(int id, Appointment partialData) {
 
         if (partialData == null) throw new IllegalArgumentException("400 - Appointment can't be null");
 
-        Consulta exists = repositoryAppointment.findById(id);
+        Appointment exists = repositoryAppointment.findById(id);
         if (exists == null) {
             throw new AppointmentNotFoundException("404 - Appointment with ID " + id + " not found");
         }
@@ -76,11 +76,11 @@ public class ControllerAppointment implements IControllerAppointment {
     }
 
     @Override
-    public void put(int id, Consulta newAppointment) {
+    public void put(int id, Appointment newAppointment) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         if (newAppointment == null) throw new IllegalArgumentException("400 - Appointment can't be null");
 
-        Consulta exists = repositoryAppointment.findById(id);
+        Appointment exists = repositoryAppointment.findById(id);
         if (exists == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryAppointment.update(id, newAppointment);
@@ -90,17 +90,17 @@ public class ControllerAppointment implements IControllerAppointment {
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
-        Consulta appointment = repositoryAppointment.findById(id);
+        Appointment appointment = repositoryAppointment.findById(id);
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryAppointment.remove(appointment);
     }
 
     @Override
-    public void post(Consulta appointment) {
+    public void post(Appointment appointment) {
         if (appointment == null) throw new IllegalArgumentException("400 - Appointment cannot be null");
 
-        Consulta exists = repositoryAppointment.findById(appointment.getId());
+        Appointment exists = repositoryAppointment.findById(appointment.getId());
 
         if (exists != null) {
             throw new AppointmentConflictException("409 - This appointment already exists");

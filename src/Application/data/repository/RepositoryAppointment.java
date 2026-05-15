@@ -1,23 +1,23 @@
 package data.repository;
 
 
-import business.model.notaFiscal.Consulta;
+import business.model.notaFiscal.Appointment;
 import data.interfaces.IRepositoryAppointment;
 
 import java.util.ArrayList;
 
 public class RepositoryAppointment implements IRepositoryAppointment {
 
-    private final ArrayList<Consulta> consultas;
-    public RepositoryAppointment(ArrayList<Consulta> consultas) {
+    private final ArrayList<Appointment> consultas;
+    public RepositoryAppointment(ArrayList<Appointment> consultas) {
         this.consultas = consultas;
     }
 
 
     @Override
-    public Consulta findById(int id) {
-        Consulta consulta = null;
-        for (Consulta c : consultas) {
+    public Appointment findById(int id) {
+        Appointment consulta = null;
+        for (Appointment c : consultas) {
             if (c.getId() == id){
                 consulta = c;
             }
@@ -26,12 +26,12 @@ public class RepositoryAppointment implements IRepositoryAppointment {
     }
 
     @Override
-    public ArrayList<Consulta> findAll() {
+    public ArrayList<Appointment> findAll() {
         return consultas;
     }
 
     @Override
-    public void update(int id, Consulta c) {
+    public void update(int id, Appointment c) {
         for (int i = 0; i < consultas.size(); i++) {
             if (consultas.get(i).getId() == id) {
                 consultas.set(i, c);
@@ -41,12 +41,12 @@ public class RepositoryAppointment implements IRepositoryAppointment {
     }
 
     @Override
-    public void create(Consulta c) {
+    public void create(Appointment c) {
         consultas.add(c);
     }
 
     @Override
-    public void remove(Consulta c) {
+    public void remove(Appointment c) {
         if (c != null) {
             consultas.remove(c);
         }
