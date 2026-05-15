@@ -59,9 +59,9 @@ public class MenuPrincipal {
 
     private void exibirPerfil() {
         System.out.println("\n-- Meu Perfil --");
-        System.out.println("Nome: " + usuarioLogado.getNome());
+        System.out.println("Nome: " + usuarioLogado.getName());
         System.out.println("Email: " + usuarioLogado.getEmail());
-        System.out.println("Telefone: " + usuarioLogado.getTelefone());
+        System.out.println("Telefone: " + usuarioLogado.getTelephone());
         System.out.println("CPF: " + usuarioLogado.getCpf());
         System.out.println("Tipo de Conta: " + tipo);
     }

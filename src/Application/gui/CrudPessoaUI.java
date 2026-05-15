@@ -51,7 +51,7 @@ public class CrudPessoaUI {
             System.out.println("Nenhum usuário cadastrado.");
         } else {
             for (Person p : pessoas) {
-                System.out.println("ID [" + p.getId() + "] " + p.getNome() + " | Email: " + p.getEmail());
+                System.out.println("ID [" + p.getId() + "] " + p.getName() + " | Email: " + p.getEmail());
             }
         }
     }
@@ -62,8 +62,8 @@ public class CrudPessoaUI {
             int id = Integer.parseInt(scanner.nextLine());
             Person p = controllerPessoa.getById(id);
             if (p != null) {
-                System.out.println("Usuário encontrado: " + p.getNome() + " (" + p.getEmail() + ")");
-                System.out.println("Telefone: " + p.getTelefone());
+                System.out.println("Usuário encontrado: " + p.getName() + " (" + p.getEmail() + ")");
+                System.out.println("Telefone: " + p.getTelephone());
                 System.out.println("CPF: " + p.getCpf());
             } else {
                 System.out.println("Usuário não encontrado.");

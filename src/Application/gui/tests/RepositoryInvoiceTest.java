@@ -25,7 +25,7 @@ public class RepositoryInvoiceTest {
             System.out.println("      (Repositório vazio)");
         } else {
             for (Invoice nf : repository.findAll()) {
-                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getOwner().getNome() + " | Qtd Procedimentos: " + nf.getProcedures().size()+ " | Qtd Produtos: " + nf.getProducts().size());
+                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getOwner().getName() + " | Qtd Procedimentos: " + nf.getProcedures().size()+ " | Qtd Produtos: " + nf.getProducts().size());
             }
         }
     }
@@ -121,7 +121,7 @@ public class RepositoryInvoiceTest {
                         int idBusca = Integer.parseInt(scanner.nextLine());
                         Invoice encontrada = repository.findById(idBusca);
                         if (encontrada != null) {
-                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getOwner().getNome());
+                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getOwner().getName());
                             System.out.println("      Procedimentos: " + encontrada.getProcedures().size()+ " | Produtos: " + encontrada.getProducts().size());
                         } else {
                             System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + idBusca);

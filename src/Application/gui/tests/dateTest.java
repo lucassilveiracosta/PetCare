@@ -47,11 +47,11 @@ public class dateTest {
         System.out.println("Nome: " + prontuario.getAnimal().getName());
         System.out.println("Raça: " + prontuario.getAnimal().getRace());
         System.out.println("Porte: " + prontuario.getAnimal().getSize());
-        System.out.println("Dono: " + ( (DomesticAnimal) prontuario.getAnimal()).getOwner().getNome());
+        System.out.println("Dono: " + ( (DomesticAnimal) prontuario.getAnimal()).getOwner().getName());
 
         System.out.println("\n--- HISTÓRICO DE VACINAS ---");
         for (Vaccine v : ((DomesticAnimal) prontuario.getAnimal()).getVaccines()) {
-            System.out.println("- Vacina: " + v.getNomeDaVacina() + " | Data: " + v.getDataDaVacina().format(fmt));
+            System.out.println("- Vacina: " + v.getVaccineName() + " | Data: " + v.getVaccineDate().format(fmt));
         }
 
         System.out.println("\n--- DETALHES DA ÚLTIMA CONSULTA ---");

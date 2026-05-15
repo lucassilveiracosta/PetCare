@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class Veterinarian extends Person {
     private String crmv;
-    private ArrayList<Specialty> especialidades;
+    private ArrayList<Specialty> specialties;
 
 
-    public Veterinarian(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String crmv, ArrayList<Specialty> especialidades){
-        super(nome, email, password, dataNascimento, cpf, telefone);
+    public Veterinarian(String name, String email, String password, LocalDate birthDate, String cpf, String telephone, String crmv, ArrayList<Specialty> specialties){
+        super(name, email, password, birthDate, cpf, telephone);
         setCrmv(crmv);
-        setEspecialidades(especialidades);
+        setSpecialties(specialties);
     }
 
     public String getCrmv(){
@@ -20,22 +20,17 @@ public class Veterinarian extends Person {
 
     private void setCrmv(String crmv){
         if(crmv == null || crmv.isBlank()){
-            throw new IllegalArgumentException("CRMV inválido!");
+            throw new IllegalArgumentException("400 - Invalid CRMV");
         }
         this.crmv = crmv;
     }
 
-    public ArrayList<Specialty> getEspecialidades() {
-        return especialidades;
+    public ArrayList<Specialty> getSpecialties() {
+        return specialties;
     }
 
-    public void setEspecialidades(ArrayList<Specialty> especialidades) {
-        if(especialidades == null){
-            throw new IllegalArgumentException("A lista não pode ser nula! Se não houver especialidades, passe uma lista vazia.");
+    public void setSpecialties(ArrayList<Specialty> specialties) {
+        this.specialties = specialties;
 
-        }
-        else {
-            this.especialidades = especialidades;
-        }
     }
 }

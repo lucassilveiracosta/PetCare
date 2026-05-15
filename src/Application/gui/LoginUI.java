@@ -35,7 +35,7 @@ public class LoginUI {
                 TypePerson tipo = loginService.loginPersonType(pessoaLogada);
 
                 System.out.println("\nLogin efetuado com sucesso!");
-                System.out.println("Bem-vindo(a), " + pessoaLogada.getNome());
+                System.out.println("Bem-vindo(a), " + pessoaLogada.getName());
                 System.out.println("Perfil: " + tipo + "\n");
                 
                 MenuPrincipal menu = new MenuPrincipal(pessoaLogada, tipo, controllerPessoa);

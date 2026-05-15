@@ -192,12 +192,12 @@ public class TestE2E {
         });
 
         testar("Verificar nome da primeira vacina registrada", () -> {
-            String nome = rex.getVaccines().get(0).getNomeDaVacina();
+            String nome = rex.getVaccines().get(0).getVaccineName();
             assertEquals("Antirabica", nome, "nome da vacina");
         });
 
         testar("Verificar data de vacina e alerta de reforco (12 meses)", () -> {
-            LocalDate dataVacina = rex.getVaccines().get(0).getDataDaVacina();
+            LocalDate dataVacina = rex.getVaccines().get(0).getVaccineDate();
             LocalDate reforco = dataVacina.plusMonths(12);
             if (reforco.isBefore(hoje))
                 throw new RuntimeException("Vacina vencida! Reforco deveria ter sido em " + reforco);
@@ -296,12 +296,12 @@ public class TestE2E {
 
         testar("Buscar consulta por ID retorna paciente correto", () -> {
             Appointment c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Rex", c.getPaciente().getName(), "paciente da consulta");
+            assertEquals("Rex", c.getPatient().getName(), "paciente da consulta");
         });
 
         testar("Veterinario responsavel esta correto", () -> {
             Appointment c = ctrlConsulta.getById(consulta1.getId());
-            assertEquals("Dra. Ana Lima", c.getVeterinarioResponsavel().getName(), "vet da consulta");
+            assertEquals("Dra. Ana Lima", c.getResponsableVeterinarian().getName(), "vet da consulta");
         });
 
         testarExcecao("Conflito: agendar mesma consulta (AppointmentConflictException)",
@@ -367,8 +367,8 @@ public class TestE2E {
                     800.0, rex, agora.plusDays(7),
                     "Castracao eletiva", vet, "Anestesia geral inalatoria", "Baixo"
             );
-            assertEquals("Dra. Ana Lima", cirurgia.getVeterinarioResponsavel().getName(), "vet da cirurgia");
-            assertEquals("Baixo", cirurgia.getRiscoCirurgico(), "risco cirurgico");
+            assertEquals("Dra. Ana Lima", cirurgia.getResponsebleVeterinarian().getName(), "vet da cirurgia");
+            assertEquals("Baixo", cirurgia.getSurgeryRisk(), "risco cirurgico");
         });
 
         testar("Cirurgia e instancia de Procedimento (polimorfismo)", () -> {
@@ -415,7 +415,7 @@ public class TestE2E {
 
         testar("Buscar produto geral por ID retorna produto correto", () -> {
             Product p = ctrlStockGeral.getById(racaoPremium.getId());
-            assertEquals("Racao Premium 15kg", p.getDescricao(), "descricao do produto");
+            assertEquals("Racao Premium 15kg", p.getDescription(), "descricao do produto");
         });
 
         testarExcecao("Produto duplicado no estoque geral (StockGeneralConflictException)",
@@ -461,7 +461,7 @@ public class TestE2E {
 
         testar("Buscar medicamento por ID no estoque vet", () -> {
             Product p = ctrlStockVet.getById(antibiotico.getId());
-            assertEquals("Amoxicilina Vet 500mg", p.getDescricao(), "descricao do medicamento");
+            assertEquals("Amoxicilina Vet 500mg", p.getDescription(), "descricao do medicamento");
         });
 
         testarExcecao("Produto duplicado no estoque vet (StockVetConflictException)",
@@ -524,7 +524,7 @@ public class TestE2E {
         testar("Buscar NF por ID retorna pagador correto", () -> {
             Invoice nf = ctrlInvoice.getAll().get(0);
             Invoice encontrada = ctrlInvoice.getById(nf.getId());
-            assertEquals(pagador.getName(), encontrada.getDono().getName(), "pagador da NF");
+            assertEquals(pagador.getName(), encontrada.getOwner().getName(), "pagador da NF");
         });
 
         testar("Remover primeira NF da lista", () -> {
@@ -592,7 +592,7 @@ public class TestE2E {
 
         testar("Buscar dono por email valido", () -> {
             Person p = ctrlPessoa.getByEmail("carlos@petcare.com");
-            assertEquals("Carlos Silva", p.getNome(), "nome da pessoa por email");
+            assertEquals("Carlos Silva", p.getName(), "nome da pessoa por email");
         });
 
         testar("Listar todas as pessoas deve retornar 2", () ->
@@ -600,7 +600,7 @@ public class TestE2E {
 
         testar("Buscar pessoa por ID retorna objeto correto", () -> {
             Person p = ctrlPessoa.getById(dono.getId());
-            assertEquals("Carlos Silva", p.getNome(), "nome por ID");
+            assertEquals("Carlos Silva", p.getName(), "nome por ID");
         });
 
         // [BUG] O repositorio lanca EmailNotFoundException (nome errado) ao inves de EmailConflictException.
