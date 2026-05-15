@@ -18,7 +18,7 @@ public class ControllerAppointment {
     }
 
     public Consulta getById(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         Consulta appointment = repositoryAppointment.findById(id);
 
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
@@ -31,8 +31,8 @@ public class ControllerAppointment {
     }
 
     public void patch(int id, Consulta newAppointment) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        if (newAppointment == null) throw new IllegalArgumentException("Appointment can't be null");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
+        if (newAppointment == null) throw new IllegalArgumentException("400 - Appointment can't be null");
 
         Consulta exists = repositoryAppointment.findById(id);
         if (exists == null) throw new AppointmentNotFoundException("404 - ID not found");
@@ -41,7 +41,7 @@ public class ControllerAppointment {
     }
 
     public void delete(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
         Consulta appointment = repositoryAppointment.findById(id);
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
@@ -50,12 +50,12 @@ public class ControllerAppointment {
     }
 
     public void post(Consulta newAppointment) {
-        if (newAppointment == null) throw new IllegalArgumentException("Appointment cannot be null");
+        if (newAppointment == null) throw new IllegalArgumentException("400 - Appointment cannot be null");
 
         Consulta exists = repositoryAppointment.findById(newAppointment.getId());
 
         if (exists != null) {
-            throw new AppointmentConflictException("This appointment already exists");
+            throw new AppointmentConflictException("409 - This appointment already exists");
         }
 
         repositoryAppointment.create(newAppointment);
