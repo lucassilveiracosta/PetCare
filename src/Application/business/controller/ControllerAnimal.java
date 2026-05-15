@@ -27,57 +27,58 @@ public class ControllerAnimal implements IControllerAnimal {
 
         return animal;
     }
-    public void patch(int id, Animal dadosParciais) {
 
-        Animal animalExistente = repositoryAnimal.findById(id);
-        if (animalExistente == null) {
+    public void patch(int id, Animal partialData) {
+
+        Animal animalExists = repositoryAnimal.findById(id);
+        if (animalExists == null) {
             throw new AnimalNotFoundException("404 - Animal com ID " + id + " não encontrado.");
         }
 
 
 
-        if (dadosParciais.getNome() != null && !dadosParciais.getNome().isBlank()) {
-            animalExistente.setNome(dadosParciais.getNome());
+        if (partialData.getNome() != null && !partialData.getNome().isBlank()) {
+            animalExists.setNome(partialData.getNome());
         }
 
-        if (dadosParciais.getEspecie() != null && !dadosParciais.getEspecie().isBlank()) {
-            animalExistente.setEspecie(dadosParciais.getEspecie());
+        if (partialData.getEspecie() != null && !partialData.getEspecie().isBlank()) {
+            animalExists.setEspecie(partialData.getEspecie());
         }
 
-        if (dadosParciais.getRaca() != null && !dadosParciais.getRaca().isBlank()) {
-            animalExistente.setRaca(dadosParciais.getRaca());
+        if (partialData.getRaca() != null && !partialData.getRaca().isBlank()) {
+            animalExists.setRaca(partialData.getRaca());
         }
 
-        if (dadosParciais.getPeso() > 0.0) {
-            animalExistente.setPeso(dadosParciais.getPeso());
+        if (partialData.getPeso() > 0.0) {
+            animalExists.setPeso(partialData.getPeso());
         }
 
-        if (dadosParciais.getPorte() != null) {
-            animalExistente.setPorte(dadosParciais.getPorte());
+        if (partialData.getPorte() != null) {
+            animalExists.setPorte(partialData.getPorte());
         }
 
-        if (dadosParciais.getSexo() != null) {
-            animalExistente.setSexo(dadosParciais.getSexo());
+        if (partialData.getSexo() != null) {
+            animalExists.setSexo(partialData.getSexo());
         }
 
 
-        int index = repositoryAnimal.findAll().indexOf(animalExistente);
-        repositoryAnimal.update(index, animalExistente);
+        int index = repositoryAnimal.findAll().indexOf(animalExists);
+        repositoryAnimal.update(index, animalExists);
     }
 
     public List<Animal> getAll() {
         return repositoryAnimal.findAll();
     }
 
-    public void update(int id, Animal novosDados) {
-        Animal antigo = repositoryAnimal.findById(id);
-        if (antigo == null) throw new AnimalNotFoundException("404 - ID not found");
+    public void update(int id, Animal newData) {
+        Animal old = repositoryAnimal.findById(id);
+        if (old == null) throw new AnimalNotFoundException("404 - ID not found");
 
-        // Garante que o objeto novo terá o mesmo ID do antigo
-        novosDados.setId(id);
+        // Garante que o objeto novo terá o mesmo ID do old
+        newData.setId(id);
 
-        int index = repositoryAnimal.findAll().indexOf(antigo);
-        repositoryAnimal.update(index, novosDados);
+        int index = repositoryAnimal.findAll().indexOf(old);
+        repositoryAnimal.update(index, newData);
     }
 
     public void delete(int id) {
