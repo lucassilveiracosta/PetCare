@@ -2,43 +2,43 @@ package business.model.prontuario;
 
 public class Anamnesis {
 
-    private String queixaPrincipal;
-    private String restricaoAlimentar;
-    private String descricao;
+    private String mainComplaint;
+    private String dietaryRestriction;
+    private String description;
 
-    public Anamnesis(String queixaPrincipal, String restricaoAlimentar, String descricao) {
-        setQueixaPrincipal(queixaPrincipal);
-        setRestricaoAlimentar(restricaoAlimentar);
-        setDescricao(descricao);
+    public Anamnesis(String mainComplaint, String dietaryRestriction, String description) {
+        setMainComplaint(mainComplaint);
+        setDietaryRestriction(dietaryRestriction);
+        setDescription(description);
     }
 
-    public String getQueixaPrincipal() {
-        return queixaPrincipal;
+    public String getMainComplaint() {
+        return mainComplaint;
     }
 
-    public void setQueixaPrincipal(String queixaPrincipal) {
-        if (queixaPrincipal == null || queixaPrincipal.isBlank()){
-            throw new IllegalArgumentException("A queixa não pode estar em branco ou sem resposta");
+    public void setMainComplaint(String mainComplaint) {
+        if (mainComplaint == null || mainComplaint.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid main complaint");
         }
-        this.queixaPrincipal = queixaPrincipal;
+        this.mainComplaint = mainComplaint;
     }
 
-    public String getRestricaoAlimentar() {
-        return restricaoAlimentar;
+    public String getDietaryRestriction() {
+        return dietaryRestriction;
     }
 
-    public void setRestricaoAlimentar(String restricaoAlimentar) {
-        if (restricaoAlimentar == null || restricaoAlimentar.isBlank()){
-            throw new IllegalArgumentException("A restrição alimentar não pode estar em branco ou sem resposta");
+    public void setDietaryRestriction(String dietaryRestriction) {
+        if (dietaryRestriction == null || dietaryRestriction.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid dietary restriction");
         }
-        this.restricaoAlimentar = restricaoAlimentar;
+        this.dietaryRestriction = dietaryRestriction;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
