@@ -6,10 +6,10 @@ import exceptions.EmailConflictException;
 
 import java.util.ArrayList;
 
-public class RepositorioPessoa implements IRepositoryPerson {
+public class RepositoryPerson implements IRepositoryPerson {
 
     private final ArrayList<Person> pessoas;
-    public RepositorioPessoa(ArrayList<Person> pessoas) {
+    public RepositoryPerson(ArrayList<Person> pessoas) {
         this.pessoas = pessoas;
     }
 

@@ -3,7 +3,7 @@ package gui;
 import business.controller.ControllerPessoa;
 import business.interfaces.IControllerPessoa;
 import business.model.Pessoas.*;
-import data.repository.RepositorioPessoa;
+import data.repository.RepositoryPerson;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Program {
     public static void main(String[] args) {
         
         // 1. Instanciando Repositório e Controller
-        RepositorioPessoa repoPessoa = new RepositorioPessoa(new ArrayList<>());
+        RepositoryPerson repoPessoa = new RepositoryPerson(new ArrayList<>());
         IControllerPessoa controllerPessoa = new ControllerPessoa(repoPessoa);
 
         // 2. Mock de Dados (criando 1 usuário de cada tipo)
