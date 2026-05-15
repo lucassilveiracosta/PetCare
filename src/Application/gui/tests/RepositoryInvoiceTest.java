@@ -25,7 +25,7 @@ public class RepositoryInvoiceTest {
             System.out.println("      (Repositório vazio)");
         } else {
             for (Invoice nf : repository.findAll()) {
-                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getDono().getNome() + " | Qtd Procedimentos: " + nf.getProcedimentos().size() + " | Qtd Produtos: " + nf.getProdutos().size());
+                System.out.println("      - NotaFiscal ID: " + nf.getId() + " | Pagador: " + nf.getOwner().getNome() + " | Qtd Procedimentos: " + nf.getProcedures().size()+ " | Qtd Produtos: " + nf.getProducts().size());
             }
         }
     }
@@ -121,8 +121,8 @@ public class RepositoryInvoiceTest {
                         int idBusca = Integer.parseInt(scanner.nextLine());
                         Invoice encontrada = repository.findById(idBusca);
                         if (encontrada != null) {
-                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getDono().getNome());
-                            System.out.println("      Procedimentos: " + encontrada.getProcedimentos().size() + " | Produtos: " + encontrada.getProdutos().size());
+                            System.out.println("   -> Nota Fiscal encontrada! ID: " + encontrada.getId() + " | Pagador: " + encontrada.getOwner().getNome());
+                            System.out.println("      Procedimentos: " + encontrada.getProcedures().size()+ " | Produtos: " + encontrada.getProducts().size());
                         } else {
                             System.out.println("   -> Nenhuma Nota Fiscal encontrada com o ID " + idBusca);
                         }
@@ -142,7 +142,7 @@ public class RepositoryInvoiceTest {
                         if (nfOriginal != null) {
                             System.out.println("   -> Atualizando Nota Fiscal ID " + nfOriginal.getId() + " mudando o pagador para Maria Oliveira...");
 
-                            Invoice nfAtualizada = new Invoice(dono, nfOriginal.getPaciente(), nfOriginal.getProcedimentos(), nfOriginal.getProdutos());
+                            Invoice nfAtualizada = new Invoice(dono, nfOriginal.getPatient(), nfOriginal.getProcedures(), nfOriginal.getProducts());
 
                             int index = repository.findAll().indexOf(nfOriginal);
 

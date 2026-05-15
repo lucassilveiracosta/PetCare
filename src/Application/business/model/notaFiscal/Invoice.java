@@ -7,72 +7,71 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Invoice {
-    protected static int contadorId = 1;
+    protected static int countId = 1;
 
-    protected int id;
-    private Owner pagador;
-    private Animal paciente;
-    private final LocalDateTime dataHora = LocalDateTime.now();
-    private ArrayList<Procedure> procedimentos;
-    private ArrayList<Product> produtos;
+    protected int id = countId++;
+    private Owner owner;
+    private Animal patient;
+    private final LocalDateTime dateHour = LocalDateTime.now();
+    private ArrayList<Procedure> procedures;
+    private ArrayList<Product> products;
 
-    public Invoice(Owner pagador, Animal paciente, ArrayList<Procedure> procedimentos, ArrayList<Product> produtos) {
-        this.id = contadorId++;
-        setDono(pagador);
-        setPaciente(paciente);
-        this.procedimentos = procedimentos;
-        this.produtos = produtos;
+    public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products) {
+        setDono(owner);
+        setPaciente(patient);
+        this.procedures = procedures;
+        this.products = products;
     }
 
     public int getId() {
         return id;
     }
 
-    public Owner getDono() {
-        return pagador;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setDono(Owner pagador) {
-        if (pagador == null) {
-            throw new IllegalArgumentException("O Responsavel Pagador não pode ser nulo");
+    public void setDono(Owner owner) {
+        if (owner == null) {
+            throw new IllegalArgumentException("400 - Invalid owner");
         }
-        this.pagador = pagador;
+        this.owner = owner;
     }
 
-    public Animal getPaciente() {
-        return paciente;
+    public Animal getPatient() {
+        return patient;
     }
 
-    public void setPaciente(Animal paciente) {
-        if (paciente == null) {
-            throw new IllegalArgumentException("O paciente não pode ser nulo");
+    public void setPaciente(Animal patient) {
+        if (patient == null) {
+            throw new IllegalArgumentException("400 - Invalid patient");
         }
-        this.paciente = paciente;
+        this.patient = patient;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
+    public LocalDateTime getDateHour() {
+        return dateHour;
     }
 
-    public ArrayList<Procedure> getProcedimentos() {
-        return procedimentos;
+    public ArrayList<Procedure> getProcedures() {
+        return procedures;
     }
 
-    public void setProcedimentos(ArrayList<Procedure> procedimentos) {
-        if (procedimentos == null) {
-            throw new IllegalArgumentException("O procedimento não pode ser nulo");
+    public void setProcedures(ArrayList<Procedure> procedures) {
+        if (procedures == null) {
+            throw new IllegalArgumentException("400 - Invalid procedures");
         }
-        this.procedimentos = procedimentos;
+        this.procedures = procedures;
     }
 
-    public ArrayList<Product> getProdutos() {
-        return produtos;
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
-    public void setProdutos(ArrayList<Product> produtos) {
-        if (produtos == null) {
-            throw new IllegalArgumentException("O produto não pode ser nulo");
+    public void setProducts(ArrayList<Product> products) {
+        if (products == null) {
+            throw new IllegalArgumentException("400 - Invalid products");
         }
-        this.produtos = produtos;
+        this.products = products;
     }
 }
