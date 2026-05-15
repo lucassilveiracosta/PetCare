@@ -1,5 +1,5 @@
 package data.interfaces;
-import business.model.notaFiscal.Appointment;
+import business.model.prontuario.Appointment;
 import java.util.ArrayList;
 
 public interface IRepositoryAppointment {

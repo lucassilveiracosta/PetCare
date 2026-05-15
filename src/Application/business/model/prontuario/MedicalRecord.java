@@ -6,22 +6,22 @@ import java.util.ArrayList;
 
 public class MedicalRecord {
 
-    private ArrayList<IdaAoVeterinario> idasAoVeterinario;
+    private ArrayList<Appointment> appointments; // avaliar se se enquadra em consulta
     private Animal animal;
-    private String descricao;
+    private String description;
 
-    public MedicalRecord(ArrayList<IdaAoVeterinario> idasAoVeterinarios, String descricao, Animal animal) {
-        this.idasAoVeterinario = idasAoVeterinarios;
-        this.animal = animal;
-        this.descricao = descricao;
+    public MedicalRecord(ArrayList<Appointment> idasAoVeterinarios, String description, Animal animal) {
+        this.appointments = idasAoVeterinarios;
+        setAnimal(animal);
+        this.description = description;
     }
 
-    public ArrayList<IdaAoVeterinario> getProntuario() {
-        return idasAoVeterinario;
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setProntuario(ArrayList<IdaAoVeterinario> idasAoVeterinarios) {
-        this.idasAoVeterinario = idasAoVeterinarios;
+    public void setAppointments(ArrayList<Appointment> idasAoVeterinarios) {
+        this.appointments = idasAoVeterinarios;
     }
 
     public Animal getAnimal() {
@@ -29,18 +29,19 @@ public class MedicalRecord {
     }
 
     public void setAnimal(Animal animal) {
+        if (animal == null) throw new IllegalArgumentException("400 - Invalid animal");
         this.animal = animal;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public ArrayList<IdaAoVeterinario> getIdasAoVeterinario() {
-        return idasAoVeterinario;
+    public ArrayList<Appointment> getIdasAoVeterinario() {
+        return appointments;
     }
 }

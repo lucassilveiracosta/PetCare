@@ -216,13 +216,13 @@ public class TestE2E {
             );
             PhysicalExamination exame = new PhysicalExamination(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
             Anamnesis anamnese = new Anamnesis("Sem apetite", "Sem restricao", "Consulta de rotina");
-            IdaAoVeterinario ida = new IdaAoVeterinario(hoje, exame, anamnese, "Primeira consulta do ano");
-            ArrayList<IdaAoVeterinario> idas = new ArrayList<>();
+            Appointment ida = new Appointment(hoje, exame, anamnese, "Primeira consulta do ano");
+            ArrayList<Appointment> idas = new ArrayList<>();
             idas.add(ida);
             prontuarioRex = new MedicalRecord(idas, "Prontuario do Rex", rex);
         }
 
-        testar("Criar prontuario com IdaAoVeterinario completa", () -> {
+        testar("Criar prontuario com Appointment completa", () -> {
             assertEquals(1, prontuarioRex.getIdasAoVeterinario().size(), "idas ao vet");
         });
 
@@ -235,7 +235,7 @@ public class TestE2E {
             VitalParameters pv2 = new VitalParameters(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
             PhysicalExamination ex2 = new PhysicalExamination(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
             Anamnesis an2 = new Anamnesis("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
-            IdaAoVeterinario ida2 = new IdaAoVeterinario(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
+            Appointment ida2 = new Appointment(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
             prontuarioRex.getIdasAoVeterinario().add(ida2);
             assertEquals(2, prontuarioRex.getIdasAoVeterinario().size(), "idas ao vet apos retorno");
         });
@@ -259,16 +259,16 @@ public class TestE2E {
                 IllegalArgumentException.class, () ->
                         new PhysicalExamination(Consciencia.ALERTA, null, "descricao"));
 
-        testarExcecao("IdaAoVeterinario sem ExameFisico lanca IllegalArgumentException",
+        testarExcecao("Appointment sem ExameFisico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new IdaAoVeterinario(hoje, null, new Anamnesis("dor", "nenhuma", "desc"), "desc"));
+                        new Appointment(hoje, null, new Anamnesis("dor", "nenhuma", "desc"), "desc"));
 
-        testarExcecao("IdaAoVeterinario sem Anamnese lanca IllegalArgumentException",
+        testarExcecao("Appointment sem Anamnese lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
                     Hydration h = new Hydration(true, null);
                     VitalParameters pv = new VitalParameters(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
                     PhysicalExamination ex = new PhysicalExamination(Consciencia.ALERTA, pv, "ok");
-                    new IdaAoVeterinario(hoje, ex, null, "desc");
+                    new Appointment(hoje, ex, null, "desc");
                 });
 
         // =====================================================================
@@ -278,11 +278,13 @@ public class TestE2E {
 
         Appointment consulta1 = new Appointment(
                 150.0, rex, agora.plusDays(1),
-                "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A"
+                "Consulta de Rotina", vet, "Animal saudavel", "Vitamina A",
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
         Appointment consulta2 = new Appointment(
                 200.0, iguana, agora.plusDays(3),
-                "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma"
+                "Avaliacao Reptiliana", vet, "Analise comportamental", "Nenhuma",
+                new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
         );
 
         testar("Agendar consulta para Rex", () ->
@@ -324,7 +326,8 @@ public class TestE2E {
         testar("Atualizar consulta via patch (novo valor e data)", () -> {
             Appointment consultaAtualizada = new Appointment(
                     175.0, rex, agora.plusDays(2),
-                    "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma"
+                    "Consulta de Revisao", vet, "Revisao pos-tratamento", "Nenhuma",
+                    new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")
             );
             ctrlConsulta.patch(consulta1.getId(), consultaAtualizada);
             // Verifica que a lista ainda tem 2 elementos apos update
@@ -347,15 +350,15 @@ public class TestE2E {
         // ─── Validacoes do modelo Consulta ────────────────────────────────────
         testarExcecao("Veterinario null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", null, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Diagnostico nulo em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc"));
+                        new Appointment(150.0, rex, agora.plusDays(1), "Desc", vet, null, "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         testarExcecao("Paciente null em Consulta lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc"));
+                        new Appointment(150.0, null, agora.plusDays(1), "Desc", vet, "Diag", "Presc", new Anamnesis("Dor de ouvido", "Não", "issoai"), new PhysicalExamination(Consciencia.COMATOSO, new VitalParameters(60, 60, 50.1, Mucosa.PALIDAS, 100, null, "top"), "Tudo tranks")));
 
         // =====================================================================
         //  REQ08 - Cirurgia

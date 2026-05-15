@@ -1,7 +1,7 @@
 package business.interfaces;
 import java.util.ArrayList;
 
-import business.model.notaFiscal.Appointment;
+import business.model.prontuario.Appointment;
 import business.model.notaFiscal.Procedure;
 
 public interface IControllerAppointment {

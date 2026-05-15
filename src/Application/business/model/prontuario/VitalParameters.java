@@ -4,65 +4,65 @@ import enums.Mucosa;
 
 public class VitalParameters {
 
-    private Integer frequenciaCardiaca;
-    private Integer frequenciaRespiratoria;
-    private Double temperaturaCelcius;
-    private Integer coagulacao;
+    private Integer heartRate;
+    private Integer respiratoryRate;
+    private Double celciusTemperature;
+    private Integer coagulation;
     private Mucosa mucosa;
-    private Hydration hidratacao;
-    private String descricao;
+    private Hydration hydration;
+    private String description;
 
-    public VitalParameters(Integer frequenciaCardiaca, Integer frequenciaRespiratoria, Double temperaturaCelcius, Mucosa mucosa, Integer coagulacao, Hydration hidratacao, String descricao) {
-        this.frequenciaCardiaca = frequenciaCardiaca;
-        this.frequenciaRespiratoria = frequenciaRespiratoria;
-        this.temperaturaCelcius = temperaturaCelcius;
+    public VitalParameters(Integer heartRate, Integer respiratoryRate, Double celciusTemperature, Mucosa mucosa, Integer coagulation, Hydration hydration, String description) {
+        this.heartRate = heartRate;
+        this.respiratoryRate = respiratoryRate;
+        this.celciusTemperature = celciusTemperature;
         this.mucosa = mucosa;
-        this.coagulacao = coagulacao;
-        this.hidratacao = hidratacao;
-        setDescricao(descricao);
+        this.coagulation = coagulation;
+        this.hydration = hydration;
+        setDescription(description);
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.isBlank()) {
-            throw new IllegalArgumentException("Descrição não pode ser nula ou ficar em branco");
+    public void setDescription(String description) {
+        if (description == null || description.isBlank()) {
+            throw new IllegalArgumentException("400 - invalid description");
         }
-        this.descricao = descricao;
+        this.description = description;
     }
 
-    public Integer getFrequenciaCardiaca() {
-        return frequenciaCardiaca;
+    public Integer getHeartRate() {
+        return heartRate;
     }
 
-    public void setFrequenciaCardiaca(Integer frequenciaCardiaca) {
-        this.frequenciaCardiaca = frequenciaCardiaca;
+    public void setHeartRate(Integer heartRate) {
+        this.heartRate = heartRate;
     }
 
-    public Integer getFrequenciaRespiratoria() {
-        return frequenciaRespiratoria;
+    public Integer getRespiratoryRate() {
+        return respiratoryRate;
     }
 
-    public void setFrequenciaRespiratoria(Integer frequenciaRespiratoria) {
-        this.frequenciaRespiratoria = frequenciaRespiratoria;
+    public void setRespiratoryRate(Integer respiratoryRate) {
+        this.respiratoryRate = respiratoryRate;
     }
 
-    public Double getTemperaturaCelcius() {
-        return temperaturaCelcius;
+    public Double getCelciusTemperature() {
+        return celciusTemperature;
     }
 
-    public void setTemperaturaCelcius(Double temperaturaCelcius) {
-        this.temperaturaCelcius = temperaturaCelcius;
+    public void setCelciusTemperature(Double celciusTemperature) {
+        this.celciusTemperature = celciusTemperature;
     }
 
-    public Integer getCoagulacao() {
-        return coagulacao;
+    public Integer getCoagulation() {
+        return coagulation;
     }
 
-    public void setCoagulacao(Integer coagulacao) {
-        this.coagulacao = coagulacao;
+    public void setCoagulation(Integer coagulation) {
+        this.coagulation = coagulation;
     }
 
     public Mucosa getMucosa() {
@@ -73,11 +73,11 @@ public class VitalParameters {
         this.mucosa = mucosa;
     }
 
-    public Hydration getHidratacao() {
-        return hidratacao;
+    public Hydration getHydration() {
+        return hydration;
     }
 
-    public void setHidratacao(Hydration hidratacao) {
-        this.hidratacao = hidratacao;
+    public void setHydration(Hydration hydration) {
+        this.hydration = hydration;
     }
 }

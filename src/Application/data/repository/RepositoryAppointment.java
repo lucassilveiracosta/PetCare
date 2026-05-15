@@ -1,7 +1,7 @@
 package data.repository;
 
 
-import business.model.notaFiscal.Appointment;
+import business.model.prontuario.Appointment;
 import data.interfaces.IRepositoryAppointment;
 
 import java.util.ArrayList;

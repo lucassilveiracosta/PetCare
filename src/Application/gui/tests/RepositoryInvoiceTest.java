@@ -7,6 +7,10 @@ import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
 import business.model.notaFiscal.*;
+import business.model.prontuario.Anamnesis;
+import business.model.prontuario.Appointment;
+import business.model.prontuario.PhysicalExamination;
+import business.model.prontuario.VitalParameters;
 import data.interfaces.IRepositoryInvoice;
 import data.repository.RepositoryInvoice;
 import enums.*;
@@ -54,9 +58,13 @@ public class RepositoryInvoiceTest {
         Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
         Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono2, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
 
+        Anamnesis anamnesis = new Anamnesis("Dor do ouvido", "Carnivoro", "Isso ai");
+        VitalParameters vitalParameters = new VitalParameters(60, 40, 35.1, Mucosa.PALIDAS, 100, null, "Todo bom");
+        PhysicalExamination physicalExamination = new PhysicalExamination(Consciencia.COMATOSO, vitalParameters, "Tudo tranquilo");
+
         ArrayList<Procedure> procedimentos1 = new ArrayList<>();
-        procedimentos1.add(new Appointment(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente"));
-        procedimentos1.add(new Appointment(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente"));
+        procedimentos1.add(new Appointment(150.0, animal1, dataHora, "Consulta de Rotina", veterinario,"Teste", "O animal está doente", anamnesis, physicalExamination));
+        procedimentos1.add(new Appointment(80.0, animal1, dataHora, "Vacinação Anual", veterinario, "Teste", "O animal está doente", anamnesis, physicalExamination));
         ArrayList<Product> produtos1 = new ArrayList<>();
         produtos1.add(new Product(3, "Ração Premium 15kg", 200.0));
         produtos1.add(new Product(2, "Brinquedo de Borracha", 35.0));
@@ -101,7 +109,7 @@ public class RepositoryInvoiceTest {
                 case 1:
                     System.out.println("\n[AÇÃO] Adicionando uma nova Nota Fiscal...");
                     ArrayList<Procedure> novosProc = new ArrayList<>();
-                    novosProc.add(new Appointment(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado" ));
+                    novosProc.add(new Appointment(200.0, animal1, dataHora, "Limpeza de Tártaro", veterinario, "Diagnostico", "Testado", anamnesis, physicalExamination));
                     ArrayList<Product> novosProd = new ArrayList<>();
                     novosProd.add(new Product(1, "Shampoo Pet", 45.0));
                     Invoice novaNf = new Invoice(dono3, animal3, novosProc, novosProd);

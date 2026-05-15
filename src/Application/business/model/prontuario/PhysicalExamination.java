@@ -20,7 +20,7 @@ public class PhysicalExamination {
 
     public void setLevelOfConsciousness(Consciencia levelOfConsciousness) {
         if (levelOfConsciousness == null) {
-            throw new IllegalArgumentException("Deve ser preenchido um nivel de consciencia!");
+            throw new IllegalArgumentException("400 - Invalid level of consciousness");
         }
         this.levelOfConsciousness = levelOfConsciousness;
     }
@@ -31,7 +31,7 @@ public class PhysicalExamination {
 
     public void setVitalParameters(VitalParameters vitalParameters) {
         if (vitalParameters == null) {
-            throw new IllegalArgumentException("Deve ser preenchido os parametros vitais!");
+            throw new IllegalArgumentException("400 - Invalid vital parameters");
         }
         this.vitalParameters = vitalParameters;
     }
@@ -42,7 +42,7 @@ public class PhysicalExamination {
 
     public void setDescription(String description) {
         if (description == null || description.isBlank()) {
-            throw new IllegalArgumentException("A descrição não pode ser nula ou ficar em branco!");
+            throw new IllegalArgumentException("400 - Invalid description");
         }
         this.description = description;
     }

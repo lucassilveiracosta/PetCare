@@ -1,23 +1,50 @@
-package business.model.notaFiscal;
+package business.model.prontuario;
 
 
 
 import business.model.Pessoas.Veterinarian;
 import business.model.animal.Animal;
+import business.model.notaFiscal.Procedure;
 
 import java.time.LocalDateTime;
 
 public class Appointment extends Procedure {
     private Veterinarian responsableVeterinarian;
     private String diagnosis;
+    private Anamnesis anamnesis;
+    private PhysicalExamination phisicalExam;
     private String medicalPrescription;
 
-    public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsableVeterinarian, String diagnosis, String medicalPrescription) {
+    public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsableVeterinarian, String diagnosis, String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam) {
         super(price, patient, dateHour, description);
         setDiagnosis(diagnosis);
         setResponsableVeterinarian(responsableVeterinarian);
         setMedicalPrescription(medicalPrescription);
+        setAnamnesis(anamnesis);
+        setPhisicalExam(phisicalExam);
 
+    }
+
+    public Anamnesis getAnamnesis() {
+        return anamnesis;
+    }
+
+    public void setAnamnesis(Anamnesis anamnesis) {
+        if (anamnesis == null) {
+            throw new IllegalArgumentException("400 - Invalid anamnesis");
+        }
+        this.anamnesis = anamnesis;
+    }
+
+    public PhysicalExamination getPhisicalExam() {
+        return phisicalExam;
+    }
+
+    public void setPhisicalExam(PhysicalExamination phisicalExam) {
+        if (phisicalExam == null) {
+            throw new IllegalArgumentException("400 - Invalid physical exam");
+        }
+        this.phisicalExam = phisicalExam;
     }
 
     public Veterinarian getResponsableVeterinarian() {

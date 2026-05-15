@@ -1,7 +1,7 @@
 package business.controller;
 
 import business.interfaces.IControllerAppointment;
-import business.model.notaFiscal.Appointment;
+import business.model.prontuario.Appointment;
 import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
