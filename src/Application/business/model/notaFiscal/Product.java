@@ -3,8 +3,8 @@ package business.model.notaFiscal;
 
 public class Product {
 
-    private static int contador_id = 1;
-    private int id = contador_id++;
+    private static int count_id = 1;
+    private int id = count_id++;
     private Integer quantity;
     private String description;
     private Double price;
