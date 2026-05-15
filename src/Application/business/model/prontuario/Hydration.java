@@ -1,11 +1,11 @@
 package business.model.prontuario;
 
-public class Hidratacao {
+public class Hydration {
 
     private boolean euvolemico;
     private Double desitratacao;
 
-    public Hidratacao(boolean euvolemico, Double desitratacao) {
+    public Hydration(boolean euvolemico, Double desitratacao) {
         this.euvolemico = euvolemico;
         if(euvolemico) {
             this.desitratacao = null;

@@ -1,6 +1,6 @@
 package business.model.notaFiscal;
 
-import business.model.Pessoas.Dono;
+import business.model.Pessoas.Owner;
 import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
@@ -10,13 +10,13 @@ public class Invoice {
     protected static int contadorId = 1;
 
     protected int id;
-    private Dono pagador;
+    private Owner pagador;
     private Animal paciente;
     private final LocalDateTime dataHora = LocalDateTime.now();
     private ArrayList<Procedure> procedimentos;
     private ArrayList<Product> produtos;
 
-    public Invoice(Dono pagador, Animal paciente, ArrayList<Procedure> procedimentos, ArrayList<Product> produtos) {
+    public Invoice(Owner pagador, Animal paciente, ArrayList<Procedure> procedimentos, ArrayList<Product> produtos) {
         this.id = contadorId++;
         setDono(pagador);
         setPaciente(paciente);
@@ -28,11 +28,11 @@ public class Invoice {
         return id;
     }
 
-    public Dono getDono() {
+    public Owner getDono() {
         return pagador;
     }
 
-    public void setDono(Dono pagador) {
+    public void setDono(Owner pagador) {
         if (pagador == null) {
             throw new IllegalArgumentException("O Responsavel Pagador não pode ser nulo");
         }

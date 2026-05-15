@@ -1,6 +1,6 @@
 package business.model.notaFiscal;
 
-import business.model.Pessoas.Funcionario;
+import business.model.Pessoas.Employee;
 import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 public class ServicoPetShop extends Procedure {
     private String tipoServico;
     private String pelagem;
-    private Funcionario funcionarioResponsavel;
+    private Employee funcionarioResponsavel;
 
-    public ServicoPetShop(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, String tipoServico, String pelagem, Funcionario funcionarioResponsavel){
+    public ServicoPetShop(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, String tipoServico, String pelagem, Employee funcionarioResponsavel){
         super(preco, paciente, dataHora, descricao);
         setPelagem(pelagem);
         setTipoServico(tipoServico);
@@ -40,11 +40,11 @@ public class ServicoPetShop extends Procedure {
         this.tipoServico = tipoServico;
     }
 
-    public Funcionario getFuncionarioResponsavel() {
+    public Employee getFuncionarioResponsavel() {
         return funcionarioResponsavel;
     }
 
-    public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
+    public void setFuncionarioResponsavel(Employee funcionarioResponsavel) {
         if(funcionarioResponsavel == null){
             throw new IllegalArgumentException("Funcionário responsável não pode ser nulo!");
         }

@@ -2,17 +2,17 @@ package business.model.notaFiscal;
 
 
 
-import business.model.Pessoas.Veterinario;
+import business.model.Pessoas.Veterinarian;
 import business.model.animal.Animal;
 
 import java.time.LocalDateTime;
 
 public class Appointment extends Procedure {
-    private Veterinario veterinarioResponsavel;
+    private Veterinarian veterinarioResponsavel;
     private String diagnostico;
     private String prescricaoMedica;
 
-    public Appointment(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinario veterinarioResponsavel, String diagnostico, String prescricaoMedica) {
+    public Appointment(Double preco, Animal paciente, LocalDateTime dataHora, String descricao, Veterinarian veterinarioResponsavel, String diagnostico, String prescricaoMedica) {
         super(preco, paciente, dataHora, descricao);
         setDiagnostico(diagnostico);
         setVeterinarioResponsavel(veterinarioResponsavel);
@@ -20,11 +20,11 @@ public class Appointment extends Procedure {
 
     }
 
-    public Veterinario getVeterinarioResponsavel() {
+    public Veterinarian getVeterinarioResponsavel() {
         return veterinarioResponsavel;
     }
 
-    public void setVeterinarioResponsavel(Veterinario veterinarioResponsavel) {
+    public void setVeterinarioResponsavel(Veterinarian veterinarioResponsavel) {
         if(veterinarioResponsavel == null){
             throw new IllegalArgumentException("Veterinario Responsável não pode ser nulo!");
         }

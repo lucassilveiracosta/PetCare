@@ -9,7 +9,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.time.LocalDate;
 
 // Classe abstrata pessoa
-public abstract class Pessoa implements IRepositoryPerson {
+public abstract class Person implements IRepositoryPerson {
 
     protected static int contadorId = 1;
 
@@ -23,7 +23,7 @@ public abstract class Pessoa implements IRepositoryPerson {
     protected IRepositoryPerson repositoryPerson;
 
     // Construtor de pessoa
-    public Pessoa(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone){
+    public Person(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone){
         this.id = contadorId++; // pensei nessa forma de passar o Id
         setNome(nome);
         setEmail(email);
@@ -95,7 +95,7 @@ public abstract class Pessoa implements IRepositoryPerson {
         EmailValidator validator = EmailValidator.getInstance();
         if (!validator.isValid(email)) throw new EmailFormatException("Email must be in email format");
 
-        Pessoa pessoa = repositoryPerson.findByEmail(email);
+        Person pessoa = repositoryPerson.findByEmail(email);
         if (pessoa != null) throw new EmailConflictException("409 - This email already exists");
 
         this.email = email;

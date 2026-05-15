@@ -1,7 +1,7 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Pessoa;
+import business.model.Pessoas.Person;
 import enums.TypePerson;
 import exceptions.WrongPasswordOrEmailException;
 
@@ -31,7 +31,7 @@ public class LoginUI {
                 System.out.print("Senha: ");
                 String password = scanner.nextLine();
 
-                Pessoa pessoaLogada = loginService.logar(email, password);
+                Person pessoaLogada = loginService.logar(email, password);
                 TypePerson tipo = loginService.loginPersonType(pessoaLogada);
 
                 System.out.println("\nLogin efetuado com sucesso!");

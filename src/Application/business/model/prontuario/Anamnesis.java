@@ -1,12 +1,12 @@
 package business.model.prontuario;
 
-public class Anamnese {
+public class Anamnesis {
 
     private String queixaPrincipal;
     private String restricaoAlimentar;
     private String descricao;
 
-    public Anamnese(String queixaPrincipal, String restricaoAlimentar, String descricao) {
+    public Anamnesis(String queixaPrincipal, String restricaoAlimentar, String descricao) {
         setQueixaPrincipal(queixaPrincipal);
         setRestricaoAlimentar(restricaoAlimentar);
         setDescricao(descricao);

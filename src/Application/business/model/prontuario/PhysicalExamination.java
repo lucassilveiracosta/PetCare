@@ -2,13 +2,13 @@ package business.model.prontuario;
 
 import enums.Consciencia;
 
-public class ExameFisico {
+public class PhysicalExamination {
 
     private Consciencia nivelDeConsciencia;
     private ParametrosVitais parametrosVitais;
     private String descricao;
 
-    public ExameFisico(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
+    public PhysicalExamination(Consciencia nivelDeConsciencia, ParametrosVitais parametrosVitais, String descricao) {
         setNivelDeConsciencia(nivelDeConsciencia);
         setParametrosVitais(parametrosVitais);
         setDescricao(descricao);

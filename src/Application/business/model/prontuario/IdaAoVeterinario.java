@@ -5,11 +5,11 @@ import java.time.LocalDate;
 public class IdaAoVeterinario {
 
     private LocalDate dataDePresenca;
-    private Anamnese anamnese;
-    private ExameFisico exameFisico;
+    private Anamnesis anamnese;
+    private PhysicalExamination exameFisico;
     private String descricao;
 
-    public IdaAoVeterinario(LocalDate dataDePresenca, ExameFisico exameFisico, Anamnese anamnese, String descricao) {
+    public IdaAoVeterinario(LocalDate dataDePresenca, PhysicalExamination exameFisico, Anamnesis anamnese, String descricao) {
         this.dataDePresenca = dataDePresenca;
         setExameFisico(exameFisico);
         setAnamnese(anamnese);
@@ -24,22 +24,22 @@ public class IdaAoVeterinario {
         this.dataDePresenca = dataDePresenca;
     }
 
-    public Anamnese getAnamnese() {
+    public Anamnesis getAnamnese() {
         return anamnese;
     }
 
-    public void setAnamnese(Anamnese anamnese) {
+    public void setAnamnese(Anamnesis anamnese) {
         if (anamnese == null) {
             throw new IllegalArgumentException("Anamnese não pode ser nula");
         }
         this.anamnese = anamnese;
     }
 
-    public ExameFisico getExameFisico() {
+    public PhysicalExamination getExameFisico() {
         return exameFisico;
     }
 
-    public void setExameFisico(ExameFisico exameFisico) {
+    public void setExameFisico(PhysicalExamination exameFisico) {
         if (exameFisico == null) {
             throw new IllegalArgumentException("Exame físico não pode ser nulo");
         }

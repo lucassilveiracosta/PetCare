@@ -4,18 +4,18 @@ import enums.Porte;
 import enums.Sexo;
 import enums.Temperamento;
 import enums.FaseDaVida;
-import business.model.Pessoas.Dono;
+import business.model.Pessoas.Owner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DomesticAnimal extends Animal {
-    private Dono owner;
+    private Owner owner;
     private boolean castrated;
     private ArrayList<Vaccine> vaccines;
     private Temperamento temperament;
 
-    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Dono owner, ArrayList<Vaccine> vaccines, Temperamento temperament, boolean castrated) {
+    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, FaseDaVida stageOfLife, Double weight, Porte size, Sexo sex, Owner owner, ArrayList<Vaccine> vaccines, Temperamento temperament, boolean castrated) {
         super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex);
         setOwner(owner);
         setVaccines(vaccines);
@@ -23,11 +23,11 @@ public class DomesticAnimal extends Animal {
         setCastrated(castrated);
     }
 
-    public Dono getOwner() {
+    public Owner getOwner() {
         return owner;
     }
 
-    public void setOwner(Dono owner) {
+    public void setOwner(Owner owner) {
         if(owner == null ){
             throw new IllegalArgumentException("400 - Invalid owner");
         }

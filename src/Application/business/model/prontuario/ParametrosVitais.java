@@ -9,10 +9,10 @@ public class ParametrosVitais {
     private Double temperaturaCelcius;
     private Integer coagulacao;
     private Mucosa mucosa;
-    private Hidratacao hidratacao;
+    private Hydration hidratacao;
     private String descricao;
 
-    public ParametrosVitais(Integer frequenciaCardiaca, Integer frequenciaRespiratoria, Double temperaturaCelcius, Mucosa mucosa, Integer coagulacao, Hidratacao hidratacao, String descricao) {
+    public ParametrosVitais(Integer frequenciaCardiaca, Integer frequenciaRespiratoria, Double temperaturaCelcius, Mucosa mucosa, Integer coagulacao, Hydration hidratacao, String descricao) {
         this.frequenciaCardiaca = frequenciaCardiaca;
         this.frequenciaRespiratoria = frequenciaRespiratoria;
         this.temperaturaCelcius = temperaturaCelcius;
@@ -73,11 +73,11 @@ public class ParametrosVitais {
         this.mucosa = mucosa;
     }
 
-    public Hidratacao getHidratacao() {
+    public Hydration getHidratacao() {
         return hidratacao;
     }
 
-    public void setHidratacao(Hidratacao hidratacao) {
+    public void setHidratacao(Hydration hidratacao) {
         this.hidratacao = hidratacao;
     }
 }

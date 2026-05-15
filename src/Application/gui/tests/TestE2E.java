@@ -53,14 +53,14 @@ public class TestE2E {
         LocalDate hoje = LocalDate.now();
         LocalDateTime agora = LocalDateTime.now();
 
-        Dono dono = new Dono(
+        Owner dono = new Owner(
                 "Carlos Silva", "carlos@petcare.com", "senha123",
                 hoje.minusYears(35), "11122233344", "81999990000",
                 "Engenheiro", "Dono responsável"
         );
-        ArrayList<Especialidade> especialidades = new ArrayList<>();
-        especialidades.add(new Especialidade("Clinica Geral", "Atendimento geral"));
-        Veterinario vet = new Veterinario(
+        ArrayList<Specialty> especialidades = new ArrayList<>();
+        especialidades.add(new Specialty("Clinica Geral", "Atendimento geral"));
+        Veterinarian vet = new Veterinarian(
                 "Dra. Ana Lima", "ana@petcare.com", "senha456",
                 hoje.minusYears(40), "99988877700", "81888880000",
                 "CRMV-PE-1234", especialidades
@@ -208,18 +208,18 @@ public class TestE2E {
         // =====================================================================
         secao("REQ03 - Prontuario Medico");
 
-        Prontuario prontuarioRex;
+        MedicalRecord prontuarioRex;
         {
-            Hidratacao hidratacao = new Hidratacao(true, null);
+            Hydration hidratacao = new Hydration(true, null);
             ParametrosVitais parametros = new ParametrosVitais(
                     80, 20, 38.5, Mucosa.NORMACORADAS, 5, hidratacao, "Parametros normais"
             );
-            ExameFisico exame = new ExameFisico(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
-            Anamnese anamnese = new Anamnese("Sem apetite", "Sem restricao", "Consulta de rotina");
+            PhysicalExamination exame = new PhysicalExamination(Consciencia.ALERTA, parametros, "Animal responsivo e alerta");
+            Anamnesis anamnese = new Anamnesis("Sem apetite", "Sem restricao", "Consulta de rotina");
             IdaAoVeterinario ida = new IdaAoVeterinario(hoje, exame, anamnese, "Primeira consulta do ano");
             ArrayList<IdaAoVeterinario> idas = new ArrayList<>();
             idas.add(ida);
-            prontuarioRex = new Prontuario(idas, "Prontuario do Rex", rex);
+            prontuarioRex = new MedicalRecord(idas, "Prontuario do Rex", rex);
         }
 
         testar("Criar prontuario com IdaAoVeterinario completa", () -> {
@@ -231,10 +231,10 @@ public class TestE2E {
         });
 
         testar("Adicionar segunda consulta ao prontuario", () -> {
-            Hidratacao h2 = new Hidratacao(false, 5.0);
+            Hydration h2 = new Hydration(false, 5.0);
             ParametrosVitais pv2 = new ParametrosVitais(95, 28, 39.2, Mucosa.PALIDAS, 4, h2, "Leve desidratacao");
-            ExameFisico ex2 = new ExameFisico(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
-            Anamnese an2 = new Anamnese("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
+            PhysicalExamination ex2 = new PhysicalExamination(Consciencia.APATICO, pv2, "Animal apático, desidratacao leve");
+            Anamnesis an2 = new Anamnesis("Vomitos frequentes", "Dieta leve recomendada", "Retorno apos tratamento");
             IdaAoVeterinario ida2 = new IdaAoVeterinario(hoje.plusDays(7), ex2, an2, "Retorno em 7 dias");
             prontuarioRex.getIdasAoVeterinario().add(ida2);
             assertEquals(2, prontuarioRex.getIdasAoVeterinario().size(), "idas ao vet apos retorno");
@@ -242,32 +242,32 @@ public class TestE2E {
 
         testarExcecao("Anamnese com queixa nula lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Anamnese(null, "Sem restricao", "descricao"));
+                        new Anamnesis(null, "Sem restricao", "descricao"));
 
         testarExcecao("Anamnese com restricao nula lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Anamnese("Dor", null, "descricao"));
+                        new Anamnesis("Dor", null, "descricao"));
 
         testarExcecao("ExameFisico sem nivel de consciencia lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
-                    Hidratacao h = new Hidratacao(true, null);
+                    Hydration h = new Hydration(true, null);
                     ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
-                    new ExameFisico(null, pv, "descricao");
+                    new PhysicalExamination(null, pv, "descricao");
                 });
 
         testarExcecao("ExameFisico sem parametros vitais lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new ExameFisico(Consciencia.ALERTA, null, "descricao"));
+                        new PhysicalExamination(Consciencia.ALERTA, null, "descricao"));
 
         testarExcecao("IdaAoVeterinario sem ExameFisico lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new IdaAoVeterinario(hoje, null, new Anamnese("dor", "nenhuma", "desc"), "desc"));
+                        new IdaAoVeterinario(hoje, null, new Anamnesis("dor", "nenhuma", "desc"), "desc"));
 
         testarExcecao("IdaAoVeterinario sem Anamnese lanca IllegalArgumentException",
                 IllegalArgumentException.class, () -> {
-                    Hidratacao h = new Hidratacao(true, null);
+                    Hydration h = new Hydration(true, null);
                     ParametrosVitais pv = new ParametrosVitais(80, 20, 38.5, Mucosa.NORMACORADAS, 5, h, "ok");
-                    ExameFisico ex = new ExameFisico(Consciencia.ALERTA, pv, "ok");
+                    PhysicalExamination ex = new PhysicalExamination(Consciencia.ALERTA, pv, "ok");
                     new IdaAoVeterinario(hoje, ex, null, "desc");
                 });
 
@@ -490,7 +490,7 @@ public class TestE2E {
         // =====================================================================
         secao("REQ09/REQ11 - Emissao de Nota Fiscal");
 
-        Dono pagador = new Dono(
+        Owner pagador = new Owner(
                 "Carlos Silva", "pagador@petcare.com", "senha789",
                 hoje.minusYears(35), "11122233344", "81999990001",
                 "Engenheiro", "Responsavel financeiro"
@@ -591,7 +591,7 @@ public class TestE2E {
         secao("CRUD de Pessoas - Consultas e Exclusao");
 
         testar("Buscar dono por email valido", () -> {
-            Pessoa p = ctrlPessoa.getByEmail("carlos@petcare.com");
+            Person p = ctrlPessoa.getByEmail("carlos@petcare.com");
             assertEquals("Carlos Silva", p.getNome(), "nome da pessoa por email");
         });
 
@@ -599,7 +599,7 @@ public class TestE2E {
                 assertEquals(2, ctrlPessoa.getAll().size(), "total de pessoas"));
 
         testar("Buscar pessoa por ID retorna objeto correto", () -> {
-            Pessoa p = ctrlPessoa.getById(dono.getId());
+            Person p = ctrlPessoa.getById(dono.getId());
             assertEquals("Carlos Silva", p.getNome(), "nome por ID");
         });
 
@@ -608,7 +608,7 @@ public class TestE2E {
         // O teste valida o comportamento REAL (EmailNotFoundException) para documentar o bug.
         testarExcecao("[BUG] Email duplicado lanca EmailNotFoundException (deveria ser EmailConflictException)",
                 EmailNotFoundException.class, () -> {
-                    Dono duplicado = new Dono(
+                    Owner duplicado = new Owner(
                             "Carlos Outro", "carlos@petcare.com", "senha123",
                             hoje.minusYears(30), "99999999999", "81900000000",
                             "Dev", "Desc"
@@ -652,28 +652,28 @@ public class TestE2E {
 
         testarExcecao("Nome null em Dono lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Dono(null, "t@petcare.com", "senha123", hoje.minusYears(30),
+                        new Owner(null, "t@petcare.com", "senha123", hoje.minusYears(30),
                                 "00000000000", "81900000000", "Dev", "Desc"));
 
         // [BUG] Validacao de password: limite e < 7 mas mensagem diz "8 or more"
         testarExcecao("[BUG] Senha curta (6 chars) lanca PasswordException",
                 PasswordException.class, () ->
-                        new Dono("Teste", "t2@petcare.com", "abc123", hoje.minusYears(30),
+                        new Owner("Teste", "t2@petcare.com", "abc123", hoje.minusYears(30),
                                 "00000000001", "81900000001", "Dev", "Desc"));
 
         testarExcecao("CPF nulo em Dono lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Dono("Teste", "t3@petcare.com", "senha123", hoje.minusYears(30),
+                        new Owner("Teste", "t3@petcare.com", "senha123", hoje.minusYears(30),
                                 null, "81900000002", "Dev", "Desc"));
 
         testarExcecao("CRMV vazio em Veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Veterinario("Vet", "v@petcare.com", "senha123", hoje.minusYears(35),
+                        new Veterinarian("Vet", "v@petcare.com", "senha123", hoje.minusYears(35),
                                 "11111111111", "81900000003", "", new ArrayList<>()));
 
         testarExcecao("Especialidades null em Veterinario lanca IllegalArgumentException",
                 IllegalArgumentException.class, () ->
-                        new Veterinario("Vet", "v2@petcare.com", "senha123", hoje.minusYears(35),
+                        new Veterinarian("Vet", "v2@petcare.com", "senha123", hoje.minusYears(35),
                                 "22222222222", "81900000004", "CRMV-001", null));
 
         // =====================================================================

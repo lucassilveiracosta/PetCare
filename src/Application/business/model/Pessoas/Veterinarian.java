@@ -3,12 +3,12 @@ package business.model.Pessoas;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Veterinario extends Pessoa {
+public class Veterinarian extends Person {
     private String crmv;
-    private ArrayList<Especialidade> especialidades;
+    private ArrayList<Specialty> especialidades;
 
 
-    public Veterinario(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String crmv, ArrayList<Especialidade> especialidades){
+    public Veterinarian(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String crmv, ArrayList<Specialty> especialidades){
         super(nome, email, password, dataNascimento, cpf, telefone);
         setCrmv(crmv);
         setEspecialidades(especialidades);
@@ -25,11 +25,11 @@ public class Veterinario extends Pessoa {
         this.crmv = crmv;
     }
 
-    public ArrayList<Especialidade> getEspecialidades() {
+    public ArrayList<Specialty> getEspecialidades() {
         return especialidades;
     }
 
-    public void setEspecialidades(ArrayList<Especialidade> especialidades) {
+    public void setEspecialidades(ArrayList<Specialty> especialidades) {
         if(especialidades == null){
             throw new IllegalArgumentException("A lista não pode ser nula! Se não houver especialidades, passe uma lista vazia.");
 

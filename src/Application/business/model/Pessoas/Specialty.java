@@ -1,10 +1,10 @@
 package business.model.Pessoas;
 
-public class Especialidade {
+public class Specialty {
     private String nome;
     private String descricao;
 
-    public Especialidade(String nome, String descricao) {
+    public Specialty(String nome, String descricao) {
         setNome(nome);
         this.descricao = descricao;
     }

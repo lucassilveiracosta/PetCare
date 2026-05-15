@@ -4,13 +4,13 @@ import business.model.animal.Animal;
 
 import java.util.ArrayList;
 
-public class Prontuario {
+public class MedicalRecord {
 
     private ArrayList<IdaAoVeterinario> idasAoVeterinario;
     private Animal animal;
     private String descricao;
 
-    public Prontuario(ArrayList<IdaAoVeterinario> idasAoVeterinarios, String descricao, Animal animal) {
+    public MedicalRecord(ArrayList<IdaAoVeterinario> idasAoVeterinarios, String descricao, Animal animal) {
         this.idasAoVeterinario = idasAoVeterinarios;
         this.animal = animal;
         this.descricao = descricao;

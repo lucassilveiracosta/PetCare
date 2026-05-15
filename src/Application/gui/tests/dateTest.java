@@ -1,8 +1,8 @@
 package gui.tests;
 
 import enums.*;
-import business.model.Pessoas.Dono;
-import business.model.Pessoas.Pessoa;
+import business.model.Pessoas.Owner;
+import business.model.Pessoas.Person;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
@@ -22,21 +22,21 @@ public class dateTest {
         LocalDate date = LocalDate.parse(sc.next(), fmt); // ----> trecho de codigo para receber uma data no formato dd/MM/yyyy
         System.out.println(date);
 
-        Pessoa donoTeste = new Dono("Laercio", "laercio@gmail.com", "larceio123", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
+        Person donoTeste = new Owner("Laercio", "laercio@gmail.com", "larceio123", date.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
 
         ArrayList<Vaccine> vacinas = new ArrayList<>();
         vacinas.add(new Vaccine("Covid", date.minusDays(5),"Não se queixou"));
-        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Dono) donoTeste), vacinas, Temperamento.DOCIL, true );
+        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date.minusYears(2), FaseDaVida.ADULTO, 20.0, Porte.GIGANTE, Sexo.MACHO, ((Owner) donoTeste), vacinas, Temperamento.DOCIL, true );
 
 
-        Hidratacao hidratacao = new Hidratacao(true,null);
+        Hydration hidratacao = new Hydration(true,null);
         ParametrosVitais parametrosVitais = new ParametrosVitais(50, 60, 34.3, Mucosa.NORMACORADAS, 50, hidratacao, "Paramtros estão normais");
-        ExameFisico exameFisico = new ExameFisico(Consciencia.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
-        Anamnese anamnese = new Anamnese("Dor no ouvido", "Nenhuma", "Suspeita de ...");
+        PhysicalExamination exameFisico = new PhysicalExamination(Consciencia.ALERTA, parametrosVitais, "O animal se mostrou muito alerta");
+        Anamnesis anamnese = new Anamnesis("Dor no ouvido", "Nenhuma", "Suspeita de ...");
         IdaAoVeterinario idaAoVeterinario = new IdaAoVeterinario(date, exameFisico, anamnese, "Foi um alarme falso, apenas uma dor temporaria");
         ArrayList<IdaAoVeterinario> idasAoVeterinario = new ArrayList<>();
         idasAoVeterinario.add(idaAoVeterinario);
-        Prontuario prontuario = new Prontuario(idasAoVeterinario, "Compareceu uma vez", animalTeste);
+        MedicalRecord prontuario = new MedicalRecord(idasAoVeterinario, "Compareceu uma vez", animalTeste);
 
         // --- Início dos Prints de Teste ---
         System.out.println("--- RELATÓRIO DO PRONTUÁRIO ---");

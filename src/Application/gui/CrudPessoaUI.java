@@ -1,7 +1,7 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Pessoa;
+import business.model.Pessoas.Person;
 
 import java.util.List;
 import java.util.Scanner;
@@ -45,12 +45,12 @@ public class CrudPessoaUI {
     }
 
     private void listarPessoas() {
-        List<Pessoa> pessoas = controllerPessoa.getAll();
+        List<Person> pessoas = controllerPessoa.getAll();
         System.out.println("\n-- Usuários Cadastrados --");
         if (pessoas.isEmpty()) {
             System.out.println("Nenhum usuário cadastrado.");
         } else {
-            for (Pessoa p : pessoas) {
+            for (Person p : pessoas) {
                 System.out.println("ID [" + p.getId() + "] " + p.getNome() + " | Email: " + p.getEmail());
             }
         }
@@ -60,7 +60,7 @@ public class CrudPessoaUI {
         System.out.print("\nDigite o ID do usuário: ");
         try {
             int id = Integer.parseInt(scanner.nextLine());
-            Pessoa p = controllerPessoa.getById(id);
+            Person p = controllerPessoa.getById(id);
             if (p != null) {
                 System.out.println("Usuário encontrado: " + p.getNome() + " (" + p.getEmail() + ")");
                 System.out.println("Telefone: " + p.getTelefone());

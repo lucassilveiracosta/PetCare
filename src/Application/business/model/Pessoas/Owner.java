@@ -2,11 +2,11 @@ package business.model.Pessoas;
 
 import java.time.LocalDate;
 
-public class Dono extends Pessoa {
+public class Owner extends Person {
     private String profissao;
     private String descricao;
 
-    public Dono(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
+    public Owner(String nome, String email, String password, LocalDate dataNascimento, String cpf, String telefone, String profissao, String descricao){
         super(nome, email, password, dataNascimento, cpf, telefone);
         setProfissao(profissao);
         setDescricao(descricao);

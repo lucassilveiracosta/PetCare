@@ -1,8 +1,8 @@
 package gui.tests;
 
-import business.model.Pessoas.Dono;
-import business.model.Pessoas.Especialidade;
-import business.model.Pessoas.Veterinario;
+import business.model.Pessoas.Owner;
+import business.model.Pessoas.Specialty;
+import business.model.Pessoas.Veterinarian;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
@@ -43,12 +43,12 @@ public class RepositoryInvoiceTest {
         LocalDateTime dataHora = LocalDateTime.now();
 
 
-        ArrayList<Especialidade> especialidades1 = new ArrayList<>();
-        Veterinario veterinario = new Veterinario("Jorge", "jorge@gmail.com", "jorgecookies", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
-        Dono dono = new Dono("João Silva","joao@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
-        Dono dono1 = new Dono("Lucas Costa","lucas@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
-        Dono dono2 = new Dono("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
-        Dono dono3 = new Dono("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        ArrayList<Specialty> especialidades1 = new ArrayList<>();
+        Veterinarian veterinario = new Veterinarian("Jorge", "jorge@gmail.com", "jorgecookies", data.minusYears(30), "12345678900", "8199999999", "Testado", especialidades1);
+        Owner dono = new Owner("João Silva","joao@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Owner dono1 = new Owner("Lucas Costa","lucas@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Owner dono2 = new Owner("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
+        Owner dono3 = new Owner("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
 
         Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), FaseDaVida.ADULTO, 15.0, Porte.MEDIO, Sexo.MACHO, dono, new ArrayList<Vaccine>(), Temperamento.DOCIL, true);
         Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), FaseDaVida.RECEMNASCIDO, 4.0, Porte.PEQUENO, Sexo.FEMEA, dono1, new ArrayList<Vaccine>(), Temperamento.DOCIL, false);
