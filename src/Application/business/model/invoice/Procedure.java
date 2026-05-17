@@ -1,4 +1,4 @@
-package business.model.notaFiscal;
+package business.model.invoice;
 
 import business.model.animal.Animal;
 

@@ -1,16 +1,16 @@
 package gui.tests;
 
-import business.model.Pessoas.Owner;
-import business.model.Pessoas.Specialty;
-import business.model.Pessoas.Veterinarian;
+import business.model.person.Owner;
+import business.model.person.Specialty;
+import business.model.person.Veterinarian;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
-import business.model.notaFiscal.*;
-import business.model.prontuario.Anamnesis;
-import business.model.prontuario.Appointment;
-import business.model.prontuario.PhysicalExamination;
-import business.model.prontuario.VitalParameters;
+import business.model.invoice.*;
+import business.model.appointment.Anamnesis;
+import business.model.appointment.Appointment;
+import business.model.appointment.PhysicalExamination;
+import business.model.appointment.VitalParameters;
 import data.interfaces.IRepositoryInvoice;
 import data.repository.RepositoryInvoice;
 import enums.*;

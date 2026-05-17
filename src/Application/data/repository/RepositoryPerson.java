@@ -1,6 +1,6 @@
 package data.repository;
 
-import business.model.Pessoas.Person;
+import business.model.person.Person;
 import data.interfaces.IRepositoryPerson;
 import exceptions.EmailConflictException;
 

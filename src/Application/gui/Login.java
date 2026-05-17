@@ -1,9 +1,9 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Person;
-import business.model.Pessoas.Veterinarian;
-import business.model.Pessoas.Employee;
+import business.model.person.Person;
+import business.model.person.Veterinarian;
+import business.model.person.Employee;
 
 import enums.TypePerson;
 import exceptions.ClassPersonNotExists;

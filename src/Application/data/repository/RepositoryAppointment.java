@@ -1,7 +1,7 @@
 package data.repository;
 
 
-import business.model.prontuario.Appointment;
+import business.model.appointment.Appointment;
 import data.interfaces.IRepositoryAppointment;
 
 import java.util.ArrayList;

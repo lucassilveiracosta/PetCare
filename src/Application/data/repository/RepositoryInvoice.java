@@ -1,6 +1,6 @@
 package data.repository;
 
-import business.model.notaFiscal.Invoice;
+import business.model.invoice.Invoice;
 import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;

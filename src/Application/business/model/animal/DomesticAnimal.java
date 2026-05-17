@@ -4,7 +4,7 @@ import enums.Size;
 import enums.Sex;
 import enums.Temperament;
 import enums.StageOfLife;
-import business.model.Pessoas.Owner;
+import business.model.person.Owner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

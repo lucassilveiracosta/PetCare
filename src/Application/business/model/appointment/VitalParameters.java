@@ -1,4 +1,4 @@
-package business.model.prontuario;
+package business.model.appointment;
 
 import enums.Mucosa;
 

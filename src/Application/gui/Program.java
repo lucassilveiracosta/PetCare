@@ -2,7 +2,7 @@ package gui;
 
 import business.controller.ControllerPessoa;
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.*;
+import business.model.person.*;
 import data.repository.RepositoryPerson;
 
 import java.time.LocalDate;

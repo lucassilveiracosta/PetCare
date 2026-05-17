@@ -1,20 +1,18 @@
 package gui.tests;
 
-import business.model.Pessoas.Specialty;
-import business.model.Pessoas.Veterinarian;
+import business.model.person.Specialty;
+import business.model.person.Veterinarian;
 import enums.*;
-import business.model.Pessoas.Owner;
-import business.model.Pessoas.Person;
+import business.model.person.Owner;
+import business.model.person.Person;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
-import business.model.prontuario.*;
+import business.model.appointment.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 

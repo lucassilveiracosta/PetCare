@@ -1,6 +1,6 @@
 package data.interfaces;
 
-import business.model.Pessoas.Person;
+import business.model.person.Person;
 
 import java.util.ArrayList;
 

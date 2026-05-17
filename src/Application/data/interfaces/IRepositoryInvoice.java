@@ -1,6 +1,6 @@
 package data.interfaces;
 
-import business.model.notaFiscal.Invoice;
+import business.model.invoice.Invoice;
 
 import java.util.ArrayList;
 

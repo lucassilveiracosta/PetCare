@@ -5,7 +5,7 @@ import business.interfaces.IControllerPessoa;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
-import business.model.Pessoas.Person;
+import business.model.person.Person;
 import data.interfaces.IRepositoryPerson;
 import org.apache.commons.validator.routines.EmailValidator;
 

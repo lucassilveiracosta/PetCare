@@ -1,4 +1,4 @@
-package business.model.Pessoas;
+package business.model.person;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package business.model.notaFiscal;
+package business.model.invoice;
 
 
 public class Product {

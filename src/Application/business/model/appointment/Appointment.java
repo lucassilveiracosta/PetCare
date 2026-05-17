@@ -1,10 +1,10 @@
-package business.model.prontuario;
+package business.model.appointment;
 
 
 
-import business.model.Pessoas.Veterinarian;
+import business.model.person.Veterinarian;
 import business.model.animal.Animal;
-import business.model.notaFiscal.Procedure;
+import business.model.invoice.Procedure;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package business.model.prontuario;
+package business.model.appointment;
 
 import business.model.animal.Animal;
 

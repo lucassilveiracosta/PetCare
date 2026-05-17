@@ -1,6 +1,6 @@
-package business.model.notaFiscal;
+package business.model.invoice;
 
-import business.model.Pessoas.Owner;
+import business.model.person.Owner;
 import business.model.animal.Animal;
 
 import java.time.LocalDateTime;

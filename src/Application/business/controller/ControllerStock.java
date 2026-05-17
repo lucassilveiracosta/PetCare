@@ -6,7 +6,7 @@ import data.interfaces.IRepositoryStock;
 import exceptions.AppointmentNotFoundException;
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
-import business.model.notaFiscal.Product;
+import business.model.invoice.Product;
 
 import java.util.ArrayList;
 

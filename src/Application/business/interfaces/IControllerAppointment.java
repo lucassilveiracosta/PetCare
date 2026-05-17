@@ -1,8 +1,8 @@
 package business.interfaces;
 import java.util.ArrayList;
 
-import business.model.prontuario.Appointment;
-import business.model.notaFiscal.Procedure;
+import business.model.appointment.Appointment;
+import business.model.invoice.Procedure;
 
 public interface IControllerAppointment {
     Procedure getById(int id);

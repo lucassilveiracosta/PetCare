@@ -4,7 +4,7 @@ import business.interfaces.IControllerInvoice;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
-import business.model.notaFiscal.Invoice;
+import business.model.invoice.Invoice;
 import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;

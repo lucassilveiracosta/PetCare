@@ -1,19 +1,6 @@
 
 package gui.tests;
 
-import business.controller.*;
-import business.model.Pessoas.*;
-import business.model.animal.*;
-import business.model.notaFiscal.*;
-import business.model.prontuario.*;
-import data.repository.*;
-import enums.*;
-import exceptions.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 /**
  * Teste End-to-End do sistema PetCare.
  *

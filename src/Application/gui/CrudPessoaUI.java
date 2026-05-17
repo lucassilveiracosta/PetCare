@@ -1,7 +1,7 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Person;
+import business.model.person.Person;
 
 import java.util.List;
 import java.util.Scanner;
