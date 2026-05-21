@@ -6,11 +6,22 @@ public class Vaccine {
     private String vaccineName;
     private LocalDate vaccineDate;
     private String description;
+    private boolean isRabbiesVaccine;
 
-    public Vaccine(String vaccineName, LocalDate vaccineDate, String description) {
-        this.vaccineName = vaccineName;
-        this.vaccineDate = vaccineDate;
+    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine){
+        setVaccineName(vaccineName);
+        setVaccineDate(vaccineDate);
         this.description = description;
+        setRabbiesVaccine(isRabbiesVaccine);
+
+    }
+
+    public boolean isRabbiesVaccine() {
+        return isRabbiesVaccine;
+    }
+
+    public void setRabbiesVaccine(boolean rabbiesVaccine) {
+        isRabbiesVaccine = rabbiesVaccine;
     }
 
     public String getVaccineName() {

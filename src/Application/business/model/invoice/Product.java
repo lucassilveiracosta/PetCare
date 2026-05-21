@@ -5,14 +5,25 @@ public class Product {
 
     private static int count_id = 1;
     private int id = count_id++;
+    private String name;
     private Integer quantity;
     private String description;
     private Double price;
 
-    public Product(Integer quantity, String description, Double price){
+    public Product(String name, Integer quantity, String description, Double price){
+        setName(name);
         setQuantity(quantity);
         setDescription(description);
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.isBlank()) throw new IllegalArgumentException("400 - Invalid name");
+        this.name = name;
     }
 
     public int getQuantity() {

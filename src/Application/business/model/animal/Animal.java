@@ -6,6 +6,7 @@ import enums.Sex;
 import exceptions.InvoiceConflictException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class Animal {
@@ -20,8 +21,9 @@ public class Animal {
     protected Double weight;
     protected Size size;
     protected Sex sex;
+    private ArrayList<Vaccine> vaccines;
 
-    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex) {
+    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, ArrayList<Vaccine> vaccines) {
         setName(name);
         setSpecies(species);
         setRace(race);
@@ -30,7 +32,17 @@ public class Animal {
         setWeight(weight);
         setSize(size);
         setSex(sex);
+        setVaccines(vaccines);
 
+    }
+
+
+    public ArrayList<Vaccine> getVaccines() {
+        return vaccines;
+    }
+
+    public void setVaccines(ArrayList<Vaccine> vaccines) {
+        this.vaccines = vaccines;
     }
 
     public StageOfLife getStageOfLife() {

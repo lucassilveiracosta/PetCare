@@ -6,6 +6,7 @@ import enums.Sex;
 
 import enums.StageOfLife;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ExoticAnimal extends Animal {
     private boolean requiresControlEnviroment;
@@ -14,8 +15,8 @@ public class ExoticAnimal extends Animal {
     private String microChipId;
     private String registrationNumber;
 
-    public ExoticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origin origin) {
-        super(name,  species,  race,  birthDate, stageOfLife, weight,  size,  sex);
+    public ExoticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, String registrationNumber, String microChipId, boolean requiresControlEnviroment, String dietDescription, Origin origin, ArrayList<Vaccine> vaccines) {
+        super(name,  species,  race,  birthDate, stageOfLife, weight,  size,  sex, vaccines);
         setRegistrationNumber(registrationNumber);
         setMicroChipId(microChipId);
         setRequiresControlEnviroment(requiresControlEnviroment);
