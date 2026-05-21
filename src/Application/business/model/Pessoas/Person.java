@@ -1,9 +1,7 @@
 package business.model.Pessoas;
 
-import exceptions.EmailConflictException;
 import exceptions.EmailFormatException;
 import exceptions.PasswordException;
-import data.interfaces.IRepositoryPerson;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.time.LocalDate;
