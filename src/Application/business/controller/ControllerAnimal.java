@@ -119,6 +119,8 @@ public class ControllerAnimal implements IControllerAnimal {
     public void checkIfHaveRabbiesVaccine(int id) {
         Animal animal = repositoryAnimal.findById(id);
 
+        if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
+
         for (Vaccine vaccine: animal.getVaccines()) {
             if (vaccine.isRabbiesVaccine()) {
                 if (vaccine.getVaccineDate().isBefore(LocalDate.now().minusDays(90))) {
