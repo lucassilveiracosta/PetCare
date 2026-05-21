@@ -12,13 +12,11 @@ import java.util.ArrayList;
 public class DomesticAnimal extends Animal {
     private Owner owner;
     private boolean castrated;
-    private ArrayList<Vaccine> vaccines;
     private Temperament temperament;
 
-    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, Double weight, Size size, Sex sex, Owner owner, ArrayList<Vaccine> vaccines, Temperament temperament, boolean castrated) {
-        super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex);
+    public DomesticAnimal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, Double weight, Size size, Sex sex, Owner owner, Temperament temperament, boolean castrated, ArrayList<Vaccine> vaccines) {
+        super(name,  species,  race,  birthDate, stageOfLife,  weight,  size,  sex, vaccines);
         setOwner(owner);
-        setVaccines(vaccines);
         setTemperament(temperament);
         setCastrated(castrated);
     }
@@ -53,12 +51,4 @@ public class DomesticAnimal extends Animal {
         this.castrated = castrated;
     }
 
-
-    public ArrayList<Vaccine> getVaccines() {
-        return vaccines;
-    }
-
-    public void setVaccines(ArrayList<Vaccine> vaccines) {
-        this.vaccines = vaccines;
-    }
 }

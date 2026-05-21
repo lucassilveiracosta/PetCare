@@ -2,11 +2,15 @@ package business.controller;
 
 import business.interfaces.IControllerAnimal;
 
+import business.model.animal.Vaccine;
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
 import business.model.animal.Animal;
 import data.interfaces.IRepositoryAnimal;
+import exceptions.RabbiesVaccineExpired;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ControllerAnimal implements IControllerAnimal {
@@ -110,5 +114,17 @@ public class ControllerAnimal implements IControllerAnimal {
         }
 
         repositoryAnimal.create(animal);
+    }
+
+    public void checkIfHaveRabbiesVaccine(int id) {
+        Animal animal = repositoryAnimal.findById(id);
+
+        for (Vaccine vaccine: animal.getVaccines()) {
+            if (vaccine.isRabbiesVaccine()) {
+                if (vaccine.getVaccineDate().isBefore(LocalDate.now().minusDays(90))) {
+                    throw new RabbiesVaccineExpired("The Rabbie vaccine is expired");
+                }
+            }
+        }
     }
 }

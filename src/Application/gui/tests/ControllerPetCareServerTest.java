@@ -81,8 +81,8 @@ public class ControllerPetCareServerTest {
             server.getPessoa().post(vet);
 
             // Animais
-            Animal rex = new DomesticAnimal("Rex", "Pastor Alemão", "Capa Preta", LocalDate.now().minusYears(3), StageOfLife.ADULTO, 30.5, Size.GRANDE, Sex.MACHO, dono1, new ArrayList<>(), Temperament.DOCIL, true);
-            Animal mimi = new DomesticAnimal("Mimi", "Siamês", "Branco", LocalDate.now().minusYears(1), StageOfLife.ADULTO, 4.2, Size.PEQUENO, Sex.FEMEA, dono2, new ArrayList<>(), Temperament.DOCIL, false);
+            Animal rex = new DomesticAnimal("Rex", "Pastor Alemão", "Capa Preta", LocalDate.now().minusYears(3), StageOfLife.ADULTO, 30.5, Size.GRANDE, Sex.MACHO, dono1, Temperament.DOCIL, true,  new ArrayList<>());
+            Animal mimi = new DomesticAnimal("Mimi", "Siamês", "Branco", LocalDate.now().minusYears(1), StageOfLife.ADULTO, 4.2, Size.PEQUENO, Sex.FEMEA, dono2, Temperament.DOCIL, false, new ArrayList<>());
             
             server.getAnimal().post(rex);
             server.getAnimal().post(mimi);
