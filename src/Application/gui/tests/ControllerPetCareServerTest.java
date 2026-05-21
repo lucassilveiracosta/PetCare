@@ -2,12 +2,12 @@ package gui.tests;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.*;
-import business.model.Pessoas.Owner;
-import business.model.Pessoas.Person;
-import business.model.Pessoas.Veterinarian;
+import business.model.person.Owner;
+import business.model.person.Person;
+import business.model.person.Veterinarian;
 import business.model.animal.*;
-import business.model.notaFiscal.*;
-import business.model.prontuario.*;
+import business.model.invoice.*;
+import business.model.appointment.*;
 import enums.*;
 
 import java.time.LocalDate;
@@ -31,7 +31,7 @@ public class ControllerPetCareServerTest {
             System.out.println("\n=============================================");
             System.out.println("  PAINEL DE TESTES - PETCARE SERVER (CRUD)   ");
             System.out.println("=============================================");
-            System.out.println("1. Gerenciar Pessoas (CRUD)");
+            System.out.println("1. Gerenciar person (CRUD)");
             System.out.println("2. Gerenciar Animais (CRUD)");
             System.out.println("3. Gerenciar Estoque/Produtos (CRUD)");
             System.out.println("4. Listar todas as Faturas (Invoices)");
@@ -71,7 +71,7 @@ public class ControllerPetCareServerTest {
     private static void popularDados(ControllerPetCareServer server) {
         System.out.println("-> Populando o banco de dados do servidor com dados iniciais...");
         try {
-            // Pessoas
+            // person
             Owner dono1 = new Owner("João Silva", "joao@email.com", "senha123", LocalDate.of(1985, 5, 20), "11122233344", "99999-1111", "Professor", "Adora cães");
             Owner dono2 = new Owner("Maria Souza", "maria@email.com", "senha123", LocalDate.of(1992, 8, 15), "22233344455", "99999-2222", "Engenheira", "Adora gatos");
             Veterinarian vet = new Veterinarian("Dr. Carlos", "carlos@vet.com", "veter123", LocalDate.of(1980, 1, 10), "55544433322", "99999-3333", "CRMV-999", new ArrayList<>());
@@ -124,7 +124,7 @@ public class ControllerPetCareServerTest {
     private static void menuPessoas(IControllerPessoa controller, Scanner scanner) {
         while (true) {
             System.out.println("\n--- CRUD PESSOAS ---");
-            System.out.println("1. Listar Pessoas");
+            System.out.println("1. Listar person");
             System.out.println("2. Buscar Pessoa por ID");
             System.out.println("3. Remover Pessoa por ID");
             System.out.println("0. Voltar");
@@ -136,7 +136,7 @@ public class ControllerPetCareServerTest {
             switch (op) {
                 case "1":
                     List<Person> pessoas = controller.getAll();
-                    System.out.println("\nLista de Pessoas:");
+                    System.out.println("\nLista de person:");
                     for (Person p : pessoas) {
                         System.out.println("ID: " + p.getId() + " | Nome: " + p.getName() + " | Email: " + p.getEmail());
                     }
