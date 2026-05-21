@@ -134,7 +134,7 @@ public class ControllerAnimal implements IControllerAnimal {
         return check;
     }
 
-    public ArrayList<Vaccine> upToDateVaccines(int id) {
+    public ArrayList<Vaccine> expiredVaccines(int id) {
         Animal animal = repositoryAnimal.findById(id);
 
         if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
@@ -143,6 +143,22 @@ public class ControllerAnimal implements IControllerAnimal {
 
         for (Vaccine vaccine: animal.getVaccines()){
             if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                localVaccines.add(vaccine);
+            }
+        }
+
+        return localVaccines;
+    }
+
+    public ArrayList<Vaccine> upToDateVaccines(int id) {
+        Animal animal = repositoryAnimal.findById(id);
+
+        if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
+
+        ArrayList<Vaccine> localVaccines = new ArrayList<>();
+
+        for (Vaccine vaccine: animal.getVaccines()){
+            if (vaccine.getExpireVaccineDate().isAfter(LocalDate.now()) && vaccine.getExpireVaccineDate().compareTo(LocalDate.now()) < 20) {
                 localVaccines.add(vaccine);
             }
         }
