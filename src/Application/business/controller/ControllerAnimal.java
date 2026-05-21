@@ -11,6 +11,7 @@ import exceptions.RabbiesVaccineExpired;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerAnimal implements IControllerAnimal {
@@ -116,17 +117,36 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.create(animal);
     }
 
-    public void checkIfHaveRabbiesVaccine(int id) {
+    public boolean checkIfHaveRabbiesVaccine(int id) {
+        boolean check = false;
         Animal animal = repositoryAnimal.findById(id);
 
         if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
 
         for (Vaccine vaccine: animal.getVaccines()) {
             if (vaccine.isRabbiesVaccine()) {
-                if (vaccine.getVaccineDate().isBefore(LocalDate.now().minusDays(90))) {
-                    throw new RabbiesVaccineExpired("The Rabbie vaccine is expired");
+                if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                    continue;
                 }
+                check = true;
             }
         }
+        return check;
+    }
+
+    public ArrayList<Vaccine> upToDateVaccines(int id) {
+        Animal animal = repositoryAnimal.findById(id);
+
+        if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
+
+        ArrayList<Vaccine> localVaccines = new ArrayList<>();
+
+        for (Vaccine vaccine: animal.getVaccines()){
+            if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                localVaccines.add(vaccine);
+            }
+        }
+
+        return localVaccines;
     }
 }
