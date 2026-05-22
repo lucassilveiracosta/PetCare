@@ -126,6 +126,7 @@ public class ControllerAnimal implements IControllerAnimal {
         for (Vaccine vaccine: animal.getVaccines()) {
             if (vaccine.isRabbiesVaccine()) {
                 if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                            // colocar possivel mensagem de atraso.
                     continue;
                 }
                 check = true;
