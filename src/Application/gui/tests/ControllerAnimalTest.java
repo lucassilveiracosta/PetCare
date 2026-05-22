@@ -13,7 +13,9 @@ import enums.StageOfLife;
 import enums.Temperament;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -189,10 +191,12 @@ public class ControllerAnimalTest {
         System.out.print("Deseja injetar vacinas de teste (uma válida da Raiva, uma vencida)? (s/n): ");
         if (scanner.nextLine().equalsIgnoreCase("s")) {
             Vaccine vRaiva = new Vaccine("Anti-Rábica", LocalDate.now().minusMonths(1), "MarcaX", true, LocalDate.now().plusYears(1));
+            Vaccine vEmDia = new Vaccine("Coronavac", LocalDate.now().minusDays(18), "MarcaX", false, LocalDate.now().plusDays(18));
             Vaccine vVencida = new Vaccine("V8", LocalDate.now().minusYears(2), "MarcaY", false, LocalDate.now().minusMonths(1));
             
             ArrayList<Vaccine> vacinas = a.getVaccines();
             vacinas.add(vRaiva);
+            vacinas.add(vEmDia);
             vacinas.add(vVencida);
             a.setVaccines(vacinas);
             System.out.println("Vacinas injetadas na memória.");
@@ -211,14 +215,17 @@ public class ControllerAnimalTest {
             }
         }
 
-        ArrayList<Vaccine> emDia = controller.upToDateVaccines(id);
-        System.out.println("-> [3/3] Vacinas EM DIA (upToDateVaccines):");
+        ArrayList<Vaccine> emDia = controller.closeToExpire(id);
+        System.out.println("-> [3/3] Perto de Expirar (closeToExpire):");
         if (emDia.isEmpty()) {
-            System.out.println("   (Nenhuma vacina em dia)");
+            System.out.println("   (Tudo tranquilo!)");
         } else {
             for (Vaccine v : emDia) {
-                System.out.println("   - " + v.getVaccineName() + " (Vence em: " + v.getExpireVaccineDate() + ")");
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                System.out.println("   - " + v.getVaccineName() + " (Vence em: " + v.getExpireVaccineDate().format(fmt) + ")");
             }
         }
+
+
     }
 }
