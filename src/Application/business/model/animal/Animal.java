@@ -1,120 +1,134 @@
 package business.model.animal;
 
-import enums.FaseDaVida;
-import enums.Porte;
-import enums.Sexo;
+import enums.StageOfLife;
+import enums.Size;
+import enums.Sex;
+import exceptions.InvoiceConflictException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class Animal {
     protected static int contadorId = 1;
 
     protected int id = contadorId++;
-    protected String Nome;
-    protected String especie;
-    protected String raca;
-    protected LocalDate DataNascimento;
-    protected FaseDaVida faseDaVida;
-    protected Double peso;
-    protected Porte porte;
-    protected Sexo sexo;
+    protected String name;
+    protected String species;
+    protected String race;
+    protected LocalDate birthDate;
+    protected StageOfLife stageOfLife;
+    protected Double weight;
+    protected Size size;
+    protected Sex sex;
+    private ArrayList<Vaccine> vaccines;
 
-    public Animal(String nome, String especie, String raca, LocalDate dataNascimento, FaseDaVida faseDaVida, double peso, Porte porte, Sexo sexo) {
-        setNome(nome);
-        setEspecie(especie);
-        setRaca(raca);
-        setDataNascimento(dataNascimento);
-        setFaseDaVida(faseDaVida);
-        setPeso(peso);
-        setPorte(porte);
-        setSexo(sexo);
+    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, ArrayList<Vaccine> vaccines) {
+        setName(name);
+        setSpecies(species);
+        setRace(race);
+        setbirthDate(birthDate);
+        setStageOfLife(stageOfLife);
+        setWeight(weight);
+        setSize(size);
+        setSex(sex);
+        setVaccines(vaccines);
 
     }
 
-    public FaseDaVida getFaseDaVida() {
-        return faseDaVida;
+
+    public ArrayList<Vaccine> getVaccines() {
+        return vaccines;
     }
 
-    public void setPeso(Double peso) {
-        if(peso <= 0 ){
-            throw new IllegalArgumentException("peso do animal inválido!");
+    public void setVaccines(ArrayList<Vaccine> vaccines) {
+        this.vaccines = vaccines;
+    }
+
+    public StageOfLife getStageOfLife() {
+        return stageOfLife;
+    }
+
+    public void setWeight(Double weight) {
+        if(weight <= 0 ){
+            throw new IllegalArgumentException("400 - Invalid weight");
         }
-        this.peso = peso;
+        this.weight = weight;
     }
 
-    public void setFaseDaVida(FaseDaVida faseDaVida) {
-        if(faseDaVida == null){
-            throw new IllegalArgumentException("Fase da Vida do Animal inválida!");
+    public void setStageOfLife(StageOfLife stageOfLife) {
+        if(stageOfLife == null){
+            throw new IllegalArgumentException("400 - Invalid stage of life");
         }
-        this.faseDaVida = faseDaVida;
+        this.stageOfLife = stageOfLife;
     }
 
-    public String getNome() {
-        return Nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        if(nome == null || nome.isBlank()){
-            throw new IllegalArgumentException("Nome do Animal inválido!");
+    public void setName(String name) {
+        if(name == null || name.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid name");
         }
-        Nome = nome;
+        this.name = name;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getRace() {
+        return race;
     }
 
-    public void setRaca(String raca) {
-        if(raca == null || raca.isBlank()){
-            throw new IllegalArgumentException("Nome da raça do animal inválido!");
+    public void setRace(String race) {
+        if(race == null || race.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid race");
         }
-        this.raca = raca;
+        this.race = race;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getSpecies() {
+        return species;
     }
 
-    public void setEspecie(String especie) {
-        if(especie == null || especie.isBlank()){
-            throw new IllegalArgumentException("Nome da especie do animal inválida!");
+    public void setSpecies(String species) {
+        if(species == null || species.isBlank()){
+            throw new IllegalArgumentException("400 - Invalid specie");
         }
-        this.especie = especie;
+        this.species = species;
     }
 
-    public LocalDate getDataNascimento() {
-        return DataNascimento;
+    public LocalDate getbirthDate() {
+        return birthDate;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        DataNascimento = dataNascimento;
+    public void setbirthDate(LocalDate birthDate) {
+        if (birthDate == null) throw new InvoiceConflictException("400 - Invalid birthDate");
+        this.birthDate = birthDate;
     }
 
-    public double getPeso() {
-        return peso;
+    public double getWeight() {
+        return weight;
     }
 
-    public Porte getPorte() {
-        return porte;
+    public Size getSize() {
+        return size;
     }
 
-    public void setPorte(Porte porte) {
-        if(porte == null ){
-            throw new IllegalArgumentException("Porte do animal inválido!");
+    public void setSize(Size size) {
+        if(size == null ){
+            throw new IllegalArgumentException("400 - Invalid size");
         }
-        this.porte = porte;
+        this.size = size;
     }
 
-    public Sexo getSexo() {
-        return sexo;
+    public Sex getSex() {
+        return sex;
     }
 
-    public void setSexo(Sexo sexo) {
-        if(sexo == null ){
-            throw new IllegalArgumentException("Sexo do animal inválido!");
+    public void setSex(Sex sex) {
+        if(sex == null ){
+            throw new IllegalArgumentException("400 - Invalid sex");
         }
-        this.sexo = sexo;
+        this.sex = sex;
     }
 
     public void setId(int id) {
@@ -131,7 +145,7 @@ public class Animal {
                 DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
                 // converter string para data
-                LocalDate data = LocalDate.parse(DataNascimento, formatoEntrada);
+                LocalDate data = LocalDate.parse(birthDate, formatoEntrada);
 
                 // formato padrão desejado
                 DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("yyyy-MM-dd");

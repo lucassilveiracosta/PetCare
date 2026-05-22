@@ -1,7 +1,7 @@
 package gui;
 
 import business.interfaces.IControllerPessoa;
-import business.model.Pessoas.Pessoa;
+import business.model.person.Person;
 
 import java.util.List;
 import java.util.Scanner;
@@ -45,13 +45,13 @@ public class CrudPessoaUI {
     }
 
     private void listarPessoas() {
-        List<Pessoa> pessoas = controllerPessoa.getAll();
+        List<Person> pessoas = controllerPessoa.getAll();
         System.out.println("\n-- Usuários Cadastrados --");
         if (pessoas.isEmpty()) {
             System.out.println("Nenhum usuário cadastrado.");
         } else {
-            for (Pessoa p : pessoas) {
-                System.out.println("ID [" + p.getId() + "] " + p.getNome() + " | Email: " + p.getEmail());
+            for (Person p : pessoas) {
+                System.out.println("ID [" + p.getId() + "] " + p.getName() + " | Email: " + p.getEmail());
             }
         }
     }
@@ -60,10 +60,10 @@ public class CrudPessoaUI {
         System.out.print("\nDigite o ID do usuário: ");
         try {
             int id = Integer.parseInt(scanner.nextLine());
-            Pessoa p = controllerPessoa.getById(id);
+            Person p = controllerPessoa.getById(id);
             if (p != null) {
-                System.out.println("Usuário encontrado: " + p.getNome() + " (" + p.getEmail() + ")");
-                System.out.println("Telefone: " + p.getTelefone());
+                System.out.println("Usuário encontrado: " + p.getName() + " (" + p.getEmail() + ")");
+                System.out.println("Telefone: " + p.getTelephone());
                 System.out.println("CPF: " + p.getCpf());
             } else {
                 System.out.println("Usuário não encontrado.");

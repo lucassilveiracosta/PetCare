@@ -1,13 +1,13 @@
 package business.interfaces;
 
-import business.model.Pessoas.Pessoa;
+import business.model.person.Person;
 import java.util.List;
 
 public interface IControllerPessoa {
-    Pessoa getByEmail(String email);
-    Pessoa getById(int id);
-    List<Pessoa> getAll();
-    void patch(int id, Pessoa p);
+    Person getByEmail(String email);
+    Person getById(int id);
+    List<Person> getAll();
+    void patch(int id, Person p);
     void delete(int id);
-    void post(Pessoa p);
+    void post(Person p);
 }

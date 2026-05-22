@@ -5,7 +5,7 @@ import business.interfaces.IControllerPessoa;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
-import business.model.Pessoas.Pessoa;
+import business.model.person.Person;
 import data.interfaces.IRepositoryPerson;
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -20,48 +20,48 @@ public class ControllerPessoa implements IControllerPessoa {
         this.repositoryPerson = repositoryPerson;
     }
 
-    public Pessoa getById(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Pessoa nf = repositoryPerson.findById(id);
+    public Person getById(int id) {
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
+        Person person = repositoryPerson.findById(id);
 
-        if (nf == null) throw new PersonNotFoundException("404 - ID not found");
+        if (person == null) throw new PersonNotFoundException("404 - ID not found");
 
-        return nf;
+        return person;
     }
 
-    public Pessoa getByEmail(String email) {
+    public Person getByEmail(String email) {
         EmailValidator validator = EmailValidator.getInstance();
-        if(!validator.isValid(email)) throw new IllegalArgumentException("Não esta no formato de email");
-        Pessoa exists = repositoryPerson.findByEmail(email);
+        if(!validator.isValid(email)) throw new IllegalArgumentException("400 - Not in email format");
+        Person exists = repositoryPerson.findByEmail(email);
         if(exists == null) throw new EmailNotFoundException("404 - Email not found");
 
         return exists;
     }
 
-    public ArrayList<Pessoa> getAll() {
+    public ArrayList<Person> getAll() {
         return repositoryPerson.findAll();
     }
 
-    public void patch(int id, Pessoa p) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        if (p == null) throw new IllegalArgumentException("Person can't be null");
-        Pessoa pessoa = repositoryPerson.findById(id);
-        if (pessoa == null) throw new PersonNotFoundException("404 - ID not found");
+    public void patch(int id, Person p) {
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
+        if (p == null) throw new IllegalArgumentException("400 - Person can't be null");
+        Person person = repositoryPerson.findById(id);
+        if (person == null) throw new PersonNotFoundException("404 - ID not found");
 
         repositoryPerson.update(id, p);
     }
 
     public void delete(int id) {
-        if (id < 0) throw new IllegalArgumentException("ID must be positive");
-        Pessoa p = repositoryPerson.findById(id);
+        if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
+        Person p = repositoryPerson.findById(id);
         if (p == null) throw new PersonNotFoundException("404 - ID not found");
 
         repositoryPerson.remove(p);
     }
 
-    public void post(Pessoa p) {
-        Pessoa exists = repositoryPerson.findById(p.getId());
-        if (exists != null) throw new PersonConflictException("This Person already exists");
+    public void post(Person p) {
+        Person exists = repositoryPerson.findById(p.getId());
+        if (exists != null) throw new PersonConflictException("409 - This Person already exists");
         repositoryPerson.create(p);
     }
 }
