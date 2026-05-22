@@ -9,8 +9,10 @@ import business.model.animal.Animal;
 import data.interfaces.IRepositoryAnimal;
 import exceptions.RabbiesVaccineExpired;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerAnimal implements IControllerAnimal {
@@ -116,17 +118,61 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.create(animal);
     }
 
-    public void checkIfHaveRabbiesVaccine(int id) {
+
+    /**
+     *
+     * @param id
+     * @return boolean
+     */
+    public boolean checkIfHaveRabbiesVaccine(int id) {
+        boolean check = false;
         Animal animal = repositoryAnimal.findById(id);
 
         if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
 
         for (Vaccine vaccine: animal.getVaccines()) {
             if (vaccine.isRabbiesVaccine()) {
-                if (vaccine.getVaccineDate().isBefore(LocalDate.now().minusDays(90))) {
-                    throw new RabbiesVaccineExpired("The Rabbie vaccine is expired");
+                if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                            // colocar possivel mensagem de atraso.
+                    continue;
                 }
+                check = true;
             }
         }
+        return check;
+    }
+
+    public ArrayList<Vaccine> expiredVaccines(int id) {
+        Animal animal = repositoryAnimal.findById(id);
+
+        if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
+
+        ArrayList<Vaccine> localVaccines = new ArrayList<>();
+
+        for (Vaccine vaccine: animal.getVaccines()){
+            if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
+                localVaccines.add(vaccine);
+            }
+        }
+
+        return localVaccines;
+    }
+
+    public ArrayList<Vaccine> closeToExpire(int id) {
+        Animal animal = repositoryAnimal.findById(id);
+
+        if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
+
+        ArrayList<Vaccine> localVaccines = new ArrayList<>();
+
+        for (Vaccine vaccine: animal.getVaccines()){
+
+            long duration = Duration.between(LocalDate.now().atStartOfDay(), vaccine.getExpireVaccineDate().atStartOfDay()).toDays();
+            if (vaccine.getExpireVaccineDate().isAfter(LocalDate.now()) && duration < 20) {
+                localVaccines.add(vaccine);
+            }
+        }
+
+        return localVaccines;
     }
 }

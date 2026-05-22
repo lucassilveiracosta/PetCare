@@ -28,8 +28,8 @@ public class dateTest {
         Person donoTeste = new Owner("Laercio", "laercio@gmail.com", "larceio123", date1.minus(4, ChronoUnit.DECADES), "111222333-99", "81-98888-0000", "Assoviador", "É um dono reponsável");
 
         ArrayList<Vaccine> vacinas = new ArrayList<>();
-        vacinas.add(new Vaccine("Covid", date1,"Não se queixou"));
-        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date1.minusYears(2), StageOfLife.ADULTO, 20.0, Size.GIGANTE, Sex.MACHO, ((Owner) donoTeste), vacinas, Temperament.DOCIL, true );
+        vacinas.add(new Vaccine("Covid", date1,"Não se queixou",false,  date1.plusDays(90)));
+        Animal animalTeste = new DomesticAnimal("Bob", "Bulldog", "preto", date1.minusYears(2), StageOfLife.ADULTO, 20.0, Size.GIGANTE, Sex.MACHO, ((Owner) donoTeste), Temperament.DOCIL,true,  vacinas );
 
         Specialty specialty = new Specialty("Cirurgiao", "Faz cirurgias");
         ArrayList arrayListSpecialty = new ArrayList<>();

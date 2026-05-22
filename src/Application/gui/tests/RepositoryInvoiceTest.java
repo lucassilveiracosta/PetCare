@@ -54,9 +54,9 @@ public class RepositoryInvoiceTest {
         Owner dono2 = new Owner("Laercio Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
         Owner dono3 = new Owner("Vinicius Carlos","laercio@gmail.com", "12341234", data.minusYears(30), "12345678900", "81999999999", "Professor", "Dono dedicado");
 
-        Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), StageOfLife.ADULTO, 15.0, Size.MEDIO, Sex.MACHO, dono, new ArrayList<Vaccine>(), Temperament.DOCIL, true);
-        Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono1, new ArrayList<Vaccine>(), Temperament.DOCIL, false);
-        Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono2, new ArrayList<Vaccine>(), Temperament.DOCIL, false);
+        Animal animal1 = new DomesticAnimal("Rex", "Vira-lata", "Marrom", data.minusYears(3), StageOfLife.ADULTO, 15.0, Size.MEDIO, Sex.MACHO, dono,Temperament.DOCIL, true, new ArrayList<Vaccine>());
+        Animal animal2 = new DomesticAnimal("Mia", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono1, Temperament.DOCIL, false, new ArrayList<Vaccine>());
+        Animal animal3 = new DomesticAnimal("Bob", "Siamês", "Branco", data.minusYears(1), StageOfLife.RECEMNASCIDO, 4.0, Size.PEQUENO, Sex.FEMEA, dono2, Temperament.DOCIL, false, new ArrayList<Vaccine>());
 
         Anamnesis anamnesis = new Anamnesis("Dor do ouvido", "Carnivoro", "Isso ai");
         VitalParameters vitalParameters = new VitalParameters(60, 40, 35.1, Mucosa.PALIDAS, 100, null, "Todo bom");

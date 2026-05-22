@@ -1,19 +1,34 @@
 package business.model.animal;
 
+import exceptions.VaccineException;
+
 import java.time.LocalDate;
 
 public class Vaccine {
     private String vaccineName;
     private LocalDate vaccineDate;
+    private LocalDate expireVaccineDate;
     private String description;
     private boolean isRabbiesVaccine;
 
-    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine){
+    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine, LocalDate expireVaccineDate){
         setVaccineName(vaccineName);
         setVaccineDate(vaccineDate);
         this.description = description;
         setRabbiesVaccine(isRabbiesVaccine);
+        setExpireVaccineDate(expireVaccineDate);
 
+    }
+
+
+    public LocalDate getExpireVaccineDate() {
+        return expireVaccineDate;
+    }
+
+    public void setExpireVaccineDate(LocalDate expireVaccineDate) {
+        if (expireVaccineDate == null) throw new IllegalArgumentException("400 - Invalid expire date");
+        if (expireVaccineDate.isBefore(vaccineDate)) throw new VaccineException("400 - expire data must be after the vaccine date");
+        this.expireVaccineDate = expireVaccineDate;
     }
 
     public boolean isRabbiesVaccine() {
