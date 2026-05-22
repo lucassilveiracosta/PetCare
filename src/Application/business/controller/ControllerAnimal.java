@@ -118,6 +118,12 @@ public class ControllerAnimal implements IControllerAnimal {
         repositoryAnimal.create(animal);
     }
 
+
+    /**
+     *
+     * @param id
+     * @return boolean
+     */
     public boolean checkIfHaveRabbiesVaccine(int id) {
         boolean check = false;
         Animal animal = repositoryAnimal.findById(id);
