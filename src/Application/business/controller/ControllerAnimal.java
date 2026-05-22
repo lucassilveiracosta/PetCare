@@ -9,6 +9,7 @@ import business.model.animal.Animal;
 import data.interfaces.IRepositoryAnimal;
 import exceptions.RabbiesVaccineExpired;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -151,7 +152,7 @@ public class ControllerAnimal implements IControllerAnimal {
         return localVaccines;
     }
 
-    public ArrayList<Vaccine> upToDateVaccines(int id) {
+    public ArrayList<Vaccine> closeToExpire(int id) {
         Animal animal = repositoryAnimal.findById(id);
 
         if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
@@ -159,7 +160,9 @@ public class ControllerAnimal implements IControllerAnimal {
         ArrayList<Vaccine> localVaccines = new ArrayList<>();
 
         for (Vaccine vaccine: animal.getVaccines()){
-            if (vaccine.getExpireVaccineDate().isAfter(LocalDate.now()) && vaccine.getExpireVaccineDate().compareTo(LocalDate.now()) < 20) {
+
+            long duration = Duration.between(LocalDate.now().atStartOfDay(), vaccine.getExpireVaccineDate().atStartOfDay()).toDays();
+            if (vaccine.getExpireVaccineDate().isAfter(LocalDate.now()) && duration < 20) {
                 localVaccines.add(vaccine);
             }
         }

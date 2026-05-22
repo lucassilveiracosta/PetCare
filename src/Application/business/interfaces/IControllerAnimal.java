@@ -16,6 +16,6 @@ public interface IControllerAnimal {
 
     boolean checkIfHaveRabbiesVaccine(int id);
     ArrayList<Vaccine> expiredVaccines(int id);
-    ArrayList<Vaccine> upToDateVaccines(int id);
+    ArrayList<Vaccine> closeToExpire(int id);
 
 }
