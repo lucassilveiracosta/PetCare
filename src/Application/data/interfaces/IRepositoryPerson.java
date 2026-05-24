@@ -12,4 +12,6 @@ public interface IRepositoryPerson {
     void update (int index, Person p);
     void create (Person p);
     void remove (Person p);
+
+    ArrayList<Person> filterByName(String name);
 }
