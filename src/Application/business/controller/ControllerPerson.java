@@ -1,6 +1,6 @@
 package business.controller;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
@@ -12,11 +12,11 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.ArrayList;
 
-public class ControllerPessoa implements IControllerPessoa {
+public class ControllerPerson implements IControllerPerson {
 
     private IRepositoryPerson repositoryPerson;
 
-    public ControllerPessoa(IRepositoryPerson repositoryPerson) {
+    public ControllerPerson(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;
     }
 
@@ -63,5 +63,11 @@ public class ControllerPessoa implements IControllerPessoa {
         Person exists = repositoryPerson.findById(p.getId());
         if (exists != null) throw new PersonConflictException("409 - This Person already exists");
         repositoryPerson.create(p);
+    }
+
+    @Override
+    public ArrayList<Person> filterByName(String name) {
+        return repositoryPerson.filterByName(name);
+
     }
 }

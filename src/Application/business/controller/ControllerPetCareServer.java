@@ -12,7 +12,7 @@ public class ControllerPetCareServer {
     private static ControllerPetCareServer instance;
 
 
-    private IControllerPessoa controllerPerson;
+    private IControllerPerson controllerPerson;
     private IControllerAnimal controllerAnimal;
     private IControllerAppointment controllerAppointment;
     private IControllerInvoice controllerInvoice;
@@ -29,7 +29,7 @@ public class ControllerPetCareServer {
         RepositoryStock repStock = new RepositoryStock(new ArrayList<>());
 
 
-        this.controllerPerson = new ControllerPessoa(repPerson);
+        this.controllerPerson = new ControllerPerson(repPerson);
         this.controllerAnimal = new ControllerAnimal(repAnimal);
         this.controllerAppointment = new ControllerAppointment(repAppointment);
         this.controllerInvoice = new ControllerInvoice(repInvoice);
@@ -49,7 +49,7 @@ public class ControllerPetCareServer {
 
 
 
-    public IControllerPessoa getPessoa() {
+    public IControllerPerson getPessoa() {
         return controllerPerson;
     }
 
