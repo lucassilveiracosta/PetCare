@@ -1,6 +1,6 @@
 package gui;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 import business.model.person.Person;
 import enums.TypePerson;
 import exceptions.WrongPasswordOrEmailException;
@@ -8,10 +8,10 @@ import exceptions.WrongPasswordOrEmailException;
 import java.util.Scanner;
 
 public class LoginUI {
-    private IControllerPessoa controllerPessoa;
+    private IControllerPerson controllerPessoa;
     private Scanner scanner;
 
-    public LoginUI(IControllerPessoa controllerPessoa) {
+    public LoginUI(IControllerPerson controllerPessoa) {
         this.controllerPessoa = controllerPessoa;
         this.scanner = new Scanner(System.in);
     }

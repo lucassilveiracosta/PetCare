@@ -1,6 +1,6 @@
 package gui;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 import business.model.person.Person;
 import enums.TypePerson;
 
@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class MenuPrincipal {
     private Person usuarioLogado;
     private TypePerson tipo;
-    private IControllerPessoa controllerPessoa;
+    private IControllerPerson controllerPessoa;
     private Scanner scanner;
 
-    public MenuPrincipal(Person usuarioLogado, TypePerson tipo, IControllerPessoa controllerPessoa) {
+    public MenuPrincipal(Person usuarioLogado, TypePerson tipo, IControllerPerson controllerPessoa) {
         this.usuarioLogado = usuarioLogado;
         this.tipo = tipo;
         this.controllerPessoa = controllerPessoa;
