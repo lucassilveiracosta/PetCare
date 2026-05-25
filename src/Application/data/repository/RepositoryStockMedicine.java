@@ -15,6 +15,11 @@ public class RepositoryStockMedicine implements IRepositoryStockMedicine {
     }
 
     @Override
+    public void removeMedicine(Medicine medicine) {
+        this.medicineList.remove(medicine);
+    }
+
+    @Override
     public List<Medicine> getAllMedicines() {
         return new ArrayList<>(this.medicineList);
     }
