@@ -1,5 +1,6 @@
 package business.interfaces;
 
+import business.model.animal.Animal;
 import business.model.person.Person;
 
 import java.util.ArrayList;
@@ -14,4 +15,5 @@ public interface IControllerPerson {
     void post(Person p);
 
     ArrayList<Person> filterByName(String name);
+    ArrayList<Animal> filterOwnersByEmail(String email);
 }
