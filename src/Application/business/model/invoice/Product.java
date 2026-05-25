@@ -6,14 +6,16 @@ public class Product {
     private static int count_id = 1;
     private int id = count_id++;
     private String name;
-    private Integer quantity; // Se é do petshop ou do veterinário
+    private Integer quantity;
+    private final boolean isVet; // Se é do petshop ou do veterinário
     private String description; // e boolean para ver se o remédio é controlado
     private Double price;
 
-    public Product(String name, Integer quantity, String description, Double price){
+    public Product(String name, Integer quantity, String description, Double price, boolean isVet) {
         setName(name);
         setQuantity(quantity);
         setDescription(description);
+        this.isVet = isVet;
         this.price = price;
     }
 
@@ -60,4 +62,9 @@ public class Product {
     public int getId() {
         return id;
     }
+
+    public boolean isVet() {
+        return isVet;
+    }
 }
+

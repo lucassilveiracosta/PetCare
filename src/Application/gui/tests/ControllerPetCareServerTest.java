@@ -88,9 +88,9 @@ public class ControllerPetCareServerTest {
             server.getAnimal().post(mimi);
 
             // Estoque
-            Product prod1 = new Product("Ração DogSprint", 10, "Ração Premier 15kg", 250.0);
-            Product prod2 = new Product("Influenza f876", 50, "Vacina V10", 80.0);
-            Product prod3 = new Product("Clear Man CR7", 30, "Shampoo Antipulgas", 45.0);
+            Product prod1 = new Product("Ração DogSprint", 10, "Ração Premier 15kg", 250.0, false);
+            Product prod2 = new Product("Influenza f876", 50, "Vacina V10", 80.0, true);
+            Product prod3 = new Product("Clear Man CR7", 30, "Shampoo Antipulgas", 45.0, false);
 
             server.getStock().post(prod1);
             server.getStock().post(prod2);
