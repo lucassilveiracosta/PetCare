@@ -1,0 +1,9 @@
+package data.interfaces;
+
+import business.model.medicine.Medicine;
+import java.util.List;
+
+public interface IRepositoryStockMedicine {
+    void addMedicine(Medicine medicine);
+    List<Medicine> getAllMedicines();
+}
