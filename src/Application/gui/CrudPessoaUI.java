@@ -1,16 +1,16 @@
 package gui;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 import business.model.person.Person;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class CrudPessoaUI {
-    private IControllerPessoa controllerPessoa;
+    private IControllerPerson controllerPessoa;
     private Scanner scanner;
 
-    public CrudPessoaUI(IControllerPessoa controllerPessoa) {
+    public CrudPessoaUI(IControllerPerson controllerPessoa) {
         this.controllerPessoa = controllerPessoa;
         this.scanner = new Scanner(System.in);
     }

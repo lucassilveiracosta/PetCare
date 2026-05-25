@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 public class RepositoryPerson implements IRepositoryPerson {
 
-    private final ArrayList<Person> pessoas;
-    public RepositoryPerson(ArrayList<Person> pessoas) {
-        this.pessoas = pessoas;
+    private final ArrayList<Person> persons;
+    public RepositoryPerson(ArrayList<Person> persons) {
+        this.persons = persons;
     }
 
 
     @Override
     public Person findById(int id) {
         Person pessoa = null;
-        for (Person p : pessoas) {
+        for (Person p : persons) {
             if (p.getId() == id) {
                 pessoa = p;
             }
@@ -28,7 +28,7 @@ public class RepositoryPerson implements IRepositoryPerson {
     @Override
     public Person findByEmail(String email) {
         Person pessoa = null;
-        for(Person p: pessoas) {
+        for(Person p: persons) {
             if(p.getEmail().equals(email)) {
                 pessoa = p;
             }
@@ -38,14 +38,14 @@ public class RepositoryPerson implements IRepositoryPerson {
 
     @Override
     public ArrayList<Person> findAll() {
-        return pessoas;
+        return persons;
     }
 
     @Override
     public void update(int id, Person p) {
-        for (int i = 0; i < pessoas.size(); i++) {
-            if (pessoas.get(i).getId() == id) {
-                pessoas.set(i, p);
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getId() == id) {
+                persons.set(i, p);
                 return;
             }
         }
@@ -55,13 +55,24 @@ public class RepositoryPerson implements IRepositoryPerson {
     public void create(Person p) {
         Person exists = this.findByEmail(p.getEmail());
         if (exists != null) throw new EmailConflictException("Esse email ja existe");
-        pessoas.add(p);
+        persons.add(p);
     }
 
     @Override
     public void remove(Person p) {
         if (p != null) {
-            pessoas.remove(p);
+            persons.remove(p);
         }
+    }
+
+    public ArrayList<Person> filterByName(String name){
+        ArrayList<Person> filter = new ArrayList<>();
+        for (Person p: persons) {
+            if (p.getName().contains(name)) {
+                filter.add(p);
+            }
+        }
+
+        return filter;
     }
 }

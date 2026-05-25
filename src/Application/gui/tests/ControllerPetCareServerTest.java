@@ -121,7 +121,7 @@ public class ControllerPetCareServerTest {
     // MENUS CRUD SECUNDÁRIOS
     // ==========================================================
 
-    private static void menuPessoas(IControllerPessoa controller, Scanner scanner) {
+    private static void menuPessoas(IControllerPerson controller, Scanner scanner) {
         while (true) {
             System.out.println("\n--- CRUD PESSOAS ---");
             System.out.println("1. Listar person");

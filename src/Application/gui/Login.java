@@ -1,6 +1,6 @@
 package gui;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 import business.model.person.Person;
 import business.model.person.Veterinarian;
 import business.model.person.Employee;
@@ -11,10 +11,10 @@ import exceptions.WrongPasswordOrEmailException;
 
 public class Login {
 
-    private IControllerPessoa controllerPessoa;
+    private IControllerPerson controllerPessoa;
 
 
-    public Login(IControllerPessoa controllerPessoa) {
+    public Login(IControllerPerson controllerPessoa) {
         this.controllerPessoa = controllerPessoa;
     }
 

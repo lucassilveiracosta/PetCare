@@ -6,8 +6,8 @@ public class Product {
     private static int count_id = 1;
     private int id = count_id++;
     private String name;
-    private Integer quantity;
-    private String description;
+    private Integer quantity; // Se é do petshop ou do veterinário
+    private String description; // e boolean para ver se o remédio é controlado
     private Double price;
 
     public Product(String name, Integer quantity, String description, Double price){

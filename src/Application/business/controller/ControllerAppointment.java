@@ -9,6 +9,7 @@ import exceptions.AppointmentNotFoundException;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ControllerAppointment implements IControllerAppointment {
 
@@ -66,8 +67,8 @@ public class ControllerAppointment implements IControllerAppointment {
             exists.setPatient(partialData.getPatient());
         }
 
-        if (partialData.getDateHour() != null) {
-            exists.setDateHour(partialData.getDateHour());
+        if (partialData.getDateHourScheduled() != null) {
+            exists.setDateHourScheduled(partialData.getDateHourScheduled());
         }
 
 
@@ -108,4 +109,6 @@ public class ControllerAppointment implements IControllerAppointment {
 
         repositoryAppointment.create(appointment);
     }
+
+
 }
