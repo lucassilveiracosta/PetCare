@@ -1,7 +1,7 @@
 package gui;
 
-import business.controller.ControllerPessoa;
-import business.interfaces.IControllerPessoa;
+import business.controller.ControllerPerson;
+import business.interfaces.IControllerPerson;
 import business.model.person.*;
 import data.repository.RepositoryPerson;
 
@@ -13,7 +13,7 @@ public class Program {
         
         // 1. Instanciando Repositório e Controller
         RepositoryPerson repoPessoa = new RepositoryPerson(new ArrayList<>());
-        IControllerPessoa controllerPessoa = new ControllerPessoa(repoPessoa);
+        IControllerPerson controllerPessoa = new ControllerPerson(repoPessoa);
 
         // 2. Mock de Dados (criando 1 usuário de cada tipo)
         try {

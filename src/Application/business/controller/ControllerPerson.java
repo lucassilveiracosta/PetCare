@@ -1,7 +1,10 @@
 package business.controller;
 
-import business.interfaces.IControllerPessoa;
+import business.interfaces.IControllerPerson;
 
+import business.model.animal.Animal;
+import business.model.animal.DomesticAnimal;
+import data.interfaces.IRepositoryAnimal;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
@@ -12,11 +15,12 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.ArrayList;
 
-public class ControllerPessoa implements IControllerPessoa {
+public class ControllerPerson implements IControllerPerson {
 
     private IRepositoryPerson repositoryPerson;
+    private IRepositoryAnimal repositoryAnimal;
 
-    public ControllerPessoa(IRepositoryPerson repositoryPerson) {
+    public ControllerPerson(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;
     }
 
@@ -63,5 +67,29 @@ public class ControllerPessoa implements IControllerPessoa {
         Person exists = repositoryPerson.findById(p.getId());
         if (exists != null) throw new PersonConflictException("409 - This Person already exists");
         repositoryPerson.create(p);
+    }
+
+    @Override
+    public ArrayList<Person> filterByName(String name) {
+        return repositoryPerson.filterByName(name);
+    }
+
+    /**
+     *
+     * @param email
+     * @return Essa função retorna todos os animais domésticos relacionados ao dono do email selecionado
+     */
+    public ArrayList<Animal> filterOwnersByEmail(String email) {
+        ArrayList<Animal> filter = new ArrayList<>();
+
+        for (Animal a: repositoryAnimal.findAll()) {
+            if (a instanceof DomesticAnimal da) {
+                if (da.getOwner().getEmail().contains(email)) {
+                    filter.add(a);
+                }
+            }
+        }
+
+        return filter;
     }
 }

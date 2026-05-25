@@ -9,14 +9,14 @@ public abstract class Procedure {
 
     protected int id = countId++;
     private Animal patient;
-    private LocalDateTime dateHour;
+    private LocalDateTime dateHourScheduled;
     private String description;
     private Double price;
 
-    public Procedure(Double price, Animal patient, LocalDateTime dateHour, String description) {
+    public Procedure(Double price, Animal patient, LocalDateTime dateHourScheduled, String description) {
         this.price = price;
         setPatient(patient);
-        this.dateHour = dateHour;
+        this.dateHourScheduled = dateHourScheduled;
         setDescription(description);
     }
 
@@ -31,15 +31,15 @@ public abstract class Procedure {
         this.patient = patient;
     }
 
-    public LocalDateTime getDateHour() {
-        return dateHour;
+    public LocalDateTime getDateHourScheduled() {
+        return dateHourScheduled;
     }
 
-    public void setDateHour(LocalDateTime dateHour) {
-        if (dateHour == null) {
-            throw new IllegalArgumentException("400 - Invalid dateHour");
+    public void setDateHourScheduled(LocalDateTime dateHourScheduled) {
+        if (dateHourScheduled == null) {
+            throw new IllegalArgumentException("400 - Invalid dateHourScheduled");
         }
-        this.dateHour = dateHour;
+        this.dateHourScheduled = dateHourScheduled;
     }
 
     public String getDescription() {
