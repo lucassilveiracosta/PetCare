@@ -108,4 +108,20 @@ public class ControllerAppointment implements IControllerAppointment {
 
         repositoryAppointment.create(appointment);
     }
+
+    public boolean checkIfAppointmentCollides(Appointment appointment) {
+        boolean check = false;
+
+        ArrayList<Appointment> appointments = repositoryAppointment.findAll();
+
+        for (Appointment app: appointments) {
+            if (app.getDateHourScheduled().equals(appointment.getDateHourScheduled())){
+                check = true;
+            }
+        }
+
+        return check;
+    }
+
+
 }
