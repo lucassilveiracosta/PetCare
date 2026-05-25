@@ -2,6 +2,9 @@ package business.controller;
 
 import business.interfaces.IControllerPerson;
 
+import business.model.animal.Animal;
+import business.model.animal.DomesticAnimal;
+import data.interfaces.IRepositoryAnimal;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 public class ControllerPerson implements IControllerPerson {
 
     private IRepositoryPerson repositoryPerson;
+    private IRepositoryAnimal repositoryAnimal;
 
     public ControllerPerson(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;
@@ -68,6 +72,19 @@ public class ControllerPerson implements IControllerPerson {
     @Override
     public ArrayList<Person> filterByName(String name) {
         return repositoryPerson.filterByName(name);
+    }
 
+    public ArrayList<Animal> filterOwnersByEmail(String email) {
+        ArrayList<Animal> filter = new ArrayList<>();
+
+        for (Animal a: repositoryAnimal.findAll()) {
+            if (a instanceof DomesticAnimal da) {
+                if (da.getOwner().getEmail().contains(email)) {
+                    filter.add(a);
+                }
+            }
+        }
+
+        return filter;
     }
 }
