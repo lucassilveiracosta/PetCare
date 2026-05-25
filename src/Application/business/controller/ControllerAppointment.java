@@ -106,6 +106,8 @@ public class ControllerAppointment implements IControllerAppointment {
             throw new AppointmentConflictException("409 - This appointment already exists");
         }
 
+        if (checkIfAppointmentCollides(appointment)) throw new AppointmentConflictException("409 - Already have an appointment in this hour/date");
+
         repositoryAppointment.create(appointment);
     }
 
