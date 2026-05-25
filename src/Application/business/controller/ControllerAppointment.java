@@ -9,6 +9,7 @@ import exceptions.AppointmentNotFoundException;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ControllerAppointment implements IControllerAppointment {
 
@@ -106,23 +107,7 @@ public class ControllerAppointment implements IControllerAppointment {
             throw new AppointmentConflictException("409 - This appointment already exists");
         }
 
-        if (checkIfAppointmentCollides(appointment)) throw new AppointmentConflictException("409 - Already have an appointment in this hour/date");
-
         repositoryAppointment.create(appointment);
-    }
-
-    public boolean checkIfAppointmentCollides(Appointment appointment) {
-        boolean check = false;
-
-        ArrayList<Appointment> appointments = repositoryAppointment.findAll();
-
-        for (Appointment app: appointments) {
-            if (app.getDateHourScheduled().equals(appointment.getDateHourScheduled())){
-                check = true;
-            }
-        }
-
-        return check;
     }
 
 
