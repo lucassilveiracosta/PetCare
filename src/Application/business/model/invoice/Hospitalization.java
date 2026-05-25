@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Hospitalization extends Procedure{
 
-    private Animal animal;
     private Veterinarian responsibleVeterinarian;
     private LocalDateTime entryDateTime;
     private LocalDateTime dischargeDateTime;
@@ -17,20 +16,10 @@ public class Hospitalization extends Procedure{
 
     public Hospitalization(Double price, Animal patient, LocalDateTime dateHour, String description, Animal animal, Veterinarian responsibleVeterinarian, LocalDateTime entryDateTime, LocalDateTime dischargeDateTime, ArrayList<VitalParameters> vitalParametersHistory) {
         super(price, patient, dateHour, description);
-        this.animal = animal;
-        this.responsibleVeterinarian = responsibleVeterinarian;
-        this.entryDateTime = entryDateTime;
-        this.dischargeDateTime = dischargeDateTime;
-        this.vitalParametersHistory = vitalParametersHistory;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("400 - Invalid animal");
-        this.animal = animal;
+        setResponsibleVeterinarian(responsibleVeterinarian);
+        setEntryDateTime(entryDateTime);
+        setDischargeDateTime(dischargeDateTime);
+        setVitalParametersHistory(vitalParametersHistory);
     }
 
     public Veterinarian getResponsibleVeterinarian() {
