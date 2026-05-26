@@ -70,7 +70,7 @@ public class RepositoryInvoiceTest {
         produtos1.add(new Product("La ele", 2, "Brinquedo de Borracha", 35.0, false));
 
         ArrayList<Procedure> procedimentos2 = new ArrayList<>();
-        procedimentos2.add(new Surgery(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", SurgeryRisk.HIGH));
+        //procedimentos2.add(new Surgery(300.0, animal2, dataHora, "Exame de Sangue", veterinario, "anestesia Geral", SurgeryRisk.HIGH)); //necessidade de criar um Arraylist de vet e de materiais
 
         ArrayList<Product> produtos2 = new ArrayList<>();
         produtos2.add(new Product("AntiBac", 2, "Antibiótico Pet", 85.0, true));

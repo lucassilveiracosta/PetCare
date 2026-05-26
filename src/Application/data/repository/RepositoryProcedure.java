@@ -1,11 +1,9 @@
 package data.repository;
 
-import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import data.interfaces.IRepositoryProcedure;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RepositoryProcedure implements IRepositoryProcedure {
 
@@ -22,7 +20,7 @@ public class RepositoryProcedure implements IRepositoryProcedure {
     }
 
     @Override
-    public List<Procedure> findAll() {
+    public ArrayList<Procedure> findAll() {
         return procedures;
     }
 
@@ -51,6 +49,4 @@ public class RepositoryProcedure implements IRepositoryProcedure {
     public void remove(Procedure p) {
         if (p != null) procedures.remove(p);
     }
-
 }
-
