@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testejavafx.SchedulingViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.testejavafx.SchedulingViewController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -31,16 +31,16 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <BorderPane prefHeight="120.0" prefWidth="833.0" GridPane.columnIndex="1">
+                  <BorderPane prefHeight="210.0" prefWidth="785.0" GridPane.columnIndex="1">
                      <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Realize o agendamento do seu animal:" wrappingWidth="374.544921875" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule your pet's appointment:" wrappingWidth="374.544921875" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                      </center>
                   </BorderPane>
-                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <GridPane prefHeight="80.0" prefWidth="680.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="136.0" />
                         <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="533.0" />
@@ -52,7 +52,7 @@
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do tutor:" BorderPane.alignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tutor's name:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -61,15 +61,15 @@
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione o animal:" BorderPane.alignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the animal:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
                            </center>
                         </BorderPane>
-                        <ChoiceBox fx:id="nomeTutorAgendamento" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ChoiceBox fx:id="nomeAnimalAgendamento" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="nameTutorScheduling" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <ChoiceBox fx:id="nameAnimalScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                      <GridPane.margin>
                         <Insets />
@@ -87,24 +87,24 @@
                      <children>
                         <BorderPane prefHeight="120.0" prefWidth="208.0">
                            <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qual o motivo do seu agendamento:" wrappingWidth="122.6455078125" BorderPane.alignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is the reason for your appointment?" wrappingWidth="122.6455078125" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
                            </center>
                         </BorderPane>
-                        <TextField fx:id="motivoAgendamento" prefHeight="57.0" prefWidth="182.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="reasonScheduling" prefHeight="57.0" prefWidth="182.0" GridPane.columnIndex="1" />
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Agende a data: " BorderPane.alignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule the date:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
                            </center>
                         </BorderPane>
-                        <DatePicker fx:id="dataAgendamento" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="schedulingDate" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -122,7 +122,7 @@
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <top>
-                        <Button fx:id="agendarAgendamento" mnemonicParsing="false" onAction="#onAgendarClick" text="Agendar!" BorderPane.alignment="CENTER" />
+                        <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" text="Agendar!" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                </children>

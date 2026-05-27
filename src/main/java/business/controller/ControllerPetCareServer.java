@@ -49,7 +49,7 @@ public class ControllerPetCareServer {
 
 
 
-    public IControllerPessoa getPessoa() {
+    public IControllerPessoa getPerson() {
         return controllerPerson;
     }
 

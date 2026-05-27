@@ -47,7 +47,7 @@ public class ControllerPetCareServerTest {
 
             switch (opcao) {
                 case 1:
-                    menuPessoas(server.getPessoa(), scanner);
+                    menuPessoas(server.getPerson(), scanner);
                     break;
                 case 2:
                     menuAnimais(server.getAnimal(), scanner);
@@ -76,9 +76,9 @@ public class ControllerPetCareServerTest {
             Owner dono2 = new Owner("Maria Souza", "maria@email.com", "senha123", LocalDate.of(1992, 8, 15), "22233344455", "99999-2222", "Engenheira", "Adora gatos");
             Veterinarian vet = new Veterinarian("Dr. Carlos", "carlos@vet.com", "veter123", LocalDate.of(1980, 1, 10), "55544433322", "99999-3333", "CRMV-999", new ArrayList<>());
             
-            server.getPessoa().post(dono1);
-            server.getPessoa().post(dono2);
-            server.getPessoa().post(vet);
+            server.getPerson().post(dono1);
+            server.getPerson().post(dono2);
+            server.getPerson().post(vet);
 
             // Animais
             Animal rex = new DomesticAnimal("Rex", "Pastor Alemão", "Capa Preta", LocalDate.now().minusYears(3), StageOfLife.ADULTO, 30.5, Size.GRANDE, Sex.MACHO, dono1, Temperament.DOCIL, true,  new ArrayList<>());
