@@ -61,4 +61,21 @@ public class ControllerStockMedicine implements IControllerStockMedicine {
         }
         return controlledMedicines;
     }
+    public Medicine findById(int id) {
+        return repository.findById(id);
+    }
+
+    public void updateMedicine(Medicine medicine) {
+        if (medicine == null) {
+            throw new IllegalArgumentException("400 - Invalid medicine data for update");
+        }
+        repository.updateMedicine(medicine);
+    }
+
+    public void removeMedicine(Medicine medicine) {
+        if (medicine == null) {
+            throw new IllegalArgumentException("400 - Invalid medicine data for removal");
+        }
+        repository.removeMedicine(medicine);
+    }
 }

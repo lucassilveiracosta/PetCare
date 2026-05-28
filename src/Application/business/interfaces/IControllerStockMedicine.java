@@ -12,4 +12,8 @@ public interface IControllerStockMedicine {
     List<Medicine> listAll();
 
     List<Medicine> listControlled();
+
+    Medicine findById(int id);
+    void updateMedicine(Medicine medicine);
+    void removeMedicine(Medicine medicine);
 }

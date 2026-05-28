@@ -23,4 +23,27 @@ public class RepositoryStockMedicine implements IRepositoryStockMedicine {
     public List<Medicine> getAllMedicines() {
         return new ArrayList<>(this.medicineList);
     }
+
+    @Override
+    public Medicine findById(int id) {
+        for (Medicine med : medicineList) {
+            if (med.getId() == id) {
+                return med;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void updateMedicine(Medicine updateMedicine) {
+        if (updateMedicine == null) {
+            return;
+        }
+        for (int i = 0; i < medicineList.size(); i++) {
+            if (medicineList.get(i).getId() == updateMedicine.getId()) {
+                medicineList.set(i, updateMedicine);
+                return;
+            }
+        }
+    }
 }
