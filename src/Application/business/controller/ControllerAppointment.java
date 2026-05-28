@@ -110,5 +110,18 @@ public class ControllerAppointment implements IControllerAppointment {
         repositoryAppointment.create(appointment);
     }
 
+    @Override
+    public ArrayList<Appointment> filterByAppointmentStatus(AppointmentStatus status) {
+        ArrayList<Appointment> filter = new ArrayList<>();
+
+        for (Appointment appointment: repositoryAppointment.findAll()) {
+            if (appointment.getStatus().equals(status)) {
+                filter.add(appointment);
+            }
+        }
+
+        return filter;
+    }
+
 
 }
