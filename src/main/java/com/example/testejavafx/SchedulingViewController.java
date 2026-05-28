@@ -6,13 +6,18 @@ import business.interfaces.IControllerAnimal;
 import business.controller.ControllerPetCareServer;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
+import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Person;
+import business.model.person.Veterinarian;
+import enums.PetShopServices;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,6 +35,15 @@ public class SchedulingViewController implements Initializable {
 
     @FXML
     private Button scheduleScheduling;
+
+    @FXML
+    private ChoiceBox<String> nameVeterianarianScheduling;
+
+    @FXML
+    private ChoiceBox<String> appointmentScheduling;
+
+    @FXML
+    private Text professionalText;
 
     private IControllerPessoa controllerPessoa;
     private IControllerAnimal controllerAnimal;
@@ -49,6 +63,8 @@ public class SchedulingViewController implements Initializable {
 
         nameAnimalScheduling.getItems().clear();
         nameTutorScheduling.getItems().clear();
+        appointmentScheduling.getItems().clear();
+        nameVeterianarianScheduling.getItems().clear();
 
         List<Person> AllPerson = controllerPessoa.getAll();
 
@@ -57,9 +73,28 @@ public class SchedulingViewController implements Initializable {
                 nameTutorScheduling.getItems().add(person.getName());
             }
         }
+        appointmentScheduling.getItems().add("MEDICAL CONSULTATION");
+        for(PetShopServices service : PetShopServices.values()){
+            appointmentScheduling.getItems().add(service.name());
+        }
+
         nameTutorScheduling.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
             if (newValue != null) {
                 updateAnimals(newValue);
+            }
+        });
+
+
+        // Arrow functionzinha com if e else para alternar o texto e sempre atualizando de acordo com o que o usuário seleciona.
+        appointmentScheduling.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                if(newValue.equals("MEDICAL CONSULTATION")){
+                    professionalText.setText("Select the Veterinarian:");
+                    updateProfessionalList(true);
+                } else {
+                    professionalText.setText("Select the Employee");
+                    updateProfessionalList(false);
+                }
             }
         });
     }
@@ -81,4 +116,19 @@ public class SchedulingViewController implements Initializable {
                 nameAnimalScheduling.getSelectionModel().selectFirst();
             }
         }
+
+    private void updateProfessionalList(boolean isConsulta) {
+        nameVeterianarianScheduling.getItems().clear();
+
+        List<Person> AllPerson = controllerPessoa.getAll();
+
+        for (Person person : AllPerson) {
+            if (isConsulta && person instanceof Veterinarian) {
+                nameVeterianarianScheduling.getItems().add(person.getName());
+            }
+            else if (!isConsulta && person instanceof Employee) {
+                nameVeterianarianScheduling.getItems().add(person.getName());
+            }
+        }
+    }
     }

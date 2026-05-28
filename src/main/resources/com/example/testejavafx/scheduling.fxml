@@ -87,6 +87,16 @@
                      <children>
                         <BorderPane prefHeight="120.0" prefWidth="208.0">
                            <center>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Service Type:" wrappingWidth="105.6455078125" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                        </BorderPane>
+                        <TextField fx:id="reasonScheduling" prefHeight="57.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <center>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is the reason for your appointment?" wrappingWidth="122.6455078125" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
@@ -94,17 +104,7 @@
                               </Text>
                            </center>
                         </BorderPane>
-                        <TextField fx:id="reasonScheduling" prefHeight="57.0" prefWidth="182.0" GridPane.columnIndex="1" />
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule the date:" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Text>
-                           </center>
-                        </BorderPane>
-                        <DatePicker fx:id="schedulingDate" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="appointmentScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -117,12 +117,35 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <center>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule the date:" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </center>
+                              </BorderPane>
+                           </center>
+                        </BorderPane>
+                        <DatePicker fx:id="schedulingDate" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Text fx:id="professionalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the Veterinarian:" wrappingWidth="148.6455078125" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                        </BorderPane>
+                        <ChoiceBox fx:id="nameVeterianarianScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <top>
-                        <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" text="Agendar!" BorderPane.alignment="CENTER" />
+                        <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" text="Schedule!" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                </children>

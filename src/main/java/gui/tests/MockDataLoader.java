@@ -8,6 +8,7 @@ import business.model.animal.DomesticAnimal;
 import business.model.animal.ExoticAnimal;
 import business.model.animal.Vaccine;
 import business.model.appointment.*;
+import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Specialty;
 import business.model.person.Veterinarian;
@@ -213,5 +214,19 @@ public class MockDataLoader {
         appointmentCtrl.post(whiskersAppt);
         appointmentCtrl.post(buddyAppt);
         appointmentCtrl.post(lunaAppt);
+
+        Employee carlos = new Employee(
+                "Carlos Silva", "carlos.silva@petcare.com", "senha123",
+                LocalDate.of(1992, 5, 10), "555.666.777-88", "(11) 95555-4444", "Tosador", "08:00 - 17:00"
+        );
+
+        Employee ana = new Employee(
+                "Ana Souza", "ana.souza@petcare.com", "senha123",
+                LocalDate.of(1998, 9, 21), "666.777.888-99", "(11) 94444-3333",
+                "Banhista", "17:00 - 23:00"
+        );
+
+        personCtrl.post(carlos);
+        personCtrl.post(ana);
     }
 }

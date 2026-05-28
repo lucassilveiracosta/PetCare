@@ -13,9 +13,9 @@ public class HelloApplication extends Application {
 
         MockDataLoader.load();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("agendamento.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("scheduling.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Agendamento de Animal");
+        stage.setTitle("Animal Scheduling");
         stage.setScene(scene);
         stage.show();
     }
