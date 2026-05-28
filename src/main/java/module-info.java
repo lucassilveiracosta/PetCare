@@ -10,4 +10,6 @@ module com.example.testejavafx {
 
     opens com.example.testejavafx to javafx.fxml;
     exports com.example.testejavafx;
+
+    opens gui to javafx.fxml;
 }

@@ -44,65 +44,65 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConsultaController">
-   <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="185.0">
+<fx:root dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="SplitPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConsultaController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="622.0" prefWidth="281.0">
          <children>
-            <VBox layoutX="9.0" layoutY="6.0" prefHeight="385.0" prefWidth="156.0" spacing="10.0">
+            <VBox layoutX="9.0" layoutY="6.0" prefHeight="586.0" prefWidth="217.0" spacing="10.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <Label text="Fila de Espera" />
-                  <ListView fx:id="listaEspera" prefHeight="186.0" prefWidth="80.0" VBox.vgrow="ALWAYS" />
+                  <Label text="Waiting Line" />
+                  <ListView fx:id="listWait" prefHeight="394.0" prefWidth="164.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children></AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <VBox fx:id="painelProntuario" layoutX="13.0" layoutY="11.0" prefHeight="371.0" prefWidth="390.0" spacing="10.0">
+            <VBox fx:id="medicalrecordpanel" layoutX="13.0" layoutY="11.0" prefHeight="567.0" prefWidth="496.0" spacing="10.0">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
                <children>
-                  <Label fx:id="lblNomePet" prefHeight="17.0" prefWidth="259.0" text="Paciente: Selecione um animal" textAlignment="CENTER" />
-                  <Label fx:id="lblTipoAnimal" prefHeight="17.0" prefWidth="48.0" text="Tipo: -" />
+                  <TextField fx:id="fieldAnimal" editable="false" />
+                  <TextField fx:id="fieldType" editable="false" />
                   <HBox prefHeight="27.0" prefWidth="274.0">
                      <children>
-                        <Label text="Texto: &quot;Peso (kg):" />
-                        <TextField fx:id="campoPeso" prefHeight="25.0" prefWidth="181.0" />
+                        <Label text="weight( kg):" />
+                        <TextField fx:id="fieldWeight" prefHeight="25.0" prefWidth="181.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="41.0" prefWidth="274.0">
                      <children>
-                        <Label text="Sintomas / Queixa Clínica:" />
-                        <TextArea fx:id="campoSintomas" prefHeight="80.0" prefWidth="200.0" />
+                        <Label text="Symptoms / Clinical Complaint:" />
+                        <TextArea fx:id="fieldSymptoms" prefHeight="80.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="73.0" prefWidth="360.0">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="315.0" text="Histórico Clínico do Prontuário:" />
-                        <ListView fx:id="lvHistoricoClinico" prefHeight="133.0" prefWidth="241.0" />
+                        <Label prefHeight="36.0" prefWidth="315.0" text="Medical Record History:" />
+                        <ListView fx:id="lvClinicalHistory" prefHeight="73.0" prefWidth="445.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="33.0" prefWidth="360.0">
                      <children>
-                        <CheckBox fx:id="chkVacinaAntirrabica" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="195.0" text="Vacina Antirrábica em Dia" />
+                        <CheckBox fx:id="chkRabiesVaccine" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="195.0" text="Rabies vaccination up to date." />
                      </children>
                   </HBox>
                   <HBox prefHeight="44.0" prefWidth="360.0" spacing="10.0">
                      <children>
-                        <Button fx:id="registrarVacina" mnemonicParsing="false" prefHeight="25.0" prefWidth="175.0" text="Aplicar Antirrábica" />
-                        <Button fx:id="emitirReceitaPDF" mnemonicParsing="false" prefHeight="25.0" prefWidth="190.0" text="Emitir Receita (PDF)" />
+                        <Button fx:id="registerVaccine" mnemonicParsing="false" prefHeight="25.0" prefWidth="287.0" text="Apply Anti-rabies medication" />
+                        <Button fx:id="issuePrescriptionPDF" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="Issue Prescription (PDF)" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="41.0" prefWidth="360.0">
+                  <HBox prefHeight="19.0" prefWidth="466.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#finalizarConsulta" prefHeight="25.0" prefWidth="375.0" text="Finalizar Atendimento" />
+                        <Button mnemonicParsing="false" onAction="#finishConsultation" prefHeight="25.0" prefWidth="479.0" text="Finalize Service" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </children></AnchorPane>
-   </items>
-</SplitPane>
+  </items>
+</fx:root>
