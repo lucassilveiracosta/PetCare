@@ -3,6 +3,7 @@ package business.controller;
 import business.interfaces.IControllerAppointment;
 import business.model.appointment.Appointment;
 import data.interfaces.IRepositoryAppointment;
+import enums.AppointmentStatus;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
 
