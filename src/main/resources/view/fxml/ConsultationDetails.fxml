@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="ConsultationDetailsStyle" spacing="10" style="-fx-padding: 16;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.ConsultationDetailsController">
+
+    <!-- Title -->
+    <Label fx:id="lblTitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Consultation Details" />
+
+    <Separator />
+
+    <!-- Appointment Info -->
+    <Label style="-fx-font-weight: bold;" text="Appointment Info" />
+    <GridPane hgap="16" vgap="6">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label style="-fx-font-weight: bold;" text="Animal:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="lblAnimal" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Type:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="lblAnimalType" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Veterinarian:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="lblVet" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label style="-fx-font-weight: bold;" text="Date / Time:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label fx:id="lblDate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <Separator />
+
+    <!-- Medical Record -->
+    <Label style="-fx-font-weight: bold;" text="Medical Record" />
+    <GridPane hgap="16" vgap="6">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label style="-fx-font-weight: bold;" text="Diagnosis:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="lblDiagnosis" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Main complaint:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="lblComplaint" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label style="-fx-font-weight: bold;" text="Dietary:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="lblDietary" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label style="-fx-font-weight: bold;" text="Prescription:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label fx:id="lblPrescription" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <Separator />
+
+    <!-- Physical Examination -->
+    <Label style="-fx-font-weight: bold;" text="Physical Examination" />
+    <GridPane hgap="16" vgap="6">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label style="-fx-font-weight: bold;" text="Consciousness:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="lblConsciousness" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Temperature:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="lblTemperature" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Heart rate:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="lblHeartRate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label style="-fx-font-weight: bold;" text="Respiratory rate:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Label fx:id="lblRespiratoryRate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label style="-fx-font-weight: bold;" text="Mucosa:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="lblMucosa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label style="-fx-font-weight: bold;" text="Notes:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label fx:id="lblExamNotes" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <!-- Footer -->
+    <HBox alignment="CENTER_RIGHT" style="-fx-padding: 8 0 0 0;">
+        <Button onAction="#handleClose" text="Close" />
+    </HBox>
+</VBox>
