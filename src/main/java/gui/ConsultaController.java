@@ -16,13 +16,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.time.LocalDate;
 
 public class ConsultaController implements Initializable {
+
 
     @FXML private ListView<String> listWait;
     @FXML private VBox medicalrecordpanel;
