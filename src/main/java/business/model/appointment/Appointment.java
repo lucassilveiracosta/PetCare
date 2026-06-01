@@ -14,17 +14,19 @@ public class Appointment extends Procedure {
     private Anamnesis anamnesis;
     private PhysicalExamination phisicalExam;
     private String medicalPrescription;
+    private AppointmentStatus status;
 
     // Constructor for completed appointments (has full medical data)
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsableVeterinarian, String diagnosis,
-                       String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam) {
+                       String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status) {
         super(price, patient, dateHour, description);
         setResponsableVeterinarian(responsableVeterinarian);
         setDiagnosis(diagnosis);
         setMedicalPrescription(medicalPrescription);
         this.anamnesis = anamnesis;
         this.phisicalExam = phisicalExam;
+        setStatus(status);
     }
 
     // Constructor for scheduled (pending) appointments — no medical data yet
@@ -41,6 +43,15 @@ public class Appointment extends Procedure {
         if (scheduled.toLocalDate().equals(LocalDate.now())) return AppointmentStatus.IN_PROGRESS;
         if (scheduled.isAfter(now)) return AppointmentStatus.PENDING;
         return AppointmentStatus.EXPIRED;
+    }
+
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AppointmentStatus status) {
+        if (status == null) throw new IllegalArgumentException("400 - Invalid status");
+        this.status = status;
     }
 
     public Anamnesis getAnamnesis() {
