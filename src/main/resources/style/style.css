@@ -1,3 +1,32 @@
+#cardPending, #cardInProgress, #cardExpired, #cardCompleted {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 12px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+#btnPending, #btnCompleted, #btnExpired, #btnInProgress, #btnAll{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 0px 20px;
+    -fx-border-color: #bbbbbb;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+#cardPending, #btnPending {
+    -fx-background-color: #fff3cd;
+}
+#cardInProgress , #btnInProgress {
+    -fx-background-color: #cce5ff;
+}
+#cardCompleted ,#btnCompleted {
+        -fx-background-color: #d4edda;
+}
+#cardExpired , #btnExpired {
+    -fx-background-color: #f8d7da;
+}
+
 
 #PetCareStyle{
     -fx-text-fill: black;
@@ -23,5 +52,10 @@
 
 .button:hover {
     -fx-background-color: #2C5282;
+    -fx-cursor: hand;
+}
+
+#btnAll {
+    -fx-background-color: #80d763;
     -fx-cursor: hand;
 }
