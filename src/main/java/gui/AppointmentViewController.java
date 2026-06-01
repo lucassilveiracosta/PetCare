@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,7 +27,7 @@ public class AppointmentViewController implements Initializable {
     @FXML private ChoiceBox<String> appointmentScheduling;
     @FXML private ChoiceBox<String> nameVeterianarianScheduling;
     @FXML private DatePicker schedulingDate;
-    @FXML private TextField schedulingTime;
+    @FXML private ChoiceBox<String> schedulingTime;
     @FXML private TextField reasonScheduling;
     @FXML private Button scheduleScheduling;
 
@@ -59,6 +58,12 @@ public class AppointmentViewController implements Initializable {
         for (Veterinarian v : allVets) {
             nameVeterianarianScheduling.getItems().add(v.getName());
         }
+
+        // Time slots every 30 min from 07:00 to 19:00
+        for (int h = 7; h <= 19; h++) {
+            schedulingTime.getItems().add(String.format("%02d:00", h));
+            if (h < 19) schedulingTime.getItems().add(String.format("%02d:30", h));
+        }
     }
 
     private void refreshAnimalList(int ownerIndex) {
@@ -82,24 +87,17 @@ public class AppointmentViewController implements Initializable {
         LocalDate date = schedulingDate.getValue();
         String reason  = reasonScheduling.getText();
         String service = appointmentScheduling.getValue();
-        String timeStr = schedulingTime.getText();
+        String timeStr = schedulingTime.getValue();
 
         if (animalIdx < 0 || vetIdx < 0 || date == null || service == null
-                || reason == null || reason.isBlank()
-                || timeStr == null || timeStr.isBlank()) {
+                || timeStr == null
+                || reason == null || reason.isBlank()) {
             showAlert(Alert.AlertType.WARNING, "Missing fields",
                     "Please fill in all fields before scheduling.");
             return;
         }
 
-        LocalTime time;
-        try {
-            time = LocalTime.parse(timeStr.trim(), TIME_FMT);
-        } catch (DateTimeParseException e) {
-            showAlert(Alert.AlertType.WARNING, "Invalid time",
-                    "Enter the time in HH:mm format (e.g. 09:00 or 14:30).");
-            return;
-        }
+        LocalTime time = LocalTime.parse(timeStr, TIME_FMT);
 
         Animal animal = animalsByOwner.get(animalIdx);
         Veterinarian vet = allVets.get(vetIdx);
@@ -125,7 +123,7 @@ public class AppointmentViewController implements Initializable {
         appointmentScheduling.getSelectionModel().clearSelection();
         nameVeterianarianScheduling.getSelectionModel().clearSelection();
         schedulingDate.setValue(null);
-        schedulingTime.clear();
+        schedulingTime.getSelectionModel().clearSelection();
         reasonScheduling.clear();
     }
 

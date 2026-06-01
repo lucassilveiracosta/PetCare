@@ -151,7 +151,7 @@
                               </Text>
                            </center>
                         </BorderPane>
-                        <TextField fx:id="schedulingTime" promptText="HH:mm  (e.g. 09:00)" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ChoiceBox fx:id="schedulingTime" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
