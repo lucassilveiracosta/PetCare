@@ -1,6 +1,8 @@
 package business.model.invoice;
 
 
+import enums.MedicineType;
+
 public class Product {
 
     private static int count_id = 1;
@@ -8,15 +10,19 @@ public class Product {
     private String name;
     private Integer quantity;
     private final boolean isVet; // Se é do petshop ou do veterinário
+    private MedicineType medicineType;
     private String description; // e boolean para ver se o remédio é controlado
     private Double price;
 
-    public Product(String name, Integer quantity, String description, Double price, boolean isVet){
+    public Product(String name, Integer quantity, String description, Double price, boolean isVet, MedicineType medicineType){
         setName(name);
         setQuantity(quantity);
         setDescription(description);
         this.price = price;
         this.isVet = isVet;
+        if (isVet) {
+            this.medicineType = medicineType;
+        }
     }
 
     public String getName() {
