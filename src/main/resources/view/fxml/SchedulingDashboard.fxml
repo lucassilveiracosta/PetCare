@@ -53,7 +53,7 @@
             <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
             <TableColumn fx:id="colAnimal" text="Animal" prefWidth="110"/>
             <TableColumn fx:id="colVet" text="Veterinarian" prefWidth="180"/>
-            <TableColumn fx:id="colDate" text="Date / Time (mm/dd/yy)" prefWidth="140"/>
+            <TableColumn fx:id="colDate" text="Date / Time (MM/dd/yyyy HH:mm)" prefWidth="140"/>
             <TableColumn fx:id="colDesc" text="Description" prefWidth="250"/>
         </columns>
         <placeholder>
