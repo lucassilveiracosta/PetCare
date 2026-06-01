@@ -17,7 +17,7 @@ public class MenuController {
         mdl.load();
 
         FXMLLoader loader = new FXMLLoader(
-                MenuController.class.getResource("/view/fxml/Appointment.fxml"));
+                MenuController.class.getResource("/view/fxml/Scheduling.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load(), 1000, 600));
         stage.setTitle("Scheduling");
@@ -44,7 +44,7 @@ public class MenuController {
         MockDataLoader mdl = new MockDataLoader();
         mdl.load();
         FXMLLoader loader = new FXMLLoader(
-                MenuController.class.getResource("/view/fxml/AppointmentDashboard.fxml"));
+                MenuController.class.getResource("/view/fxml/SchedulingDashboard.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load(), 900, 650));
         stage.setTitle("Appointment Dashboard");

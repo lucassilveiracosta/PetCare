@@ -115,6 +115,7 @@
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -141,6 +142,16 @@
                            </center>
                         </BorderPane>
                         <ChoiceBox fx:id="nameVeterianarianScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <center>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment time:" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                        </BorderPane>
+                        <TextField fx:id="schedulingTime" promptText="HH:mm  (e.g. 09:00)" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">

@@ -64,6 +64,9 @@ public class MockDataLoader {
                 LocalDate.of(1995, 7, 18), "444.555.666-77", "(11) 96543-2109",
                 "Nurse", "Prefers morning appointments");
 
+        server.getPessoa().post(michael);
+        server.getPessoa().post(emma);
+
         // ── Animals ──────────────────────────────────────────────────────────────
 
         // Rex — German Shepherd, adult male, valid rabies vaccine

@@ -15,11 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+import enums.AppointmentStatus;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import java.time.LocalDate;
 
 public class ConsultationController implements Initializable {
@@ -65,10 +68,23 @@ public class ConsultationController implements Initializable {
     }
 
     public void loadWaitingList() {
-        waitingAnimals = animalController.getAll();
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm MM/dd");
+
+        List<Appointment> scheduled = appointmentController.getAll().stream()
+                .filter(a -> a.getEffectiveStatus() == AppointmentStatus.PENDING
+                          || a.getEffectiveStatus() == AppointmentStatus.IN_PROGRESS)
+                .sorted(Comparator.comparing(Appointment::getDateHourScheduled))
+                .collect(Collectors.toList());
+
+        waitingAnimals = scheduled.stream()
+                .map(Appointment::getPatient)
+                .collect(Collectors.toList());
+
         ObservableList<String> names = FXCollections.observableArrayList();
-        for (Animal a : waitingAnimals) {
-            names.add(a.getName() + " (" + a.getSpecies() + ")");
+        for (Appointment appt : scheduled) {
+            Animal a = appt.getPatient();
+            names.add(appt.getDateHourScheduled().format(timeFmt)
+                    + "  —  " + a.getName() + " (" + a.getSpecies() + ")");
         }
         listWait.setItems(names);
     }
