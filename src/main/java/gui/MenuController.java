@@ -47,7 +47,7 @@ public class MenuController {
                 MenuController.class.getResource("/view/fxml/SchedulingDashboard.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load(), 900, 650));
-        stage.setTitle("Appointment Dashboard");
+        stage.setTitle("Scheduling Dashboard");
         stage.show();
     }
 }
