@@ -9,5 +9,5 @@
     <Label text="PetCare" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
     <Button text="Scheduling" onAction="#openAgendamento" prefWidth="220" prefHeight="40"/>
     <Button text="Consultations" onAction="#openConsultas" prefWidth="220" prefHeight="40"/>
-    <Button text="Appointment Dashboard" onAction="#openDashboard" prefWidth="220" prefHeight="40"/>
+    <Button text="Scheduling Dashboard" onAction="#openDashboard" prefWidth="220" prefHeight="40"/>
 </VBox>
