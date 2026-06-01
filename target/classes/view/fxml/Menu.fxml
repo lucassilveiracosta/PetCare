@@ -4,8 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="340" prefWidth="400" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.MenuController">
-    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="PetCare" />
+<VBox fx:id="backgroundvbox" alignment="CENTER" prefHeight="340" prefWidth="400" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.MenuController">
+    <Label fx:id="PetCareStyle" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="PetCare" />
     <Button onAction="#openAgendamento" prefHeight="40" prefWidth="220" text="Scheduling" />
     <Button onAction="#openConsultas" prefHeight="40" prefWidth="220" text="Consultations" />
     <Button onAction="#openDashboard" prefHeight="40" prefWidth="220" text="Appointment Dashboard" />
