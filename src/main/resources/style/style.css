@@ -1,0 +1,27 @@
+
+#PetCareStyle{
+    -fx-text-fill: black;
+}
+.root {
+    -fx-background-color: #EBF3F9;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+#lblTitle {
+    -fx-text-fill: #1B365D;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #1B365D;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 25px;
+}
+
+.button:hover {
+    -fx-background-color: #2C5282;
+    -fx-cursor: hand;
+}
