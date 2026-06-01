@@ -7,7 +7,7 @@
 
     <!-- Header -->
     <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label text="Appointment Dashboard" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Label text="Scheduling Dashboard" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
         <HBox HBox.hgrow="ALWAYS"/>
         <Button fx:id="btnViewConsultation" text="View Consultation"
                 onAction="#handleViewConsultation" disable="true"/>
