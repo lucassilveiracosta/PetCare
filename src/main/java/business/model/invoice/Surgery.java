@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 public class Surgery extends Procedure {
 
-    private Veterinarian responsableVeterinarian;
+    private Veterinarian responsableVeterinarian; //corrigir gramatica
     private String anesthesiaType;
-    private String surgeryRisk;
+    private SurgeryRisk surgeryRisk;
 
-    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description, Veterinarian responsebleVeterinarian, String anesthesiaType, String surgeryRisk) {
+    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType, String surgeryRisk) {
         super(price, patient, dateHour, description);
         setSurgeryRisk(surgeryRisk);
         setAnesthesiaType(anesthesiaType);
@@ -18,12 +18,12 @@ public class Surgery extends Procedure {
 
     }
 
-    public String getSurgeryRisk() {
+    public SurgeryRisk getSurgeryRisk() {
         return surgeryRisk;
     }
 
-    public void setSurgeryRisk(String surgeryRisk) {
-        if(surgeryRisk == null || surgeryRisk.isBlank()){
+    public void setSurgeryRisk(SurgeryRisk surgeryRisk) {
+        if(surgeryRisk == null){
             throw new IllegalArgumentException("400 - Invalid surgery risk");
         }
         this.surgeryRisk = surgeryRisk;
