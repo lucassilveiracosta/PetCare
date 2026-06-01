@@ -4,6 +4,9 @@ import business.interfaces.IControllerPerson;
 
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
+import business.model.person.Employee;
+import business.model.person.Owner;
+import business.model.person.Veterinarian;
 import data.interfaces.IRepositoryAnimal;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
@@ -90,6 +93,39 @@ public class ControllerPerson implements IControllerPerson {
             }
         }
 
+        return filter;
+    }
+
+    public ArrayList<Veterinarian> getAllVets(){
+        ArrayList<Veterinarian> filter = new ArrayList<>();
+
+        for (Person p: repositoryPerson.findAll()) {
+            if (p instanceof Veterinarian vet) {
+                filter.add(vet);
+            }
+        }
+        return filter;
+    }
+
+    public ArrayList<Employee> getAllEmployees(){
+        ArrayList<Employee> filter = new ArrayList<>();
+
+        for (Person p: repositoryPerson.findAll()) {
+            if (p instanceof Employee e) {
+                filter.add(e);
+            }
+        }
+        return filter;
+    }
+
+    public ArrayList<Owner> getAllOwners(){
+        ArrayList<Owner> filter = new ArrayList<>();
+
+        for (Person p: repositoryPerson.findAll()) {
+            if (p instanceof Owner o) {
+                filter.add(o);
+            }
+        }
         return filter;
     }
 }

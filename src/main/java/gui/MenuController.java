@@ -13,7 +13,9 @@ public class MenuController {
 
     @FXML
     public void openAgendamento(ActionEvent event) throws IOException {
-        MockDataLoader.load();
+        MockDataLoader mdl = new MockDataLoader();
+        mdl.load();
+
         FXMLLoader loader = new FXMLLoader(
                 MenuController.class.getResource("/view/fxml/agendamento.fxml"));
         Stage stage = new Stage();
@@ -24,7 +26,8 @@ public class MenuController {
 
     @FXML
     public void openConsultas(ActionEvent event) throws IOException {
-        MockDataLoader.load();
+        MockDataLoader mdl = new MockDataLoader();
+        mdl.load();
         FXMLLoader loader = new FXMLLoader(
                 MenuController.class.getResource("/view/fxml/Consulta.fxml"));
         SplitPane root = new SplitPane();
@@ -38,7 +41,8 @@ public class MenuController {
 
     @FXML
     public void openDashboard(ActionEvent event) throws IOException {
-        MockDataLoader.load();
+        MockDataLoader mdl = new MockDataLoader();
+        mdl.load();
         FXMLLoader loader = new FXMLLoader(
                 MenuController.class.getResource("/view/fxml/AppointmentDashboard.fxml"));
         Stage stage = new Stage();

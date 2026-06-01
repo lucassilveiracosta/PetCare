@@ -3,13 +3,17 @@ package gui;
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerAnimal;
 import business.interfaces.IControllerAppointment;
+import business.interfaces.IControllerPerson;
 import business.model.animal.DomesticAnimal;
 import business.model.animal.ExoticAnimal;
 import business.model.animal.Vaccine;
 import business.model.appointment.*;
 import business.model.person.Owner;
+import business.model.person.Person;
 import business.model.person.Specialty;
 import business.model.person.Veterinarian;
+import data.interfaces.IRepositoryPerson;
+import data.repository.RepositoryPerson;
 import enums.*;
 
 import java.time.LocalDate;
@@ -20,7 +24,7 @@ public class MockDataLoader {
 
     private static boolean loaded = false;
 
-    public static void load() {
+    public void load() {
         if (loaded) return;
         loaded = true;
         ControllerPetCareServer server = ControllerPetCareServer.getInstance();
@@ -44,6 +48,10 @@ public class MockDataLoader {
                 "Dr. John Williams", "john.williams@petcare.com", "password123",
                 LocalDate.of(1979, 8, 25), "222.333.444-55", "(11) 99876-5432",
                 "CRMV-SP 67890", williamsSpecialties);
+
+
+        server.getPessoa().post(drWilliams);
+        server.getPessoa().post(drCarter);
 
         // ── Owners ───────────────────────────────────────────────────────────────
         Owner michael = new Owner(
@@ -131,7 +139,7 @@ public class MockDataLoader {
                 "Gastrointestinal consultation", drWilliams,
                 "Gastrointestinal infection",
                 "Metronidazole 250 mg — 1 tablet twice a day for 7 days. Light diet.",
-                rexAnamnesis, rexExam);
+                rexAnamnesis, rexExam, AppointmentStatus.COMPLETED);
 
         // Rex — skin rash follow-up, Jun 2025
         Anamnesis rexAnamnesis2 = new Anamnesis(
@@ -148,7 +156,7 @@ public class MockDataLoader {
                 "Dermatology follow-up", drWilliams,
                 "Allergic dermatitis",
                 "Hydrocortisone cream — apply twice daily for 10 days. Avoid grass contact.",
-                rexAnamnesis2, rexExam2);
+                rexAnamnesis2, rexExam2, AppointmentStatus.COMPLETED);
 
         // Whiskers — anemia investigation, Jan 2025
         Anamnesis whiskersAnamnesis = new Anamnesis(
@@ -166,7 +174,7 @@ public class MockDataLoader {
                 "Anemia investigation", drCarter,
                 "Mild normocytic anemia",
                 "Iron supplement 1 ml — once daily for 30 days. Return for blood work in 4 weeks.",
-                whiskersAnamnesis, whiskersExam);
+                whiskersAnamnesis, whiskersExam, AppointmentStatus.COMPLETED);
 
         // Buddy — annual checkup, Nov 2024
         Anamnesis buddyAnamnesis = new Anamnesis(
@@ -184,7 +192,7 @@ public class MockDataLoader {
                 "Annual checkup", drWilliams,
                 "Healthy — no clinical concerns",
                 "No medication required. Annual V10 vaccination administered.",
-                buddyAnamnesis, buddyExam);
+                buddyAnamnesis, buddyExam, AppointmentStatus.COMPLETED);
 
         // Luna — respiratory infection, Apr 2025
         Anamnesis lunaAnamnesis = new Anamnesis(
@@ -202,7 +210,7 @@ public class MockDataLoader {
                 "Respiratory infection", drCarter,
                 "Upper respiratory tract infection",
                 "Doxycycline 50 mg — 1 tablet once daily for 10 days. Isolate from other pets.",
-                lunaAnamnesis, lunaExam);
+                lunaAnamnesis, lunaExam, AppointmentStatus.COMPLETED);
 
         appointmentCtrl.post(rexAppt);
         appointmentCtrl.post(rexAppt2);

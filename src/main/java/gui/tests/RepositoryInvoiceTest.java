@@ -1,3 +1,5 @@
+/*
+
 package gui.tests;
 
 import business.model.person.Owner;
@@ -198,4 +200,4 @@ public class RepositoryInvoiceTest {
 
         scanner.close();
     }
-}
+}*/

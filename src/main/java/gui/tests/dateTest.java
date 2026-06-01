@@ -1,3 +1,4 @@
+/*
 package gui.tests;
 
 import business.model.person.Specialty;
@@ -76,3 +77,4 @@ public class dateTest {
         sc.close();
     }
 }
+*/

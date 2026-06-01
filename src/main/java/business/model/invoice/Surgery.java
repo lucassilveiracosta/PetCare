@@ -1,6 +1,7 @@
 package business.model.invoice;
 import business.model.person.Veterinarian;
 import business.model.animal.Animal;
+import enums.SurgeryRisk;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +11,7 @@ public class Surgery extends Procedure {
     private String anesthesiaType;
     private SurgeryRisk surgeryRisk;
 
-    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType, String surgeryRisk) {
+    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType) {
         super(price, patient, dateHour, description);
         setSurgeryRisk(surgeryRisk);
         setAnesthesiaType(anesthesiaType);
