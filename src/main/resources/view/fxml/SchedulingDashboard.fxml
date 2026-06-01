@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="gui.AppointmentDashboardController"
-      spacing="10" style="-fx-padding: 10;">
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" style="-fx-padding: 10;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.AppointmentDashboardController">
 
     <!-- Header -->
     <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label text="Scheduling Dashboard" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-        <HBox HBox.hgrow="ALWAYS"/>
-        <Button fx:id="btnViewConsultation" text="View Consultation"
-                onAction="#handleViewConsultation" disable="true"/>
-        <Button fx:id="btnRefresh" text="Refresh" onAction="#handleRefresh"/>
+        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Appointment Dashboard" />
+        <HBox HBox.hgrow="ALWAYS" />
+        <Button fx:id="btnViewConsultation" disable="true" onAction="#handleViewConsultation" text="View Consultation" />
+        <Button fx:id="btnRefresh" onAction="#handleRefresh" text="Refresh" />
     </HBox>
 
     <!-- Summary cards -->
     <HBox spacing="10">
-        <VBox fx:id="cardPending" alignment="CENTER" spacing="4" prefWidth="100"
-              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
-            <Label fx:id="cntPending" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-            <Label text="Pending"/>
+        <VBox fx:id="cardPending" alignment="CENTER" prefWidth="100" spacing="4" style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntPending" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="0" />
+            <Label text="Pending" />
         </VBox>
-        <VBox fx:id="cardInProgress" alignment="CENTER" spacing="4" prefWidth="100"
-              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
-            <Label fx:id="cntInProgress" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-            <Label text="In Progress"/>
+        <VBox fx:id="cardInProgress" alignment="CENTER" prefWidth="100" spacing="4" style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntInProgress" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="0" />
+            <Label text="In Progress" />
         </VBox>
-        <VBox fx:id="cardExpired" alignment="CENTER" spacing="4" prefWidth="100"
-              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
-            <Label fx:id="cntExpired" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-            <Label text="Expired"/>
+        <VBox fx:id="cardExpired" alignment="CENTER" prefWidth="100" spacing="4" style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntExpired" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="0" />
+            <Label text="Expired" />
         </VBox>
-        <VBox fx:id="cardCompleted" alignment="CENTER" spacing="4" prefWidth="100"
-              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
-            <Label fx:id="cntCompleted" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
-            <Label text="Completed"/>
+        <VBox fx:id="cardCompleted" alignment="CENTER" prefWidth="100" spacing="4" style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntCompleted" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="0" />
+            <Label text="Completed" />
         </VBox>
     </HBox>
 
     <!-- Filter bar -->
     <HBox spacing="6">
-        <ToggleButton fx:id="btnAll" text="All" onAction="#handleFilter" selected="true"/>
-        <ToggleButton fx:id="btnPending" text="Pending" onAction="#handleFilter"/>
-        <ToggleButton fx:id="btnInProgress" text="In Progress" onAction="#handleFilter"/>
-        <ToggleButton fx:id="btnExpired" text="Expired" onAction="#handleFilter"/>
-        <ToggleButton fx:id="btnCompleted" text="Completed" onAction="#handleFilter"/>
+        <ToggleButton fx:id="btnAll" onAction="#handleFilter" selected="true" text="All" />
+        <ToggleButton fx:id="btnPending" onAction="#handleFilter" text="Pending" />
+        <ToggleButton fx:id="btnInProgress" onAction="#handleFilter" text="In Progress" />
+        <ToggleButton fx:id="btnExpired" onAction="#handleFilter" text="Expired" />
+        <ToggleButton fx:id="btnCompleted" onAction="#handleFilter" text="Completed" />
     </HBox>
 
     <!-- Table -->
     <TableView fx:id="tableAppointments" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
-            <TableColumn fx:id="colAnimal" text="Animal" prefWidth="110"/>
-            <TableColumn fx:id="colVet" text="Veterinarian" prefWidth="180"/>
-            <TableColumn fx:id="colDate" text="Date / Time (MM/dd/yyyy HH:mm)" prefWidth="140"/>
-            <TableColumn fx:id="colDesc" text="Description" prefWidth="250"/>
+            <TableColumn fx:id="colStatus" prefWidth="120" text="Status" />
+            <TableColumn fx:id="colAnimal" prefWidth="110" text="Animal" />
+            <TableColumn fx:id="colVet" prefWidth="180" text="Veterinarian" />
+            <TableColumn fx:id="colDate" prefWidth="140" text="Date / Time (MM/dd/yyyy HH:mm)" />
+            <TableColumn fx:id="colDesc" prefWidth="250" text="Description" />
         </columns>
         <placeholder>
-            <Label text="No appointments found."/>
+            <Label text="No appointments found." />
         </placeholder>
     </TableView>
 </VBox>
