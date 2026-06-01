@@ -3,12 +3,14 @@ package business.controller;
 import business.interfaces.IControllerStock;
 
 import data.interfaces.IRepositoryStock;
+import enums.MedicineType;
 import exceptions.AppointmentNotFoundException;
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
 import business.model.invoice.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerStock implements IControllerStock {
 
@@ -18,6 +20,7 @@ public class ControllerStock implements IControllerStock {
         this.repositoryStock = repository;
     }
 
+    @Override
     public Product getById(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         Product product = repositoryStock.findById(id);
@@ -58,6 +61,7 @@ public class ControllerStock implements IControllerStock {
         repositoryStock.update(index, exists);
     }
 
+    @Override
     public void put(int id, Product newProduct) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         if (newProduct == null) throw new IllegalArgumentException("400 - Product can't be null");
@@ -68,6 +72,7 @@ public class ControllerStock implements IControllerStock {
         repositoryStock.update(id, newProduct);
     }
 
+    @Override
     public void delete(int id) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
 
@@ -77,6 +82,7 @@ public class ControllerStock implements IControllerStock {
         repositoryStock.remove(product);
     }
 
+    @Override
     public void post(Product newProduct) {
         if (newProduct == null) throw new IllegalArgumentException("400 - Product can't be null");
 
@@ -87,5 +93,17 @@ public class ControllerStock implements IControllerStock {
         }
 
         repositoryStock.create(newProduct);
+    }
+
+
+    public List<Product> filterByMedicineType(MedicineType medicineType) {
+        List<Product> filter = new ArrayList<>();
+
+        for (Product p: repositoryStock.findAll()) {
+            if (p.isVet()) {
+                filter.add(p);
+            }
+        }
+        return filter;
     }
 }

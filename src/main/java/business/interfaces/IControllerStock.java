@@ -1,6 +1,8 @@
 package business.interfaces;
 
 import business.model.invoice.Product;
+import enums.MedicineType;
+
 import java.util.List;
 
 public interface IControllerStock {
@@ -10,4 +12,6 @@ public interface IControllerStock {
     void put(int id, Product newProduct);
     void delete(int id);
     void post(Product newProduct);
+
+    List<Product> filterByMedicineType(MedicineType medicineType);
 }
