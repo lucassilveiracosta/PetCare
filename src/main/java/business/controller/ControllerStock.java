@@ -106,4 +106,26 @@ public class ControllerStock implements IControllerStock {
         }
         return filter;
     }
+
+    public List<Product> filterVeterinarianProducts() {
+        List<Product> filter = new ArrayList<>();
+
+        for (Product p: repositoryStock.findAll()) {
+            if (p.isVet()) {
+                filter.add(p);
+            }
+        }
+        return filter;
+    }
+
+    public List<Product> filterPetShopProducts() {
+        List<Product> filter = new ArrayList<>();
+
+        for (Product p: repositoryStock.findAll()) {
+            if (!p.isVet()) {
+                filter.add(p);
+            }
+        }
+        return filter;
+    }
 }

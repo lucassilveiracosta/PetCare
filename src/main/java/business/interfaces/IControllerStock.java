@@ -14,4 +14,6 @@ public interface IControllerStock {
     void post(Product newProduct);
 
     List<Product> filterByMedicineType(MedicineType medicineType);
+    List<Product> filterPetShopProducts();
+    public List<Product> filterVeterinarianProducts();
 }
