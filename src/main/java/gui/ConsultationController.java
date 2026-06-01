@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.time.LocalDate;
 
-public class ConsultaController implements Initializable {
+public class ConsultationController implements Initializable {
 
 
     @FXML private ListView<String> listWait;

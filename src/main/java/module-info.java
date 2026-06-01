@@ -12,4 +12,5 @@ module app {
     exports app;
 
     opens gui to javafx.fxml;
+    exports gui;
 }
