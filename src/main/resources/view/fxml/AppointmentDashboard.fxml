@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gui.AppointmentDashboardController"
+      spacing="10" style="-fx-padding: 10;">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Appointment Dashboard" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnViewConsultation" text="View Consultation"
+                onAction="#handleViewConsultation" disable="true"/>
+        <Button fx:id="btnRefresh" text="Refresh" onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- Summary cards -->
+    <HBox spacing="10">
+        <VBox fx:id="cardPending" alignment="CENTER" spacing="4" prefWidth="100"
+              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntPending" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Pending"/>
+        </VBox>
+        <VBox fx:id="cardInProgress" alignment="CENTER" spacing="4" prefWidth="100"
+              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntInProgress" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="In Progress"/>
+        </VBox>
+        <VBox fx:id="cardExpired" alignment="CENTER" spacing="4" prefWidth="100"
+              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntExpired" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Expired"/>
+        </VBox>
+        <VBox fx:id="cardCompleted" alignment="CENTER" spacing="4" prefWidth="100"
+              style="-fx-padding: 10; -fx-border-color: gray; -fx-cursor: hand;">
+            <Label fx:id="cntCompleted" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Completed"/>
+        </VBox>
+    </HBox>
+
+    <!-- Filter bar -->
+    <HBox spacing="6">
+        <ToggleButton fx:id="btnAll" text="All" onAction="#handleFilter" selected="true"/>
+        <ToggleButton fx:id="btnPending" text="Pending" onAction="#handleFilter"/>
+        <ToggleButton fx:id="btnInProgress" text="In Progress" onAction="#handleFilter"/>
+        <ToggleButton fx:id="btnExpired" text="Expired" onAction="#handleFilter"/>
+        <ToggleButton fx:id="btnCompleted" text="Completed" onAction="#handleFilter"/>
+    </HBox>
+
+    <!-- Table -->
+    <TableView fx:id="tableAppointments" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+            <TableColumn fx:id="colAnimal" text="Animal" prefWidth="110"/>
+            <TableColumn fx:id="colVet" text="Veterinarian" prefWidth="180"/>
+            <TableColumn fx:id="colDate" text="Date / Time" prefWidth="140"/>
+            <TableColumn fx:id="colDesc" text="Description" prefWidth="250"/>
+        </columns>
+        <placeholder>
+            <Label text="No appointments found."/>
+        </placeholder>
+    </TableView>
+</VBox>

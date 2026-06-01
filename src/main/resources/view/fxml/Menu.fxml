@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gui.MenuController"
+      alignment="CENTER" spacing="16"
+      prefWidth="400" prefHeight="340"
+      style="-fx-padding: 40;">
+    <Label text="PetCare" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Button text="Scheduling" onAction="#openAgendamento" prefWidth="220" prefHeight="40"/>
+    <Button text="Consultations" onAction="#openConsultas" prefWidth="220" prefHeight="40"/>
+    <Button text="Appointment Dashboard" onAction="#openDashboard" prefWidth="220" prefHeight="40"/>
+</VBox>

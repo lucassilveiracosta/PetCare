@@ -1,19 +1,20 @@
-target/
+# Build output
+/target/
+/build/
+/out/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-.kotlin
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# IDE - IntelliJ IDEA (not tracked)
+.idea/
 *.iml
+*.iws
 *.ipr
 
-### Eclipse ###
+# IDE - Eclipse
 .apt_generated
 .classpath
 .factorypath
@@ -21,30 +22,26 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.metadata/
 
-### NetBeans ###
+# IDE - VS Code
+.vscode/
+
+# IDE - NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
-
-### Mac OS ###
+# OS
 .DS_Store
+.kotlin
 
-# Default ignored files
+# IntelliJ workspace files
 /shelf/
 /workspace.xml
-# Ignored default folder with query files
 /queries/
-# Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-# Editor-based HTTP Client requests
 /httpRequests/
