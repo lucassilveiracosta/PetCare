@@ -55,7 +55,6 @@ public class AgendamentoViewController implements Initializable {
 
         Veterinarian vet = allVets.get(0);
         LocalDateTime appointmentDateTime = LocalDateTime.of(date, LocalTime.of(8, 0));
-
         try {
             Appointment appointment = new Appointment(
                     100.0,

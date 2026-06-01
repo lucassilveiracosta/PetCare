@@ -135,7 +135,7 @@ public class MockDataLoader {
         PhysicalExamination rexExam = new PhysicalExamination(
                 Conscience.APATICO, rexVitals, "Slightly depressed, mild abdominal tenderness");
         Appointment rexAppt = new Appointment(
-                150.0, rex, LocalDateTime.of(2025, 3, 15, 10, 0),
+                (float) 150.0, rex, LocalDateTime.of(2025, 3, 15, 10, 0),
                 "Gastrointestinal consultation", drWilliams,
                 "Gastrointestinal infection",
                 "Metronidazole 250 mg — 1 tablet twice a day for 7 days. Light diet.",
@@ -152,7 +152,7 @@ public class MockDataLoader {
         PhysicalExamination rexExam2 = new PhysicalExamination(
                 Conscience.ALERTA, rexVitals2, "Alert, cooperative. Erythematous lesions on ventral abdomen");
         Appointment rexAppt2 = new Appointment(
-                180.0, rex, LocalDateTime.of(2025, 6, 5, 11, 30),
+                (float)180.0, rex, LocalDateTime.of(2025, 6, 5, 11, 30),
                 "Dermatology follow-up", drWilliams,
                 "Allergic dermatitis",
                 "Hydrocortisone cream — apply twice daily for 10 days. Avoid grass contact.",
@@ -170,7 +170,7 @@ public class MockDataLoader {
                 Conscience.APATICO, whiskersVitals,
                 "Pale mucosa, mild dehydration, slightly elevated HR");
         Appointment whiskersAppt = new Appointment(
-                200.0, whiskers, LocalDateTime.of(2025, 1, 20, 14, 30),
+                (float)200.0, whiskers, LocalDateTime.of(2025, 1, 20, 14, 30),
                 "Anemia investigation", drCarter,
                 "Mild normocytic anemia",
                 "Iron supplement 1 ml — once daily for 30 days. Return for blood work in 4 weeks.",
@@ -188,7 +188,7 @@ public class MockDataLoader {
                 Conscience.ALERTA, buddyVitals,
                 "Healthy and well-conditioned. Clean teeth, good coat.");
         Appointment buddyAppt = new Appointment(
-                120.0, buddy, LocalDateTime.of(2024, 11, 10, 9, 0),
+                (float)120.0, buddy, LocalDateTime.of(2024, 11, 10, 9, 0),
                 "Annual checkup", drWilliams,
                 "Healthy — no clinical concerns",
                 "No medication required. Annual V10 vaccination administered.",
@@ -206,7 +206,7 @@ public class MockDataLoader {
                 Conscience.ALERTA, lunaVitals,
                 "Alert but irritable. Bilateral nasal discharge. Mild fever.");
         Appointment lunaAppt = new Appointment(
-                130.0, luna, LocalDateTime.of(2025, 4, 8, 16, 0),
+                (float)130.0, luna, LocalDateTime.of(2025, 4, 8, 16, 0),
                 "Respiratory infection", drCarter,
                 "Upper respiratory tract infection",
                 "Doxycycline 50 mg — 1 tablet once daily for 10 days. Isolate from other pets.",
@@ -232,8 +232,9 @@ public class MockDataLoader {
                 "Post-surgery check", drWilliams);
 
         // ── Expired appointment (past date, never attended) ───────────────────────
+        float x = 100.0f;
         Appointment whiskersExpired = new Appointment(
-                120.0, whiskers, LocalDateTime.now().minusDays(20).withHour(11).withMinute(0),
+                x, whiskers, LocalDateTime.now().minusDays(20).withHour(11).withMinute(0),
                 "Routine checkup — missed", drCarter);
 
         appointmentCtrl.post(buddyPending);

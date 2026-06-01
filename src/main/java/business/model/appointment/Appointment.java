@@ -29,8 +29,26 @@ public class Appointment extends Procedure {
         setStatus(status);
     }
 
+    public Appointment(Float price, Animal patient, LocalDateTime dateHour, String description,
+                       Veterinarian responsableVeterinarian, String diagnosis,
+                       String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status) {
+        super(price, patient, dateHour, description);
+        setResponsableVeterinarian(responsableVeterinarian);
+        setDiagnosis(diagnosis);
+        setMedicalPrescription(medicalPrescription);
+        this.anamnesis = anamnesis;
+        this.phisicalExam = phisicalExam;
+        setStatus(status);
+    }
+
     // Constructor for scheduled (pending) appointments — no medical data yet
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
+                       Veterinarian responsableVeterinarian) {
+        super(price, patient, dateHour, description);
+        setResponsableVeterinarian(responsableVeterinarian);
+    }
+
+    public Appointment(float price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsableVeterinarian) {
         super(price, patient, dateHour, description);
         setResponsableVeterinarian(responsableVeterinarian);

@@ -16,6 +16,14 @@ public abstract class Procedure {
     public Procedure(Double price, Animal patient, LocalDateTime dateHourScheduled, String description) {
         this.price = price;
         setPatient(patient);
+        setDateHourScheduled(dateHourScheduled);
+        setDescription(description);
+    }
+
+    //Allows past appointments
+    public Procedure(Float price, Animal patient, LocalDateTime dateHourScheduled, String description) {
+        this.price = (double) price;
+        setPatient(patient);
         this.dateHourScheduled = dateHourScheduled;
         setDescription(description);
     }
@@ -39,6 +47,8 @@ public abstract class Procedure {
         if (dateHourScheduled == null) {
             throw new IllegalArgumentException("400 - Invalid dateHourScheduled");
         }
+
+        if (dateHourScheduled.isBefore(LocalDateTime.now())) throw new IllegalArgumentException("400 - You cant create a procedure before today");
         this.dateHourScheduled = dateHourScheduled;
     }
 
