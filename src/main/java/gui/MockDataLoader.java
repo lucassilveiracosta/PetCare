@@ -231,7 +231,7 @@ public class MockDataLoader {
 
         // ── In-progress appointment (today, no medical data yet) ──────────────────
         Appointment rexToday = new Appointment(
-                160.0, rex, LocalDateTime.now().withHour(9).withMinute(0),
+                (float)160.0, rex, LocalDateTime.now().withHour(9).withMinute(0),
                 "Post-surgery check", drWilliams);
 
         // ── Expired appointment (past date, never attended) ───────────────────────
