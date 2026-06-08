@@ -8,23 +8,23 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 
 ## Requisitos Funcionais
 
-### 1. Cadastro e Prontuário
+### 1. Cadastro e Prontuário✅✅
 - **REQ01**: Cadastrar pets com espécie, raça, data de nascimento e peso.✅
 - **REQ02**: Implementar herança para tipos de animais: Domésticos e Exóticos.✅
 - **REQ03**: Manter prontuário médico (Composição) com histórico clínico.✅
 
-### 2. Atendimento e Serviços
+### 2. Atendimento e Serviços✅✅
 - **REQ04**: Agendar consultas vinculando animal a veterinário especialista.✅
 - **REQ05**: Gerenciar agenda de banho e tosa com controle de profissionais.✅
 - **REQ06**: Registrar aplicação de vacinas e gerar alertas de reforço.✅
 
-### 3. Internação e Cirurgia
-- **REQ07**: Registrar entradas na ala de internação com monitoramento.
-- **REQ08**: Cadastrar procedimentos cirúrgicos, vinculando equipe e insumos.(João Cavalcanti B.)
+### 3. Internação e Cirurgia✅✅
+- **REQ07**: Registrar entradas na ala de internação com monitoramento.✅
+- **REQ08**: Cadastrar procedimentos cirúrgicos, vinculando equipe e insumos.✅
 
 ### 4. Vendas e Financeiro
 - **REQ09**: Registrar vendas de medicamentos e acessórios no PDV.
-- **REQ10**: Controlar o estoque de medicamentos, incluindo os controlados.(Laercio Neto)
+- **REQ10**: Controlar o estoque de medicamentos, incluindo os controlados.✅
 - **REQ11**: Emitir receitas e faturas detalhadas em PDF.
 
 ### 5. Relatórios
