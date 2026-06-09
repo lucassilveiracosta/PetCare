@@ -98,7 +98,7 @@
       </AnchorPane>
    </children>
    <stylesheets>
-      <URL value="@../../style/Attendant.css" />
+      <URL value="@../../style/GeneralModels.css" />
       <URL value="@../../style/RegisterPetVaccine.css" />
    </stylesheets>
 </VBox>

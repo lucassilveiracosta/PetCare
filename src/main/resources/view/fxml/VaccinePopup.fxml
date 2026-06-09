@@ -72,6 +72,6 @@
    </children>
    <stylesheets>
       <URL value="@../../style/RegisterPetQuestion.css" />
-      <URL value="@../../style/Attendant.css" />
+      <URL value="@../../style/GeneralModels.css" />
    </stylesheets>
 </VBox>
