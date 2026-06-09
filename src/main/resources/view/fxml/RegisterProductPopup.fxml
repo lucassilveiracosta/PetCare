@@ -31,7 +31,7 @@
                <children>
                   <BorderPane prefHeight="78.0" prefWidth="734.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Use an already registered owner?" wrappingWidth="317.544921875" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add more products ?" wrappingWidth="202.544921875" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
