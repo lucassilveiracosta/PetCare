@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import com.gluonhq.charm.glisten.mvc.View?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -39,8 +40,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <fx:root dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="SplitPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConsultationController">
   <items>
@@ -73,6 +77,18 @@
                   <HBox prefHeight="19.0" prefWidth="466.0" />
                </children>
             </VBox>
+            <BorderPane fx:id="boxtotalvalue" layoutX="72.0" layoutY="120.0" prefHeight="55.0" prefWidth="253.0">
+               <left>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total : " wrappingWidth="79.13671875" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+               </left>
+               <center>
+                  <View fx:id="value" prefHeight="53.0" prefWidth="129.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </children>
       </AnchorPane>
   </items>

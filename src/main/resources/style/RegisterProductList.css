@@ -16,3 +16,28 @@
     -fx-background-radius: 8px;
     -fx-padding: 5px;
 }
+
+
+#boxtotalvalue {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #10B981;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 15px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(16, 185, 129, 0.2), 15, 0, 0, 5);
+}
+
+#boxtotalvalue .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2937;
+}
+
+#productListValue {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px;
+}
+
