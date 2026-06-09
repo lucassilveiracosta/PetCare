@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="backgroundAttendantMenu" alignment="CENTER" prefHeight="340" prefWidth="400" spacing="16" style="-fx-padding: 40;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuController">
+<VBox fx:id="backgroundvbox" alignment="CENTER" prefHeight="340" prefWidth="400" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MenuController">
     <Label fx:id="PetCareStyle" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendant Menu" />
     <Button fx:id="PetShopStyle" onAction="#openPetShop" prefHeight="40" prefWidth="220" text="Pet Shop" />
     <Button fx:id="RegisterPetStyle" onAction="#openRegisterPet" prefHeight="40" prefWidth="220" text="Register Pet" />
-    <Button fx:id="PetShopSchedulingStyle" onAction="#openPetShopScheduling" prefHeight="40" prefWidth="220" text="Pet Shop Scheduling" />
-   <stylesheets>
-      <URL value="@../../style/style.css" />
-      <URL value="@../../style/AttendantMenu.css" />
-   </stylesheets>
+    <Button onAction="#openPetShopScheduling" prefHeight="40" prefWidth="220" text="Pet Shop Scheduling" />
 </VBox>
