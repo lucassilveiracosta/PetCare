@@ -61,8 +61,25 @@ public class SaveData {
         Locale.setDefault(Locale.US);
         String path = "appointmentSave.csv";
 
-        } catch (
-                IOException e) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            bw.write(app.getId() + ",");
+            bw.write(app.getPrice() + ",");
+            bw.write(app.getPatient().getId() + ","); // Relacionamento com Animal
+            bw.write(app.getDateHourScheduled().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")) + ",");
+            bw.write(app.getDescription() + ",");
+            bw.write(app.getResponsableVeterinarian().getId() + ","); // Relacionamento com Vet
+            
+            // Tratamento de campos que podem ser nulos em consultas pendentes
+            String diag = app.getDiagnosis() != null ? app.getDiagnosis() : "null";
+            String pres = app.getMedicalPrescription() != null ? app.getMedicalPrescription() : "null";
+            
+            bw.write(diag + ",");
+            bw.write(pres + ",");
+            bw.write(app.getStatus().name() + "");
+            
+            bw.newLine();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
