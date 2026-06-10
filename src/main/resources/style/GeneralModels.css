@@ -21,3 +21,12 @@
     -fx-effect: none;
 }
 
+#backButtonStyle {
+    -fx-background-color: #EF4444;
+
+}
+#backButtonStyle:hover{
+    -fx-background-color: #F87171;
+
+}
+

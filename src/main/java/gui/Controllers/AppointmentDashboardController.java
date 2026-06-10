@@ -1,4 +1,4 @@
-package gui;
+package gui.Controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerAppointment;
@@ -16,7 +16,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

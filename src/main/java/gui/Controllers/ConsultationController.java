@@ -1,4 +1,4 @@
-package gui;
+package gui.Controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerAnimal;
