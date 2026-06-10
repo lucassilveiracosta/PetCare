@@ -59,3 +59,28 @@
     -fx-background-color: #80d763;
     -fx-cursor: hand;
 }
+
+/* ── Breadcrumb navigation bar ── */
+.breadcrumb-bar {
+    -fx-background-color: #1B365D;
+}
+.breadcrumb-bar .hyperlink {
+    -fx-text-fill: #cfe0f5;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-underline: false;
+    -fx-padding: 0 2;
+}
+.breadcrumb-bar .hyperlink:hover {
+    -fx-text-fill: white;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+.crumb-current {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.crumb-sep {
+    -fx-text-fill: #8fb4dd;
+    -fx-font-weight: bold;
+}
