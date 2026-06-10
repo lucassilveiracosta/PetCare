@@ -101,8 +101,8 @@ public class LoadData {
         return animals;
     }
 
-    public List<Appointment> loadAppointments(List<DomesticAnimal> loadedAnimals, List<Veterinarian> loadedVets) {
-        List<Appointment> appointments = new ArrayList<>();
+    public ArrayList<Appointment> loadAppointments(List<DomesticAnimal> loadedAnimals, List<Veterinarian> loadedVets) {
+        ArrayList<Appointment> appointments = new ArrayList<>();
         String path = "appointmentSave.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
