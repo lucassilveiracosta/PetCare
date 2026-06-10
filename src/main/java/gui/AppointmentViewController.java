@@ -6,6 +6,7 @@ import business.model.animal.DomesticAnimal;
 import business.model.appointment.Appointment;
 import business.model.person.Owner;
 import business.model.person.Veterinarian;
+import enums.ProcedureType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -24,7 +25,7 @@ public class AppointmentViewController implements Initializable {
 
     @FXML private ChoiceBox<String> nameTutorScheduling;
     @FXML private ChoiceBox<String> nameAnimalScheduling;
-    @FXML private ChoiceBox<String> appointmentScheduling;
+    @FXML private ChoiceBox<ProcedureType> appointmentScheduling;
     @FXML private ChoiceBox<String> nameVeterianarianScheduling;
     @FXML private DatePicker schedulingDate;
     @FXML private ChoiceBox<String> schedulingTime;
@@ -42,9 +43,7 @@ public class AppointmentViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         server = ControllerPetCareServer.getInstance();
 
-        appointmentScheduling.getItems().addAll(
-                "General Consultation", "Vaccination", "Surgery",
-                "Emergency", "Follow-up", "Checkup", "Other");
+        appointmentScheduling.getItems().addAll(ProcedureType.values());
 
         allOwners = server.getPessoa().getAllOwners();
         for (Owner o : allOwners) {
@@ -86,7 +85,7 @@ public class AppointmentViewController implements Initializable {
         int vetIdx     = nameVeterianarianScheduling.getSelectionModel().getSelectedIndex();
         LocalDate date = schedulingDate.getValue();
         String reason  = reasonScheduling.getText();
-        String service = appointmentScheduling.getValue();
+        ProcedureType service = appointmentScheduling.getValue();
         String timeStr = schedulingTime.getValue();
 
         if (animalIdx < 0 || vetIdx < 0 || date == null || service == null
@@ -102,7 +101,7 @@ public class AppointmentViewController implements Initializable {
         Animal animal = animalsByOwner.get(animalIdx);
         Veterinarian vet = allVets.get(vetIdx);
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        String description = service + " — " + reason;
+        String description = service.getLabel() + " — " + reason;
 
         try {
             Appointment appointment = new Appointment(100.0, animal, dateTime, description, vet);
