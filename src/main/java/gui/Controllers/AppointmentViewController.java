@@ -7,10 +7,17 @@ import business.model.appointment.Appointment;
 import business.model.person.Owner;
 import business.model.person.Veterinarian;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -77,6 +84,20 @@ public class AppointmentViewController implements Initializable {
                 nameAnimalScheduling.getItems().add(a.getName() + " (" + a.getSpecies() + ")");
                 animalsByOwner.add(a);
             }
+        }
+    }
+    @FXML
+    public void onBackButton(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Deu erro ao tentar abrir a tela anterior: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

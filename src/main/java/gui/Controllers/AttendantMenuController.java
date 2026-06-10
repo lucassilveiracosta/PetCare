@@ -48,11 +48,23 @@ public class AttendantMenuController {
 
     @FXML
     public void openPetShopScheduling(ActionEvent event) {
-        System.out.println("Abrindo tela de Pet Shop Scheduling...");
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/Scheduling.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println("Deu erro ao tentar abrir a tela anterior: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void openVeterinarianScheduling(ActionEvent event) {
+
         System.out.println("Abrindo tela de Veterinarian Scheduling...");
     }
     @FXML
