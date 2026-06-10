@@ -1,8 +1,8 @@
 package data;
 
-import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.appointment.Appointment;
+import business.model.person.Owner;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -11,12 +11,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class SaveData {
+    
     public void saveDomesticAnimal(DomesticAnimal pet) {
         Locale.setDefault(Locale.US);
-        // Caminho relativo (salvará na pasta raiz do projeto PetCare)
         String path = "domesticAnimalSave.csv";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            bw.write(pet.getId() + ","); // Salva o ID do animal
             bw.write(pet.getName() + ",");
             bw.write(pet.getSpecies() + ",");
             bw.write(pet.getRace() + ",");
