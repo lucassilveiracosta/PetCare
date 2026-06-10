@@ -22,8 +22,8 @@ import java.util.List;
 
 public class LoadData {
 
-    public List<Owner> loadOwners() {
-        List<Owner> owners = new ArrayList<>();
+    public ArrayList<Owner> loadOwners() {
+        ArrayList<Owner> owners = new ArrayList<>();
         String path = "ownerSave.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
