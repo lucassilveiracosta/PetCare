@@ -22,6 +22,12 @@ public class ControllerPetCareServer {
 
     private ControllerPetCareServer() {
 
+        data.LoadData loader = new data.LoadData();
+
+        ArrayList<Owner> donos = loader.loadOwners();
+        ArrayList<Person> pessoasCarregadas = new ArrayList<>(donos);
+        RepositoryPerson repPerson = new RepositoryPerson(pessoasCarregadas);
+
         RepositoryAnimal repAnimal = new RepositoryAnimal();
         RepositoryPerson repPerson = new RepositoryPerson(new ArrayList<>());
         RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>());
