@@ -52,8 +52,8 @@ public class LoadData {
         return owners;
     }
 
-    public List<DomesticAnimal> loadDomesticAnimals(List<Owner> loadedOwners) {
-        List<DomesticAnimal> animals = new ArrayList<>();
+    public ArrayList<DomesticAnimal> loadDomesticAnimals(List<Owner> loadedOwners) {
+        ArrayList<DomesticAnimal> animals = new ArrayList<>();
         String path = "domesticAnimalSave.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
