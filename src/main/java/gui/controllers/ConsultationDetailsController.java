@@ -1,4 +1,4 @@
-package gui.Controllers;
+package gui.controllers;
 
 import business.model.appointment.Appointment;
 import business.model.appointment.PhysicalExamination;

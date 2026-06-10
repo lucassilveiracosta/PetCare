@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controllers.AppointmentViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.RegisterPetQuestionController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -43,14 +43,14 @@
                      <left>
                         <BorderPane prefHeight="60.0" prefWidth="193.0" BorderPane.alignment="CENTER">
                            <center>
-                              <Button fx:id="yesbutton" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="123.0" text="Yes" BorderPane.alignment="CENTER" />
+                              <Button fx:id="yesbutton" mnemonicParsing="false" onAction="#onYesButton" prefHeight="42.0" prefWidth="123.0" text="Yes" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </left>
                      <center>
                         <BorderPane prefHeight="75.0" prefWidth="227.0" BorderPane.alignment="CENTER">
                            <center>
-                              <Button fx:id="nobutton" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="127.0" text="No!" BorderPane.alignment="CENTER" />
+                              <Button fx:id="nobutton" mnemonicParsing="false" onAction="#onNoButton" prefHeight="42.0" prefWidth="127.0" text="No!" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </center>

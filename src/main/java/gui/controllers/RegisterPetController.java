@@ -1,4 +1,4 @@
-package gui.Controllers;
+package gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,15 +10,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RegisterOwnerController {
-
+public class RegisterPetController {
     @FXML
-    public void onRegisterClick(ActionEvent event){
-        System.out.println("opa");
+    public void onNextButton(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterPetVaccine.fxml"));
+
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(new Scene(root, 800, 600));
+        stage.setTitle("AttendantMenu");
+        stage.show();
+
     }
     @FXML
-    public void backButton(ActionEvent event){
-        try{
+    public void backButton(ActionEvent event) {
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -30,5 +39,6 @@ public class RegisterOwnerController {
             System.out.println("Deu erro ao tentar abrir a tela anterior: " + e.getMessage());
             e.printStackTrace();
         }
-        }
     }
+
+}

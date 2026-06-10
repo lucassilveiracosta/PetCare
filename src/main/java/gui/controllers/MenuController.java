@@ -1,4 +1,4 @@
-package gui.Controllers;
+package gui.controllers;
 
 import gui.MockDataLoader;
 import javafx.event.ActionEvent;
