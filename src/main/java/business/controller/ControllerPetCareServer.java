@@ -29,8 +29,16 @@ public class ControllerPetCareServer {
         RepositoryPerson repPerson = new RepositoryPerson(pessoasCarregadas);
 
         RepositoryAnimal repAnimal = new RepositoryAnimal();
-        RepositoryPerson repPerson = new RepositoryPerson(new ArrayList<>());
-        RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>());
+        ArrayList<DomesticAnimal> animais = loader.loadDomesticAnimals(donos);
+        for (DomesticAnimal a : animais) {
+            repAnimal.create(a);
+        }
+
+        ArrayList<Veterinarian> vets = new ArrayList<>();
+        ArrayList<Appointment> consultas = loader.loadAppointments(animais, vets);
+
+        RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>(consultas));
+        
         RepositoryInvoice repInvoice = new RepositoryInvoice(new ArrayList<>());
         RepositoryStock repStock = new RepositoryStock(new ArrayList<>());
 
