@@ -51,7 +51,7 @@ public class MenuController {
                 MenuController.class.getResource("/view/fxml/SchedulingDashboard.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(loader.load(), 900, 650));
+        stage.setScene(new Scene(loader.load(), 800, 600));
         stage.setTitle("Scheduling Dashboard");
         stage.show();
     }

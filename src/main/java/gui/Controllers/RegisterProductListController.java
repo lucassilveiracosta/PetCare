@@ -15,7 +15,7 @@ public class RegisterProductListController {
     @FXML
     public void openAddProduct(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterProductPopup.fxml")); // carrega o popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterProduct.fxml")); // carrega o popup
             Parent root = loader.load();
 
             Stage popupStage = new Stage();

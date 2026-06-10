@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/GeneralModels.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controllers.AppointmentViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/GeneralModels.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controllers.RegisterOwnerController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -200,7 +200,12 @@
                   </GridPane>
                   <BorderPane prefHeight="120.0" prefWidth="744.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <center>
-                        <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="121.0" text="Register!" BorderPane.alignment="CENTER" />
+                        <AnchorPane prefHeight="120.0" prefWidth="801.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="backButtonStyle" layoutX="385.0" layoutY="39.0" mnemonicParsing="false" onAction="#backButton" prefHeight="42.0" prefWidth="121.0" text="Back" />
+                              <Button fx:id="registerButton" layoutX="215.0" layoutY="39.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="42.0" prefWidth="121.0" text="Register!" />
+                           </children>
+                        </AnchorPane>
                      </center>
                   </BorderPane>
                </children>

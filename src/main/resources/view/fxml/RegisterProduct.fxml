@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controllers.AppointmentViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="503.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controllers.RegisterProductController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -83,6 +83,9 @@
                                  <center>
                                     <Button fx:id="buttonRegister" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="143.0" text="Register" BorderPane.alignment="CENTER" />
                                  </center>
+                                 <right>
+                                    <Button fx:id="backButtonStyle" mnemonicParsing="false" onAction="#backButton" prefHeight="42.0" prefWidth="143.0" text="Back" BorderPane.alignment="CENTER" />
+                                 </right>
                               </BorderPane>
                            </children>
                         </GridPane>

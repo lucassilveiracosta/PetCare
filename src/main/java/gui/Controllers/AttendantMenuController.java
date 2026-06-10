@@ -28,7 +28,17 @@ public class AttendantMenuController {
 
     @FXML
     public void openRegisterOwner(ActionEvent event) {
-        System.out.println("Abrindo tela de Register Owner...");
+        try {
+        FXMLLoader loader = new FXMLLoader(
+                MenuController.class.getResource("/view/fxml/RegisterOwner.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(loader.load(), 800, 600));
+        stage.setTitle("Register Owner");
+        stage.show();
+        } catch (Exception e) {
+            System.out.println("RegisterOwner didn't open");
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
