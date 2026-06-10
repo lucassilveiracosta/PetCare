@@ -74,4 +74,11 @@ public abstract class Procedure {
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+        if (id >= countId) {
+            countId = id + 1;
+        }
+    }
 }
