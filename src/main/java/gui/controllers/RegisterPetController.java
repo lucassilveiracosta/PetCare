@@ -60,7 +60,12 @@ public class RegisterPetController {
             Size size = Size.valueOf(sizeBox.getText().toUpperCase());
             Sex sex = Sex.valueOf(sexBox.getText().toUpperCase());
 
-            Owner owner = ControllerPetCareServer.getInstance().getPessoa().getAllOwners().get(0);
+            // Como o dono foi cadastrado na tela anterior, nós o resgatamos diretamente da variável estática
+            Owner owner = RegisterOwnerController.lastRegisteredOwner;
+            
+            if (owner == null) {
+                throw new IllegalArgumentException("Nenhum dono foi encontrado na memória. Você pulou a tela de cadastro do dono?");
+            }
 
             pendingAnimal = new DomesticAnimal(name, specie, race, birthdate, stageOfLife, weight, size, sex, owner, temperament, castrated, new ArrayList<>());
 
