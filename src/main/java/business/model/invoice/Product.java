@@ -12,6 +12,7 @@ public class Product {
     private final boolean isVet; // Se é do petshop ou do veterinário
     private MedicineType medicineType;
     private String description; // e boolean para ver se o remédio é controlado
+    private boolean isControlled;
     private Double price;
 
     public Product(String name, Integer quantity, String description, Double price, boolean isVet, MedicineType medicineType){
@@ -22,6 +23,10 @@ public class Product {
         this.isVet = isVet;
         if (isVet) {
             this.medicineType = medicineType;
+            this.isControlled = isControlled;
+        }
+        else{
+            this.isControlled = false;
         }
     }
 
@@ -75,5 +80,9 @@ public class Product {
 
     public MedicineType getMedicineType() {
         return medicineType;
+    }
+
+    public boolean isControlled() {
+        return isControlled;
     }
 }
