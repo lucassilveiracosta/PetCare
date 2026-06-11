@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AdminVeterinariansController">
+    <padding>
+        <Insets bottom="16" left="16" right="16" top="16" />
+    </padding>
+
+    <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Manage Veterinarians" />
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Left: vets table -->
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label style="-fx-font-weight: bold;" text="Veterinarians" />
+            <TableView fx:id="tableVets" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colName" prefWidth="160" text="Name" />
+                    <TableColumn fx:id="colCrmv" prefWidth="110" text="CRMV" />
+                    <TableColumn fx:id="colEmail" prefWidth="190" text="Email" />
+                    <TableColumn fx:id="colSpecialties" prefWidth="200" text="Specialties" />
+                </columns>
+                <placeholder>
+                    <Label text="No veterinarians found." />
+                </placeholder>
+            </TableView>
+            <HBox spacing="10">
+                <Button fx:id="btnDeleteVet" onAction="#handleDeleteVet" text="Delete Veterinarian" />
+                <Button onAction="#handleRefresh" text="Refresh" />
+            </HBox>
+        </VBox>
+
+        <!-- Right: specialty editor -->
+        <VBox spacing="8" prefWidth="320">
+            <Label style="-fx-font-weight: bold;" text="Specialties of selected vet" />
+            <ListView fx:id="listSpecialties" prefHeight="200" />
+            <Button fx:id="btnRemoveSpecialty" onAction="#handleRemoveSpecialty" text="Remove Selected Specialty" />
+            <Label style="-fx-font-weight: bold;" text="Add specialty" />
+            <TextField fx:id="fieldSpecName" promptText="Specialty name" />
+            <TextArea fx:id="fieldSpecDescription" prefHeight="60" promptText="Description" wrapText="true" />
+            <Button fx:id="btnAddSpecialty" onAction="#handleAddSpecialty" text="Add Specialty" />
+        </VBox>
+    </HBox>
+</VBox>

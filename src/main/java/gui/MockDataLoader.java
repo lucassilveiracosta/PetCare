@@ -8,6 +8,11 @@ import business.model.animal.DomesticAnimal;
 import business.model.animal.ExoticAnimal;
 import business.model.animal.Vaccine;
 import business.model.appointment.*;
+import business.model.invoice.Expense;
+import business.model.invoice.Invoice;
+import business.model.invoice.Procedure;
+import business.model.invoice.Product;
+import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Person;
 import business.model.person.Specialty;
@@ -230,8 +235,9 @@ public class MockDataLoader {
                 "Dermatology follow-up", drCarter);
 
         // ── In-progress appointment (today, no medical data yet) ──────────────────
+        // float constructor skips the future-date validation so "today 09:00" is valid at any run time
         Appointment rexToday = new Appointment(
-                160.0, rex, LocalDateTime.now().withHour(9).withMinute(0),
+                (float) 160.0, rex, LocalDateTime.now().withHour(9).withMinute(0),
                 "Post-surgery check", drWilliams);
 
         // ── Expired appointment (past date, never attended) ───────────────────────
@@ -244,5 +250,59 @@ public class MockDataLoader {
         appointmentCtrl.post(lunaPending);
         appointmentCtrl.post(rexToday);
         appointmentCtrl.post(whiskersExpired);
+
+        // ── Employees ─────────────────────────────────────────────────────────────
+        server.getPessoa().post(new Employee(
+                "Olivia Brooks", "olivia.brooks@petcare.com", "password123",
+                LocalDate.of(1992, 9, 14), "555.666.777-88", "(11) 95555-1122",
+                "Receptionist", "Morning"));
+        server.getPessoa().post(new Employee(
+                "Daniel Reed", "daniel.reed@petcare.com", "password123",
+                LocalDate.of(1988, 1, 30), "666.777.888-99", "(11) 94444-3344",
+                "Groomer", "Afternoon"));
+
+        // ── Stock: veterinarian products (medicines) ──────────────────────────────
+        Product amoxicillin = new Product("Amoxicillin 500mg", 50, "Broad-spectrum antibiotic", 15.50, true, MedicineType.COMUM);
+        Product tramadol    = new Product("Tramadol 50mg", 20, "Controlled analgesic", 28.00, true, MedicineType.CONTROLADO);
+        Product v8vaccine   = new Product("V8 Vaccine", 3, "Polyvalent canine vaccine", 45.00, true, MedicineType.COMUM);
+
+        // ── Stock: pet shop products ──────────────────────────────────────────────
+        Product dogFood     = new Product("Premium Dog Food 10kg", 40, "Dry food for adult large dogs", 120.00, false, null);
+        Product catShampoo  = new Product("Hypoallergenic Cat Shampoo", 25, "Gentle shampoo for cats", 22.50, false, null);
+        Product chewToy     = new Product("Rubber Chew Toy", 4, "Durable chew toy for dogs", 18.00, false, null);
+
+        server.getStock().post(amoxicillin);
+        server.getStock().post(tramadol);
+        server.getStock().post(v8vaccine);
+        server.getStock().post(dogFood);
+        server.getStock().post(catShampoo);
+        server.getStock().post(chewToy);
+
+        // ── Invoices (revenue: procedures + products sold) ────────────────────────
+        ArrayList<Procedure> rexProcedures = new ArrayList<>();
+        rexProcedures.add(rexAppt);
+        rexProcedures.add(rexAppt2);
+        ArrayList<Product> rexProducts = new ArrayList<>();
+        rexProducts.add(amoxicillin);
+        rexProducts.add(dogFood);
+        server.getInvoice().post(new Invoice(michael, rex, rexProcedures, rexProducts));
+
+        ArrayList<Procedure> buddyProcedures = new ArrayList<>();
+        buddyProcedures.add(buddyAppt);
+        ArrayList<Product> buddyProducts = new ArrayList<>();
+        buddyProducts.add(v8vaccine);
+        server.getInvoice().post(new Invoice(emma, buddy, buddyProcedures, buddyProducts));
+
+        ArrayList<Procedure> lunaProcedures = new ArrayList<>();
+        lunaProcedures.add(lunaAppt);
+        ArrayList<Product> lunaProducts = new ArrayList<>();
+        lunaProducts.add(catShampoo);
+        server.getInvoice().post(new Invoice(emma, luna, lunaProcedures, lunaProducts));
+
+        // ── Expenses (money out) ──────────────────────────────────────────────────
+        server.getExpense().post(new Expense(ExpenseType.ESTOQUE, 850.0, LocalDate.of(2025, 1, 5), "Monthly medicine restock"));
+        server.getExpense().post(new Expense(ExpenseType.SALARIO, 4200.0, LocalDate.of(2025, 1, 31), "Staff salaries — January"));
+        server.getExpense().post(new Expense(ExpenseType.ALUGUEL, 1800.0, LocalDate.of(2025, 1, 10), "Clinic rent"));
+        server.getExpense().post(new Expense(ExpenseType.EQUIPAMENTO, 650.0, LocalDate.of(2025, 2, 15), "New ultrasound probe"));
     }
 }
