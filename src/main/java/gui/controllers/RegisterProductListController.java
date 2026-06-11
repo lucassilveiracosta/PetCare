@@ -151,28 +151,31 @@ public class RegisterProductListController implements Initializable {
         confirm.setTitle("Payment");
         if (confirm.showAndWait().filter(b -> b == ButtonType.OK).isEmpty()) return;
 
-        // REQ15 — a cart with controlled medicine requires a prescription
-        boolean hasControlled = cart.keySet().stream()
-                .anyMatch(p -> p.isVet() && p.getMedicineType() == MedicineType.CONTROLLED);
-        boolean hasPrescription = false;
-        if (hasControlled) {
-            Alert presc = new Alert(Alert.AlertType.CONFIRMATION,
-                    "O carrinho contém medicamento controlado. O cliente apresentou a receita?",
-                    ButtonType.YES, ButtonType.NO);
-            presc.setHeaderText(null);
-            presc.setTitle("Receita");
-            hasPrescription = presc.showAndWait().filter(b -> b == ButtonType.YES).isPresent();
-            if (!hasPrescription) {
-                showAlert(Alert.AlertType.WARNING, "Venda bloqueada",
-                        "Há medicamento controlado no carrinho e nenhuma receita foi apresentada.");
-                return;
+        // REQ15 — each controlled medicine in the cart requires its OWN prescription check
+        for (Product p : cart.keySet()) {
+            if (p.isVet() && p.getMedicineType() == MedicineType.CONTROLLED) {
+                Alert presc = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Medicamento controlado: \"" + p.getName() + "\".\n"
+                                + "O cliente apresentou a receita deste medicamento?",
+                        ButtonType.YES, ButtonType.NO);
+                presc.setHeaderText(null);
+                presc.setTitle("Receita — " + p.getName());
+                boolean shown = presc.showAndWait().filter(b -> b == ButtonType.YES).isPresent();
+                if (!shown) {
+                    showAlert(Alert.AlertType.WARNING, "Venda bloqueada",
+                            "Receita não apresentada para \"" + p.getName() + "\". A venda foi cancelada.");
+                    return; // keep the cart so the attendant can adjust
+                }
             }
         }
 
-        // Register each sale through the controller (enforces REQ15 + REQ20)
+        // Register each sale through the controller (enforces REQ15 + REQ20).
+        // Controlled medicines reaching this point already had their prescription confirmed.
         try {
             for (Map.Entry<Product, Integer> e : cart.entrySet()) {
-                stockController.registerSale(e.getKey(), e.getValue(), hasPrescription);
+                Product p = e.getKey();
+                boolean hasPrescription = p.isVet() && p.getMedicineType() == MedicineType.CONTROLLED;
+                stockController.registerSale(p, e.getValue(), hasPrescription);
             }
         } catch (InsufficientStockException | PrescriptionRequiredException ex) {
             showAlert(Alert.AlertType.WARNING, "Venda bloqueada", ex.getMessage());
