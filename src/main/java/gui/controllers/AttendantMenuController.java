@@ -32,6 +32,11 @@ public class AttendantMenuController {
     }
 
     @FXML
+    public void openPetCard(ActionEvent event) {
+        Navigator.navigate("Pet Card", "/view/fxml/PetCard.fxml");
+    }
+
+    @FXML
     public void backButton(ActionEvent event) {
         Navigator.navigate("Home", "/view/fxml/MenuPrincipal.fxml");
     }

@@ -11,5 +11,6 @@
     <Button fx:id="registerPet" onAction="#openRegisterPet" prefHeight="40" prefWidth="220" text="Register Pet" />
     <Button fx:id="petShopScheduling" onAction="#openPetShopScheduling" prefHeight="40" prefWidth="220" text="Pet Shop Scheduling" />
    <Button fx:id="veterinarianScheduling" onAction="#openVeterinarianScheduling" prefHeight="40" prefWidth="220" text="Veterinarian Scheduling" />
+   <Button fx:id="petCard" onAction="#openPetCard" prefHeight="40" prefWidth="220" text="Pet Card" />
    <Button fx:id="backButtonStyle" onAction="#backButton" prefHeight="44.0" prefWidth="107.0" text="Back" />
 </VBox>
