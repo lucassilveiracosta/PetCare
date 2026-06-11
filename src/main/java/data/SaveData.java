@@ -58,6 +58,27 @@ public class SaveData {
         }
     }
 
+    public void saveVeterinarian(business.model.person.Veterinarian vet) {
+        Locale.setDefault(Locale.US);
+        String path = "veterinarianSave.csv";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            bw.write(vet.getId() + ",");
+            bw.write(vet.getName() + ",");
+            bw.write(vet.getEmail() + ",");
+            bw.write(vet.getPassword() + ",");
+            bw.write(vet.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ",");
+            bw.write(vet.getCpf() + ",");
+            bw.write(vet.getTelephone() + ",");
+            bw.write(vet.getCrmv() + "");
+            
+            bw.newLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void saveAppointment(Appointment app) {
         Locale.setDefault(Locale.US);
         String path = "appointmentSave.csv";
