@@ -37,7 +37,7 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 - **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅
 - **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. ✅
 - **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa.
-- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação.
+- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação. (joao)
 - **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema.
 
 ## Possíveis APIs/Bibliotecas
