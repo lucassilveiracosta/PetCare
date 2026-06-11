@@ -23,22 +23,22 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 - **REQ08**: Cadastrar procedimentos cirúrgicos, vinculando equipe e insumos.✅
 
 ### 4. Vendas e Financeiro
-- **REQ09**: Registrar vendas de medicamentos e acessórios no PDV.
+- **REQ09**: Registrar vendas de medicamentos e acessórios no PDV.✅
 - **REQ10**: Controlar o estoque de medicamentos, incluindo os controlados.✅
-- **REQ11**: Emitir receitas e faturas detalhadas em PDF.
+- **REQ11**: Emitir receitas e faturas detalhadas em PDF. (quase
 
 ### 5. Relatórios
 - **REQ12**: Gerar relatório de produtividade por médico veterinário.
-- **REQ13**: Exportar histórico clínico completo em PDF para o tutor.
+- **REQ13**: Exportar histórico clínico completo em PDF para o tutor. 
 
 ### 6. Regras e Restrições
-- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada.
-- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada.
-- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅
-- **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. ✅
-- **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa.
+- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada. 
+- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada. 
+- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅ ajuste
+- **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. ✅ ajuste
+- **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa. 
 - **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação. (joao)
-- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema.
+- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema. ✅
 
 ## Possíveis APIs/Bibliotecas
 - **JFreeChart** – Evolução de peso.
