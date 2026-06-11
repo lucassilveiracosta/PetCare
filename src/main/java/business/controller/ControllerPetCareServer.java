@@ -1,6 +1,11 @@
 package business.controller;
 
 import business.interfaces.*;
+import business.model.animal.DomesticAnimal;
+import business.model.appointment.Appointment;
+import business.model.person.Owner;
+import business.model.person.Person;
+import business.model.person.Veterinarian;
 import data.repository.*;
 
 import java.util.ArrayList;
@@ -25,7 +30,12 @@ public class ControllerPetCareServer {
         data.LoadData loader = new data.LoadData();
 
         ArrayList<Owner> donos = loader.loadOwners();
-        ArrayList<Person> pessoasCarregadas = new ArrayList<>(donos);
+        ArrayList<Veterinarian> vets = loader.loadVeterinarians();
+        
+        ArrayList<business.model.person.Person> pessoasCarregadas = new ArrayList<>();
+        pessoasCarregadas.addAll(donos);
+        pessoasCarregadas.addAll(vets);
+        
         RepositoryPerson repPerson = new RepositoryPerson(pessoasCarregadas);
 
         RepositoryAnimal repAnimal = new RepositoryAnimal();
@@ -34,7 +44,6 @@ public class ControllerPetCareServer {
             repAnimal.create(a);
         }
 
-        ArrayList<Veterinarian> vets = new ArrayList<>();
         ArrayList<Appointment> consultas = loader.loadAppointments(animais, vets);
 
         RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>(consultas));
