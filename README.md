@@ -34,7 +34,7 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 ### 6. Regras e Restrições
 - **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada.
 - **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada.
-- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. (joao)
+- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅
 - **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. ✅
 - **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa.
 - **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação.
