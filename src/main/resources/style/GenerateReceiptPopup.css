@@ -1,0 +1,14 @@
+#yesButtonPdf {
+    -fx-background-color: #10B981;
+}
+
+#yesButtonPdf:hover {
+    -fx-background-color: #34D399;
+}
+
+#noButtonPdf{
+    -fx-background-color: #EF4444;
+}
+#noButtonPdf:hover{
+    -fx-background-color: #F87171;
+}

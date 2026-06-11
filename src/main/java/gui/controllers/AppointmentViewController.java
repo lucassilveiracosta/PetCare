@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.model.animal.Animal;
@@ -13,12 +13,19 @@ import business.model.person.Veterinarian;
 import enums.PetShopServices;
 import enums.ProcedureType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -51,6 +58,10 @@ public class AppointmentViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         server = ControllerPetCareServer.getInstance();
+
+        // This controller is (mistakenly) shared by several placeholder screens that
+        // don't have the scheduling controls. Only initialize for the real Scheduling screen.
+        if (appointmentScheduling == null) return;
 
         // Service types: medical (ProcedureType) + pet shop (PetShopServices)
         appointmentScheduling.getItems().addAll(ProcedureType.values());
@@ -113,9 +124,14 @@ public class AppointmentViewController implements Initializable {
             }
         }
     }
+    @FXML
+    public void onBackButton(ActionEvent event) {
+        gui.Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
+    }
 
     @FXML
     protected void onScheduleClick(ActionEvent event) {
+        if (appointmentScheduling == null) return; // placeholder screen sharing this controller
         int ownerIdx   = nameTutorScheduling.getSelectionModel().getSelectedIndex();
         int animalIdx  = nameAnimalScheduling.getSelectionModel().getSelectedIndex();
         int profIdx    = nameVeterianarianScheduling.getSelectionModel().getSelectedIndex();

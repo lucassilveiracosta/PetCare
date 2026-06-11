@@ -135,6 +135,7 @@ public class LoadData {
             String line;
             while ((line = br.readLine()) != null) {
                 if(line.trim().isEmpty()) continue;
+                try {
                 String[] data = line.split(",", -1);
                 // id, price, patientId, dateHourScheduled, description, veterinarianId, diagnosis, medicalPrescription, status
 
@@ -197,6 +198,9 @@ public class LoadData {
                     }
 
 
+                }
+                } catch (Exception ex) {
+                    System.out.println("Linha de consulta invalida ignorada: " + line);
                 }
             }
         } catch (IOException e) {

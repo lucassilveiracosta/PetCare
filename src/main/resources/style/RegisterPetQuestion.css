@@ -1,0 +1,14 @@
+#yesbutton {
+    -fx-background-color: #10B981;
+}
+
+#yesbutton:hover {
+    -fx-background-color: #34D399;
+}
+
+#nobutton{
+    -fx-background-color: #EF4444;
+}
+#nobutton:hover{
+    -fx-background-color: #F87171;
+}

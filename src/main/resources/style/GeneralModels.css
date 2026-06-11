@@ -1,0 +1,32 @@
+.root{
+    -fx-background-color: #F8F9FA;
+    -fx-font-family: 'Segoe UI', sans-serif ;
+}
+.button {
+    -fx-background-color: #4361EE;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25px;
+    -fx-padding: 12px 30px;
+}
+.button:hover {
+    -fx-background-color: #4895EF ;
+    -fx-effect: dropshadow(three-pass-box, rgba( 0, 0, 0, 0.2), 10, 0 , 0 , 4);
+}
+
+.button:pressed {
+    -fx-background-color: #3F51B5;
+    -fx-effect: none;
+}
+
+#backButtonStyle {
+    -fx-background-color: #EF4444;
+
+}
+#backButtonStyle:hover{
+    -fx-background-color: #F87171;
+
+}
+

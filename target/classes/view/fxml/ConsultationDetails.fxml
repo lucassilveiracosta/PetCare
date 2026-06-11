@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="ConsultationDetailsStyle" spacing="10" style="-fx-padding: 16;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.ConsultationDetailsController">
+<VBox fx:id="ConsultationDetailsStyle" spacing="10" style="-fx-padding: 16;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.controllers.ConsultationDetailsController">
 
     <!-- Title -->
     <Label fx:id="lblTitle" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Consultation Details" />
@@ -77,17 +77,40 @@
         </columnConstraints>
         <Label style="-fx-font-weight: bold;" text="Consciousness:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <Label fx:id="lblConsciousness" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label style="-fx-font-weight: bold;" text="Temperature:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Label fx:id="lblTemperature" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Notes:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="lblExamNotes" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <Separator />
+
+    <!-- Vital Parameters -->
+    <Label style="-fx-font-weight: bold;" text="Vital Parameters" />
+    <GridPane hgap="16" vgap="6">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints maxWidth="140" minWidth="120" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label style="-fx-font-weight: bold;" text="Temperature:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="lblTemperature" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label style="-fx-font-weight: bold;" text="Mucosa:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="lblMucosa" GridPane.columnIndex="3" GridPane.rowIndex="0" />
         <Label style="-fx-font-weight: bold;" text="Heart rate:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Label fx:id="lblHeartRate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <Label style="-fx-font-weight: bold;" text="Respiratory rate:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         <Label fx:id="lblRespiratoryRate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Label style="-fx-font-weight: bold;" text="Mucosa:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Label fx:id="lblMucosa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Label style="-fx-font-weight: bold;" text="Notes:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <Label fx:id="lblExamNotes" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label style="-fx-font-weight: bold;" text="Coagulation:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="lblCoagulation" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label style="-fx-font-weight: bold;" text="Hydration:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label fx:id="lblHydration" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label style="-fx-font-weight: bold;" text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label fx:id="lblVitalNotes" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
       <rowConstraints>
+         <RowConstraints />
          <RowConstraints />
          <RowConstraints />
          <RowConstraints />

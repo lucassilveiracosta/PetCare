@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AppointmentViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/GeneralModels.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AppointmentViewController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -34,7 +33,7 @@
                <children>
                   <BorderPane prefHeight="210.0" prefWidth="785.0" GridPane.columnIndex="1">
                      <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule your pet's appointment:" wrappingWidth="374.544921875" BorderPane.alignment="CENTER">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Book Pet Care Services" wrappingWidth="218.544921875" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -43,34 +42,42 @@
                   </BorderPane>
                   <GridPane prefHeight="80.0" prefWidth="680.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="136.0" />
-                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="533.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="292.0" />
+                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="493.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <center>
+                        <BorderPane prefHeight="60.0" prefWidth="365.0">
+                           <right>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tutor's name:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                           </center>
+                           </right>
                         </BorderPane>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <center>
+                           <right>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select the animal:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
+                           </right>
+                        </BorderPane>
+                        <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
+                           <center>
+                              <ChoiceBox fx:id="nameTutorServices" prefWidth="150.0" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
-                        <ChoiceBox fx:id="nameTutorScheduling" prefWidth="150.0" GridPane.columnIndex="1" />
-                        <ChoiceBox fx:id="nameAnimalScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <center>
+                              <ChoiceBox fx:id="nameAnimalScheduling" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
                      </children>
                      <GridPane.margin>
                         <Insets />
@@ -78,8 +85,8 @@
                   </GridPane>
                   <GridPane prefWidth="785.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="136.0" />
-                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="533.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="291.0" />
+                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="494.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -87,31 +94,46 @@
                      </rowConstraints>
                      <children>
                         <BorderPane prefHeight="120.0" prefWidth="208.0">
-                           <center>
+                           <right>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Service Type:" wrappingWidth="105.6455078125" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                           </center>
+                           </right>
                         </BorderPane>
-                        <TextField fx:id="reasonScheduling" prefHeight="57.0" prefWidth="182.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <center>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is the reason for your appointment?" wrappingWidth="122.6455078125" BorderPane.alignment="CENTER">
+                           <right>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What is the reason for your schedule?" wrappingWidth="122.6455078125" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
+                           </right>
+                        </BorderPane>
+                        <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
+                           <center>
+                              <ChoiceBox fx:id="nameTutorScheduling2" prefWidth="150.0" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
-                        <ChoiceBox fx:id="appointmentScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <GridPane prefHeight="60.0" prefWidth="329.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="36.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="1.0" prefWidth="258.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField prefHeight="87.0" prefWidth="266.0" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="136.0" />
-                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="533.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="292.0" />
+                        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="632.0" minWidth="10.0" prefWidth="493.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -122,65 +144,54 @@
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <center>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                 <center>
+                                 <right>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule the date:" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Text>
-                                 </center>
+                                 </right>
                               </BorderPane>
                            </center>
                         </BorderPane>
-                        <DatePicker fx:id="schedulingDate" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <center>
-                              <Text fx:id="professionalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the Veterinarian:" wrappingWidth="148.6455078125" BorderPane.alignment="CENTER">
+                           <right>
+                              <Text fx:id="professionalText" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the Employee:" wrappingWidth="148.6455078125" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                           </center>
+                           </right>
                         </BorderPane>
-                        <ChoiceBox fx:id="nameVeterianarianScheduling" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <center>
+                           <right>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment time:" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
+                           </right>
+                        </BorderPane>
+                        <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
+                           <center>
+                              <ChoiceBox fx:id="nameTutorScheduling21" prefWidth="150.0" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
-                        <ChoiceBox fx:id="schedulingTime" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <BorderPane prefHeight="40.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <center>
+                              <DatePicker fx:id="schedulingDate" prefHeight="25.0" prefWidth="91.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <center>
+                              <ChoiceBox fx:id="nameTutorScheduling11" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <center>
-                        <GridPane BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="468.0" minWidth="10.0" prefWidth="393.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="131.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="391.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                                 <right>
-                                    <Button fx:id="backButtonStyle" mnemonicParsing="false" onAction="#onBackButton" prefHeight="35.0" prefWidth="104.0" text="Back" BorderPane.alignment="CENTER" />
-                                 </right>
-                              </BorderPane>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <left>
-                                    <Button fx:id="scheduleScheduling1" mnemonicParsing="false" onAction="#onScheduleClick" text="Schedule!" BorderPane.alignment="CENTER" />
-                                 </left>
-                              </BorderPane>
-                           </children>
-                        </GridPane>
+                        <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" text="Schedule!" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </children>
@@ -191,8 +202,4 @@
          </children>
       </AnchorPane>
    </children>
-   <stylesheets>
-      <URL value="@../../style/style.css" />
-      <URL value="@../../style/GeneralModels.css" />
-   </stylesheets>
 </VBox>

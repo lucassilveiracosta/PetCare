@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="backgroundAttendantMenu" alignment="CENTER" prefHeight="469.0" prefWidth="405.0" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/GeneralModels.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AttendantMenuController">
+    <Label fx:id="PetCareStyle" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Attendant Menu" />
+    <Button fx:id="petShop" onAction="#openPetShop" prefHeight="40" prefWidth="220" text="Pet Shop" />
+   <Button fx:id="RegisterOwner" onAction="#openRegisterOwner" prefHeight="40" prefWidth="220" text="Register Owner" />
+    <Button fx:id="registerPet" onAction="#openRegisterPet" prefHeight="40" prefWidth="220" text="Register Pet" />
+    <Button fx:id="petShopScheduling" onAction="#openPetShopScheduling" prefHeight="40" prefWidth="220" text="Pet Shop Scheduling" />
+   <Button fx:id="veterinarianScheduling" onAction="#openVeterinarianScheduling" prefHeight="40" prefWidth="220" text="Veterinarian Scheduling" />
+   <Button fx:id="backButtonStyle" onAction="#backButton" prefHeight="44.0" prefWidth="107.0" text="Back" />
+</VBox>

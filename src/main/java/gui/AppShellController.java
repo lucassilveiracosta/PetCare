@@ -17,6 +17,6 @@ public class AppShellController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         new MockDataLoader().load();
         Navigator.init(breadcrumbBar, contentArea);
-        Navigator.reset("Home", "/view/fxml/Menu.fxml");
+        Navigator.reset("Home", "/view/fxml/MenuPrincipal.fxml");
     }
 }

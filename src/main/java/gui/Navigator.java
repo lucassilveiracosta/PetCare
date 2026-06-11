@@ -41,8 +41,17 @@ public final class Navigator {
         render();
     }
 
-    /** Navigate one level deeper, pushing a new breadcrumb. */
+    /**
+     * Navigate to a screen. If it is already in the trail, jump back to it
+     * (keeps the breadcrumb clean for back/return actions); otherwise push it.
+     */
     public static void navigate(String title, String fxml) {
+        for (int i = 0; i < stack.size(); i++) {
+            if (stack.get(i).fxml().equals(fxml)) {
+                goTo(i);
+                return;
+            }
+        }
         stack.add(new Crumb(title, fxml));
         render();
     }
@@ -61,11 +70,14 @@ public final class Navigator {
         try {
             Node view = FXMLLoader.load(Navigator.class.getResource(current.fxml()));
             contentArea.getChildren().setAll(view);
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            e.printStackTrace();
+            Throwable root = e;
+            while (root.getCause() != null) root = root.getCause();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Navigation error");
-            alert.setHeaderText("Could not open: " + current.title());
-            alert.setContentText(e.getMessage());
+            alert.setHeaderText("Could not open: " + current.title() + "  (" + current.fxml() + ")");
+            alert.setContentText(root.getClass().getSimpleName() + ": " + root.getMessage());
             alert.showAndWait();
         }
         renderBreadcrumb();
