@@ -89,7 +89,7 @@ public class AdminAppointmentsController implements Initializable {
         colVet.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getResponsibleVeterinarian().getName()));
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDateHourScheduled().format(FMT)));
         colDesc.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDescription()));
-        // REQ17 - show diagnosis so a "prontuário" (medical record) is identifiable
+        // REQ17 - show the diagnosis so the medical record is identifiable
         colDiagnosis.setCellValueFactory(c -> {
             String d = c.getValue().getDiagnosis();
             return new SimpleStringProperty((d != null && !d.isBlank()) ? d : "—");
@@ -97,7 +97,6 @@ public class AdminAppointmentsController implements Initializable {
     }
 
     private void setupEditPanel() {
-        // 30-min slots 07:00–19:00
         for (LocalTime t = LocalTime.of(7, 0); !t.isAfter(LocalTime.of(19, 0)); t = t.plusMinutes(30)) {
             cbTime.getItems().add(t.format(TIME_FMT));
         }

@@ -30,7 +30,6 @@ public class RegisterOwnerController {
 
     private final IControllerPerson backendController = business.controller.ControllerPetCareServer.getInstance().getPerson();
 
-    // Variável estática para guardar o dono recém-criado na memória
     public static Owner lastRegisteredOwner;
 
     @FXML
@@ -46,25 +45,23 @@ public class RegisterOwnerController {
 
         try {
             if (birthdate == null) {
-                throw new IllegalArgumentException("Por favor, selecione uma data de nascimento válida.");
+                throw new IllegalArgumentException("Please select a valid birth date.");
             }
 
             Owner newOwner = new Owner(name, email, password, birthdate, cpf, telephone, job, description);
             backendController.post(newOwner);
 
-            // Relacionamento em sequência: guardamos o dono criado para ser usado na próxima tela
             lastRegisteredOwner = newOwner;
 
-            showAlert("Sucesso!", "Dono cadastrado! Vamos cadastrar o animal agora.", Alert.AlertType.INFORMATION);
+            showAlert("Success!", "Owner registered! Let's register the pet now.", Alert.AlertType.INFORMATION);
             clearFields();
 
-            // Avança automaticamente para a tela de Registro de Pet
             gui.Navigator.navigate("Register Pet", "/view/fxml/RegisterPet.fxml");
 
         } catch (IllegalArgumentException e) {
-            showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);
+            showAlert("Validation Error", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            showAlert("Erro no Sistema", "Não foi possível salvar o cadastro: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("System Error", "Could not save the registration: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }

@@ -25,9 +25,9 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
           </padding>
           <children>
-            <Label style="-fx-font-weight: bold;" text="A internar (flagged)" />
+            <Label style="-fx-font-weight: bold;" text="To admit (flagged)" />
             <ListView fx:id="listToAdmit" VBox.vgrow="ALWAYS" />
-            <Label style="-fx-font-weight: bold;" text="Internados (ativos)" />
+            <Label style="-fx-font-weight: bold;" text="Admitted (active)" />
             <ListView fx:id="listActive" VBox.vgrow="ALWAYS" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRefresh" text="Refresh" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBack" text="Back to Admin Menu" />
@@ -46,38 +46,38 @@
                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
               </padding>
               <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Internação (REQ07)" />
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Hospitalization (REQ07)" />
 
                 <!-- Admit -->
-                <Label style="-fx-font-weight: bold;" text="Admitir (selecione na lista 'A internar')" />
-                <Label fx:id="lblAdmitPatient" text="Nenhum paciente selecionado." />
+                <Label style="-fx-font-weight: bold;" text="Admit (select from the 'To admit' list)" />
+                <Label fx:id="lblAdmitPatient" text="No patient selected." />
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                   <children>
-                    <Label prefWidth="150.0" text="Veterinário responsável:" />
+                    <Label prefWidth="150.0" text="Responsible veterinarian:" />
                     <ChoiceBox fx:id="cbVet" prefWidth="220.0" />
                   </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                   <children>
-                    <Label prefWidth="150.0" text="Preço (R$):" />
+                    <Label prefWidth="150.0" text="Price (R$):" />
                     <TextField fx:id="fieldPrice" prefWidth="120.0" text="250" />
                   </children>
                 </HBox>
-                <Label text="Descrição / motivo:" />
+                <Label text="Description / reason:" />
                 <TextArea fx:id="fieldDescription" prefHeight="50.0" wrapText="true" />
-                <Button fx:id="btnAdmit" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAdmit" text="Admitir (internar)" />
+                <Button fx:id="btnAdmit" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAdmit" text="Admit (hospitalize)" />
 
                 <Separator />
 
                 <!-- Monitoring -->
-                <Label style="-fx-font-weight: bold;" text="Monitoramento (selecione um internado ativo)" />
-                <Label fx:id="lblSelectedHosp" text="Nenhuma internação selecionada." />
-                <Label fx:id="lblVitalsCount" text="Leituras registradas: 0" />
+                <Label style="-fx-font-weight: bold;" text="Monitoring (select an active hospitalization)" />
+                <Label fx:id="lblSelectedHosp" text="No hospitalization selected." />
+                <Label fx:id="lblVitalsCount" text="Readings recorded: 0" />
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                   <children>
-                    <Label text="FC (bpm):" />
+                    <Label text="HR (bpm):" />
                     <TextField fx:id="fieldHeartRate" prefWidth="70.0" />
-                    <Label text="FR (rpm):" />
+                    <Label text="RR (rpm):" />
                     <TextField fx:id="fieldRespRate" prefWidth="70.0" />
                     <Label text="Temp (°C):" />
                     <TextField fx:id="fieldTemperature" prefWidth="70.0" />
@@ -85,7 +85,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                   <children>
-                    <Label text="Coagulação (s):" />
+                    <Label text="Coagulation (s):" />
                     <TextField fx:id="fieldCoagulation" prefWidth="70.0" />
                     <Label text="Mucosa:" />
                     <ChoiceBox fx:id="cbMucosa" prefWidth="160.0" />
@@ -93,21 +93,21 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" spacing="8.0">
                   <children>
-                    <CheckBox fx:id="chkEuvolemic" mnemonicParsing="false" selected="true" text="Euvolêmico" />
-                    <Label text="Desidratação (%):" />
+                    <CheckBox fx:id="chkEuvolemic" mnemonicParsing="false" selected="true" text="Euvolemic" />
+                    <Label text="Dehydration (%):" />
                     <TextField fx:id="fieldDehydration" prefWidth="70.0" />
                   </children>
                 </HBox>
-                <Label text="Notas:" />
+                <Label text="Notes:" />
                 <TextArea fx:id="fieldVitalNotes" prefHeight="50.0" wrapText="true" />
-                <Button fx:id="btnAddVital" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddVital" text="Adicionar leitura de parâmetros vitais" />
+                <Button fx:id="btnAddVital" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddVital" text="Add vital-parameter reading" />
 
                 <Separator />
 
                 <!-- Discharge (REQ16) -->
-                <Label style="-fx-font-weight: bold;" text="Alta (REQ16)" />
-                <Button fx:id="btnPay" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePayInvoices" text="Registrar Pagamento (quitar faturas)" />
-                <Button fx:id="btnDischarge" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDischarge" text="Dar Alta (Discharge)" />
+                <Label style="-fx-font-weight: bold;" text="Discharge (REQ16)" />
+                <Button fx:id="btnPay" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePayInvoices" text="Register Payment (settle invoices)" />
+                <Button fx:id="btnDischarge" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDischarge" text="Discharge" />
               </children>
             </VBox>
           </content>

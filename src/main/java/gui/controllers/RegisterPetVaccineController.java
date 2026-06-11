@@ -39,7 +39,7 @@ public class RegisterPetVaccineController {
         try {
             DomesticAnimal pet = RegisterPetController.pendingAnimal;
             if (pet == null) {
-                throw new IllegalStateException("Nenhum animal em cadastro. Volte e preencha os dados do pet primeiro.");
+                throw new IllegalStateException("No pet in registration. Go back and fill in the pet details first.");
             }
 
             String name = txtVaccineName.getText();
@@ -48,13 +48,13 @@ public class RegisterPetVaccineController {
             LocalDate expireDate = dpExpireDate.getValue();
 
             if (name == null || name.trim().isEmpty() || date == null) {
-                throw new IllegalArgumentException("Nome e Data da vacina são obrigatórios.");
+                throw new IllegalArgumentException("Vaccine name and date are required.");
             }
             if (expireDate == null) {
-                throw new IllegalArgumentException("A data de validade da vacina é obrigatória.");
+                throw new IllegalArgumentException("The vaccine expiration date is required.");
             }
             if (expireDate.isBefore(date)) {
-                throw new IllegalArgumentException("A data de validade deve ser posterior à data da vacina.");
+                throw new IllegalArgumentException("The expiration date must be after the vaccine date.");
             }
             ControllerAnimal.validateVaccinationAge(pet.getBirthDate(), date, isRabies); // REQ19
 
@@ -62,14 +62,14 @@ public class RegisterPetVaccineController {
             Vaccine newVaccine = new Vaccine(name.trim(), date, desc, isRabies, expireDate);
             pet.getVaccines().add(newVaccine);
 
-            showAlert("Sucesso!", "Vacina adicionada (" + pet.getVaccines().size()
-                    + " no cartão). Pode inserir a próxima.", Alert.AlertType.INFORMATION);
+            showAlert("Success!", "Vaccine added (" + pet.getVaccines().size()
+                    + " on the card). You can add the next one.", Alert.AlertType.INFORMATION);
             clearFields();
 
         } catch (IllegalArgumentException | IllegalStateException | InvalidAnimalAgeException e) {
-            showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);
+            showAlert("Validation Error", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            showAlert("Erro no Sistema", "Não foi possível adicionar a vacina: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("System Error", "Could not add the vaccine: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
@@ -79,7 +79,7 @@ public class RegisterPetVaccineController {
         try {
             DomesticAnimal pet = RegisterPetController.pendingAnimal;
             if (pet == null) {
-                throw new IllegalStateException("Nenhum animal em cadastro. Volte e preencha os dados do pet primeiro.");
+                throw new IllegalStateException("No pet in registration. Go back and fill in the pet details first.");
             }
 
             ControllerPetCareServer.getInstance().getAnimal().post(pet);
@@ -88,15 +88,15 @@ public class RegisterPetVaccineController {
             int vaccineCount = pet.getVaccines().size();
             RegisterPetController.pendingAnimal = null;
 
-            showAlert("Sucesso!", "Registro do animal '" + pet.getName() + "' concluído com "
-                    + vaccineCount + " vacina(s).", Alert.AlertType.INFORMATION);
+            showAlert("Success!", "Registration of pet '" + pet.getName() + "' completed with "
+                    + vaccineCount + " vaccine(s).", Alert.AlertType.INFORMATION);
 
             gui.Navigator.navigate("Attendant Menu", "/view/fxml/AttendantMenu.fxml");
 
         } catch (IllegalStateException e) {
-            showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);
+            showAlert("Validation Error", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            showAlert("Erro no Sistema", "Falha ao registrar: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("System Error", "Falha ao registrar: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }

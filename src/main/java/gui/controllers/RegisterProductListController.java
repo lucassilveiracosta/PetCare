@@ -155,15 +155,15 @@ public class RegisterProductListController implements Initializable {
         for (Product p : cart.keySet()) {
             if (p.isVet() && p.getMedicineType() == MedicineType.CONTROLLED) {
                 Alert presc = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Medicamento controlado: \"" + p.getName() + "\".\n"
-                                + "O cliente apresentou a receita deste medicamento?",
+                        "Controlled medicine: \"" + p.getName() + "\".\n"
+                                + "Did the customer present the prescription for this medicine?",
                         ButtonType.YES, ButtonType.NO);
                 presc.setHeaderText(null);
-                presc.setTitle("Receita — " + p.getName());
+                presc.setTitle("Prescription — " + p.getName());
                 boolean shown = presc.showAndWait().filter(b -> b == ButtonType.YES).isPresent();
                 if (!shown) {
-                    showAlert(Alert.AlertType.WARNING, "Venda bloqueada",
-                            "Receita não apresentada para \"" + p.getName() + "\". A venda foi cancelada.");
+                    showAlert(Alert.AlertType.WARNING, "Sale blocked",
+                            "Prescription not presented for \"" + p.getName() + "\". The sale was cancelled.");
                     return; // keep the cart so the attendant can adjust
                 }
             }
@@ -178,7 +178,7 @@ public class RegisterProductListController implements Initializable {
                 stockController.registerSale(p, e.getValue(), hasPrescription);
             }
         } catch (InsufficientStockException | PrescriptionRequiredException ex) {
-            showAlert(Alert.AlertType.WARNING, "Venda bloqueada", ex.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Sale blocked", ex.getMessage());
             loadProducts();
             return; // keep the cart so the attendant can adjust
         }
@@ -217,13 +217,13 @@ public class RegisterProductListController implements Initializable {
     @FXML
     public void backbutton(ActionEvent event) {
         if (!cart.isEmpty()) {
-            ButtonType voltar = new ButtonType("Voltar");
-            ButtonType continuar = new ButtonType("Continuar pagamento");
+            ButtonType voltar = new ButtonType("Back");
+            ButtonType continuar = new ButtonType("Continue payment");
             Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                    "Há uma venda em andamento. Deseja sair e cancelar, ou continuar o pagamento?",
+                    "There is a sale in progress. Do you want to leave and cancel, or continue the payment?",
                     voltar, continuar);
             confirm.setHeaderText(null);
-            confirm.setTitle("Confirmação");
+            confirm.setTitle("Confirmation");
             Optional<ButtonType> choice = confirm.showAndWait();
             if (choice.isEmpty() || choice.get() != voltar) return; // continue payment / stay
             cart.clear();

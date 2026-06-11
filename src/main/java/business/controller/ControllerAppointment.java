@@ -138,9 +138,9 @@ public class ControllerAppointment implements IControllerAppointment {
             if (a.getResponsibleVeterinarian() != null
                     && a.getResponsibleVeterinarian().getId() == vetId
                     && appointment.getDateHourScheduled().equals(a.getDateHourScheduled())) {
-                throw new ScheduleConflictException("Conflito de agenda: "
+                throw new ScheduleConflictException("Schedule conflict: "
                         + appointment.getResponsibleVeterinarian().getName()
-                        + " já tem um atendimento marcado nesse horário.");
+                        + " already has an appointment at this time.");
             }
         }
     }

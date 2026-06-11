@@ -81,9 +81,9 @@ public class ControllerInvoice implements IControllerInvoice {
                             && s.getResponsibleEmployee() != null
                             && s.getResponsibleEmployee().getId() == empId
                             && newService.getDateHourScheduled().equals(s.getDateHourScheduled())) {
-                        throw new ScheduleConflictException("Conflito de agenda: "
+                        throw new ScheduleConflictException("Schedule conflict: "
                                 + newService.getResponsibleEmployee().getName()
-                                + " já tem um serviço marcado nesse horário.");
+                                + " already has a service booked at this time.");
                     }
                 }
             }

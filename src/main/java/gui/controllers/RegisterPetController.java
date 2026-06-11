@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class RegisterPetController {
 
-    // 1. FXML Elements
     @FXML private TextField animalNameBox;
     @FXML private TextField specieBox;
     @FXML private TextField raceBox;

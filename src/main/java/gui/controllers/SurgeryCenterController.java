@@ -136,7 +136,7 @@ public class SurgeryCenterController implements Initializable {
     @FXML
     private void handlePayInvoices() {
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Nenhuma seleção", "Selecione uma consulta na lista.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select a consultation from the list.");
             return;
         }
         int animalId = selected.getPatient().getId();
@@ -147,33 +147,33 @@ public class SurgeryCenterController implements Initializable {
                 settled++;
             }
         }
-        showAlert(Alert.AlertType.INFORMATION, "Pagamento registrado",
-                settled + " fatura(s) de " + selected.getPatient().getName() + " quitada(s).");
+        showAlert(Alert.AlertType.INFORMATION, "Payment recorded",
+                settled + " invoice(s) of " + selected.getPatient().getName() + " settled.");
     }
 
     /** REQ16 - discharges the hospitalized animal, blocked while invoices are unpaid. */
     @FXML
     private void handleDischarge() {
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Nenhuma seleção", "Selecione uma consulta na lista.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select a consultation from the list.");
             return;
         }
         if (!selected.isNeedsHospitalization()) {
-            showAlert(Alert.AlertType.WARNING, "Sem internação",
-                    selected.getPatient().getName() + " não está marcado para internação.");
+            showAlert(Alert.AlertType.WARNING, "Not hospitalized",
+                    selected.getPatient().getName() + " is not flagged for hospitalization.");
             return;
         }
         try {
             server.getInvoice().validateDischarge(selected.getPatient().getId()); // throws if unpaid
             selected.setNeedsHospitalization(false);
             server.saveAll();
-            showAlert(Alert.AlertType.INFORMATION, "Alta concedida",
-                    "Alta registrada para " + selected.getPatient().getName() + ".");
+            showAlert(Alert.AlertType.INFORMATION, "Discharge granted",
+                    "Discharge recorded for " + selected.getPatient().getName() + ".");
             selected = null;
             loadFlagged();
             updateForm();
         } catch (UnpaidInvoiceException e) {
-            showAlert(Alert.AlertType.WARNING, "Alta bloqueada", e.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Discharge blocked", e.getMessage());
         }
     }
 

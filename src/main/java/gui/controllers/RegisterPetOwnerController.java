@@ -13,7 +13,6 @@ import java.time.LocalDate;
 
 public class RegisterPetOwnerController {
 
-    // 1. Elementos da Tela
     @FXML private TextField txtOwnerName;
     @FXML private TextField txtEmail;
     @FXML private TextField txtPassword;
@@ -23,7 +22,6 @@ public class RegisterPetOwnerController {
     @FXML private TextField txtJob;
     @FXML private TextField txtDescription;
 
-    // 2. Conexão com o Servidor
     private final IControllerPerson backendController = ControllerPetCareServer.getInstance().getPerson();
 
     @FXML

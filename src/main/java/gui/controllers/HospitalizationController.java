@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
- * REQ07 — Hospitalization (internação) with monitoring. Admit a patient (flagged
+ * REQ07 — Hospitalization with monitoring. Admit a patient (flagged
  * for hospitalization), record vital-parameter readings over time, and discharge
  * (REQ16: blocked while the patient has an unpaid invoice).
  */
@@ -66,8 +66,8 @@ public class HospitalizationController implements Initializable {
             int i = nw.intValue();
             selectedAppt = (i >= 0 && i < toAdmit.size()) ? toAdmit.get(i) : null;
             lblAdmitPatient.setText(selectedAppt != null
-                    ? "Paciente: " + selectedAppt.getPatient().getName()
-                    : "Nenhum paciente selecionado.");
+                    ? "Patient: " + selectedAppt.getPatient().getName()
+                    : "No patient selected.");
         });
         listActive.getSelectionModel().selectedIndexProperty().addListener((o, old, nw) -> {
             int i = nw.intValue();
@@ -88,41 +88,41 @@ public class HospitalizationController implements Initializable {
 
         var admitItems = FXCollections.<String>observableArrayList();
         for (Appointment a : toAdmit) admitItems.add(a.getPatient().getName() + "  —  " + a.getDateHourScheduled().format(DT));
-        if (admitItems.isEmpty()) admitItems.add("Ninguém marcado para internação.");
+        if (admitItems.isEmpty()) admitItems.add("No one flagged for hospitalization.");
         listToAdmit.setItems(admitItems);
 
         var activeItems = FXCollections.<String>observableArrayList();
-        for (Hospitalization h : active) activeItems.add(h.getPatient().getName() + "  —  entrada "
-                + h.getEntryDateTime().format(DT) + "  (" + h.getVitalParametersHistory().size() + " leituras)");
-        if (activeItems.isEmpty()) activeItems.add("Nenhum animal internado.");
+        for (Hospitalization h : active) activeItems.add(h.getPatient().getName() + "  —  admitted "
+                + h.getEntryDateTime().format(DT) + "  (" + h.getVitalParametersHistory().size() + " readings)");
+        if (activeItems.isEmpty()) activeItems.add("No animals hospitalized.");
         listActive.setItems(activeItems);
     }
 
     private void updateHospLabels() {
         if (selectedHosp != null) {
-            lblSelectedHosp.setText("Internação: " + selectedHosp.getPatient().getName()
-                    + "  ·  entrada " + selectedHosp.getEntryDateTime().format(DT));
-            lblVitalsCount.setText("Leituras registradas: " + selectedHosp.getVitalParametersHistory().size());
+            lblSelectedHosp.setText("Hospitalization: " + selectedHosp.getPatient().getName()
+                    + "  ·  admitted " + selectedHosp.getEntryDateTime().format(DT));
+            lblVitalsCount.setText("Readings recorded: " + selectedHosp.getVitalParametersHistory().size());
         } else {
-            lblSelectedHosp.setText("Nenhuma internação selecionada.");
-            lblVitalsCount.setText("Leituras registradas: 0");
+            lblSelectedHosp.setText("No hospitalization selected.");
+            lblVitalsCount.setText("Readings recorded: 0");
         }
     }
 
     @FXML
     private void handleAdmit() {
         if (selectedAppt == null) {
-            showAlert(Alert.AlertType.WARNING, "Sem seleção", "Selecione um paciente na lista 'A internar'.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select a patient from the 'To admit' list.");
             return;
         }
         if (cbVet.getValue() == null) {
-            showAlert(Alert.AlertType.WARNING, "Dados incompletos", "Selecione o veterinário responsável.");
+            showAlert(Alert.AlertType.WARNING, "Missing data", "Select the responsible veterinarian.");
             return;
         }
         try {
             Animal patient = selectedAppt.getPatient();
             double price = parsePrice(fieldPrice.getText());
-            String desc = orDefault(fieldDescription.getText(), "Internação");
+            String desc = orDefault(fieldDescription.getText(), "Hospitalization");
             LocalDateTime now = LocalDateTime.now();
 
             Hospitalization h = new Hospitalization(true, price, patient, now, desc,
@@ -138,19 +138,19 @@ public class HospitalizationController implements Initializable {
 
             selectedAppt.setNeedsHospitalization(false);
             server.saveAll();
-            showAlert(Alert.AlertType.INFORMATION, "Internado",
-                    patient.getName() + " foi internado. Fatura gerada (pendente).");
+            showAlert(Alert.AlertType.INFORMATION, "Admitted",
+                    patient.getName() + " was admitted. Invoice generated (pending).");
             selectedAppt = null;
             loadLists();
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Não foi possível internar", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Could not admit", e.getMessage());
         }
     }
 
     @FXML
     private void handleAddVital() {
         if (selectedHosp == null) {
-            showAlert(Alert.AlertType.WARNING, "Sem seleção", "Selecione uma internação ativa.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select an active hospitalization.");
             return;
         }
         try {
@@ -161,16 +161,16 @@ public class HospitalizationController implements Initializable {
                     cbMucosa.getValue(),
                     parseInt(fieldCoagulation.getText()),
                     new Hydration(chkEuvolemic.isSelected(), parseDouble(fieldDehydration.getText())),
-                    orDefault(fieldVitalNotes.getText(), "Monitoramento " + LocalDateTime.now().format(DT)));
+                    orDefault(fieldVitalNotes.getText(), "Monitoring " + LocalDateTime.now().format(DT)));
             selectedHosp.getVitalParametersHistory().add(vp);
             server.saveAll();
             updateHospLabels();
             loadLists();
             clearVitalFields();
             showAlert(Alert.AlertType.INFORMATION, "Leitura registrada",
-                    "Parâmetros vitais adicionados (" + selectedHosp.getVitalParametersHistory().size() + " no total).");
+                    "Vital parameters added (" + selectedHosp.getVitalParametersHistory().size() + " total).");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Não foi possível registrar", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Could not record", e.getMessage());
         }
     }
 
@@ -178,7 +178,7 @@ public class HospitalizationController implements Initializable {
     @FXML
     private void handlePayInvoices() {
         if (selectedHosp == null) {
-            showAlert(Alert.AlertType.WARNING, "Sem seleção", "Selecione uma internação ativa.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select an active hospitalization.");
             return;
         }
         int animalId = selectedHosp.getPatient().getId();
@@ -189,28 +189,28 @@ public class HospitalizationController implements Initializable {
                 settled++;
             }
         }
-        showAlert(Alert.AlertType.INFORMATION, "Pagamento registrado",
-                settled + " fatura(s) de " + selectedHosp.getPatient().getName() + " quitada(s).");
+        showAlert(Alert.AlertType.INFORMATION, "Payment recorded",
+                settled + " invoice(s) of " + selectedHosp.getPatient().getName() + " settled.");
     }
 
     /** REQ16 — discharge, blocked while the patient has an unpaid invoice. */
     @FXML
     private void handleDischarge() {
         if (selectedHosp == null) {
-            showAlert(Alert.AlertType.WARNING, "Sem seleção", "Selecione uma internação ativa.");
+            showAlert(Alert.AlertType.WARNING, "No selection", "Select an active hospitalization.");
             return;
         }
         try {
             server.getInvoice().validateDischarge(selectedHosp.getPatient().getId()); // throws if unpaid
             selectedHosp.setDischargeDateTime(LocalDateTime.now());
             server.saveAll();
-            showAlert(Alert.AlertType.INFORMATION, "Alta concedida",
-                    "Alta registrada para " + selectedHosp.getPatient().getName() + ".");
+            showAlert(Alert.AlertType.INFORMATION, "Discharge granted",
+                    "Discharge recorded for " + selectedHosp.getPatient().getName() + ".");
             selectedHosp = null;
             updateHospLabels();
             loadLists();
         } catch (UnpaidInvoiceException e) {
-            showAlert(Alert.AlertType.WARNING, "Alta bloqueada", e.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Discharge blocked", e.getMessage());
         }
     }
 

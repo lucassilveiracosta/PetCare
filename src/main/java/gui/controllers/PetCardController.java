@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Pet card (carteirinha) — the attendant picks a pet on the left and sees its
+ * Pet card — the attendant picks a pet on the left and sees its
  * data and vaccination card on the right.
  */
 public class PetCardController implements Initializable {

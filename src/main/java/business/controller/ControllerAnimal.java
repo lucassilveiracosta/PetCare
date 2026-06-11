@@ -86,7 +86,6 @@ public class ControllerAnimal implements IControllerAnimal {
         Animal old = repositoryAnimal.findById(id);
         if (old == null) throw new AnimalNotFoundException("404 - ID not found");
 
-        // Garante que o objeto novo terá o mesmo ID do old
         newData.setId(id);
 
         int index = repositoryAnimal.findAll().indexOf(old);

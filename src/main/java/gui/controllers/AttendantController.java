@@ -72,7 +72,6 @@ public class AttendantController implements Initializable {
         for (Employee e : allEmployees) nameTutorScheduling21.getItems().add(e.getName());
         if (professionalText != null) professionalText.setText("Select the Employee:");
 
-        // Time slots 07:00–19:00
         for (int h = 7; h <= 19; h++) {
             nameTutorScheduling11.getItems().add(String.format("%02d:00", h));
             if (h < 19) nameTutorScheduling11.getItems().add(String.format("%02d:30", h));
