@@ -89,11 +89,6 @@ public class ControllerPerson implements IControllerPerson {
         return repositoryPerson.filterByName(name);
     }
 
-    /**
-     *
-     * @param email
-     * @return Essa função retorna todos os animais domésticos relacionados ao dono do email selecionado
-     */
     public ArrayList<Animal> filterOwnersByEmail(String email) {
         ArrayList<Animal> filter = new ArrayList<>();
 
@@ -104,7 +99,6 @@ public class ControllerPerson implements IControllerPerson {
                 }
             }
         }
-
         return filter;
     }
 
@@ -150,7 +144,6 @@ public class ControllerPerson implements IControllerPerson {
                 }
             }
         }
-
         return count;
     }
 }

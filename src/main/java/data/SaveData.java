@@ -117,7 +117,7 @@ public class SaveData {
             lines.add(String.join(";",
                     String.valueOf(da.getId()), esc(da.getName()), esc(da.getSpecies()), esc(da.getRace()),
                     da.getTemperament().name(), String.valueOf(da.getWeight()), da.getSex().name(),
-                    da.getSize().name(), da.getbirthDate().format(D), da.getStageOfLife().name(),
+                    da.getSize().name(), da.getBirthDate().format(D), da.getStageOfLife().name(),
                     String.valueOf(da.getOwner().getId()), vac.toString()));
         }
         write("animals.csv",

@@ -40,10 +40,6 @@ public class ControllerHospitalization implements IControllerHospitalization {
         if (exists == null) {
             throw new AppointmentNotFoundException("404 - Hospitalization with ID " + id + " not found");
         }
-        /*
-        para colocar por partes
-         */
-
 
         int index = repositoryHospitalization.findAll().indexOf(exists);
         repositoryHospitalization.update(index, exists);
@@ -79,7 +75,6 @@ public class ControllerHospitalization implements IControllerHospitalization {
         if (exists != null) {
             throw new AppointmentConflictException("409 - This hospitalization already exists");
         }
-
         repositoryHospitalization.create(hospitalization);
     }
 }

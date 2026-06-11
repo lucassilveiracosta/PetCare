@@ -27,7 +27,7 @@ public class Animal {
         setName(name);
         setSpecies(species);
         setRace(race);
-        setbirthDate(birthDate);
+        setBirthDate(birthDate);
         setStageOfLife(stageOfLife);
         setWeight(weight);
         setSize(size);
@@ -96,11 +96,11 @@ public class Animal {
         this.species = species;
     }
 
-    public LocalDate getbirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setbirthDate(LocalDate birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         if (birthDate == null) throw new InvoiceConflictException("400 - Invalid birthDate");
         this.birthDate = birthDate;
     }

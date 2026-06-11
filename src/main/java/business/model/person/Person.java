@@ -6,7 +6,6 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.time.LocalDate;
 
-// Abstract base class for every person in the system (owners, employees, vets).
 public abstract class Person {
 
     protected static int idCounter = 1;
@@ -110,7 +109,4 @@ public abstract class Person {
         }
         this.password = password;
     }
-
-
-
 }

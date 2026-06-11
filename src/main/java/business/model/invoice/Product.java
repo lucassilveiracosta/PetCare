@@ -9,9 +9,9 @@ public class Product {
     private int id = idCounter++;
     private String name;
     private Integer quantity;
-    private final boolean isVet; // Whether it belongs to the pet shop or the vet pharmacy
+    private final boolean isVet;
     private MedicineType medicineType;
-    private String description; // e boolean para ver se o remédio é controlado
+    private String description;
     private Double price;
 
     public Product(String name, Integer quantity, String description, Double price, boolean isVet, MedicineType medicineType){
@@ -49,7 +49,7 @@ public class Product {
 
     public void setDescription(String description) {
         if (description == null || description.isBlank()) {
-            throw new IllegalArgumentException("400 - A descrição do produto não pode ser nula");
+            throw new IllegalArgumentException("400 - Product description cannot be null or empty");
         }
         this.description = description;
     }
@@ -60,7 +60,7 @@ public class Product {
 
     public void setPrice(Double price) {
         if(price == null || price < 0){
-            throw new IllegalArgumentException("400 - O preço do produto não pode ser nulo ou negativo");
+            throw new IllegalArgumentException("400 - product's price cannot be negative");
         }
         this.price = price;
     }

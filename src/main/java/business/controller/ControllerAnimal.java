@@ -44,10 +44,8 @@ public class ControllerAnimal implements IControllerAnimal {
 
         Animal animalExists = repositoryAnimal.findById(id);
         if (animalExists == null) {
-            throw new AnimalNotFoundException("404 - Animal com ID " + id + " não encontrado.");
+            throw new AnimalNotFoundException("404 - Animal with ID " + id + " not found.");
         }
-
-
 
         if (partialData.getName() != null && !partialData.getName().isBlank()) {
             animalExists.setName(partialData.getName());
@@ -72,7 +70,6 @@ public class ControllerAnimal implements IControllerAnimal {
         if (partialData.getSex() != null) {
             animalExists.setSex(partialData.getSex());
         }
-
 
         int index = repositoryAnimal.findAll().indexOf(animalExists);
         repositoryAnimal.update(index, animalExists);
@@ -114,7 +111,6 @@ public class ControllerAnimal implements IControllerAnimal {
     public void post(Animal animal) {
         if (animal == null) throw new IllegalArgumentException("400 - Animal cannot be null");
 
-
         Animal exists = repositoryAnimal.findById(animal.getId());
         if (exists != null) {
             throw new AnimalConflictException("409 - An animal with this ID already exists");
@@ -129,24 +125,13 @@ public class ControllerAnimal implements IControllerAnimal {
     }
 
 
-    /**
-     *
-     * @param id
-     * @return boolean
-     */
-    /**
-     * REQ14 - Blocks scheduling of grooming (banho/tosa) for animals that do not
-     * have a valid (non-expired) rabies vaccine.
-     *
-     * @throws RabiesVaccineExpired when the animal has no valid rabies vaccine.
-     */
     @Override
     public void validateGroomingAllowed(int id) {
         if (!checkIfHaveRabiesVaccine(id)) {
             Animal animal = repositoryAnimal.findById(id);
             String name = (animal != null) ? animal.getName() : ("#" + id);
-            throw new RabiesVaccineExpired("Banho/tosa bloqueado: " + name
-                    + " não possui vacina antirrábica válida.");
+            throw new RabiesVaccineExpired("Grooming/Bath blocked " + name
+                    + " does not have a valid rabies vaccine.");
         }
     }
 
@@ -160,8 +145,8 @@ public class ControllerAnimal implements IControllerAnimal {
         if (birthDate == null || vaccineDate == null) return;
         long ageInDays = ChronoUnit.DAYS.between(birthDate, vaccineDate);
         if (isRabies && ageInDays < 90) {
-            throw new InvalidAnimalAgeException("Vacinação bloqueada: a antirrábica exige idade mínima "
-                    + "de 90 dias (o animal tem " + ageInDays + " dias na data da vacina).");
+            throw new InvalidAnimalAgeException("Vaccination blocked: anti-rabies demand minimum age "
+                    + "of 90 days (the animal has " + ageInDays + " days on the vaccine date).");
         }
     }
 
@@ -174,7 +159,6 @@ public class ControllerAnimal implements IControllerAnimal {
         for (Vaccine vaccine: animal.getVaccines()) {
             if (vaccine.isRabiesVaccine()) {
                 if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
-                            // colocar possivel mensagem de atraso.
                     continue;
                 }
                 check = true;

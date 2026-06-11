@@ -56,7 +56,7 @@ public class RegisterPetVaccineController {
             if (expireDate.isBefore(date)) {
                 throw new IllegalArgumentException("A data de validade deve ser posterior à data da vacina.");
             }
-            ControllerAnimal.validateVaccinationAge(pet.getbirthDate(), date, isRabies); // REQ19
+            ControllerAnimal.validateVaccinationAge(pet.getBirthDate(), date, isRabies); // REQ19
 
             String desc = (description == null || description.isBlank()) ? "-" : description.trim();
             Vaccine newVaccine = new Vaccine(name.trim(), date, desc, isRabies, expireDate);

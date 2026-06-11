@@ -87,7 +87,7 @@ public class ControllerPetCareServer {
         return instance;
     }
 
-    /** Rewrites the whole CSV database from the current in-memory state. */
+    // Rewrites the whole CSV database from the current in-memory state.
     public void saveAll() {
         SaveData sd = new SaveData();
         sd.saveAllPersons(new ArrayList<>(controllerPerson.getAll()));

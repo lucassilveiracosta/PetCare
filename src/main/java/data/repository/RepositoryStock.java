@@ -15,13 +15,13 @@ public class RepositoryStock implements IRepositoryStock {
 
     @Override
     public Product findById(int id) {
-        Product produto = null;
+        Product product = null;
         for (Product p : produtos) {
             if (p.getId() == id) {
-                produto = p;
+                product = p;
             }
         }
-        return produto;
+        return product;
     }
 
     @Override

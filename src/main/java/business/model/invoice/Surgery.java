@@ -21,7 +21,6 @@ public class Surgery extends Procedure {
 
     }
 
-    // Allows "now"/past dates (used when registering or loading a surgery)
     public Surgery(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description, SurgeryRisk surgeryRisk, Veterinarian responsibleVeterinarian, String anesthesiaType) {
         super(bool, price, patient, dateHour, description);
         setSurgeryRisk(surgeryRisk);
@@ -48,7 +47,7 @@ public class Surgery extends Procedure {
         for (Specialty s: responsibleVeterinarian.getSpecialties()) {
             if (s.getName().isBlank()) throw new IllegalArgumentException("400 - dont have active specialty");
         }
-        if(responsibleVeterinarian == null){
+        if (responsibleVeterinarian == null){
             throw new IllegalArgumentException("400 - Invalid responsible veterinarian");
         }
         this.responsibleVeterinarian = responsibleVeterinarian;

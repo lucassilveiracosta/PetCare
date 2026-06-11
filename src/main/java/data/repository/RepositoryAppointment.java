@@ -16,13 +16,13 @@ public class RepositoryAppointment implements IRepositoryAppointment {
 
     @Override
     public Appointment findById(int id) {
-        Appointment consulta = null;
+        Appointment appointment = null;
         for (Appointment c : consultas) {
             if (c.getId() == id){
-                consulta = c;
+                appointment = c;
             }
         }
-        return consulta;
+        return appointment;
     }
 
     @Override
