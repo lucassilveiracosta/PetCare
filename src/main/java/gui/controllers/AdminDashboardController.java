@@ -185,17 +185,19 @@ public class AdminDashboardController implements Initializable {
         applyFilter();
     }
 
-    private void applyFilter() {
+    private List<FinanceRow> currentFilteredRows() {
         LocalDate from = dpFrom.getValue();
         LocalDate to = dpTo.getValue();
         String category = cbCategory.getValue();
-
-        List<FinanceRow> filtered = allRows.stream()
+        return allRows.stream()
                 .filter(r -> from == null || !r.date.isBefore(from))
                 .filter(r -> to == null || !r.date.isAfter(to))
                 .filter(r -> category == null || category.equals("All") || category.equals(r.category))
                 .collect(Collectors.toList());
+    }
 
+    private void applyFilter() {
+        List<FinanceRow> filtered = currentFilteredRows();
         tableTransactions.setItems(FXCollections.observableArrayList(filtered));
 
         double totalIn = filtered.stream().filter(r -> r.direction.equals("IN")).mapToDouble(r -> r.amount).sum();
@@ -220,6 +222,31 @@ public class AdminDashboardController implements Initializable {
         try {
             new PdfReportService().generateInvoice(inv, dest);
             showAlert(Alert.AlertType.INFORMATION, "Invoice Exported", "PDF saved to:\n" + dest.getAbsolutePath());
+        } catch (Exception ex) {
+            showAlert(Alert.AlertType.ERROR, "Export Failed", ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleExportFinancial() {
+        List<FinanceRow> rows = currentFilteredRows();
+        double totalIn = rows.stream().filter(r -> r.direction.equals("IN")).mapToDouble(r -> r.amount).sum();
+        double totalOut = rows.stream().filter(r -> r.direction.equals("OUT")).mapToDouble(r -> r.amount).sum();
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Export Financial Report (PDF)");
+        chooser.setInitialFileName("FinancialReport.pdf");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+        File dest = chooser.showSaveDialog(tableTransactions.getScene().getWindow());
+        if (dest == null) return;
+
+        try {
+            List<String[]> reportRows = rows.stream()
+                    .map(r -> new String[]{ r.date.format(DATE), r.direction, r.category, money(r.amount) })
+                    .collect(Collectors.toList());
+            new PdfReportService().generateFinancialReport(dpFrom.getValue(), dpTo.getValue(),
+                    cbCategory.getValue(), totalIn, totalOut, reportRows, dest);
+            showAlert(Alert.AlertType.INFORMATION, "Report Exported", "PDF saved to:\n" + dest.getAbsolutePath());
         } catch (Exception ex) {
             showAlert(Alert.AlertType.ERROR, "Export Failed", ex.getMessage());
         }

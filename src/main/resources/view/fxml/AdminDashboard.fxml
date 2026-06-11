@@ -64,6 +64,7 @@
                     <ChoiceBox fx:id="cbCategory" prefWidth="180" />
                     <Button onAction="#handleApplyFilter" text="Apply" />
                     <Button onAction="#handleClearFilter" text="Clear" />
+                    <Button onAction="#handleExportFinancial" text="Export Financial Report (PDF)" />
                 </HBox>
 
                 <Label style="-fx-font-weight: bold;" text="Transactions" />

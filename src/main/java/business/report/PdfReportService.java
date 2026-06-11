@@ -26,6 +26,7 @@ import com.itextpdf.layout.properties.UnitValue;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -293,6 +294,37 @@ public class PdfReportService {
                     cell(table, v.isRabiesVaccine() ? "Yes" : "No");
                 }
                 doc.add(table);
+            }
+        }
+    }
+
+    // ── Financial report (System & Financial Dashboard) ───────────────────────
+    public void generateFinancialReport(LocalDate from, LocalDate to, String category,
+            double totalIn, double totalOut, List<String[]> rows, File dest) throws IOException {
+        try (Document doc = openDocument(dest)) {
+            title(doc, "PetCare — Financial Report");
+            String period = (from != null ? from.format(DATE) : "—") + "  to  " + (to != null ? to.format(DATE) : "—");
+            doc.add(new Paragraph("Period: " + period));
+            doc.add(new Paragraph("Category: " + (category != null ? category : "All")));
+
+            sectionTitle(doc, "Summary");
+            doc.add(new Paragraph("Total Income:   " + money(totalIn)));
+            doc.add(new Paragraph("Total Expenses: " + money(totalOut)));
+            doc.add(new Paragraph("Balance:        " + money(totalIn - totalOut)).setBold().setFontSize(14));
+
+            sectionTitle(doc, "Transactions");
+            if (rows != null && !rows.isEmpty()) {
+                Table table = new Table(UnitValue.createPercentArray(new float[]{2, 1, 3, 2})).useAllAvailableWidth();
+                header(table, "Date", "Type", "Category", "Amount");
+                for (String[] r : rows) {
+                    cell(table, r[0]);
+                    cell(table, r[1]);
+                    cell(table, r[2]);
+                    cell(table, r[3]);
+                }
+                doc.add(table);
+            } else {
+                doc.add(new Paragraph("No transactions in the selected period."));
             }
         }
     }
