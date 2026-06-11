@@ -28,7 +28,7 @@ public class RegisterOwnerController {
     @FXML private TextField txtJob;
     @FXML private TextField txtDescription;
 
-    private final IControllerPerson backendController = business.controller.ControllerPetCareServer.getInstance().getPessoa();
+    private final IControllerPerson backendController = business.controller.ControllerPetCareServer.getInstance().getPerson();
 
     // Variável estática para guardar o dono recém-criado na memória
     public static Owner lastRegisteredOwner;

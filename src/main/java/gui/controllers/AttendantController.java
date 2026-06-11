@@ -5,7 +5,7 @@ import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
-import business.model.invoice.ServicoPetShop;
+import business.model.invoice.PetShopService;
 import business.model.person.Employee;
 import business.model.person.Owner;
 import enums.PetShopServices;
@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 
 /**
  * Pet Shop Scheduling — books a pet shop service (bath/grooming) with an Employee
- * as the responsible professional, persisted as a ServicoPetShop in an Invoice.
+ * as the responsible professional, persisted as a PetShopService in an Invoice.
  */
 public class AttendantController implements Initializable {
 
@@ -54,7 +54,7 @@ public class AttendantController implements Initializable {
         server = ControllerPetCareServer.getInstance();
 
         // Owners
-        allOwners = server.getPessoa().getAllOwners();
+        allOwners = server.getPerson().getAllOwners();
         for (Owner o : allOwners) nameTutorServices.getItems().add(o.getName());
         nameTutorServices.getSelectionModel().selectedIndexProperty().addListener(
                 (obs, old, idx) -> refreshAnimals(idx.intValue()));
@@ -67,7 +67,7 @@ public class AttendantController implements Initializable {
         });
 
         // Employees (pet shop services are done by employees)
-        allEmployees = server.getPessoa().getAllEmployees();
+        allEmployees = server.getPerson().getAllEmployees();
         for (Employee e : allEmployees) nameTutorScheduling21.getItems().add(e.getName());
         if (professionalText != null) professionalText.setText("Select the Employee:");
 
@@ -115,9 +115,9 @@ public class AttendantController implements Initializable {
 
             server.getAnimal().validateGroomingAllowed(animal.getId()); // REQ14
 
-            ServicoPetShop servico = new ServicoPetShop(80.0, animal, dateTime, description, service, employee);
+            PetShopService petShopService = new PetShopService(80.0, animal, dateTime, description, service, employee);
             ArrayList<Procedure> procedures = new ArrayList<>();
-            procedures.add(servico);
+            procedures.add(petShopService);
             server.getInvoice().post(new Invoice(owner, animal, procedures, new ArrayList<>()));
 
             showAlert(Alert.AlertType.INFORMATION, "Success",
@@ -141,9 +141,9 @@ public class AttendantController implements Initializable {
 
     private String petShopLabel(PetShopServices ps) {
         return switch (ps) {
-            case BANHO -> "Bath";
-            case TOSA -> "Grooming";
-            case BANHO_TOSA -> "Bath & Grooming";
+            case BATH -> "Bath";
+            case GROOMING -> "Grooming";
+            case BATH_AND_GROOMING -> "Bath & Grooming";
         };
     }
 

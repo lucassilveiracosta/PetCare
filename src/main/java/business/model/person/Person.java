@@ -6,12 +6,12 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.time.LocalDate;
 
-// Classe abstrata pessoa
+// Abstract base class for every person in the system (owners, employees, vets).
 public abstract class Person {
 
-    protected static int countId = 1;
+    protected static int idCounter = 1;
 
-    protected int id = countId++;
+    protected int id = idCounter++;
     protected String name;
     protected String email;
     protected String password;
@@ -19,7 +19,6 @@ public abstract class Person {
     protected String cpf;
     protected String telephone;
 
-    // Construtor de pessoa
     public Person(String name, String email, String password, LocalDate birthDate, String cpf, String telephone){
         setName(name);
         setEmail(email);
@@ -32,56 +31,55 @@ public abstract class Person {
 
 
 
-    // Metodo get do ID
     public int getId(){
         return id;
     }
-    
-    // Metodo set do ID (usado ao carregar do CSV)
+
+    // Used when loading records from the CSV database.
     public void setId(int id){
         this.id = id;
-        if (id >= countId) {
-            countId = id + 1;
+        if (id >= idCounter) {
+            idCounter = id + 1;
         }
     }
-    // Metodo get do Nome
+
     public String getName(){
         return name;
     }
-    // Metodo Set do name
+
     public void setName(String name){
         if(name == null || name.isBlank()){
             throw new IllegalArgumentException("400 - Invalid name");
         }
         this.name = name;
     }
-    // Metodo get da data de nascimento
+
     public LocalDate getBirthDate(){
         return birthDate;
     }
-    // Metodo set da data de nascimento
+
     private void setBirthDate(LocalDate birthDate){
         if(birthDate == null){
             throw new IllegalArgumentException("400 - Invalid birthDate");
         }
         this.birthDate = birthDate;
     }
-    // Metodo get de Cpf
+
     public String getCpf(){
         return cpf;
     }
-    // Metodo Set de Cpf
+
     private void setCpf(String cpf){
         if(cpf == null || cpf.isBlank()){
             throw new IllegalArgumentException("400 - Invalid CPF");
         }
         this.cpf = cpf;
     }
-    // Metodo get de Telefone
+
     public String getTelephone(){
         return telephone;
     }
-    // Metodo set de Telefone
+
     public void setTelephone(String telephone){
         if(telephone == null || telephone.isBlank()){
             throw new IllegalArgumentException("400 - Invalid telephone");

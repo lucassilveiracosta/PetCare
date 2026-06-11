@@ -31,7 +31,7 @@ public class RegisterPetOwnerRegistredController {
     private void loadOwnersIntoMenu() {
         OwnerName.getItems().clear();
 
-        ArrayList<Owner> owners = ControllerPetCareServer.getInstance().getPessoa().getAllOwners();
+        ArrayList<Owner> owners = ControllerPetCareServer.getInstance().getPerson().getAllOwners();
 
         if (owners == null || owners.isEmpty()) {
             MenuItem emptyItem = new MenuItem("No owner found");

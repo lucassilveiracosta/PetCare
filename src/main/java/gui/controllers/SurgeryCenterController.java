@@ -1,4 +1,5 @@
-package gui;
+package gui.controllers;
+import gui.Navigator;
 
 import business.controller.ControllerPetCareServer;
 import business.model.animal.DomesticAnimal;
@@ -48,7 +49,7 @@ public class SurgeryCenterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         server = ControllerPetCareServer.getInstance();
 
-        cbSurgeon.setItems(FXCollections.observableArrayList(server.getPessoa().getAllVets()));
+        cbSurgeon.setItems(FXCollections.observableArrayList(server.getPerson().getAllVets()));
         cbSurgeon.setConverter(new StringConverter<>() {
             @Override public String toString(Veterinarian v) { return v == null ? "" : v.getName(); }
             @Override public Veterinarian fromString(String s) { return null; }
@@ -85,7 +86,7 @@ public class SurgeryCenterController implements Initializable {
         if (has) {
             lblPatient.setText("Patient: " + selected.getPatient().getName()
                     + "  ·  from consultation on " + selected.getDateHourScheduled().format(DT));
-            if (selected.getResponsableVeterinarian() != null) cbSurgeon.setValue(selected.getResponsableVeterinarian());
+            if (selected.getResponsibleVeterinarian() != null) cbSurgeon.setValue(selected.getResponsibleVeterinarian());
         } else {
             lblPatient.setText("Select a consultation on the left.");
         }

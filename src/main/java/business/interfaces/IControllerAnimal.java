@@ -14,7 +14,7 @@ public interface IControllerAnimal {
     void delete(int id);
     void post(Animal animal);
 
-    boolean checkIfHaveRabbiesVaccine(int id);
+    boolean checkIfHaveRabiesVaccine(int id);
     void validateGroomingAllowed(int id);
     ArrayList<Vaccine> expiredVaccines(int id);
     ArrayList<Vaccine> closeToExpire(int id);

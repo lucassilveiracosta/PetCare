@@ -6,7 +6,7 @@ import business.model.appointment.Appointment;
 import business.model.invoice.Expense;
 import business.model.invoice.Invoice;
 import business.model.invoice.Product;
-import business.model.invoice.ServicoPetShop;
+import business.model.invoice.PetShopService;
 import business.model.invoice.Surgery;
 import business.model.person.Employee;
 import business.model.person.Owner;
@@ -57,7 +57,7 @@ public class ControllerPetCareServer {
         // ── Appointments / pet shop services ─────────────────────────────────
         ArrayList<Appointment> appointments = loader.loadAppointments(animals, vets);
         RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>(appointments));
-        ArrayList<ServicoPetShop> services = loader.loadPetShopServices(animals, employees);
+        ArrayList<PetShopService> services = loader.loadPetShopServices(animals, employees);
 
         // ── Surgeries ────────────────────────────────────────────────────────
         ArrayList<Surgery> surgeries = loader.loadSurgeries(animals, vets);
@@ -99,7 +99,7 @@ public class ControllerPetCareServer {
         sd.saveAllInvoices(new ArrayList<>(controllerInvoice.getAll()));
     }
 
-    public IControllerPerson getPessoa() {
+    public IControllerPerson getPerson() {
         return controllerPerson;
     }
 

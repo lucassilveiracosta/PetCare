@@ -5,9 +5,9 @@ import business.model.animal.Animal;
 import java.time.LocalDateTime;
 
 public abstract class Procedure {
-    protected static int countId = 1;
+    protected static int idCounter = 1;
 
-    protected int id = countId++;
+    protected int id = idCounter++;
     private Animal patient;
     private LocalDateTime dateHourScheduled;
     private String description;
@@ -77,8 +77,8 @@ public abstract class Procedure {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= countId) {
-            countId = id + 1;
+        if (id >= idCounter) {
+            idCounter = id + 1;
         }
     }
 }

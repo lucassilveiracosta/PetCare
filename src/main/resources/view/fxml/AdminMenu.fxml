@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="460" prefWidth="420" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.AdminMenuController">
+<VBox alignment="CENTER" prefHeight="460" prefWidth="420" spacing="16" style="-fx-padding: 40;" stylesheets="@../../style/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="gui.controllers.AdminMenuController">
     <Label fx:id="lblTitle" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Admin Panel" />
     <Button onAction="#openVeterinarians" prefHeight="44" prefWidth="260" text="Manage Veterinarians" />
     <Button onAction="#openStock" prefHeight="44" prefWidth="260" text="Manage Stock" />

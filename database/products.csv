@@ -4,7 +4,7 @@ id;name;quantity;price;description;isVet;medicineType
 3;Rubber Chew Toy;12;18.0;Durable chew toy for dogs;false;null
 4;Cat Litter 5kg;30;35.9;Clumping litter;false;null
 5;Dog Collar M;3;27.0;Adjustable nylon collar;false;null
-6;Amoxicillin 500mg;50;15.5;Broad-spectrum antibiotic;true;COMUM
-7;Tramadol 50mg;20;28.0;Controlled analgesic;true;CONTROLADO
-8;V8 Vaccine;8;45.0;Polyvalent canine vaccine;true;COMUM
-9;Anti-flea Pipette;2;39.9;Topical flea treatment;true;COMUM
+6;Amoxicillin 500mg;50;15.5;Broad-spectrum antibiotic;true;COMMON
+7;Tramadol 50mg;20;28.0;Controlled analgesic;true;CONTROLLED
+8;V8 Vaccine;8;45.0;Polyvalent canine vaccine;true;COMMON
+9;Anti-flea Pipette;2;39.9;Topical flea treatment;true;COMMON

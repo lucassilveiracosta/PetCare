@@ -57,8 +57,8 @@ public class ControllerAppointment implements IControllerAppointment {
             exists.setMedicalPrescription(partialData.getMedicalPrescription());
         }
 
-        if (partialData.getResponsableVeterinarian() != null) {
-            exists.setResponsableVeterinarian(partialData.getResponsableVeterinarian());
+        if (partialData.getResponsibleVeterinarian() != null) {
+            exists.setResponsibleVeterinarian(partialData.getResponsibleVeterinarian());
         }
 
         if (partialData.getPrice() > 0.0) {

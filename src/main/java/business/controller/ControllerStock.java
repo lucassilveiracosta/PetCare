@@ -123,7 +123,7 @@ public class ControllerStock implements IControllerStock {
                     + "': solicitado " + quantity + ", disponível " + stored.getQuantity() + ".");
         }
         // REQ15 - controlled medicine cannot be sold without a linked prescription
-        if (stored.isVet() && stored.getMedicineType() == MedicineType.CONTROLADO && !hasPrescription) {
+        if (stored.isVet() && stored.getMedicineType() == MedicineType.CONTROLLED && !hasPrescription) {
             throw new PrescriptionRequiredException("Venda bloqueada: '" + stored.getName()
                     + "' é um medicamento controlado e exige receita vinculada.");
         }

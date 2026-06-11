@@ -6,14 +6,14 @@ import enums.PetShopServices;
 
 import java.time.LocalDateTime;
 
-public class ServicoPetShop extends Procedure {
+public class PetShopService extends Procedure {
     private PetShopServices serviceType;
-    private Employee responsableEmployee;
+    private Employee responsibleEmployee;
 
-    public ServicoPetShop(Double price, Animal patient, LocalDateTime dateHour, String description, PetShopServices serviceType, Employee responsableEmployee){
+    public PetShopService(Double price, Animal patient, LocalDateTime dateHour, String description, PetShopServices serviceType, Employee responsibleEmployee){
         super(price, patient, dateHour, description);
         setServiceType(serviceType);
-        setResponsableEmployee(responsableEmployee);
+        setResponsibleEmployee(responsibleEmployee);
     }
 
     public PetShopServices getServiceType() {
@@ -27,14 +27,14 @@ public class ServicoPetShop extends Procedure {
         this.serviceType = serviceType;
     }
 
-    public Employee getResponsableEmployee() {
-        return responsableEmployee;
+    public Employee getResponsibleEmployee() {
+        return responsibleEmployee;
     }
 
-    public void setResponsableEmployee(Employee responsableEmployee) {
-        if(responsableEmployee == null){
-            throw new IllegalArgumentException("400 - Invalid responsable employee");
+    public void setResponsibleEmployee(Employee responsibleEmployee) {
+        if(responsibleEmployee == null){
+            throw new IllegalArgumentException("400 - Invalid responsible employee");
         }
-        this.responsableEmployee = responsableEmployee;
+        this.responsibleEmployee = responsibleEmployee;
     }
 }

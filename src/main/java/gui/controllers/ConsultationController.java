@@ -91,9 +91,9 @@ public class ConsultationController implements Initializable {
         appointmentController = server.getAppointment();
 
         cbConsciousness.setItems(FXCollections.observableArrayList(Conscience.values()));
-        cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
+        cbConsciousness.getSelectionModel().select(Conscience.ALERT);
         cbMucosa.setItems(FXCollections.observableArrayList(Mucosa.values()));
-        cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
+        cbMucosa.getSelectionModel().select(Mucosa.NORMAL_COLORED);
         cbProcedure.setItems(FXCollections.observableArrayList(ProcedureType.values()));
         cbProcedure.getSelectionModel().select(ProcedureType.GENERAL_CONSULTATION);
 
@@ -150,7 +150,7 @@ public class ConsultationController implements Initializable {
         fieldSymptoms.clear();
         clearConsultationFields();
 
-        boolean hasRabiesVaccine = animalController.checkIfHaveRabbiesVaccine(animal.getId());
+        boolean hasRabiesVaccine = animalController.checkIfHaveRabiesVaccine(animal.getId());
         chkRabiesVaccine.setSelected(hasRabiesVaccine);
 
         loadMedicalHistory(animal);
@@ -171,7 +171,7 @@ public class ConsultationController implements Initializable {
 
     private void registerRabiesVaccine() {
         if (selectedAnimal == null) return;
-        if (animalController.checkIfHaveRabbiesVaccine(selectedAnimal.getId())) {
+        if (animalController.checkIfHaveRabiesVaccine(selectedAnimal.getId())) {
             showAlert(Alert.AlertType.WARNING, "Vaccine Already Registered",
                     selectedAnimal.getName() + " already has a valid rabies vaccine.");
             return;
@@ -301,8 +301,8 @@ public class ConsultationController implements Initializable {
         fieldDehydration.clear();
         fieldVitalNotes.clear();
         chkEuvolemic.setSelected(true);
-        cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
-        cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
+        cbConsciousness.getSelectionModel().select(Conscience.ALERT);
+        cbMucosa.getSelectionModel().select(Mucosa.NORMAL_COLORED);
         cbProcedure.getSelectionModel().select(ProcedureType.GENERAL_CONSULTATION);
         chkHospitalization.setSelected(false);
     }

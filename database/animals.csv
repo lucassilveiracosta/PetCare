@@ -1,8 +1,8 @@
 id;name;species;race;temperament;weight;sex;size;birth;stage;ownerId;vaccines
-1;Rex;Dog;German Shepherd;REATIVO;28.5;MACHO;GRANDE;15/06/2020;ADULTO;3;Rabies~10/01/2025~Antirabies vaccine~true~10/01/2027
-2;Whiskers;Cat;Persian;DOCIL;4.2;FEMEA;PEQUENO;03/11/2021;ADULTO;3;
-3;Buddy;Dog;Golden Retriever;DOCIL;32.0;MACHO;GRANDE;28/02/2019;ADULTO;4;Rabies~20/05/2025~Antirabies vaccine~true~20/05/2027
-4;Thor;Dog;Rottweiler;REATIVO;40.0;MACHO;GIGANTE;10/01/2021;ADULTO;3;
-5;Luna;Cat;Tabby;ANSIOSO;3.8;FEMEA;PEQUENO;14/08/2022;ADULTO;4;Rabies~01/03/2023~Antirabies vaccine expired~true~01/03/2024
-6;Mia;Cat;Siamese;DOCIL;3.5;FEMEA;PEQUENO;05/05/2023;ADULTO;5;
-7;Bella;Dog;Poodle;DOCIL;8.0;FEMEA;MEDIO;20/09/2022;ADULTO;6;
+1;Rex;Dog;German Shepherd;REACTIVE;28.5;MALE;LARGE;15/06/2020;ADULT;3;Rabies~10/01/2025~Antirabies vaccine~true~10/01/2027
+2;Whiskers;Cat;Persian;DOCILE;4.2;FEMALE;SMALL;03/11/2021;ADULT;3;
+3;Buddy;Dog;Golden Retriever;DOCILE;32.0;MALE;LARGE;28/02/2019;ADULT;4;Rabies~20/05/2025~Antirabies vaccine~true~20/05/2027
+4;Thor;Dog;Rottweiler;REACTIVE;40.0;MALE;GIANT;10/01/2021;ADULT;3;
+5;Luna;Cat;Tabby;ANXIOUS;3.8;FEMALE;SMALL;14/08/2022;ADULT;4;Rabies~01/03/2023~Antirabies vaccine expired~true~01/03/2024
+6;Mia;Cat;Siamese;DOCILE;3.5;FEMALE;SMALL;05/05/2023;ADULT;5;
+7;Bella;Dog;Poodle;DOCILE;8.0;FEMALE;MEDIUM;20/09/2022;ADULT;6;

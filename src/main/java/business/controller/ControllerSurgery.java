@@ -62,7 +62,7 @@ public class ControllerSurgery implements IControllerSurgery {
     @Override
     public void post(Surgery surgery) {
         if (surgery == null) throw new IllegalArgumentException("400 - Surgery can't be null");
-        validateSurgeonSpecialty(surgery.getResponsebleVeterinarian()); // REQ18
+        validateSurgeonSpecialty(surgery.getResponsibleVeterinarian()); // REQ18
         Surgery exists = repositorySurgery.findById(surgery.getId());
         if (exists != null) throw new IllegalArgumentException("409 - This surgery already exists");
         repositorySurgery.create(surgery);

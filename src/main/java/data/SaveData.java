@@ -12,7 +12,7 @@ import business.model.invoice.Expense;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import business.model.invoice.Product;
-import business.model.invoice.ServicoPetShop;
+import business.model.invoice.PetShopService;
 import business.model.invoice.Surgery;
 import business.model.person.Employee;
 import business.model.person.Owner;
@@ -110,7 +110,7 @@ public class SaveData {
                     vac.append(esc(v.getVaccineName())).append("~")
                        .append(v.getVaccineDate().format(D)).append("~")
                        .append(esc(v.getDescription())).append("~")
-                       .append(v.isRabbiesVaccine()).append("~")
+                       .append(v.isRabiesVaccine()).append("~")
                        .append(v.getExpireVaccineDate().format(D));
                 }
             }
@@ -161,7 +161,7 @@ public class SaveData {
             lines.add(String.join(";",
                     String.valueOf(a.getId()), String.valueOf(a.getPrice()),
                     String.valueOf(a.getPatient().getId()), a.getDateHourScheduled().format(DT),
-                    esc(a.getDescription()), String.valueOf(a.getResponsableVeterinarian().getId()),
+                    esc(a.getDescription()), String.valueOf(a.getResponsibleVeterinarian().getId()),
                     diag, pres, stts, complaint, dietary,
                     consc, examNotes, temp, hr, rr, coag, muc, euv, dehy, vnotes,
                     String.valueOf(a.isNeedsSurgery()), String.valueOf(a.isNeedsHospitalization())));
@@ -203,7 +203,7 @@ public class SaveData {
             lines.add(String.join(";",
                     String.valueOf(s.getId()), String.valueOf(s.getPrice()),
                     String.valueOf(s.getPatient().getId()), s.getDateHourScheduled().format(DT),
-                    esc(s.getDescription()), String.valueOf(s.getResponsebleVeterinarian().getId()),
+                    esc(s.getDescription()), String.valueOf(s.getResponsibleVeterinarian().getId()),
                     s.getSurgeryRisk().name(), esc(s.getAnesthesiaType()), esc(s.getSupplies())));
         }
         write("surgeries.csv",
@@ -213,14 +213,14 @@ public class SaveData {
     // ── Invoices (+ embedded pet shop services) ───────────────────────────────
     public void saveAllInvoices(List<Invoice> invoices) {
         List<String> invLines = new ArrayList<>();
-        Map<Integer, ServicoPetShop> services = new LinkedHashMap<>();
+        Map<Integer, PetShopService> services = new LinkedHashMap<>();
 
         for (Invoice inv : invoices) {
             StringBuilder procs = new StringBuilder();
             if (inv.getProcedures() != null) {
                 for (Procedure p : inv.getProcedures()) {
                     if (procs.length() > 0) procs.append("|");
-                    if (p instanceof ServicoPetShop sps) {
+                    if (p instanceof PetShopService sps) {
                         services.put(sps.getId(), sps);
                         procs.append("SERVICE~").append(sps.getId());
                     } else if (p instanceof Surgery) {
@@ -246,12 +246,12 @@ public class SaveData {
         }
 
         List<String> svcLines = new ArrayList<>();
-        for (ServicoPetShop s : services.values()) {
+        for (PetShopService s : services.values()) {
             svcLines.add(String.join(";",
                     String.valueOf(s.getId()), String.valueOf(s.getPrice()),
                     String.valueOf(s.getPatient().getId()), s.getDateHourScheduled().format(DT),
                     esc(s.getDescription()), s.getServiceType().name(),
-                    String.valueOf(s.getResponsableEmployee().getId())));
+                    String.valueOf(s.getResponsibleEmployee().getId())));
         }
 
         write("petshopServices.csv", "id;price;animalId;dateHour;description;serviceType;employeeId", svcLines);

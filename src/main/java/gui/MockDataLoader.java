@@ -38,7 +38,7 @@ public class MockDataLoader {
         loaded = true;
 
         ControllerPetCareServer server = ControllerPetCareServer.getInstance();
-        IControllerPerson person = server.getPessoa();
+        IControllerPerson person = server.getPerson();
 
         boolean freshDatabase = person.getAllOwners().isEmpty()
                 && person.getAllVets().isEmpty()
@@ -92,28 +92,28 @@ public class MockDataLoader {
         ArrayList<Vaccine> rexV = new ArrayList<>();
         rexV.add(new Vaccine("Rabies", LocalDate.of(2025, 1, 10), "Antirabies vaccine", true, LocalDate.of(2027, 1, 10)));
         DomesticAnimal rex = new DomesticAnimal("Rex", "Dog", "German Shepherd", LocalDate.of(2020, 6, 15),
-                StageOfLife.ADULTO, 28.5, Size.GRANDE, Sex.MACHO, michael, Temperament.REATIVO, false, rexV);
+                StageOfLife.ADULT, 28.5, Size.LARGE, Sex.MALE, michael, Temperament.REACTIVE, false, rexV);
 
         DomesticAnimal whiskers = new DomesticAnimal("Whiskers", "Cat", "Persian", LocalDate.of(2021, 11, 3),
-                StageOfLife.ADULTO, 4.2, Size.PEQUENO, Sex.FEMEA, michael, Temperament.DOCIL, true, new ArrayList<>());
+                StageOfLife.ADULT, 4.2, Size.SMALL, Sex.FEMALE, michael, Temperament.DOCILE, true, new ArrayList<>());
 
         ArrayList<Vaccine> buddyV = new ArrayList<>();
         buddyV.add(new Vaccine("Rabies", LocalDate.of(2025, 5, 20), "Antirabies vaccine", true, LocalDate.of(2027, 5, 20)));
         DomesticAnimal buddy = new DomesticAnimal("Buddy", "Dog", "Golden Retriever", LocalDate.of(2019, 2, 28),
-                StageOfLife.ADULTO, 32.0, Size.GRANDE, Sex.MACHO, emma, Temperament.DOCIL, true, buddyV);
+                StageOfLife.ADULT, 32.0, Size.LARGE, Sex.MALE, emma, Temperament.DOCILE, true, buddyV);
 
         DomesticAnimal thor = new DomesticAnimal("Thor", "Dog", "Rottweiler", LocalDate.of(2021, 1, 10),
-                StageOfLife.ADULTO, 40.0, Size.GIGANTE, Sex.MACHO, michael, Temperament.REATIVO, false, new ArrayList<>());
+                StageOfLife.ADULT, 40.0, Size.GIANT, Sex.MALE, michael, Temperament.REACTIVE, false, new ArrayList<>());
 
         ArrayList<Vaccine> lunaV = new ArrayList<>();
         lunaV.add(new Vaccine("Rabies", LocalDate.of(2023, 3, 1), "Antirabies vaccine expired", true, LocalDate.of(2024, 3, 1)));
         DomesticAnimal luna = new DomesticAnimal("Luna", "Cat", "Tabby", LocalDate.of(2022, 8, 14),
-                StageOfLife.ADULTO, 3.8, Size.PEQUENO, Sex.FEMEA, emma, Temperament.ANSIOSO, false, lunaV);
+                StageOfLife.ADULT, 3.8, Size.SMALL, Sex.FEMALE, emma, Temperament.ANXIOUS, false, lunaV);
 
         DomesticAnimal mia = new DomesticAnimal("Mia", "Cat", "Siamese", LocalDate.of(2023, 5, 5),
-                StageOfLife.ADULTO, 3.5, Size.PEQUENO, Sex.FEMEA, carlos, Temperament.DOCIL, true, new ArrayList<>());
+                StageOfLife.ADULT, 3.5, Size.SMALL, Sex.FEMALE, carlos, Temperament.DOCILE, true, new ArrayList<>());
         DomesticAnimal bella = new DomesticAnimal("Bella", "Dog", "Poodle", LocalDate.of(2022, 9, 20),
-                StageOfLife.ADULTO, 8.0, Size.MEDIO, Sex.FEMEA, ana, Temperament.DOCIL, true, new ArrayList<>());
+                StageOfLife.ADULT, 8.0, Size.MEDIUM, Sex.FEMALE, ana, Temperament.DOCILE, true, new ArrayList<>());
 
         for (DomesticAnimal a : List.of(rex, whiskers, buddy, thor, luna, mia, bella)) {
             server.getAnimal().post(a);
@@ -168,9 +168,9 @@ public class MockDataLoader {
 
     private Appointment completed(double price, Animal patient, LocalDateTime when, String desc,
                                   Veterinarian vet, String diagnosis, String prescription) {
-        VitalParameters vitals = new VitalParameters(92, 22, 38.6, Mucosa.NORMACORADAS, 2,
+        VitalParameters vitals = new VitalParameters(92, 22, 38.6, Mucosa.NORMAL_COLORED, 2,
                 new Hydration(true, null), "Within normal range");
-        PhysicalExamination exam = new PhysicalExamination(Conscience.ALERTA, vitals, "Alert and cooperative");
+        PhysicalExamination exam = new PhysicalExamination(Conscience.ALERT, vitals, "Alert and cooperative");
         Anamnesis an = new Anamnesis("Recorded complaint", "No restrictions", "Consultation finalized");
         // Boolean variant allows past dates
         return new Appointment(price, patient, when, desc, vet, diagnosis, prescription, an, exam,
@@ -192,18 +192,18 @@ public class MockDataLoader {
         server.getStock().post(new Product("Rubber Chew Toy", 12, "Durable chew toy for dogs", 18.00, false, null));
         server.getStock().post(new Product("Cat Litter 5kg", 30, "Clumping litter", 35.90, false, null));
         server.getStock().post(new Product("Dog Collar M", 3, "Adjustable nylon collar", 27.00, false, null));
-        server.getStock().post(new Product("Amoxicillin 500mg", 50, "Broad-spectrum antibiotic", 15.50, true, MedicineType.COMUM));
-        server.getStock().post(new Product("Tramadol 50mg", 20, "Controlled analgesic", 28.00, true, MedicineType.CONTROLADO));
-        server.getStock().post(new Product("V8 Vaccine", 8, "Polyvalent canine vaccine", 45.00, true, MedicineType.COMUM));
-        server.getStock().post(new Product("Anti-flea Pipette", 2, "Topical flea treatment", 39.90, true, MedicineType.COMUM));
+        server.getStock().post(new Product("Amoxicillin 500mg", 50, "Broad-spectrum antibiotic", 15.50, true, MedicineType.COMMON));
+        server.getStock().post(new Product("Tramadol 50mg", 20, "Controlled analgesic", 28.00, true, MedicineType.CONTROLLED));
+        server.getStock().post(new Product("V8 Vaccine", 8, "Polyvalent canine vaccine", 45.00, true, MedicineType.COMMON));
+        server.getStock().post(new Product("Anti-flea Pipette", 2, "Topical flea treatment", 39.90, true, MedicineType.COMMON));
     }
 
     private void seedExpenses(ControllerPetCareServer server) {
         LocalDate today = LocalDate.now();
-        server.getExpense().post(new Expense(ExpenseType.ESTOQUE, 850.0, today.withDayOfMonth(3), "Monthly medicine restock"));
-        server.getExpense().post(new Expense(ExpenseType.ESTOQUE, 420.0, today.withDayOfMonth(8), "Pet shop products restock"));
-        server.getExpense().post(new Expense(ExpenseType.SALARIO, 6200.0, today.withDayOfMonth(5), "Staff salaries"));
-        server.getExpense().post(new Expense(ExpenseType.ALUGUEL, 1800.0, today.withDayOfMonth(10), "Clinic rent"));
-        server.getExpense().post(new Expense(ExpenseType.EQUIPAMENTO, 650.0, today.withDayOfMonth(2), "New ultrasound probe"));
+        server.getExpense().post(new Expense(ExpenseType.INVENTORY, 850.0, today.withDayOfMonth(3), "Monthly medicine restock"));
+        server.getExpense().post(new Expense(ExpenseType.INVENTORY, 420.0, today.withDayOfMonth(8), "Pet shop products restock"));
+        server.getExpense().post(new Expense(ExpenseType.SALARY, 6200.0, today.withDayOfMonth(5), "Staff salaries"));
+        server.getExpense().post(new Expense(ExpenseType.RENT, 1800.0, today.withDayOfMonth(10), "Clinic rent"));
+        server.getExpense().post(new Expense(ExpenseType.EQUIPMENT, 650.0, today.withDayOfMonth(2), "New ultrasound probe"));
     }
 }

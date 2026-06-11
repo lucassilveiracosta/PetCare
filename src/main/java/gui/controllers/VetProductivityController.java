@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.model.appointment.Appointment;
@@ -33,7 +33,7 @@ public class VetProductivityController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ControllerPetCareServer server = ControllerPetCareServer.getInstance();
-        vets = server.getPessoa().getAllVets();
+        vets = server.getPerson().getAllVets();
         appointments = server.getAppointment().getAll();
 
         colVet.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().vet.getName()));
@@ -52,7 +52,7 @@ public class VetProductivityController implements Initializable {
         for (Veterinarian v : vets) {
             VetStat s = new VetStat(v);
             for (Appointment a : appointments) {
-                if (a.getResponsableVeterinarian() == null || a.getResponsableVeterinarian().getId() != v.getId()) continue;
+                if (a.getResponsibleVeterinarian() == null || a.getResponsibleVeterinarian().getId() != v.getId()) continue;
                 s.total++;
                 if (a.getEffectiveStatus() == AppointmentStatus.COMPLETED) s.completed++;
                 s.revenue += a.getPrice() != null ? a.getPrice() : 0.0;

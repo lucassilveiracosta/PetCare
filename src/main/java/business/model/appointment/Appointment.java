@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Appointment extends Procedure {
-    private Veterinarian responsableVeterinarian;
+    private Veterinarian responsibleVeterinarian;
     private String diagnosis;
     private Anamnesis anamnesis;
     private PhysicalExamination phisicalExam;
@@ -20,10 +20,10 @@ public class Appointment extends Procedure {
 
     // Constructor for completed appointments (has full medical data)
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
-                       Veterinarian responsableVeterinarian, String diagnosis,
+                       Veterinarian responsibleVeterinarian, String diagnosis,
                        String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status) {
         super(price, patient, dateHour, description);
-        setResponsableVeterinarian(responsableVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
         setDiagnosis(diagnosis);
         setMedicalPrescription(medicalPrescription);
         this.anamnesis = anamnesis;
@@ -32,10 +32,10 @@ public class Appointment extends Procedure {
     }
 
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
-                       Veterinarian responsableVeterinarian, String diagnosis,
+                       Veterinarian responsibleVeterinarian, String diagnosis,
                        String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status, Boolean bool) {
         super(bool, price, patient, dateHour, description);
-        setResponsableVeterinarian(responsableVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
         setDiagnosis(diagnosis);
         setMedicalPrescription(medicalPrescription);
         this.anamnesis = anamnesis;
@@ -45,22 +45,22 @@ public class Appointment extends Procedure {
 
     // Constructor for scheduled (pending) appointments — no medical data yet
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
-                       Veterinarian responsableVeterinarian) {
+                       Veterinarian responsibleVeterinarian) {
         super(price, patient, dateHour, description);
-        setResponsableVeterinarian(responsableVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
     }
 
     // Constructor for pending appointments with gambiarra (old appointments)
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
-                       Veterinarian responsableVeterinarian, Boolean bool) {
+                       Veterinarian responsibleVeterinarian, Boolean bool) {
         super(bool, price, patient, dateHour, description);
-        setResponsableVeterinarian(responsableVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
     }
 
     public Appointment(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description,
-                       Veterinarian responsableVeterinarian) {
+                       Veterinarian responsibleVeterinarian) {
         super(bool, price, patient, dateHour, description);
-        setResponsableVeterinarian(responsableVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
     }
 
     public AppointmentStatus getEffectiveStatus() {
@@ -113,15 +113,15 @@ public class Appointment extends Procedure {
         this.phisicalExam = phisicalExam;
     }
 
-    public Veterinarian getResponsableVeterinarian() {
-        return responsableVeterinarian;
+    public Veterinarian getResponsibleVeterinarian() {
+        return responsibleVeterinarian;
     }
 
-    public void setResponsableVeterinarian(Veterinarian responsableVeterinarian) {
-        if (responsableVeterinarian == null) {
-            throw new IllegalArgumentException("400 - Invalid responsable veterinarian");
+    public void setResponsibleVeterinarian(Veterinarian responsibleVeterinarian) {
+        if (responsibleVeterinarian == null) {
+            throw new IllegalArgumentException("400 - Invalid responsible veterinarian");
         }
-        this.responsableVeterinarian = responsableVeterinarian;
+        this.responsibleVeterinarian = responsibleVeterinarian;
     }
 
     public String getDiagnosis() {

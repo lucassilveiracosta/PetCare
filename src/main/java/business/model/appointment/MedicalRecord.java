@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class MedicalRecord {
 
-    private ArrayList<Appointment> appointments; // avaliar se se enquadra em consulta
+    private ArrayList<Appointment> appointments;
     private Animal animal;
     private String description;
 
-    public MedicalRecord(ArrayList<Appointment> idasAoVeterinarios, String description, Animal animal) {
-        this.appointments = idasAoVeterinarios;
+    public MedicalRecord(ArrayList<Appointment> appointments, String description, Animal animal) {
+        this.appointments = appointments;
         setAnimal(animal);
         this.description = description;
     }
@@ -20,8 +20,8 @@ public class MedicalRecord {
         return appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> idasAoVeterinarios) {
-        this.appointments = idasAoVeterinarios;
+    public void setAppointments(ArrayList<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public Animal getAnimal() {
@@ -39,9 +39,5 @@ public class MedicalRecord {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public ArrayList<Appointment> getIdasAoVeterinario() {
-        return appointments;
     }
 }

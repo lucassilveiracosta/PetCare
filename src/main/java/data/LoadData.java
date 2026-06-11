@@ -12,7 +12,7 @@ import business.model.invoice.Expense;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import business.model.invoice.Product;
-import business.model.invoice.ServicoPetShop;
+import business.model.invoice.PetShopService;
 import business.model.invoice.Surgery;
 import business.model.person.Employee;
 import business.model.person.Owner;
@@ -61,7 +61,7 @@ public class LoadData {
                 out.add(line.split(";", -1));
             }
         } catch (IOException e) {
-            // arquivo ainda não existe — lista vazia
+            // file does not exist yet — empty list
         }
         return out;
     }
@@ -208,8 +208,8 @@ public class LoadData {
         return appointments;
     }
 
-    public ArrayList<ServicoPetShop> loadPetShopServices(List<DomesticAnimal> animals, List<Employee> employees) {
-        ArrayList<ServicoPetShop> services = new ArrayList<>();
+    public ArrayList<PetShopService> loadPetShopServices(List<DomesticAnimal> animals, List<Employee> employees) {
+        ArrayList<PetShopService> services = new ArrayList<>();
         for (String[] d : rows("petshopServices.csv")) {
             try {
                 int animalId = Integer.parseInt(d[2]);
@@ -220,7 +220,7 @@ public class LoadData {
                 for (Employee e : employees) if (e.getId() == empId) { emp = e; break; }
                 if (animal == null || emp == null) continue;
 
-                ServicoPetShop s = new ServicoPetShop(Double.parseDouble(d[1]), animal,
+                PetShopService s = new PetShopService(Double.parseDouble(d[1]), animal,
                         LocalDateTime.parse(d[3], DT), d[4], PetShopServices.valueOf(d[5]), emp);
                 s.setId(Integer.parseInt(d[0]));
                 services.add(s);
@@ -279,7 +279,7 @@ public class LoadData {
     }
 
     public ArrayList<Invoice> loadInvoices(List<Owner> owners, List<DomesticAnimal> animals,
-                                           List<Appointment> appointments, List<ServicoPetShop> services,
+                                           List<Appointment> appointments, List<PetShopService> services,
                                            List<Surgery> surgeries, List<Product> products) {
         ArrayList<Invoice> invoices = new ArrayList<>();
         for (String[] d : rows("invoices.csv")) {
@@ -300,7 +300,7 @@ public class LoadData {
                         if (r[0].equals("APPT")) {
                             for (Appointment a : appointments) if (a.getId() == rid) { procs.add(a); break; }
                         } else if (r[0].equals("SERVICE")) {
-                            for (ServicoPetShop s : services) if (s.getId() == rid) { procs.add(s); break; }
+                            for (PetShopService s : services) if (s.getId() == rid) { procs.add(s); break; }
                         } else if (r[0].equals("SURGERY")) {
                             for (Surgery s : surgeries) if (s.getId() == rid) { procs.add(s); break; }
                         }

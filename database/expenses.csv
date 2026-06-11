@@ -1,6 +1,6 @@
 id;type;amount;date;description
-1;ESTOQUE;850.0;03/06/2026;Monthly medicine restock
-2;ESTOQUE;420.0;08/06/2026;Pet shop products restock
-3;SALARIO;6200.0;05/06/2026;Staff salaries
-4;ALUGUEL;1800.0;10/06/2026;Clinic rent
-5;EQUIPAMENTO;650.0;02/06/2026;New ultrasound probe
+1;INVENTORY;850.0;03/06/2026;Monthly medicine restock
+2;INVENTORY;420.0;08/06/2026;Pet shop products restock
+3;SALARY;6200.0;05/06/2026;Staff salaries
+4;RENT;1800.0;10/06/2026;Clinic rent
+5;EQUIPMENT;650.0;02/06/2026;New ultrasound probe

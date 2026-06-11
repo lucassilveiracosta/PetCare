@@ -1,4 +1,5 @@
-package gui;
+package gui.controllers;
+import gui.Navigator;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerPerson;
@@ -28,7 +29,7 @@ public class AdminVeterinariansController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        personCtrl = ControllerPetCareServer.getInstance().getPessoa();
+        personCtrl = ControllerPetCareServer.getInstance().getPerson();
 
         colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName()));
         colCrmv.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCrmv()));

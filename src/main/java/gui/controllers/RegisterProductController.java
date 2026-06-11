@@ -29,7 +29,7 @@ public class RegisterProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbMedicineType.getItems().setAll(MedicineType.values());
-        cbMedicineType.getSelectionModel().select(MedicineType.COMUM);
+        cbMedicineType.getSelectionModel().select(MedicineType.COMMON);
         // Medicine type only applies to veterinary products
         cbMedicineType.disableProperty().bind(chkIsVet.selectedProperty().not());
     }

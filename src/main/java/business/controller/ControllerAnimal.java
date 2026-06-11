@@ -9,7 +9,7 @@ import exceptions.AnimalNotFoundException;
 import business.model.animal.Animal;
 import data.interfaces.IRepositoryAnimal;
 import exceptions.InvalidAnimalAgeException;
-import exceptions.RabbiesVaccineExpired;
+import exceptions.RabiesVaccineExpired;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -138,14 +138,14 @@ public class ControllerAnimal implements IControllerAnimal {
      * REQ14 - Blocks scheduling of grooming (banho/tosa) for animals that do not
      * have a valid (non-expired) rabies vaccine.
      *
-     * @throws RabbiesVaccineExpired when the animal has no valid rabies vaccine.
+     * @throws RabiesVaccineExpired when the animal has no valid rabies vaccine.
      */
     @Override
     public void validateGroomingAllowed(int id) {
-        if (!checkIfHaveRabbiesVaccine(id)) {
+        if (!checkIfHaveRabiesVaccine(id)) {
             Animal animal = repositoryAnimal.findById(id);
             String name = (animal != null) ? animal.getName() : ("#" + id);
-            throw new RabbiesVaccineExpired("Banho/tosa bloqueado: " + name
+            throw new RabiesVaccineExpired("Banho/tosa bloqueado: " + name
                     + " não possui vacina antirrábica válida.");
         }
     }
@@ -165,14 +165,14 @@ public class ControllerAnimal implements IControllerAnimal {
         }
     }
 
-    public boolean checkIfHaveRabbiesVaccine(int id) {
+    public boolean checkIfHaveRabiesVaccine(int id) {
         boolean check = false;
         Animal animal = repositoryAnimal.findById(id);
 
         if (animal == null) throw new AnimalNotFoundException("404 - Animal not found");
 
         for (Vaccine vaccine: animal.getVaccines()) {
-            if (vaccine.isRabbiesVaccine()) {
+            if (vaccine.isRabiesVaccine()) {
                 if (vaccine.getExpireVaccineDate().isBefore(LocalDate.now())) {
                             // colocar possivel mensagem de atraso.
                     continue;

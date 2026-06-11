@@ -1,4 +1,6 @@
-package gui;
+package gui.controllers;
+import gui.Navigator;
+import gui.MockDataLoader;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

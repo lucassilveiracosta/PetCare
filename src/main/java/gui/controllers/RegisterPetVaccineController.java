@@ -18,19 +18,19 @@ public class RegisterPetVaccineController {
     @FXML private DatePicker dpVaccineDate;
     @FXML private TextField txtDescription;
     @FXML private DatePicker dpExpireDate;
-    @FXML private ToggleButton btnIsRabbies;
+    @FXML private ToggleButton btnIsRabies;
 
-    private boolean isRabbies = false;
+    private boolean isRabies = false;
 
     @FXML
-    public void onIsRabbiesToggle(ActionEvent event) {
-        isRabbies = !isRabbies;
-        if (isRabbies) {
-            btnIsRabbies.setText("Yes");
-            btnIsRabbies.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white;");
+    public void onIsRabiesToggle(ActionEvent event) {
+        isRabies = !isRabies;
+        if (isRabies) {
+            btnIsRabies.setText("Yes");
+            btnIsRabies.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white;");
         } else {
-            btnIsRabbies.setText("No");
-            btnIsRabbies.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
+            btnIsRabies.setText("No");
+            btnIsRabies.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
         }
     }
 
@@ -56,10 +56,10 @@ public class RegisterPetVaccineController {
             if (expireDate.isBefore(date)) {
                 throw new IllegalArgumentException("A data de validade deve ser posterior à data da vacina.");
             }
-            ControllerAnimal.validateVaccinationAge(pet.getbirthDate(), date, isRabbies); // REQ19
+            ControllerAnimal.validateVaccinationAge(pet.getbirthDate(), date, isRabies); // REQ19
 
             String desc = (description == null || description.isBlank()) ? "-" : description.trim();
-            Vaccine newVaccine = new Vaccine(name.trim(), date, desc, isRabbies, expireDate);
+            Vaccine newVaccine = new Vaccine(name.trim(), date, desc, isRabies, expireDate);
             pet.getVaccines().add(newVaccine);
 
             showAlert("Sucesso!", "Vacina adicionada (" + pet.getVaccines().size()
@@ -115,10 +115,10 @@ public class RegisterPetVaccineController {
         if(dpVaccineDate != null) dpVaccineDate.setValue(null);
         if(dpExpireDate != null) dpExpireDate.setValue(null);
 
-        isRabbies = false;
-        if(btnIsRabbies != null) {
-            btnIsRabbies.setText("No");
-            btnIsRabbies.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
+        isRabies = false;
+        if(btnIsRabies != null) {
+            btnIsRabies.setText("No");
+            btnIsRabies.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
         }
     }
 }

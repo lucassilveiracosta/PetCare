@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.*;
@@ -54,7 +54,7 @@ public class AdminDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ControllerPetCareServer server = ControllerPetCareServer.getInstance();
-        personCtrl = server.getPessoa();
+        personCtrl = server.getPerson();
         animalCtrl = server.getAnimal();
         appointmentCtrl = server.getAppointment();
         stockCtrl = server.getStock();
@@ -228,7 +228,7 @@ public class AdminDashboardController implements Initializable {
     private String procedureType(Procedure p) {
         if (p instanceof Appointment) return "Consultation";
         if (p instanceof Surgery) return "Surgery";
-        if (p instanceof ServicoPetShop) return "PetShop Service";
+        if (p instanceof PetShopService) return "PetShop Service";
         if (p instanceof Hospitalization) return "Hospitalization";
         return "Procedure";
     }

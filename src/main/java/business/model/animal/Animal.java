@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 
 public class Animal {
-    protected static int contadorId = 1;
+    protected static int idCounter = 1;
 
-    protected int id = contadorId++;
+    protected int id = idCounter++;
     protected String name;
     protected String species;
     protected String race;
@@ -133,34 +133,13 @@ public class Animal {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= contadorId) {
-            contadorId = id + 1;
+        if (id >= idCounter) {
+            idCounter = id + 1;
         }
     }
 
     public int getId() {
         return id;
     }
-
-/*
-            try {
-                // formato que o usuário digita
-                DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                // converter string para data
-                LocalDate data = LocalDate.parse(birthDate, formatoEntrada);
-
-                // formato padrão desejado
-                DateTimeFormatter formatoSaida = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-                // exibir formatado
-                String dataFormatada = data.format(formatoSaida);
-
-                System.out.println("Data formatada: " + dataFormatada);
-
-            } catch (DateTimeParseException e) {
-                System.out.println("Erro: Data inválida! Use o formato dd/MM/yyyy.");
-            }
-       */
 }
 

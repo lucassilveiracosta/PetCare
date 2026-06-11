@@ -1,7 +1,7 @@
 package enums;
 
 public enum Conscience {
-    ALERTA,
-    APATICO,
-    COMATOSO
+    ALERT,
+    APATHETIC,
+    COMATOSE
 }

@@ -153,7 +153,7 @@ public class RegisterProductListController implements Initializable {
 
         // REQ15 — a cart with controlled medicine requires a prescription
         boolean hasControlled = cart.keySet().stream()
-                .anyMatch(p -> p.isVet() && p.getMedicineType() == MedicineType.CONTROLADO);
+                .anyMatch(p -> p.isVet() && p.getMedicineType() == MedicineType.CONTROLLED);
         boolean hasPrescription = false;
         if (hasControlled) {
             Alert presc = new Alert(Alert.AlertType.CONFIRMATION,

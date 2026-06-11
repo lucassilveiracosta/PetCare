@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Expense {
 
-    private static int count_id = 1;
-    private int id = count_id++;
+    private static int idCounter = 1;
+    private int id = idCounter++;
     private ExpenseType type;
     private Double amount;
     private LocalDate date;
@@ -26,7 +26,7 @@ public class Expense {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= count_id) count_id = id + 1;
+        if (id >= idCounter) idCounter = id + 1;
     }
 
     public ExpenseType getType() {

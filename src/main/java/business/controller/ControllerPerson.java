@@ -145,7 +145,7 @@ public class ControllerPerson implements IControllerPerson {
         int count = 0;
         for (Appointment a: ControllerPetCareServer.getInstance().getAppointment().getAll()) {
             if (a.getDateHourScheduled().getMonth().equals(month)) {
-                if (a.getResponsableVeterinarian() != null && a.getResponsableVeterinarian().getId() == veterinarian.getId()) {
+                if (a.getResponsibleVeterinarian() != null && a.getResponsibleVeterinarian().getId() == veterinarian.getId()) {
                     count++;
                 }
             }

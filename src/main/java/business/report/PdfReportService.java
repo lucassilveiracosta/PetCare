@@ -12,7 +12,7 @@ import business.model.invoice.Hospitalization;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import business.model.invoice.Product;
-import business.model.invoice.ServicoPetShop;
+import business.model.invoice.PetShopService;
 import business.model.invoice.Surgery;
 import business.model.person.Veterinarian;
 import enums.AppointmentStatus;
@@ -155,8 +155,8 @@ public class PdfReportService {
                 int total = 0, completed = 0;
                 double revenue = 0.0;
                 for (Appointment a : appointments) {
-                    if (a.getResponsableVeterinarian() == null
-                            || a.getResponsableVeterinarian().getId() != v.getId()) continue;
+                    if (a.getResponsibleVeterinarian() == null
+                            || a.getResponsibleVeterinarian().getId() != v.getId()) continue;
                     total++;
                     if (a.getEffectiveStatus() == AppointmentStatus.COMPLETED) completed++;
                     revenue += a.getPrice() != null ? a.getPrice() : 0.0;
@@ -175,8 +175,8 @@ public class PdfReportService {
                 header(t, "Date", "Animal", "Diagnosis", "Status", "Price");
                 boolean any = false;
                 for (Appointment a : appointments) {
-                    if (a.getResponsableVeterinarian() == null
-                            || a.getResponsableVeterinarian().getId() != v.getId()) continue;
+                    if (a.getResponsibleVeterinarian() == null
+                            || a.getResponsibleVeterinarian().getId() != v.getId()) continue;
                     any = true;
                     cell(t, a.getDateHourScheduled().format(DATE_TIME));
                     cell(t, a.getPatient().getName());
@@ -245,7 +245,7 @@ public class PdfReportService {
                 for (Appointment a : appts) {
                     doc.add(new Paragraph(a.getDateHourScheduled().format(DATE_TIME)).setBold().setFontSize(12));
                     doc.add(new Paragraph("Veterinarian: "
-                            + (a.getResponsableVeterinarian() != null ? a.getResponsableVeterinarian().getName() : "-")));
+                            + (a.getResponsibleVeterinarian() != null ? a.getResponsibleVeterinarian().getName() : "-")));
                     doc.add(new Paragraph("Description: " + orDash(a.getDescription())));
                     doc.add(new Paragraph("Price: " + (a.getPrice() != null ? money(a.getPrice()) : "-")));
                     doc.add(new Paragraph("Diagnosis: " + orDash(a.getDiagnosis())));
@@ -290,7 +290,7 @@ public class PdfReportService {
                     cell(table, v.getVaccineName());
                     cell(table, v.getVaccineDate().format(DATE));
                     cell(table, v.getExpireVaccineDate().format(DATE));
-                    cell(table, v.isRabbiesVaccine() ? "Yes" : "No");
+                    cell(table, v.isRabiesVaccine() ? "Yes" : "No");
                 }
                 doc.add(table);
             }
@@ -325,7 +325,7 @@ public class PdfReportService {
     private String procedureType(Procedure p) {
         if (p instanceof Appointment) return "Consultation";
         if (p instanceof Surgery) return "Surgery";
-        if (p instanceof ServicoPetShop) return "PetShop Service";
+        if (p instanceof PetShopService) return "PetShop Service";
         if (p instanceof Hospitalization) return "Hospitalization";
         return "Procedure";
     }

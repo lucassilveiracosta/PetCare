@@ -24,7 +24,7 @@ public class RegisterPetOwnerController {
     @FXML private TextField txtDescription;
 
     // 2. Conexão com o Servidor
-    private final IControllerPerson backendController = ControllerPetCareServer.getInstance().getPessoa();
+    private final IControllerPerson backendController = ControllerPetCareServer.getInstance().getPerson();
 
     @FXML
     public void onNextButton(ActionEvent event) {
@@ -47,7 +47,7 @@ public class RegisterPetOwnerController {
 
             showAlert("Success!", "Owner registered successfully. Proceeding to pet details.", Alert.AlertType.INFORMATION);
 
-            // NAVEGAÇÃO: Só vai para a próxima tela se não der nenhum erro no try!
+            // Navigation: only proceed to the next screen if no error occurred above
             gui.Navigator.navigate("Pet Details", "/view/fxml/RegisterPet.fxml");
 
         } catch (IllegalArgumentException e) {

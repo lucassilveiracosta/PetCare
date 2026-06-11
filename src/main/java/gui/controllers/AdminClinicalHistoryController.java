@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.model.animal.Animal;
@@ -54,7 +54,7 @@ public class AdminClinicalHistoryController implements Initializable {
 
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDateHourScheduled().format(DT)));
         colVet.setCellValueFactory(c -> new SimpleStringProperty(
-                c.getValue().getResponsableVeterinarian() != null ? c.getValue().getResponsableVeterinarian().getName() : "-"));
+                c.getValue().getResponsibleVeterinarian() != null ? c.getValue().getResponsibleVeterinarian().getName() : "-"));
         colDiagnosis.setCellValueFactory(c -> new SimpleStringProperty(
                 c.getValue().getDiagnosis() != null ? c.getValue().getDiagnosis() : "-"));
         colStatus.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getEffectiveStatus().name()));

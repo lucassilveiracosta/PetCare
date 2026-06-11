@@ -25,7 +25,7 @@ public class ConsultationDetailsController {
         // Appointment info
         lblAnimal.setText(appt.getPatient().getName());
         lblAnimalType.setText(appt.getPatient().getSpecies() + " · " + appt.getPatient().getRace());
-        lblVet.setText(appt.getResponsableVeterinarian().getName());
+        lblVet.setText(appt.getResponsibleVeterinarian().getName());
         lblDate.setText(appt.getDateHourScheduled().format(FMT));
 
         // Medical record

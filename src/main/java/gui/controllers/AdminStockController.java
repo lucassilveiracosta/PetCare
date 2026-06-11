@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerExpense;
@@ -156,7 +156,7 @@ public class AdminStockController implements Initializable {
     private double stockSpentThisMonth() {
         LocalDate now = LocalDate.now();
         double total = 0.0;
-        for (Expense e : expenseCtrl.filterByType(ExpenseType.ESTOQUE)) {
+        for (Expense e : expenseCtrl.filterByType(ExpenseType.INVENTORY)) {
             if (e.getDate() != null
                     && e.getDate().getMonth() == now.getMonth()
                     && e.getDate().getYear() == now.getYear()) {

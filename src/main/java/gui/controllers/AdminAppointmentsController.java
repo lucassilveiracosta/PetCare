@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerAppointment;
@@ -44,7 +44,7 @@ public class AdminAppointmentsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         appointmentCtrl = ControllerPetCareServer.getInstance().getAppointment();
-        personCtrl = ControllerPetCareServer.getInstance().getPessoa();
+        personCtrl = ControllerPetCareServer.getInstance().getPerson();
 
         setupFilters();
         setupTable();
@@ -85,7 +85,7 @@ public class AdminAppointmentsController implements Initializable {
             }
         });
         colAnimal.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getPatient().getName()));
-        colVet.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getResponsableVeterinarian().getName()));
+        colVet.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getResponsibleVeterinarian().getName()));
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDateHourScheduled().format(FMT)));
         colDesc.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDescription()));
     }
@@ -110,7 +110,7 @@ public class AdminAppointmentsController implements Initializable {
         LocalDateTime dt = appt.getDateHourScheduled();
         dateField.setValue(dt.toLocalDate());
         cbTime.setValue(dt.toLocalTime().format(TIME_FMT));
-        cbVet.setValue(appt.getResponsableVeterinarian());
+        cbVet.setValue(appt.getResponsibleVeterinarian());
         fieldDescription.setText(appt.getDescription());
         fieldPrice.setText(appt.getPrice() != null ? String.valueOf(appt.getPrice()) : "");
     }
@@ -128,7 +128,7 @@ public class AdminAppointmentsController implements Initializable {
             }
             LocalDateTime newDt = LocalDateTime.of(date, LocalTime.parse(time, TIME_FMT));
             appt.setDateHourScheduled(newDt);           // validates future date
-            if (cbVet.getValue() != null) appt.setResponsableVeterinarian(cbVet.getValue());
+            if (cbVet.getValue() != null) appt.setResponsibleVeterinarian(cbVet.getValue());
             if (fieldDescription.getText() != null && !fieldDescription.getText().isBlank()) {
                 appt.setDescription(fieldDescription.getText());
             }

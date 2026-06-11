@@ -8,25 +8,25 @@ import java.time.LocalDateTime;
 
 public class Surgery extends Procedure {
 
-    private Veterinarian responsableVeterinarian; //corrigir gramatica
+    private Veterinarian responsibleVeterinarian; 
     private String anesthesiaType;
     private SurgeryRisk surgeryRisk;
-    private String supplies = "-"; // insumos
+    private String supplies = "-"; // supplies
 
-    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType) {
+    public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsibleVeterinarian, String anesthesiaType) {
         super(price, patient, dateHour, description);
         setSurgeryRisk(surgeryRisk);
         setAnesthesiaType(anesthesiaType);
-        setResponsableVeterinarian(responsebleVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
 
     }
 
     // Allows "now"/past dates (used when registering or loading a surgery)
-    public Surgery(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description, SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType) {
+    public Surgery(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description, SurgeryRisk surgeryRisk, Veterinarian responsibleVeterinarian, String anesthesiaType) {
         super(bool, price, patient, dateHour, description);
         setSurgeryRisk(surgeryRisk);
         setAnesthesiaType(anesthesiaType);
-        setResponsableVeterinarian(responsebleVeterinarian);
+        setResponsibleVeterinarian(responsibleVeterinarian);
     }
 
     public SurgeryRisk getSurgeryRisk() {
@@ -40,18 +40,18 @@ public class Surgery extends Procedure {
         this.surgeryRisk = surgeryRisk;
     }
 
-    public Veterinarian getResponsebleVeterinarian() {
-        return responsableVeterinarian;
+    public Veterinarian getResponsibleVeterinarian() {
+        return responsibleVeterinarian;
     }
 
-    public void setResponsableVeterinarian(Veterinarian responsebleVeterinarian) {
-        for (Specialty s: responsebleVeterinarian.getSpecialties()) {
+    public void setResponsibleVeterinarian(Veterinarian responsibleVeterinarian) {
+        for (Specialty s: responsibleVeterinarian.getSpecialties()) {
             if (s.getName().isBlank()) throw new IllegalArgumentException("400 - dont have active specialty");
         }
-        if(responsebleVeterinarian == null){
-            throw new IllegalArgumentException("400 - Invalid responsable vatarinarian");
+        if(responsibleVeterinarian == null){
+            throw new IllegalArgumentException("400 - Invalid responsible veterinarian");
         }
-        this.responsableVeterinarian = responsebleVeterinarian;
+        this.responsibleVeterinarian = responsibleVeterinarian;
     }
 
     public String getSupplies() {

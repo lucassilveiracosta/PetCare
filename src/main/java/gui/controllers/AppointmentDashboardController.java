@@ -89,7 +89,7 @@ public class AppointmentDashboardController implements Initializable {
         colAnimal.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getPatient().getName()));
         colVet.setCellValueFactory(cell ->
-                new SimpleStringProperty(cell.getValue().getResponsableVeterinarian().getName()));
+                new SimpleStringProperty(cell.getValue().getResponsibleVeterinarian().getName()));
         colDate.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getDateHourScheduled().format(FMT)));
         colDesc.setCellValueFactory(cell ->

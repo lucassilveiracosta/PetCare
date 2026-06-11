@@ -5,11 +5,11 @@ import enums.MedicineType;
 
 public class Product {
 
-    private static int count_id = 1;
-    private int id = count_id++;
+    private static int idCounter = 1;
+    private int id = idCounter++;
     private String name;
     private Integer quantity;
-    private final boolean isVet; // Se é do petshop ou do veterinário
+    private final boolean isVet; // Whether it belongs to the pet shop or the vet pharmacy
     private MedicineType medicineType;
     private String description; // e boolean para ver se o remédio é controlado
     private Double price;
@@ -71,7 +71,7 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= count_id) count_id = id + 1;
+        if (id >= idCounter) idCounter = id + 1;
     }
 
     public boolean isVet() {

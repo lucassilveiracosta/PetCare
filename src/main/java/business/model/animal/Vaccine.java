@@ -9,13 +9,13 @@ public class Vaccine {
     private LocalDate vaccineDate;
     private LocalDate expireVaccineDate;
     private String description;
-    private boolean isRabbiesVaccine;
+    private boolean isRabiesVaccine;
 
-    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine, LocalDate expireVaccineDate){
+    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabiesVaccine, LocalDate expireVaccineDate){
         setVaccineName(vaccineName);
         setVaccineDate(vaccineDate);
         this.description = description;
-        setRabbiesVaccine(isRabbiesVaccine);
+        setRabiesVaccine(isRabiesVaccine);
         setExpireVaccineDate(expireVaccineDate);
 
     }
@@ -31,12 +31,12 @@ public class Vaccine {
         this.expireVaccineDate = expireVaccineDate;
     }
 
-    public boolean isRabbiesVaccine() {
-        return isRabbiesVaccine;
+    public boolean isRabiesVaccine() {
+        return isRabiesVaccine;
     }
 
-    public void setRabbiesVaccine(boolean rabbiesVaccine) {
-        isRabbiesVaccine = rabbiesVaccine;
+    public void setRabiesVaccine(boolean rabbiesVaccine) {
+        isRabiesVaccine = rabbiesVaccine;
     }
 
     public String getVaccineName() {

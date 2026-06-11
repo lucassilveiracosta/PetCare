@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Invoice {
-    protected static int countId = 1;
+    protected static int idCounter = 1;
 
-    protected int id = countId++;
+    protected int id = idCounter++;
     private Owner owner;
     private Animal patient;
     private LocalDateTime dateHour = LocalDateTime.now();
@@ -18,8 +18,8 @@ public class Invoice {
     private boolean paid = false; // REQ16 - whether the invoice has been settled
 
     public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products) {
-        setDono(owner);
-        setPaciente(patient);
+        setOwner(owner);
+        setPatient(patient);
         this.procedures = procedures;
         this.products = products;
     }
@@ -30,7 +30,7 @@ public class Invoice {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= countId) countId = id + 1;
+        if (id >= idCounter) idCounter = id + 1;
     }
 
     public void setDateHour(LocalDateTime dateHour) {
@@ -41,7 +41,7 @@ public class Invoice {
         return owner;
     }
 
-    public void setDono(Owner owner) {
+    public void setOwner(Owner owner) {
         if (owner == null) {
             throw new IllegalArgumentException("400 - Invalid owner");
         }
@@ -52,7 +52,7 @@ public class Invoice {
         return patient;
     }
 
-    public void setPaciente(Animal patient) {
+    public void setPatient(Animal patient) {
         if (patient == null) {
             throw new IllegalArgumentException("400 - Invalid patient");
         }

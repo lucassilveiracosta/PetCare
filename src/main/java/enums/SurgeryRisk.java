@@ -1,9 +1,9 @@
 package enums;
 
 public enum SurgeryRisk {
-    VERYLOW,
+    VERY_LOW,
     LOW,
     MEDIUM,
     HIGH,
-    VERYHIGH
+    VERY_HIGH
 }

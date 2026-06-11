@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane prefHeight="740" prefWidth="1150" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AppShellController">
+<BorderPane prefHeight="740" prefWidth="1150" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AppShellController">
     <top>
         <HBox fx:id="breadcrumbBar" alignment="CENTER_LEFT" spacing="6" styleClass="breadcrumb-bar">
             <padding>

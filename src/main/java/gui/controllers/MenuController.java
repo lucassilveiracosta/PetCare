@@ -1,4 +1,5 @@
-package gui;
+package gui.controllers;
+import gui.Navigator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
