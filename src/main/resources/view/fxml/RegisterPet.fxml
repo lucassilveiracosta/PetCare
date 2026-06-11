@@ -60,7 +60,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="specieBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -75,7 +75,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="animalNameBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>
@@ -104,7 +104,7 @@
                               </Text>
                            </left>
                            <right>
-                              <DatePicker fx:id="schedulingDate1" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                              <DatePicker fx:id="birthDateBox" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                         <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
@@ -118,7 +118,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="raceBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -132,7 +132,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="temperamentBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                         <BorderPane prefHeight="120.0" prefWidth="208.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -144,7 +144,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="castratedBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>
@@ -173,7 +173,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="stageOfLifeBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -189,7 +189,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="weightBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -205,7 +205,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="sizeBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -219,7 +219,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="sexBox" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>

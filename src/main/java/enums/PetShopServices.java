@@ -1,7 +1,7 @@
 package enums;
 
 public enum PetShopServices {
-    BATH,
-    GROOMING,
-    BATH_AND_GROOMING
+    BANHO,
+    TOSA,
+    BANHO_TOSA
 }

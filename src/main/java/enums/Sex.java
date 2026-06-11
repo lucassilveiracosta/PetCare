@@ -1,6 +1,6 @@
 package enums;
 
 public enum Sex {
-        FEMALE,
-        MALE
+        FEMEA,
+        MACHO
 }
