@@ -44,7 +44,7 @@ public class ControllerMedicalRecord implements IControllerMedicalRecord {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         MedicalRecord exists = repositoryMedicalRecord.findById(id);
         if (exists == null) throw new MedicalRecordNotFoundException("404 - ID not found");
-        if (!exists.getSurgeries().isEmpty()) throw new MedicalRecordHasSurgeryException("400 - Surgeries can't be deleted");
+        if (!exists.getSurgeries().isEmpty()) throw new MedicalRecordHasSurgeryException("Surgeries can't be deleted");
         repositoryMedicalRecord.remove(exists);
     }
 
