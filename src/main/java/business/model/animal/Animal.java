@@ -142,6 +142,9 @@ public class Animal {
 
     public void setId(int id) {
         this.id = id;
+        if (id >= contadorId) {
+            contadorId = id + 1;
+        }
     }
 
     public int getId() {

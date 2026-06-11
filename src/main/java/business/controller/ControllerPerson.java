@@ -7,6 +7,7 @@ import business.model.animal.DomesticAnimal;
 import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Veterinarian;
+import data.SaveData;
 import data.interfaces.IRepositoryAnimal;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
@@ -70,6 +71,13 @@ public class ControllerPerson implements IControllerPerson {
         Person exists = repositoryPerson.findById(p.getId());
         if (exists != null) throw new PersonConflictException("409 - This Person already exists");
         repositoryPerson.create(p);
+        
+        // Salva no CSV se for do tipo Owner
+        if (p instanceof Owner owner) {
+            new SaveData().saveOwner(owner);
+        } else if (p instanceof Veterinarian vet) {
+            new SaveData().saveVeterinarian(vet);
+        }
     }
 
     @Override

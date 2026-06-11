@@ -1,4 +1,4 @@
-package gui;
+package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerAnimal;
@@ -9,14 +9,22 @@ import business.model.animal.ExoticAnimal;
 import business.model.animal.Vaccine;
 import business.model.appointment.Anamnesis;
 import business.model.appointment.Appointment;
+import business.model.appointment.Hydration;
+import business.model.appointment.PhysicalExamination;
+import business.model.appointment.VitalParameters;
+import business.report.PdfReportService;
 import enums.AppointmentStatus;
+import enums.Conscience;
+import enums.Mucosa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -39,6 +47,25 @@ public class ConsultationController implements Initializable {
     @FXML private Button registerVaccine;
     @FXML private Button issuePrescriptionPDF;
 
+    // Medical record / vet visit
+    @FXML private TextArea fieldDiagnosis;
+    @FXML private TextArea fieldPrescription;
+    @FXML private TextField fieldDietary;
+
+    // Physical examination
+    @FXML private ChoiceBox<Conscience> cbConsciousness;
+    @FXML private TextArea fieldExamNotes;
+
+    // Vital parameters
+    @FXML private TextField fieldHeartRate;
+    @FXML private TextField fieldRespiratoryRate;
+    @FXML private TextField fieldTemperature;
+    @FXML private TextField fieldCoagulation;
+    @FXML private ChoiceBox<Mucosa> cbMucosa;
+    @FXML private CheckBox chkEuvolemic;
+    @FXML private TextField fieldDehydration;
+    @FXML private TextArea fieldVitalNotes;
+
     private IControllerAnimal animalController;
     private IControllerAppointment appointmentController;
 
@@ -55,6 +82,11 @@ public class ConsultationController implements Initializable {
         ControllerPetCareServer server = ControllerPetCareServer.getInstance();
         animalController    = server.getAnimal();
         appointmentController = server.getAppointment();
+
+        cbConsciousness.setItems(FXCollections.observableArrayList(Conscience.values()));
+        cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
+        cbMucosa.setItems(FXCollections.observableArrayList(Mucosa.values()));
+        cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
 
         medicalrecordpanel.setDisable(true);
         loadWaitingList();
@@ -107,6 +139,7 @@ public class ConsultationController implements Initializable {
 
         fieldWeight.setText(String.valueOf(animal.getWeight()));
         fieldSymptoms.clear();
+        clearConsultationFields();
 
         boolean hasRabiesVaccine = animalController.checkIfHaveRabbiesVaccine(animal.getId());
         chkRabiesVaccine.setSelected(hasRabiesVaccine);
@@ -146,32 +179,70 @@ public class ConsultationController implements Initializable {
 
     private void issuePrescription() {
         if (selectedAnimal == null) return;
-        String prescription = "Patient: " + selectedAnimal.getName()
-                + "\nSpecies: " + selectedAnimal.getSpecies()
-                + "\nWeight: " + fieldWeight.getText() + " kg"
-                + "\n\nSymptoms / Complaint:\n" + fieldSymptoms.getText()
-                + "\n\nDate: " + LocalDate.now().format(DATE_FMT);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Veterinary Prescription");
-        alert.setHeaderText("Prescription — " + selectedAnimal.getName());
-        alert.setContentText(prescription);
-        alert.showAndWait();
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Export Clinical History (PDF)");
+        chooser.setInitialFileName("ClinicalHistory_" + selectedAnimal.getName() + ".pdf");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+        File dest = chooser.showSaveDialog(issuePrescriptionPDF.getScene().getWindow());
+        if (dest == null) return;
+
+        List<Appointment> history = appointmentController.getAll().stream()
+                .filter(a -> a.getPatient().getId() == selectedAnimal.getId()
+                        && a.getEffectiveStatus() == AppointmentStatus.COMPLETED)
+                .sorted(Comparator.comparing(Appointment::getDateHourScheduled))
+                .collect(Collectors.toList());
+
+        try {
+            new PdfReportService().generateClinicalHistory(selectedAnimal, history, dest);
+            showAlert(Alert.AlertType.INFORMATION, "Clinical History Exported",
+                    "PDF saved to:\n" + dest.getAbsolutePath());
+        } catch (Exception ex) {
+            showAlert(Alert.AlertType.ERROR, "Export Failed", ex.getMessage());
+        }
     }
 
     @FXML
     private void finishConsultation() {
         if (selectedAppointment != null && selectedAnimal != null) {
-            String complaint = fieldSymptoms.getText();
-            if (complaint == null || complaint.isBlank()) {
-                complaint = "No complaint recorded.";
-            }
-            // Setting anamnesis marks this appointment as COMPLETED in getEffectiveStatus()
-            selectedAppointment.setAnamnesis(
-                    new Anamnesis(complaint, "-", "Consultation finalized"));
+            try {
+                String complaint = orDefault(fieldSymptoms.getText(), "No complaint recorded.");
+                String dietary   = orDefault(fieldDietary.getText(), "-");
 
-            showAlert(Alert.AlertType.INFORMATION, "Consultation Finalized",
-                    selectedAnimal.getName() + "'s appointment is now marked as Completed.\n"
-                            + "The Dashboard will reflect this change.");
+                // Vital parameters (numeric fields are optional → null when blank)
+                Hydration hydration = new Hydration(
+                        chkEuvolemic.isSelected(),
+                        parseDoubleOrNull(fieldDehydration.getText()));
+
+                VitalParameters vitals = new VitalParameters(
+                        parseIntOrNull(fieldHeartRate.getText()),
+                        parseIntOrNull(fieldRespiratoryRate.getText()),
+                        parseDoubleOrNull(fieldTemperature.getText()),
+                        cbMucosa.getValue(),
+                        parseIntOrNull(fieldCoagulation.getText()),
+                        hydration,
+                        orDefault(fieldVitalNotes.getText(), "-"));
+
+                PhysicalExamination exam = new PhysicalExamination(
+                        cbConsciousness.getValue(),
+                        vitals,
+                        orDefault(fieldExamNotes.getText(), "-"));
+
+                selectedAppointment.setDiagnosis(orDefault(fieldDiagnosis.getText(), "No diagnosis recorded."));
+                selectedAppointment.setMedicalPrescription(orDefault(fieldPrescription.getText(), "-"));
+                selectedAppointment.setPhisicalExam(exam);
+                // Setting anamnesis marks this appointment as COMPLETED in getEffectiveStatus()
+                selectedAppointment.setAnamnesis(
+                        new Anamnesis(complaint, dietary, "Consultation finalized"));
+
+                showAlert(Alert.AlertType.INFORMATION, "Consultation Finalized",
+                        selectedAnimal.getName() + "'s appointment is now marked as Completed.\n"
+                                + "The Dashboard will reflect this change.");
+            } catch (IllegalArgumentException ex) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Data",
+                        "Could not finalize the consultation:\n" + ex.getMessage());
+                return;
+            }
         }
 
         selectedAnimal = null;
@@ -180,11 +251,50 @@ public class ConsultationController implements Initializable {
         fieldType.setText("");
         fieldWeight.clear();
         fieldSymptoms.clear();
+        clearConsultationFields();
         chkRabiesVaccine.setSelected(false);
         lvClinicalHistory.getItems().clear();
         medicalrecordpanel.setDisable(true);
         listWait.getSelectionModel().clearSelection();
         loadWaitingList();
+    }
+
+    private void clearConsultationFields() {
+        fieldDiagnosis.clear();
+        fieldPrescription.clear();
+        fieldDietary.clear();
+        fieldExamNotes.clear();
+        fieldHeartRate.clear();
+        fieldRespiratoryRate.clear();
+        fieldTemperature.clear();
+        fieldCoagulation.clear();
+        fieldDehydration.clear();
+        fieldVitalNotes.clear();
+        chkEuvolemic.setSelected(true);
+        cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
+        cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
+    }
+
+    private static String orDefault(String value, String fallback) {
+        return (value != null && !value.isBlank()) ? value.trim() : fallback;
+    }
+
+    private static Integer parseIntOrNull(String value) {
+        if (value == null || value.isBlank()) return null;
+        try {
+            return Integer.valueOf(value.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private static Double parseDoubleOrNull(String value) {
+        if (value == null || value.isBlank()) return null;
+        try {
+            return Double.valueOf(value.trim().replace(',', '.'));
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {

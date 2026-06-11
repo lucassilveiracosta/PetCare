@@ -29,10 +29,10 @@ public class Appointment extends Procedure {
         setStatus(status);
     }
 
-    public Appointment(Float price, Animal patient, LocalDateTime dateHour, String description,
+    public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsableVeterinarian, String diagnosis,
-                       String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status) {
-        super(price, patient, dateHour, description);
+                       String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status, Boolean bool) {
+        super(bool, price, patient, dateHour, description);
         setResponsableVeterinarian(responsableVeterinarian);
         setDiagnosis(diagnosis);
         setMedicalPrescription(medicalPrescription);
@@ -48,9 +48,16 @@ public class Appointment extends Procedure {
         setResponsableVeterinarian(responsableVeterinarian);
     }
 
-    public Appointment(float price, Animal patient, LocalDateTime dateHour, String description,
+    // Constructor for pending appointments with gambiarra (old appointments)
+    public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
+                       Veterinarian responsableVeterinarian, Boolean bool) {
+        super(bool, price, patient, dateHour, description);
+        setResponsableVeterinarian(responsableVeterinarian);
+    }
+
+    public Appointment(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsableVeterinarian) {
-        super(price, patient, dateHour, description);
+        super(bool, price, patient, dateHour, description);
         setResponsableVeterinarian(responsableVeterinarian);
     }
 

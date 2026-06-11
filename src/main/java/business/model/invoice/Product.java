@@ -72,4 +72,8 @@ public class Product {
     public boolean isVet() {
         return isVet;
     }
+
+    public MedicineType getMedicineType() {
+        return medicineType;
+    }
 }

@@ -2,6 +2,7 @@ package business.controller;
 
 import business.interfaces.IControllerAnimal;
 
+import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
 import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
@@ -116,6 +117,11 @@ public class ControllerAnimal implements IControllerAnimal {
         }
 
         repositoryAnimal.create(animal);
+        
+        // Salva no CSV se for do tipo DomesticAnimal
+        if (animal instanceof DomesticAnimal pet) {
+            new data.SaveData().saveDomesticAnimal(pet);
+        }
     }
 
 

@@ -35,8 +35,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -44,7 +47,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/style.css" type="SplitPane" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConsultationController">
+<SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ConsultationController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="622.0" prefWidth="281.0">
          <children>
@@ -60,49 +63,109 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <VBox fx:id="medicalrecordpanel" layoutX="13.0" layoutY="11.0" prefHeight="567.0" prefWidth="496.0" spacing="10.0">
-               <padding>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </padding>
-               <children>
-                  <TextField fx:id="fieldAnimal" editable="false" />
-                  <TextField fx:id="fieldType" editable="false" />
-                  <HBox prefHeight="27.0" prefWidth="274.0">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox fx:id="medicalrecordpanel" spacing="8.0">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
                      <children>
-                        <Label text="weight( kg):" />
-                        <TextField fx:id="fieldWeight" prefHeight="25.0" prefWidth="181.0" />
+                        <TextField fx:id="fieldAnimal" editable="false" />
+                        <TextField fx:id="fieldType" editable="false" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Weight (kg):" />
+                              <TextField fx:id="fieldWeight" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+
+                        <!-- Medical Record / Vet Visit -->
+                        <Separator />
+                        <Label style="-fx-font-weight: bold;" text="Medical Record / Vet Visit" />
+                        <Label text="Symptoms / Main complaint:" />
+                        <TextArea fx:id="fieldSymptoms" prefHeight="60.0" wrapText="true" />
+                        <Label text="Diagnosis:" />
+                        <TextArea fx:id="fieldDiagnosis" prefHeight="60.0" wrapText="true" />
+                        <Label text="Prescription:" />
+                        <TextArea fx:id="fieldPrescription" prefHeight="60.0" wrapText="true" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Dietary restriction:" />
+                              <TextField fx:id="fieldDietary" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label prefWidth="160.0" text="Medical Record History:" />
+                              <ListView fx:id="lvClinicalHistory" prefHeight="73.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+
+                        <!-- Physical Examination -->
+                        <Separator />
+                        <Label style="-fx-font-weight: bold;" text="Physical Examination" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Consciousness:" />
+                              <ChoiceBox fx:id="cbConsciousness" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Exam notes:" />
+                        <TextArea fx:id="fieldExamNotes" prefHeight="60.0" wrapText="true" />
+
+                        <!-- Vital Parameters -->
+                        <Separator />
+                        <Label style="-fx-font-weight: bold;" text="Vital Parameters" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Heart rate (bpm):" />
+                              <TextField fx:id="fieldHeartRate" prefWidth="80.0" />
+                              <Label text="Resp. rate (rpm):" />
+                              <TextField fx:id="fieldRespiratoryRate" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Temperature (°C):" />
+                              <TextField fx:id="fieldTemperature" prefWidth="80.0" />
+                              <Label text="Coagulation (s):" />
+                              <TextField fx:id="fieldCoagulation" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Mucosa:" />
+                              <ChoiceBox fx:id="cbMucosa" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <CheckBox fx:id="chkEuvolemic" mnemonicParsing="false" selected="true" text="Euvolemic" />
+                              <Label text="Dehydration (%):" />
+                              <TextField fx:id="fieldDehydration" prefWidth="80.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Vital notes:" />
+                        <TextArea fx:id="fieldVitalNotes" prefHeight="50.0" wrapText="true" />
+
+                        <!-- Actions -->
+                        <Separator />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <CheckBox fx:id="chkRabiesVaccine" disable="true" mnemonicParsing="false" text="Rabies vaccination up to date." />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="registerVaccine" mnemonicParsing="false" text="Apply Anti-rabies medication" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="issuePrescriptionPDF" mnemonicParsing="false" text="Export Clinical History (PDF)" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#finishConsultation" text="Finalize Service" />
                      </children>
-                  </HBox>
-                  <HBox prefHeight="41.0" prefWidth="274.0">
-                     <children>
-                        <Label text="Symptoms / Clinical Complaint:" />
-                        <TextArea fx:id="fieldSymptoms" prefHeight="80.0" prefWidth="200.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="73.0" prefWidth="360.0">
-                     <children>
-                        <Label prefHeight="36.0" prefWidth="315.0" text="Medical Record History:" />
-                        <ListView fx:id="lvClinicalHistory" prefHeight="73.0" prefWidth="445.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="33.0" prefWidth="360.0">
-                     <children>
-                        <CheckBox fx:id="chkRabiesVaccine" disable="true" mnemonicParsing="false" prefHeight="17.0" prefWidth="195.0" text="Rabies vaccination up to date." />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="44.0" prefWidth="360.0" spacing="10.0">
-                     <children>
-                        <Button fx:id="registerVaccine" mnemonicParsing="false" prefHeight="25.0" prefWidth="287.0" text="Apply Anti-rabies medication" />
-                        <Button fx:id="issuePrescriptionPDF" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="Issue Prescription (PDF)" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="19.0" prefWidth="466.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#finishConsultation" prefHeight="25.0" prefWidth="479.0" text="Finalize Service" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children></AnchorPane>
   </items>
-</fx:root>
+</SplitPane>
