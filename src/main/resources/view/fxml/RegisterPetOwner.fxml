@@ -60,7 +60,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtEmail" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -75,7 +75,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="txtOwnerName" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>
@@ -102,7 +102,7 @@
                               </Text>
                            </left>
                            <right>
-                              <DatePicker fx:id="schedulingDate1" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                              <DatePicker fx:id="dpBirthDate" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                         <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
@@ -116,7 +116,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtPassword" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -147,7 +147,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtCpf" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -163,7 +163,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtTelephone" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -179,7 +179,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtJob" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -193,7 +193,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="txtDescription" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>

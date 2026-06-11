@@ -62,7 +62,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <DatePicker fx:id="schedulingDate12" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                                    <DatePicker fx:id="dpVaccineDate" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </left>
@@ -77,7 +77,7 @@
                               </Text>
                            </left>
                            <right>
-                              <TextField prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
+                              <TextField fx:id="txtVaccineName" prefHeight="23.0" prefWidth="182.0" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                      </children>
@@ -105,7 +105,7 @@
                               </Text>
                            </left>
                            <right>
-                              <ToggleButton fx:id="togglebutton" mnemonicParsing="false" prefHeight="23.0" prefWidth="58.0" text="No" BorderPane.alignment="CENTER" />
+                              <ToggleButton fx:id="btnIsRabbies" mnemonicParsing="false" onAction="#onIsRabbiesToggle" prefHeight="23.0" prefWidth="58.0" text="No" BorderPane.alignment="CENTER" />
                            </right>
                         </BorderPane>
                         <BorderPane prefHeight="60.0" prefWidth="276.0" GridPane.columnIndex="1">
@@ -135,7 +135,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <DatePicker fx:id="schedulingDate121" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                                    <DatePicker fx:id="dpExpireDate" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -156,10 +156,10 @@
                            <children>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <left>
-                                    <Button fx:id="buttonAddMore" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="143.0" text="Add more" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="buttonAddMore" mnemonicParsing="false" onAction="#onAddMoreClick" prefHeight="42.0" prefWidth="143.0" text="Add more" BorderPane.alignment="CENTER" />
                                  </left>
                                  <right>
-                                    <Button fx:id="buttonRegister" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="143.0" text="Register" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="buttonRegister" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="42.0" prefWidth="143.0" text="Register" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </children>

@@ -6,11 +6,6 @@ import javafx.fxml.FXML;
 public class MenuController {
 
     @FXML
-    public void openAgendamento(ActionEvent event) {
-        Navigator.navigate("Scheduling", "/view/fxml/Scheduling.fxml");
-    }
-
-    @FXML
     public void openConsultas(ActionEvent event) {
         Navigator.navigate("Consultations", "/view/fxml/Consultation.fxml");
     }
