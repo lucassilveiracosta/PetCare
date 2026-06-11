@@ -17,6 +17,7 @@
         <Insets bottom="16" left="16" right="16" top="16" />
     </padding>
 
+    <Button mnemonicParsing="false" onAction="#handleBack" text="Back" />
     <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Pet Clinical History" />
     <Label text="Pick a pet and a period (week / month / custom) to see and export its consultations." />
 

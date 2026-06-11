@@ -30,4 +30,6 @@ public class AdminMenuController {
     public void openDashboard(ActionEvent event) {
         Navigator.navigate("System & Financial Dashboard", "/view/fxml/AdminDashboard.fxml");
     }
+
+    @FXML private void handleBack() { gui.Navigator.navigate("Home", "/view/fxml/MenuPrincipal.fxml"); }
 }

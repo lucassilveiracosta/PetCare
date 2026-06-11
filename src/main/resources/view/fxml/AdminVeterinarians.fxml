@@ -17,6 +17,7 @@
         <Insets bottom="16" left="16" right="16" top="16" />
     </padding>
 
+    <Button mnemonicParsing="false" onAction="#handleBack" text="Back" />
     <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Manage Veterinarians" />
 
     <HBox spacing="16" VBox.vgrow="ALWAYS">

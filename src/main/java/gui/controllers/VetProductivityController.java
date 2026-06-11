@@ -102,4 +102,6 @@ public class VetProductivityController implements Initializable {
 
         VetStat(Veterinarian vet) { this.vet = vet; }
     }
+
+    @FXML private void handleBack() { gui.Navigator.navigate("Admin", "/view/fxml/AdminMenu.fxml"); }
 }

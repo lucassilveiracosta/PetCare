@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -190,6 +190,9 @@
                      </children>
                   </GridPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <left>
+                        <Button fx:id="backButtonStyle" mnemonicParsing="false" onAction="#onBackButton" text="Back" BorderPane.alignment="CENTER" />
+                     </left>
                      <center>
                         <Button fx:id="scheduleScheduling" mnemonicParsing="false" onAction="#onScheduleClick" text="Schedule!" BorderPane.alignment="CENTER" />
                      </center>

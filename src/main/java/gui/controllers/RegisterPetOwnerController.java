@@ -45,6 +45,9 @@ public class RegisterPetOwnerController {
             Owner newOwner = new Owner(name, email, password, birthdate, cpf, telephone, job, description);
             backendController.post(newOwner);
 
+            // Hand the just-created owner to the pet screen (read in RegisterPetController).
+            RegisterOwnerController.lastRegisteredOwner = newOwner;
+
             showAlert("Success!", "Owner registered successfully. Proceeding to pet details.", Alert.AlertType.INFORMATION);
 
             // Navigation: only proceed to the next screen if no error occurred above

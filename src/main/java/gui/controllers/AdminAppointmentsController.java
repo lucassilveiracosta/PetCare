@@ -204,4 +204,6 @@ public class AdminAppointmentsController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML private void handleBack() { gui.Navigator.navigate("Admin", "/view/fxml/AdminMenu.fxml"); }
 }

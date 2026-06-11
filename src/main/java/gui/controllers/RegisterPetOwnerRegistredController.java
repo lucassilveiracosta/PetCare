@@ -55,6 +55,12 @@ public class RegisterPetOwnerRegistredController {
 
     @FXML
     public void onNextButton(ActionEvent event) {
+        if (selectedOwner == null) {
+            showAlert("Validation Error", "Selecione um tutor antes de continuar.", Alert.AlertType.WARNING);
+            return;
+        }
+        // Hand the selected owner to the pet screen (read in RegisterPetController).
+        RegisterOwnerController.lastRegisteredOwner = selectedOwner;
         gui.Navigator.navigate("Pet Details", "/view/fxml/RegisterPet.fxml");
     }
 

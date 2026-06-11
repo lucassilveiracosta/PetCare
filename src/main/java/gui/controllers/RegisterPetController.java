@@ -75,7 +75,7 @@ public class RegisterPetController {
 
     @FXML
     public void onBackButton(ActionEvent event) {
-        Navigator.navigate("Select Owner", "/view/fxml/RegisterPetOwnerRegistred.fxml");
+        Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
 
     private void showAlert(String title, String content, Alert.AlertType alertType) {

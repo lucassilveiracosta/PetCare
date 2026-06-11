@@ -14,6 +14,7 @@
         <Insets bottom="16" left="16" right="16" top="16" />
     </padding>
 
+    <Button mnemonicParsing="false" onAction="#handleBack" text="Back" />
     <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Veterinarian Productivity" />
     <Label text="Consultations handled by each veterinarian (PDV) and their productivity." />
 

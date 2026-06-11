@@ -11,4 +11,5 @@
     <Button onAction="#openAppointments" prefHeight="44" prefWidth="260" text="Manage Appointments" />
     <Button onAction="#openClinicalHistory" prefHeight="44" prefWidth="260" text="Pet Clinical History" />
     <Button onAction="#openDashboard" prefHeight="44" prefWidth="260" text="System &amp; Financial Dashboard" />
+    <Button onAction="#handleBack" prefHeight="44" prefWidth="260" text="Back" />
 </VBox>

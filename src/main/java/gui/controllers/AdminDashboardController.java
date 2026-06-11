@@ -258,4 +258,6 @@ public class AdminDashboardController implements Initializable {
             this.amount = amount;
         }
     }
+
+    @FXML private void handleBack() { gui.Navigator.navigate("Admin", "/view/fxml/AdminMenu.fxml"); }
 }

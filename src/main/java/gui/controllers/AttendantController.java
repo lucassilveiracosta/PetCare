@@ -1,6 +1,7 @@
 package gui.controllers;
 
 import business.controller.ControllerPetCareServer;
+import gui.Navigator;
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
 import business.model.invoice.Invoice;
@@ -145,6 +146,11 @@ public class AttendantController implements Initializable {
             case GROOMING -> "Grooming";
             case BATH_AND_GROOMING -> "Bath & Grooming";
         };
+    }
+
+    @FXML
+    private void onBackButton(ActionEvent event) {
+        Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {
