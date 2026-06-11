@@ -3,9 +3,17 @@ package business.controller;
 import business.interfaces.*;
 import business.model.animal.DomesticAnimal;
 import business.model.appointment.Appointment;
+import business.model.invoice.Expense;
+import business.model.invoice.Invoice;
+import business.model.invoice.Product;
+import business.model.invoice.ServicoPetShop;
+import business.model.invoice.Surgery;
+import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Person;
 import business.model.person.Veterinarian;
+import data.LoadData;
+import data.SaveData;
 import data.repository.*;
 
 import java.util.ArrayList;
@@ -23,36 +31,45 @@ public class ControllerPetCareServer {
     private IControllerInvoice controllerInvoice;
     private IControllerStock controllerStock;
     private IControllerExpense controllerExpense;
+    private IControllerSurgery controllerSurgery;
 
 
 
     private ControllerPetCareServer() {
 
-        data.LoadData loader = new data.LoadData();
+        LoadData loader = new LoadData();
 
-        ArrayList<Owner> donos = loader.loadOwners();
+        // ── Persons (owners + vets + employees) ──────────────────────────────
+        ArrayList<Owner> owners = loader.loadOwners();
         ArrayList<Veterinarian> vets = loader.loadVeterinarians();
-        
-        ArrayList<business.model.person.Person> pessoasCarregadas = new ArrayList<>();
-        pessoasCarregadas.addAll(donos);
-        pessoasCarregadas.addAll(vets);
-        
-        RepositoryPerson repPerson = new RepositoryPerson(pessoasCarregadas);
+        ArrayList<Employee> employees = loader.loadEmployees();
+        ArrayList<Person> persons = new ArrayList<>();
+        persons.addAll(owners);
+        persons.addAll(vets);
+        persons.addAll(employees);
+        RepositoryPerson repPerson = new RepositoryPerson(persons);
 
+        // ── Animals ──────────────────────────────────────────────────────────
         RepositoryAnimal repAnimal = new RepositoryAnimal();
-        ArrayList<DomesticAnimal> animais = loader.loadDomesticAnimals(donos);
-        for (DomesticAnimal a : animais) {
-            repAnimal.create(a);
-        }
+        ArrayList<DomesticAnimal> animals = loader.loadDomesticAnimals(owners);
+        for (DomesticAnimal a : animals) repAnimal.create(a);
 
-        ArrayList<Appointment> consultas = loader.loadAppointments(animais, vets);
+        // ── Appointments / pet shop services ─────────────────────────────────
+        ArrayList<Appointment> appointments = loader.loadAppointments(animals, vets);
+        RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>(appointments));
+        ArrayList<ServicoPetShop> services = loader.loadPetShopServices(animals, employees);
 
-        RepositoryAppointment repAppointment = new RepositoryAppointment(new ArrayList<>(consultas));
-        
-        RepositoryInvoice repInvoice = new RepositoryInvoice(new ArrayList<>());
-        RepositoryStock repStock = new RepositoryStock(new ArrayList<>());
-        RepositoryExpense repExpense = new RepositoryExpense(new ArrayList<>());
+        // ── Surgeries ────────────────────────────────────────────────────────
+        ArrayList<Surgery> surgeries = loader.loadSurgeries(animals, vets);
+        RepositorySurgery repSurgery = new RepositorySurgery(surgeries);
 
+        // ── Stock / expenses / invoices ──────────────────────────────────────
+        ArrayList<Product> products = loader.loadProducts();
+        RepositoryStock repStock = new RepositoryStock(products);
+        ArrayList<Expense> expenses = loader.loadExpenses();
+        RepositoryExpense repExpense = new RepositoryExpense(expenses);
+        ArrayList<Invoice> invoices = loader.loadInvoices(owners, animals, appointments, services, surgeries, products);
+        RepositoryInvoice repInvoice = new RepositoryInvoice(invoices);
 
         this.controllerPerson = new ControllerPerson(repPerson);
         this.controllerAnimal = new ControllerAnimal(repAnimal);
@@ -60,12 +77,9 @@ public class ControllerPetCareServer {
         this.controllerInvoice = new ControllerInvoice(repInvoice);
         this.controllerStock = new ControllerStock(repStock);
         this.controllerExpense = new ControllerExpense(repExpense);
+        this.controllerSurgery = new ControllerSurgery(repSurgery);
     }
 
-    /**
-     * Método público para a GUI pegar a instância do Servidor.
-     * Se ela ainda não existir, ele cria. Se já existir, ele retorna a mesma.
-     */
     public static ControllerPetCareServer getInstance() {
         if (instance == null) {
             instance = new ControllerPetCareServer();
@@ -73,7 +87,17 @@ public class ControllerPetCareServer {
         return instance;
     }
 
-
+    /** Rewrites the whole CSV database from the current in-memory state. */
+    public void saveAll() {
+        SaveData sd = new SaveData();
+        sd.saveAllPersons(new ArrayList<>(controllerPerson.getAll()));
+        sd.saveAllAnimals(new ArrayList<>(controllerAnimal.getAll()));
+        sd.saveAllAppointments(new ArrayList<>(controllerAppointment.getAll()));
+        sd.saveAllProducts(new ArrayList<>(controllerStock.getAll()));
+        sd.saveAllExpenses(new ArrayList<>(controllerExpense.getAll()));
+        sd.saveAllSurgeries(new ArrayList<>(controllerSurgery.getAll()));
+        sd.saveAllInvoices(new ArrayList<>(controllerInvoice.getAll()));
+    }
 
     public IControllerPerson getPessoa() {
         return controllerPerson;
@@ -97,5 +121,9 @@ public class ControllerPetCareServer {
 
     public IControllerExpense getExpense() {
         return controllerExpense;
+    }
+
+    public IControllerSurgery getSurgery() {
+        return controllerSurgery;
     }
 }

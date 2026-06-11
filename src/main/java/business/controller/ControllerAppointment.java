@@ -75,6 +75,7 @@ public class ControllerAppointment implements IControllerAppointment {
 
         int index = repositoryAppointment.findAll().indexOf(exists);
         repositoryAppointment.update(index, exists);
+        persist();
     }
 
     @Override
@@ -86,6 +87,7 @@ public class ControllerAppointment implements IControllerAppointment {
         if (exists == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryAppointment.update(id, newAppointment);
+        persist();
     }
 
     @Override
@@ -96,6 +98,7 @@ public class ControllerAppointment implements IControllerAppointment {
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryAppointment.remove(appointment);
+        persist();
     }
 
     @Override
@@ -109,9 +112,11 @@ public class ControllerAppointment implements IControllerAppointment {
         }
 
         repositoryAppointment.create(appointment);
-        
-        // Salva no CSV logo após adicionar no repositório
-        new SaveData().saveAppointment(appointment);
+        persist();
+    }
+
+    private void persist() {
+        new SaveData().saveAllAppointments(repositoryAppointment.findAll());
     }
 
     @Override

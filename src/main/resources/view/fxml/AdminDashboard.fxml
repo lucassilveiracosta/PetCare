@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -22,7 +22,7 @@
     <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="System &amp; Financial Dashboard" />
 
     <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
-        <!-- ── System Overview ── -->
+        <!-- â”€â”€ System Overview â”€â”€ -->
         <Tab text="System Overview">
             <VBox spacing="12">
                 <padding>
@@ -32,7 +32,7 @@
             </VBox>
         </Tab>
 
-        <!-- ── Financial ── -->
+        <!-- â”€â”€ Financial â”€â”€ -->
         <Tab text="Financial">
             <VBox spacing="12">
                 <padding>
@@ -56,9 +56,9 @@
 
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <Label text="From:" />
-                    <DatePicker fx:id="dpFrom" />
+                    <DatePicker editable="false" fx:id="dpFrom" />
                     <Label text="To:" />
-                    <DatePicker fx:id="dpTo" />
+                    <DatePicker editable="false" fx:id="dpTo" />
                     <Label text="Category:" />
                     <ChoiceBox fx:id="cbCategory" prefWidth="180" />
                     <Button onAction="#handleApplyFilter" text="Apply" />

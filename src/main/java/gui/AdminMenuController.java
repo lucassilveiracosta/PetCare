@@ -21,6 +21,11 @@ public class AdminMenuController {
     }
 
     @FXML
+    public void openClinicalHistory(ActionEvent event) {
+        Navigator.navigate("Pet Clinical History", "/view/fxml/AdminClinicalHistory.fxml");
+    }
+
+    @FXML
     public void openDashboard(ActionEvent event) {
         Navigator.navigate("System & Financial Dashboard", "/view/fxml/AdminDashboard.fxml");
     }

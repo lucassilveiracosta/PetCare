@@ -69,6 +69,11 @@ public class Product {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+        if (id >= count_id) count_id = id + 1;
+    }
+
     public boolean isVet() {
         return isVet;
     }

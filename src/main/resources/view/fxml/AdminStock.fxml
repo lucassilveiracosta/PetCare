@@ -2,15 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox spacing="12" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AdminStockController">
@@ -24,47 +20,37 @@
         <ToggleButton fx:id="btnPetShop" text="Pet Shop Products" />
         <ToggleButton fx:id="btnVet" text="Medicines (Vet)" />
         <Button onAction="#handleRefresh" text="Refresh" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button onAction="#handleAddProduct" text="Add Product" />
     </HBox>
 
-    <HBox spacing="16" VBox.vgrow="ALWAYS">
-        <!-- Left: products table -->
-        <VBox spacing="8" HBox.hgrow="ALWAYS">
-            <TableView fx:id="tableProducts" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="colName" prefWidth="160" text="Name" />
-                    <TableColumn fx:id="colQty" prefWidth="70" text="Qty" />
-                    <TableColumn fx:id="colPrice" prefWidth="90" text="Price" />
-                    <TableColumn fx:id="colType" prefWidth="110" text="Med. Type" />
-                    <TableColumn fx:id="colDescription" prefWidth="220" text="Description" />
-                </columns>
-                <placeholder>
-                    <Label text="No products found." />
-                </placeholder>
-            </TableView>
-            <HBox spacing="10">
-                <Button fx:id="btnDelete" onAction="#handleDelete" text="Delete" />
-            </HBox>
-        </VBox>
+    <Label text="Select a product:" />
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+        <content>
+            <VBox fx:id="productRadios" spacing="6">
+                <padding>
+                    <Insets bottom="8" left="8" right="8" top="8" />
+                </padding>
+            </VBox>
+        </content>
+    </ScrollPane>
 
-        <!-- Right: product form -->
-        <VBox spacing="8" prefWidth="320">
-            <Label style="-fx-font-weight: bold;" text="Product details" />
-            <Label text="Name:" />
-            <TextField fx:id="fieldName" />
-            <Label text="Quantity:" />
-            <TextField fx:id="fieldQuantity" />
-            <Label text="Price:" />
-            <TextField fx:id="fieldPrice" />
-            <Label text="Description:" />
-            <TextArea fx:id="fieldDescription" prefHeight="60" wrapText="true" />
-            <CheckBox fx:id="chkIsVet" text="Veterinarian product (medicine)" />
-            <Label text="Medicine type:" />
-            <ChoiceBox fx:id="cbMedicineType" prefWidth="180" />
-            <HBox spacing="10">
-                <Button fx:id="btnAdd" onAction="#handleAdd" text="Add New" />
-                <Button fx:id="btnSave" onAction="#handleSave" text="Save Changes" />
-                <Button onAction="#handleClear" text="Clear" />
-            </HBox>
-        </VBox>
+    <!-- Counter for the selected product -->
+    <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-background-color: #EBF3F9; -fx-background-radius: 10; -fx-padding: 12 16;">
+        <children>
+            <Label style="-fx-font-weight: bold;" text="Selected:" />
+            <Label fx:id="lblSelectedName" text="—" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleDecrease" prefWidth="44.0" text="−" />
+            <Label fx:id="lblCount" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-min-width: 40; -fx-alignment: center;" text="0" />
+            <Button onAction="#handleIncrease" prefWidth="44.0" text="+" />
+        </children>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button onAction="#handleReport" text="Generate Stock Report (PDF)" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label style="-fx-font-weight: bold;" text="Stock value:" />
+        <Label fx:id="lblTotalValue" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1B365D;" text="R$ 0.00" />
     </HBox>
 </VBox>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.32" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SurgeryCenterController">
+  <items>
+    <!-- Left: consultations needing surgery / hospitalization -->
+    <AnchorPane minWidth="0.0">
+       <children>
+          <VBox spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+             </padding>
+             <children>
+                <Label style="-fx-font-weight: bold;" text="Needs Surgery / Hospitalization" />
+                <ListView fx:id="listFlagged" VBox.vgrow="ALWAYS" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRefresh" text="Refresh" />
+                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBack" text="Back to Consultations" />
+             </children>
+          </VBox>
+       </children>
+    </AnchorPane>
+
+    <!-- Right: surgery form -->
+    <AnchorPane minWidth="0.0">
+       <children>
+          <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+             </padding>
+             <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Start / Register Surgery" />
+                <Label fx:id="lblPatient" text="Select a consultation on the left." />
+
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                   <children>
+                      <Label prefWidth="140.0" text="Surgeon (vet):" />
+                      <ChoiceBox fx:id="cbSurgeon" prefWidth="220.0" />
+                   </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                   <children>
+                      <Label prefWidth="140.0" text="Surgery risk:" />
+                      <ChoiceBox fx:id="cbRisk" prefWidth="180.0" />
+                   </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                   <children>
+                      <Label prefWidth="140.0" text="Anesthesia type:" />
+                      <TextField fx:id="fieldAnesthesia" HBox.hgrow="ALWAYS" />
+                   </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                   <children>
+                      <Label prefWidth="140.0" text="Price (R$):" />
+                      <TextField fx:id="fieldPrice" prefWidth="120.0" text="300" />
+                   </children>
+                </HBox>
+                <Label text="Supplies (insumos):" />
+                <TextArea fx:id="fieldSupplies" prefHeight="70.0" wrapText="true" />
+                <Label text="Surgical procedures:" />
+                <TextArea fx:id="fieldProcedures" prefHeight="90.0" wrapText="true" />
+
+                <Button fx:id="btnRegister" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRegister" text="Register Surgery" />
+             </children>
+          </VBox>
+       </children>
+    </AnchorPane>
+  </items>
+</SplitPane>

@@ -37,6 +37,7 @@
             <HBox spacing="10">
                 <Button fx:id="btnDeleteVet" onAction="#handleDeleteVet" text="Delete Veterinarian" />
                 <Button onAction="#handleRefresh" text="Refresh" />
+                <Button onAction="#handleProductivity" text="Productivity Report" />
             </HBox>
         </VBox>
 

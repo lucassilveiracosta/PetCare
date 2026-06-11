@@ -12,7 +12,7 @@ public class Invoice {
     protected int id = countId++;
     private Owner owner;
     private Animal patient;
-    private final LocalDateTime dateHour = LocalDateTime.now();
+    private LocalDateTime dateHour = LocalDateTime.now();
     private ArrayList<Procedure> procedures;
     private ArrayList<Product> products;
 
@@ -25,6 +25,15 @@ public class Invoice {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        if (id >= countId) countId = id + 1;
+    }
+
+    public void setDateHour(LocalDateTime dateHour) {
+        this.dateHour = dateHour;
     }
 
     public Owner getOwner() {

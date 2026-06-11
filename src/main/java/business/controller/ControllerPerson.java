@@ -57,6 +57,7 @@ public class ControllerPerson implements IControllerPerson {
         if (person == null) throw new PersonNotFoundException("404 - ID not found");
 
         repositoryPerson.update(id, p);
+        persist();
     }
 
     public void delete(int id) {
@@ -65,19 +66,18 @@ public class ControllerPerson implements IControllerPerson {
         if (p == null) throw new PersonNotFoundException("404 - ID not found");
 
         repositoryPerson.remove(p);
+        persist();
     }
 
     public void post(Person p) {
         Person exists = repositoryPerson.findById(p.getId());
         if (exists != null) throw new PersonConflictException("409 - This Person already exists");
         repositoryPerson.create(p);
-        
-        // Salva no CSV se for do tipo Owner
-        if (p instanceof Owner owner) {
-            new SaveData().saveOwner(owner);
-        } else if (p instanceof Veterinarian vet) {
-            new SaveData().saveVeterinarian(vet);
-        }
+        persist();
+    }
+
+    private void persist() {
+        new data.SaveData().saveAllPersons(repositoryPerson.findAll());
     }
 
     @Override

@@ -2,6 +2,7 @@ package business.controller;
 
 import business.interfaces.IControllerExpense;
 import business.model.invoice.Expense;
+import data.SaveData;
 import data.interfaces.IRepositoryExpense;
 import enums.ExpenseType;
 
@@ -50,6 +51,7 @@ public class ControllerExpense implements IControllerExpense {
         }
 
         repositoryExpense.update(id, exists);
+        persist();
     }
 
     @Override
@@ -61,6 +63,7 @@ public class ControllerExpense implements IControllerExpense {
         if (exists == null) throw new IllegalArgumentException("404 - Expense with ID " + id + " not found");
 
         repositoryExpense.update(id, newExpense);
+        persist();
     }
 
     @Override
@@ -71,6 +74,7 @@ public class ControllerExpense implements IControllerExpense {
         if (expense == null) throw new IllegalArgumentException("404 - Expense with ID " + id + " not found");
 
         repositoryExpense.remove(expense);
+        persist();
     }
 
     @Override
@@ -81,6 +85,11 @@ public class ControllerExpense implements IControllerExpense {
         if (exists != null) throw new IllegalArgumentException("409 - This expense already exists");
 
         repositoryExpense.create(newExpense);
+        persist();
+    }
+
+    private void persist() {
+        new SaveData().saveAllExpenses(repositoryExpense.findAll());
     }
 
     @Override

@@ -75,6 +75,7 @@ public class ControllerAnimal implements IControllerAnimal {
 
         int index = repositoryAnimal.findAll().indexOf(animalExists);
         repositoryAnimal.update(index, animalExists);
+        persist();
     }
 
     @Override
@@ -92,6 +93,7 @@ public class ControllerAnimal implements IControllerAnimal {
 
         int index = repositoryAnimal.findAll().indexOf(old);
         repositoryAnimal.update(index, newData);
+        persist();
     }
 
     @Override
@@ -104,6 +106,7 @@ public class ControllerAnimal implements IControllerAnimal {
         }
 
         repositoryAnimal.delete(id);
+        persist();
     }
 
     @Override
@@ -117,11 +120,11 @@ public class ControllerAnimal implements IControllerAnimal {
         }
 
         repositoryAnimal.create(animal);
-        
-        // Salva no CSV se for do tipo DomesticAnimal
-        if (animal instanceof DomesticAnimal pet) {
-            new data.SaveData().saveDomesticAnimal(pet);
-        }
+        persist();
+    }
+
+    private void persist() {
+        new data.SaveData().saveAllAnimals(repositoryAnimal.findAll());
     }
 
 

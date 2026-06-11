@@ -10,6 +10,7 @@ public class Surgery extends Procedure {
     private Veterinarian responsableVeterinarian; //corrigir gramatica
     private String anesthesiaType;
     private SurgeryRisk surgeryRisk;
+    private String supplies = "-"; // insumos
 
     public Surgery(Double price, Animal patient, LocalDateTime dateHour, String description,  SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType) {
         super(price, patient, dateHour, description);
@@ -17,6 +18,14 @@ public class Surgery extends Procedure {
         setAnesthesiaType(anesthesiaType);
         setResponsableVeterinarian(responsebleVeterinarian);
 
+    }
+
+    // Allows "now"/past dates (used when registering or loading a surgery)
+    public Surgery(Boolean bool, Double price, Animal patient, LocalDateTime dateHour, String description, SurgeryRisk surgeryRisk, Veterinarian responsebleVeterinarian, String anesthesiaType) {
+        super(bool, price, patient, dateHour, description);
+        setSurgeryRisk(surgeryRisk);
+        setAnesthesiaType(anesthesiaType);
+        setResponsableVeterinarian(responsebleVeterinarian);
     }
 
     public SurgeryRisk getSurgeryRisk() {
@@ -39,6 +48,14 @@ public class Surgery extends Procedure {
             throw new IllegalArgumentException("400 - Invalid responsable vatarinarian");
         }
         this.responsableVeterinarian = responsebleVeterinarian;
+    }
+
+    public String getSupplies() {
+        return supplies;
+    }
+
+    public void setSupplies(String supplies) {
+        this.supplies = (supplies != null && !supplies.isBlank()) ? supplies : "-";
     }
 
     public String getAnesthesiaType() {

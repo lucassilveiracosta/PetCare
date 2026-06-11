@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VetProductivityController">
+    <padding>
+        <Insets bottom="16" left="16" right="16" top="16" />
+    </padding>
+
+    <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Veterinarian Productivity" />
+    <Label text="Consultations handled by each veterinarian (PDV) and their productivity." />
+
+    <TableView fx:id="tableVets" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colVet" prefWidth="200" text="Veterinarian" />
+            <TableColumn fx:id="colCrmv" prefWidth="130" text="CRMV" />
+            <TableColumn fx:id="colTotal" prefWidth="130" text="Consultations" />
+            <TableColumn fx:id="colCompleted" prefWidth="110" text="Completed" />
+            <TableColumn fx:id="colRevenue" prefWidth="140" text="Revenue" />
+        </columns>
+        <placeholder>
+            <Label text="No veterinarians found." />
+        </placeholder>
+    </TableView>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button onAction="#handleExportPdf" text="Export Report (PDF)" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label style="-fx-font-weight: bold;" text="Total consultations:" />
+        <Label fx:id="lblTotalConsults" style="-fx-font-weight: bold; -fx-text-fill: #1B365D;" text="0" />
+        <Label style="-fx-font-weight: bold;" text="   Total revenue:" />
+        <Label fx:id="lblTotalRevenue" style="-fx-font-weight: bold; -fx-text-fill: #1B365D;" text="R$ 0.00" />
+    </HBox>
+</VBox>

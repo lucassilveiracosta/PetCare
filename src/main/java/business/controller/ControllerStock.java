@@ -2,6 +2,7 @@ package business.controller;
 
 import business.interfaces.IControllerStock;
 
+import data.SaveData;
 import data.interfaces.IRepositoryStock;
 import enums.MedicineType;
 import exceptions.AppointmentNotFoundException;
@@ -59,6 +60,7 @@ public class ControllerStock implements IControllerStock {
 
         int index = repositoryStock.findAll().indexOf(exists);
         repositoryStock.update(index, exists);
+        persist();
     }
 
     @Override
@@ -70,6 +72,7 @@ public class ControllerStock implements IControllerStock {
         if (exists == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
         repositoryStock.update(id, newProduct);
+        persist();
     }
 
     @Override
@@ -80,6 +83,7 @@ public class ControllerStock implements IControllerStock {
         if (product == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
         repositoryStock.remove(product);
+        persist();
     }
 
     @Override
@@ -93,6 +97,11 @@ public class ControllerStock implements IControllerStock {
         }
 
         repositoryStock.create(newProduct);
+        persist();
+    }
+
+    private void persist() {
+        new SaveData().saveAllProducts(repositoryStock.findAll());
     }
 
 

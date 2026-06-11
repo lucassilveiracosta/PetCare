@@ -15,6 +15,8 @@ public class Appointment extends Procedure {
     private PhysicalExamination phisicalExam;
     private String medicalPrescription;
     private AppointmentStatus status;
+    private boolean needsSurgery = false;
+    private boolean needsHospitalization = false;
 
     // Constructor for completed appointments (has full medical data)
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
@@ -77,6 +79,22 @@ public class Appointment extends Procedure {
     public void setStatus(AppointmentStatus status) {
         if (status == null) throw new IllegalArgumentException("400 - Invalid status");
         this.status = status;
+    }
+
+    public boolean isNeedsSurgery() {
+        return needsSurgery;
+    }
+
+    public void setNeedsSurgery(boolean needsSurgery) {
+        this.needsSurgery = needsSurgery;
+    }
+
+    public boolean isNeedsHospitalization() {
+        return needsHospitalization;
+    }
+
+    public void setNeedsHospitalization(boolean needsHospitalization) {
+        this.needsHospitalization = needsHospitalization;
     }
 
     public Anamnesis getAnamnesis() {
