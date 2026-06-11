@@ -4,11 +4,13 @@ import business.interfaces.IControllerPerson;
 
 import business.model.animal.Animal;
 import business.model.animal.DomesticAnimal;
+import business.model.appointment.Appointment;
 import business.model.person.Employee;
 import business.model.person.Owner;
 import business.model.person.Veterinarian;
 import data.SaveData;
 import data.interfaces.IRepositoryAnimal;
+import data.interfaces.IRepositoryAppointment;
 import exceptions.EmailNotFoundException;
 import exceptions.PersonConflictException;
 import exceptions.PersonNotFoundException;
@@ -17,12 +19,14 @@ import data.interfaces.IRepositoryPerson;
 import org.apache.commons.validator.routines.EmailValidator;
 
 
+import java.time.Month;
 import java.util.ArrayList;
 
 public class ControllerPerson implements IControllerPerson {
 
     private IRepositoryPerson repositoryPerson;
     private IRepositoryAnimal repositoryAnimal;
+    private IRepositoryAppointment repositoryAppointment;
 
     public ControllerPerson(IRepositoryPerson repositoryPerson) {
         this.repositoryPerson = repositoryPerson;
@@ -93,7 +97,7 @@ public class ControllerPerson implements IControllerPerson {
     public ArrayList<Animal> filterOwnersByEmail(String email) {
         ArrayList<Animal> filter = new ArrayList<>();
 
-        for (Animal a: repositoryAnimal.findAll()) {
+        for (Animal a: ControllerPetCareServer.getInstance().getAnimal().getAll()) {
             if (a instanceof DomesticAnimal da) {
                 if (da.getOwner().getEmail().contains(email)) {
                     filter.add(a);
@@ -135,5 +139,18 @@ public class ControllerPerson implements IControllerPerson {
             }
         }
         return filter;
+    }
+
+    public int getVeterinarianProductivity(Veterinarian veterinarian, Month month) {
+        int count = 0;
+        for (Appointment a: ControllerPetCareServer.getInstance().getAppointment().getAll()) {
+            if (a.getDateHourScheduled().getMonth().equals(month)) {
+                if (a.getResponsableVeterinarian() != null && a.getResponsableVeterinarian().getId() == veterinarian.getId()) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }

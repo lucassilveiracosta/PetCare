@@ -30,6 +30,9 @@ public class RegisterOwnerController {
 
     private final IControllerPerson backendController = business.controller.ControllerPetCareServer.getInstance().getPessoa();
 
+    // Variável estática para guardar o dono recém-criado na memória
+    public static Owner lastRegisteredOwner;
+
     @FXML
     public void onRegisterClick(ActionEvent event) {
         String name = txtOwnerName.getText();
@@ -49,8 +52,14 @@ public class RegisterOwnerController {
             Owner newOwner = new Owner(name, email, password, birthdate, cpf, telephone, job, description);
             backendController.post(newOwner);
 
-            showAlert("Sucesso!", "Dono cadastrado perfeitamente.", Alert.AlertType.INFORMATION);
+            // Relacionamento em sequência: guardamos o dono criado para ser usado na próxima tela
+            lastRegisteredOwner = newOwner;
+
+            showAlert("Sucesso!", "Dono cadastrado! Vamos cadastrar o animal agora.", Alert.AlertType.INFORMATION);
             clearFields();
+
+            // Avança automaticamente para a tela de Registro de Pet
+            gui.Navigator.navigate("Register Pet", "/view/fxml/RegisterPet.fxml");
 
         } catch (IllegalArgumentException e) {
             showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);

@@ -1,4 +1,5 @@
 package business.model.invoice;
+import business.model.person.Specialty;
 import business.model.person.Veterinarian;
 import business.model.animal.Animal;
 import enums.SurgeryRisk;
@@ -35,6 +36,9 @@ public class Surgery extends Procedure {
     }
 
     public void setResponsableVeterinarian(Veterinarian responsebleVeterinarian) {
+        for (Specialty s: responsebleVeterinarian.getSpecialties()) {
+            if (s.getName().isBlank()) throw new IllegalArgumentException("400 - dont have active specialty");
+        }
         if(responsebleVeterinarian == null){
             throw new IllegalArgumentException("400 - Invalid responsable vatarinarian");
         }
