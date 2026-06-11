@@ -15,30 +15,30 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 
 ### 2. Atendimento e Serviços✅✅
 - **REQ04**: Agendar consultas vinculando animal a veterinário especialista.✅
-- **REQ05**: Gerenciar agenda de banho e tosa com controle de profissionais.✅
+- **REQ05**: Gerenciar agenda de banho e tosa com controle de profissionais. ✅
 - **REQ06**: Registrar aplicação de vacinas e gerar alertas de reforço.✅
 
-### 3. Internação e Cirurgia✅✅
-- **REQ07**: Registrar entradas na ala de internação com monitoramento.✅
-- **REQ08**: Cadastrar procedimentos cirúrgicos, vinculando equipe e insumos.✅
+### 3. Internação e Cirurgia
+- **REQ07**: Registrar entradas na ala de internação com monitoramento. 
+- **REQ08**: Cadastrar procedimentos cirúrgicos, vinculando equipe e insumos. 
 
 ### 4. Vendas e Financeiro
-- **REQ09**: Registrar vendas de medicamentos e acessórios no PDV.
+- **REQ09**: Registrar vendas de medicamentos e acessórios no PDV. ✅
 - **REQ10**: Controlar o estoque de medicamentos, incluindo os controlados.✅
-- **REQ11**: Emitir receitas e faturas detalhadas em PDF.
+- **REQ11**: Emitir receitas e faturas detalhadas em PDF. ✅
 
 ### 5. Relatórios
-- **REQ12**: Gerar relatório de produtividade por médico veterinário.
-- **REQ13**: Exportar histórico clínico completo em PDF para o tutor.
+- **REQ12**: Gerar relatório de produtividade por médico veterinário. ✅
+- **REQ13**: Exportar histórico clínico completo em PDF para o tutor. ✅
 
 ### 6. Regras e Restrições
-- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada.
-- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada.
-- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. (joao)
-- **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. (joao)
+- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada. ✅
+- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada. ✅
+- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. 
+- **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. 
 - **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa.
-- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação.
-- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema.
+- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação. ✅
+- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema. ✅
 
 ## Possíveis APIs/Bibliotecas
 - **JFreeChart** – Evolução de peso.
