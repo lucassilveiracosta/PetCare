@@ -1,7 +1,7 @@
 package enums;
 
 public enum StageOfLife {
-    RECEMNASCIDO,
-    ADULTO,
-    IDOSO
+    NEWBORN,
+    ADULT,
+    SENIOR
 }
