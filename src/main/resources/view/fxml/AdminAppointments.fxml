@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -38,7 +39,8 @@
                     <TableColumn fx:id="colAnimal" prefWidth="110" text="Animal" />
                     <TableColumn fx:id="colVet" prefWidth="160" text="Veterinarian" />
                     <TableColumn fx:id="colDate" prefWidth="140" text="Date / Time" />
-                    <TableColumn fx:id="colDesc" prefWidth="180" text="Description" />
+                    <TableColumn fx:id="colDesc" prefWidth="160" text="Description" />
+                    <TableColumn fx:id="colDiagnosis" prefWidth="160" text="Diagnosis" />
                 </columns>
                 <placeholder>
                     <Label text="No appointments found." />
@@ -62,6 +64,8 @@
             <TextField fx:id="fieldDescription" />
             <Label text="Price:" />
             <TextField fx:id="fieldPrice" />
+            <CheckBox fx:id="chkNeedsSurgery" mnemonicParsing="false" text="Needs Surgery" />
+            <CheckBox fx:id="chkNeedsHospitalization" mnemonicParsing="false" text="Needs Hospitalization" />
             <Button fx:id="btnSave" onAction="#handleSave" text="Save Changes" />
         </VBox>
     </HBox>

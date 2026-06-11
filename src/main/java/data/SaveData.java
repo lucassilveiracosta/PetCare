@@ -9,6 +9,7 @@ import business.model.appointment.Hydration;
 import business.model.appointment.PhysicalExamination;
 import business.model.appointment.VitalParameters;
 import business.model.invoice.Expense;
+import business.model.invoice.Hospitalization;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import business.model.invoice.Product;
@@ -210,6 +211,41 @@ public class SaveData {
                 "id;price;patientId;dateHour;description;vetId;surgeryRisk;anesthesiaType;supplies", lines);
     }
 
+    // ── Hospitalizations (+ vital-parameters monitoring history) ──────────────
+    public void saveAllHospitalizations(List<Hospitalization> hospitalizations) {
+        List<String> lines = new ArrayList<>();
+        for (Hospitalization h : hospitalizations) {
+            StringBuilder vitals = new StringBuilder();
+            if (h.getVitalParametersHistory() != null) {
+                for (VitalParameters vp : h.getVitalParametersHistory()) {
+                    if (vitals.length() > 0) vitals.append("|");
+                    Hydration hy = vp.getHydration();
+                    vitals.append(orNull(vp.getHeartRate())).append("~")
+                          .append(orNull(vp.getRespiratoryRate())).append("~")
+                          .append(orNull(vp.getCelciusTemperature())).append("~")
+                          .append(vp.getMucosa() != null ? vp.getMucosa().name() : "null").append("~")
+                          .append(orNull(vp.getCoagulation())).append("~")
+                          .append(hy != null && hy.isEuvolemic()).append("~")
+                          .append(hy != null && hy.getDehydration() != null ? hy.getDehydration() : "null").append("~")
+                          .append(esc(vp.getDescription()));
+                }
+            }
+            lines.add(String.join(";",
+                    String.valueOf(h.getId()), String.valueOf(h.getPrice()),
+                    String.valueOf(h.getPatient().getId()), h.getDateHourScheduled().format(DT),
+                    esc(h.getDescription()), String.valueOf(h.getResponsibleVeterinarian().getId()),
+                    h.getEntryDateTime().format(DT),
+                    h.getDischargeDateTime() != null ? h.getDischargeDateTime().format(DT) : "null",
+                    vitals.toString()));
+        }
+        write("hospitalizations.csv",
+                "id;price;patientId;dateHour;description;vetId;entry;discharge;vitals", lines);
+    }
+
+    private static String orNull(Object v) {
+        return v != null ? String.valueOf(v) : "null";
+    }
+
     // ── Invoices (+ embedded pet shop services) ───────────────────────────────
     public void saveAllInvoices(List<Invoice> invoices) {
         List<String> invLines = new ArrayList<>();
@@ -225,6 +261,8 @@ public class SaveData {
                         procs.append("SERVICE~").append(sps.getId());
                     } else if (p instanceof Surgery) {
                         procs.append("SURGERY~").append(p.getId());
+                    } else if (p instanceof Hospitalization) {
+                        procs.append("HOSP~").append(p.getId());
                     } else if (p instanceof Appointment) {
                         procs.append("APPT~").append(p.getId());
                     } else {

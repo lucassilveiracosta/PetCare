@@ -69,8 +69,14 @@ public class MockDataLoader {
         Veterinarian williams = new Veterinarian("Dr. John Williams", "john.williams@petcare.com", "password123",
                 LocalDate.of(1979, 8, 25), "222.333.444-55", "(11) 99876-5432", "CRMV-SP 67890", williamsSpec);
 
+        // REQ18 - a veterinarian WITHOUT an active specialty (surgery must be blocked for him)
+        Veterinarian intern = new Veterinarian("Dr. Mark Reeves (no specialty)", "mark.reeves@petcare.com",
+                "password123", LocalDate.of(1995, 1, 30), "777.888.999-00", "(11) 93333-1122",
+                "CRMV-SP 11111", new ArrayList<>());
+
         person.post(carter);
         person.post(williams);
+        person.post(intern);
 
         // ── Owners ───────────────────────────────────────────────────────────
         Owner michael = new Owner("Michael Turner", "michael.turner@email.com", "password123",

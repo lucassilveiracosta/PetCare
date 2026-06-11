@@ -4,6 +4,7 @@ import business.interfaces.*;
 import business.model.animal.DomesticAnimal;
 import business.model.appointment.Appointment;
 import business.model.invoice.Expense;
+import business.model.invoice.Hospitalization;
 import business.model.invoice.Invoice;
 import business.model.invoice.Product;
 import business.model.invoice.PetShopService;
@@ -32,6 +33,7 @@ public class ControllerPetCareServer {
     private IControllerStock controllerStock;
     private IControllerExpense controllerExpense;
     private IControllerSurgery controllerSurgery;
+    private IControllerHospitalization controllerHospitalization;
 
 
 
@@ -63,12 +65,16 @@ public class ControllerPetCareServer {
         ArrayList<Surgery> surgeries = loader.loadSurgeries(animals, vets);
         RepositorySurgery repSurgery = new RepositorySurgery(surgeries);
 
+        // ── Hospitalizations ─────────────────────────────────────────────────
+        ArrayList<Hospitalization> hospitalizations = loader.loadHospitalizations(animals, vets);
+        RepositoryHospitalization repHospitalization = new RepositoryHospitalization(hospitalizations);
+
         // ── Stock / expenses / invoices ──────────────────────────────────────
         ArrayList<Product> products = loader.loadProducts();
         RepositoryStock repStock = new RepositoryStock(products);
         ArrayList<Expense> expenses = loader.loadExpenses();
         RepositoryExpense repExpense = new RepositoryExpense(expenses);
-        ArrayList<Invoice> invoices = loader.loadInvoices(owners, animals, appointments, services, surgeries, products);
+        ArrayList<Invoice> invoices = loader.loadInvoices(owners, animals, appointments, services, surgeries, hospitalizations, products);
         RepositoryInvoice repInvoice = new RepositoryInvoice(invoices);
 
         this.controllerPerson = new ControllerPerson(repPerson);
@@ -78,6 +84,7 @@ public class ControllerPetCareServer {
         this.controllerStock = new ControllerStock(repStock);
         this.controllerExpense = new ControllerExpense(repExpense);
         this.controllerSurgery = new ControllerSurgery(repSurgery);
+        this.controllerHospitalization = new ControllerHospitalization(repHospitalization);
     }
 
     public static ControllerPetCareServer getInstance() {
@@ -96,6 +103,7 @@ public class ControllerPetCareServer {
         sd.saveAllProducts(new ArrayList<>(controllerStock.getAll()));
         sd.saveAllExpenses(new ArrayList<>(controllerExpense.getAll()));
         sd.saveAllSurgeries(new ArrayList<>(controllerSurgery.getAll()));
+        sd.saveAllHospitalizations(new ArrayList<>(controllerHospitalization.getAll()));
         sd.saveAllInvoices(new ArrayList<>(controllerInvoice.getAll()));
     }
 
@@ -125,5 +133,9 @@ public class ControllerPetCareServer {
 
     public IControllerSurgery getSurgery() {
         return controllerSurgery;
+    }
+
+    public IControllerHospitalization getHospitalization() {
+        return controllerHospitalization;
     }
 }

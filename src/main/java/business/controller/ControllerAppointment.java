@@ -7,6 +7,7 @@ import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
 import exceptions.MedicalRecordDeletionException;
+import exceptions.ScheduleConflictException;
 import enums.AppointmentStatus;
 
 
@@ -118,8 +119,30 @@ public class ControllerAppointment implements IControllerAppointment {
             throw new AppointmentConflictException("409 - This appointment already exists");
         }
 
+        validateNoScheduleConflict(appointment); // REQ04
+
         repositoryAppointment.create(appointment);
         persist();
+    }
+
+    /**
+     * REQ04 - A veterinarian cannot have two appointments at the same date/time.
+     *
+     * @throws ScheduleConflictException when the responsible vet is already booked.
+     */
+    private void validateNoScheduleConflict(Appointment appointment) {
+        if (appointment.getResponsibleVeterinarian() == null || appointment.getDateHourScheduled() == null) return;
+        int vetId = appointment.getResponsibleVeterinarian().getId();
+        for (Appointment a : repositoryAppointment.findAll()) {
+            if (a.getId() == appointment.getId()) continue;
+            if (a.getResponsibleVeterinarian() != null
+                    && a.getResponsibleVeterinarian().getId() == vetId
+                    && appointment.getDateHourScheduled().equals(a.getDateHourScheduled())) {
+                throw new ScheduleConflictException("Conflito de agenda: "
+                        + appointment.getResponsibleVeterinarian().getName()
+                        + " já tem um atendimento marcado nesse horário.");
+            }
+        }
     }
 
     private void persist() {

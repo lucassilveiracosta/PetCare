@@ -2,6 +2,7 @@ package business.controller;
 
 import business.interfaces.IControllerHospitalization;
 import business.model.invoice.Hospitalization;
+import data.SaveData;
 import data.interfaces.IRepositoryHospitalization;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
@@ -47,6 +48,7 @@ public class ControllerHospitalization implements IControllerHospitalization {
 
         int index = repositoryHospitalization.findAll().indexOf(exists);
         repositoryHospitalization.update(index, exists);
+        persist();
     }
 
     @Override
@@ -58,6 +60,7 @@ public class ControllerHospitalization implements IControllerHospitalization {
         if (exists == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryHospitalization.update(id, newHospitalziation);
+        persist();
     }
 
     @Override
@@ -68,6 +71,7 @@ public class ControllerHospitalization implements IControllerHospitalization {
         if (hospitalization == null) throw new AppointmentNotFoundException("404 - ID not found");
 
         repositoryHospitalization.remove(hospitalization);
+        persist();
     }
 
     @Override
@@ -81,5 +85,10 @@ public class ControllerHospitalization implements IControllerHospitalization {
         }
 
         repositoryHospitalization.create(hospitalization);
+        persist();
+    }
+
+    private void persist() {
+        new SaveData().saveAllHospitalizations(repositoryHospitalization.findAll());
     }
 }

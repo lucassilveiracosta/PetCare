@@ -31,5 +31,15 @@ public class AdminMenuController {
         Navigator.navigate("System & Financial Dashboard", "/view/fxml/AdminDashboard.fxml");
     }
 
+    @FXML
+    public void openSurgeryCenter(ActionEvent event) {
+        Navigator.navigate("Surgery Center", "/view/fxml/SurgeryCenter.fxml");
+    }
+
+    @FXML
+    public void openHospitalization(ActionEvent event) {
+        Navigator.navigate("Hospitalization", "/view/fxml/Hospitalization.fxml");
+    }
+
     @FXML private void handleBack() { gui.Navigator.navigate("Home", "/view/fxml/MenuPrincipal.fxml"); }
 }

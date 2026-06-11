@@ -4,8 +4,11 @@ import business.interfaces.IControllerInvoice;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
+import exceptions.ScheduleConflictException;
 import exceptions.UnpaidInvoiceException;
 import business.model.invoice.Invoice;
+import business.model.invoice.PetShopService;
+import business.model.invoice.Procedure;
 import data.SaveData;
 import data.interfaces.IRepositoryInvoice;
 
@@ -54,8 +57,37 @@ public class ControllerInvoice implements IControllerInvoice {
     public void post(Invoice invoice) {
         Invoice exists = repositoryInvoice.findById(invoice.getId());
         if (exists != null) throw new InvoiceConflictException("409 - This invoice already exists");
+        validateNoServiceConflict(invoice); // REQ05
         repositoryInvoice.create(invoice);
         persist();
+    }
+
+    /**
+     * REQ05 - An employee cannot have two pet shop services (bath/grooming) at the
+     * same date/time. Pet shop services are stored as procedures inside invoices.
+     *
+     * @throws ScheduleConflictException when the responsible employee is already booked.
+     */
+    private void validateNoServiceConflict(Invoice invoice) {
+        if (invoice.getProcedures() == null) return;
+        for (Procedure proc : invoice.getProcedures()) {
+            if (!(proc instanceof PetShopService newService)) continue;
+            if (newService.getResponsibleEmployee() == null || newService.getDateHourScheduled() == null) continue;
+            int empId = newService.getResponsibleEmployee().getId();
+            for (Invoice inv : repositoryInvoice.findAll()) {
+                if (inv.getProcedures() == null) continue;
+                for (Procedure existing : inv.getProcedures()) {
+                    if (existing instanceof PetShopService s
+                            && s.getResponsibleEmployee() != null
+                            && s.getResponsibleEmployee().getId() == empId
+                            && newService.getDateHourScheduled().equals(s.getDateHourScheduled())) {
+                        throw new ScheduleConflictException("Conflito de agenda: "
+                                + newService.getResponsibleEmployee().getName()
+                                + " já tem um serviço marcado nesse horário.");
+                    }
+                }
+            }
+        }
     }
 
     /** Marks an invoice as settled (used to clear hospital costs before discharge). */

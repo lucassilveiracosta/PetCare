@@ -26,12 +26,13 @@ public class AdminAppointmentsController implements Initializable {
 
     @FXML private ToggleButton btnAll, btnPending, btnInProgress, btnExpired, btnCompleted;
     @FXML private TableView<Appointment> tableAppointments;
-    @FXML private TableColumn<Appointment, String> colStatus, colAnimal, colVet, colDate, colDesc;
+    @FXML private TableColumn<Appointment, String> colStatus, colAnimal, colVet, colDate, colDesc, colDiagnosis;
 
     @FXML private DatePicker dateField;
     @FXML private ChoiceBox<String> cbTime;
     @FXML private ChoiceBox<Veterinarian> cbVet;
     @FXML private TextField fieldDescription, fieldPrice;
+    @FXML private CheckBox chkNeedsSurgery, chkNeedsHospitalization;
     @FXML private Button btnSave, btnDelete;
 
     private IControllerAppointment appointmentCtrl;
@@ -88,6 +89,11 @@ public class AdminAppointmentsController implements Initializable {
         colVet.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getResponsibleVeterinarian().getName()));
         colDate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDateHourScheduled().format(FMT)));
         colDesc.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDescription()));
+        // REQ17 - show diagnosis so a "prontuário" (medical record) is identifiable
+        colDiagnosis.setCellValueFactory(c -> {
+            String d = c.getValue().getDiagnosis();
+            return new SimpleStringProperty((d != null && !d.isBlank()) ? d : "—");
+        });
     }
 
     private void setupEditPanel() {
@@ -113,6 +119,8 @@ public class AdminAppointmentsController implements Initializable {
         cbVet.setValue(appt.getResponsibleVeterinarian());
         fieldDescription.setText(appt.getDescription());
         fieldPrice.setText(appt.getPrice() != null ? String.valueOf(appt.getPrice()) : "");
+        chkNeedsSurgery.setSelected(appt.isNeedsSurgery());
+        chkNeedsHospitalization.setSelected(appt.isNeedsHospitalization());
     }
 
     @FXML
@@ -135,6 +143,9 @@ public class AdminAppointmentsController implements Initializable {
             if (fieldPrice.getText() != null && !fieldPrice.getText().isBlank()) {
                 appt.setPrice(Double.valueOf(fieldPrice.getText().trim().replace(',', '.')));
             }
+            // REQ08/REQ16 testability - flag the consultation for surgery / hospitalization
+            appt.setNeedsSurgery(chkNeedsSurgery.isSelected());
+            appt.setNeedsHospitalization(chkNeedsHospitalization.isSelected());
             ControllerPetCareServer.getInstance().saveAll(); // persist the edit to the CSV database
             refresh();
             showAlert(Alert.AlertType.INFORMATION, "Saved", "Appointment updated.");

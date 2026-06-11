@@ -9,6 +9,7 @@ import business.model.appointment.Hydration;
 import business.model.appointment.PhysicalExamination;
 import business.model.appointment.VitalParameters;
 import business.model.invoice.Expense;
+import business.model.invoice.Hospitalization;
 import business.model.invoice.Invoice;
 import business.model.invoice.Procedure;
 import business.model.invoice.Product;
@@ -278,9 +279,51 @@ public class LoadData {
         return surgeries;
     }
 
+    public ArrayList<Hospitalization> loadHospitalizations(List<DomesticAnimal> animals, List<Veterinarian> vets) {
+        ArrayList<Hospitalization> list = new ArrayList<>();
+        for (String[] d : rows("hospitalizations.csv")) {
+            try {
+                int patientId = Integer.parseInt(d[2]);
+                int vetId = Integer.parseInt(d[5]);
+                DomesticAnimal patient = null;
+                for (DomesticAnimal a : animals) if (a.getId() == patientId) { patient = a; break; }
+                Veterinarian vet = null;
+                for (Veterinarian v : vets) if (v.getId() == vetId) { vet = v; break; }
+                if (patient == null || vet == null) continue;
+
+                LocalDateTime entry = LocalDateTime.parse(d[6], DT);
+                LocalDateTime discharge = (d.length > 7 && !isNull(d[7])) ? LocalDateTime.parse(d[7], DT) : null;
+
+                ArrayList<VitalParameters> vitals = new ArrayList<>();
+                if (d.length > 8 && !isNull(d[8])) {
+                    for (String vStr : d[8].split("\\|")) {
+                        String[] p = vStr.split("~", -1);
+                        if (p.length < 8) continue;
+                        Integer hr = isNull(p[0]) ? null : Integer.valueOf(p[0]);
+                        Integer rr = isNull(p[1]) ? null : Integer.valueOf(p[1]);
+                        Double temp = isNull(p[2]) ? null : Double.valueOf(p[2]);
+                        Mucosa mucosa = isNull(p[3]) ? null : Mucosa.valueOf(p[3]);
+                        Integer coag = isNull(p[4]) ? null : Integer.valueOf(p[4]);
+                        boolean euv = Boolean.parseBoolean(p[5]);
+                        Double dehy = isNull(p[6]) ? null : Double.valueOf(p[6]);
+                        String desc = isNull(p[7]) ? "-" : p[7];
+                        vitals.add(new VitalParameters(hr, rr, temp, mucosa, coag, new Hydration(euv, dehy), desc));
+                    }
+                }
+
+                Hospitalization h = new Hospitalization(true, Double.parseDouble(d[1]), patient,
+                        LocalDateTime.parse(d[3], DT), d[4], vet, entry, discharge, vitals);
+                h.setId(Integer.parseInt(d[0]));
+                list.add(h);
+            } catch (Exception e) { /* skip */ }
+        }
+        return list;
+    }
+
     public ArrayList<Invoice> loadInvoices(List<Owner> owners, List<DomesticAnimal> animals,
                                            List<Appointment> appointments, List<PetShopService> services,
-                                           List<Surgery> surgeries, List<Product> products) {
+                                           List<Surgery> surgeries, List<Hospitalization> hospitalizations,
+                                           List<Product> products) {
         ArrayList<Invoice> invoices = new ArrayList<>();
         for (String[] d : rows("invoices.csv")) {
             try {
@@ -303,6 +346,8 @@ public class LoadData {
                             for (PetShopService s : services) if (s.getId() == rid) { procs.add(s); break; }
                         } else if (r[0].equals("SURGERY")) {
                             for (Surgery s : surgeries) if (s.getId() == rid) { procs.add(s); break; }
+                        } else if (r[0].equals("HOSP")) {
+                            for (Hospitalization h : hospitalizations) if (h.getId() == rid) { procs.add(h); break; }
                         }
                     }
                 }
