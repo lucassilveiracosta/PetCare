@@ -3,6 +3,7 @@ package business.model.invoice;
 import business.model.animal.Animal;
 import business.model.appointment.VitalParameters;
 import business.model.person.Veterinarian;
+import exceptions.HospitalizationNotPaidException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ public class Hospitalization extends Procedure{
     private LocalDateTime entryDateTime;
     private LocalDateTime dischargeDateTime;
     private ArrayList<VitalParameters> vitalParametersHistory;
+    private Invoice invoice;
 
-    public Hospitalization(Double price, Animal patient, LocalDateTime dateHour, String description, Animal animal, Veterinarian responsibleVeterinarian, LocalDateTime entryDateTime, LocalDateTime dischargeDateTime, ArrayList<VitalParameters> vitalParametersHistory) {
+    public Hospitalization(Double price, Animal patient, LocalDateTime dateHour, String description, Animal animal, Veterinarian responsibleVeterinarian, LocalDateTime entryDateTime, LocalDateTime dischargeDateTime, ArrayList<VitalParameters> vitalParametersHistory, Invoice invoice) {
         super(price, patient, dateHour, description);
         setResponsibleVeterinarian(responsibleVeterinarian);
         setEntryDateTime(entryDateTime);
@@ -46,6 +48,7 @@ public class Hospitalization extends Procedure{
 
     public void setDischargeDateTime(LocalDateTime dischargeDateTime) {
         if (dischargeDateTime == null) throw new IllegalArgumentException("400 - Invalid discharge date");
+        if (!invoice.isPaid()) throw new HospitalizationNotPaidException("Hospitalization costs must be paid");
         this.dischargeDateTime = dischargeDateTime;
     }
 

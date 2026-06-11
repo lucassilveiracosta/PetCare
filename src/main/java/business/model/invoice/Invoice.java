@@ -15,12 +15,21 @@ public class Invoice {
     private final LocalDateTime dateHour = LocalDateTime.now();
     private ArrayList<Procedure> procedures;
     private ArrayList<Product> products;
+    private boolean paid = false;
 
-    public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products) {
+    public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products, boolean paid) {
         setDono(owner);
         setPaciente(patient);
         this.procedures = procedures;
         this.products = products;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     public int getId() {
