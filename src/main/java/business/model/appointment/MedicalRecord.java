@@ -1,47 +1,84 @@
 package business.model.appointment;
 
 import business.model.animal.Animal;
+import business.model.invoice.Surgery;
 
 import java.util.ArrayList;
 
-public class MedicalRecord {
+public class MedicalRecord { //prontuario
 
-    private ArrayList<Appointment> appointments; // avaliar se se enquadra em consulta
-    private Animal animal;
-    private String description;
+    protected static int countId = 1;
+    protected int id = countId++;
+    private final Animal patient;
+    private Anamnesis patientAnamnesis;
+    private PhysicalExamination physicalExamination;
+    private VitalParameters vitalParameters;
+    private ArrayList<String> exams;
+    private ArrayList<Surgery> surgeries;
 
-    public MedicalRecord(ArrayList<Appointment> idasAoVeterinarios, String description, Animal animal) {
-        this.appointments = idasAoVeterinarios;
-        setAnimal(animal);
-        this.description = description;
+    public MedicalRecord(Animal patient, Anamnesis patientAnamnesis, PhysicalExamination physicalExamination, VitalParameters vitalParameters, ArrayList<String> exams, ArrayList<Surgery> surgeries) {
+        this.patient = patient;
+        setPatientAnamnesis(patientAnamnesis);
+        setPhysicalExamination(physicalExamination);
+        setVitalParameters(vitalParameters);
+        this.exams = exams;
+        this.surgeries = surgeries;
     }
 
-    public ArrayList<Appointment> getAppointments() {
-        return appointments;
+    public Animal getPatient() {
+        return patient;
     }
 
-    public void setAppointments(ArrayList<Appointment> idasAoVeterinarios) {
-        this.appointments = idasAoVeterinarios;
+    public Anamnesis getPatientAnamnesis() {
+        return patientAnamnesis;
     }
 
-    public Animal getAnimal() {
-        return animal;
+    public void setPatientAnamnesis(Anamnesis patientAnamnesis) {
+        if (patientAnamnesis == null) {
+            throw new IllegalArgumentException("Anamnesis can't be null");
+        }
+        this.patientAnamnesis = patientAnamnesis;
     }
 
-    public void setAnimal(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("400 - Invalid animal");
-        this.animal = animal;
+    public PhysicalExamination getPhysicalExamination() {
+        return physicalExamination;
     }
 
-    public String getDescription() {
-        return description;
+    public void setPhysicalExamination(PhysicalExamination physicalExamination) {
+        if (physicalExamination == null) {
+            throw new IllegalArgumentException("Physical examination can't be null");
+        }
+        this.physicalExamination = physicalExamination;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public VitalParameters getVitalParameters() {
+        return vitalParameters;
     }
 
-    public ArrayList<Appointment> getIdasAoVeterinario() {
-        return appointments;
+    public void setVitalParameters(VitalParameters vitalParameters) {
+        if (vitalParameters == null) {
+            throw new IllegalArgumentException("Vital parameters can't be null");
+        }
+        this.vitalParameters = vitalParameters;
+    }
+
+    public ArrayList<String> getExams() {
+        return exams;
+    }
+
+    public void setExams(ArrayList<String> exams) {
+        this.exams = exams;
+    }
+
+    public ArrayList<Surgery> getSurgeries() {
+        return surgeries;
+    }
+
+    public void setSurgeries(ArrayList<Surgery> surgeries) {
+        this.surgeries = surgeries;
+    }
+
+    public int getId() {
+        return id;
     }
 }
