@@ -136,4 +136,17 @@ public class ControllerPerson implements IControllerPerson {
         }
         return filter;
     }
+
+    public int getVeterinarianProductivity(Veterinarian veterinarian, Month month) {
+        int count = 0;
+        for (Appointment a: ControllerPetCareServer.getInstance().getAppointment().getAll()) {
+            if (a.getDateHourScheduled().getMonth().equals(month)) {
+                if (a.getResponsableVeterinarian() != null && a.getResponsableVeterinarian().getId() == veterinarian.getId()) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
 }
