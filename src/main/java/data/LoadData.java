@@ -52,6 +52,36 @@ public class LoadData {
         return owners;
     }
 
+    public ArrayList<Veterinarian> loadVeterinarians() {
+        ArrayList<Veterinarian> vets = new ArrayList<>();
+        String path = "veterinarianSave.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if(line.trim().isEmpty()) continue;
+                String[] data = line.split(",", -1);
+                
+                int id = Integer.parseInt(data[0]);
+                String name = data[1];
+                String email = data[2];
+                String password = data[3];
+                LocalDate birthDate = LocalDate.parse(data[4], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                String cpf = data[5];
+                String telephone = data[6];
+                String crmv = data[7];
+
+                // Como a especialidade exigiria serialização complexa, iniciamos a lista vazia.
+                Veterinarian vet = new Veterinarian(name, email, password, birthDate, cpf, telephone, crmv, new ArrayList<>());
+                vet.setId(id);
+                vets.add(vet);
+            }
+        } catch (IOException e) {
+            System.out.println("Arquivo de veterinários não encontrado ou vazio. Iniciando lista vazia.");
+        }
+        return vets;
+    }
+
     public ArrayList<DomesticAnimal> loadDomesticAnimals(List<Owner> loadedOwners) {
         ArrayList<DomesticAnimal> animals = new ArrayList<>();
         String path = "domesticAnimalSave.csv";
