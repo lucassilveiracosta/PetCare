@@ -4,15 +4,13 @@ import business.model.animal.Animal;
 
 import java.util.ArrayList;
 
-public class ClinicalHystory {
+public class ClinicalHistory {
 
     private ArrayList<Appointment> appointments; // avaliar se se enquadra em consulta
-    private Animal animal;
     private String description;
 
-    public ClinicalHystory(ArrayList<Appointment> idasAoVeterinarios, String description, Animal animal) {
+    public ClinicalHistory(ArrayList<Appointment> idasAoVeterinarios, String description) {
         this.appointments = idasAoVeterinarios;
-        setAnimal(animal);
         this.description = description;
     }
 
@@ -22,15 +20,6 @@ public class ClinicalHystory {
 
     public void setAppointments(ArrayList<Appointment> idasAoVeterinarios) {
         this.appointments = idasAoVeterinarios;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        if (animal == null) throw new IllegalArgumentException("400 - Invalid animal");
-        this.animal = animal;
     }
 
     public String getDescription() {

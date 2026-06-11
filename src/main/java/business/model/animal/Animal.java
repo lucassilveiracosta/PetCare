@@ -1,5 +1,6 @@
 package business.model.animal;
 
+import business.model.appointment.ClinicalHistory;
 import enums.StageOfLife;
 import enums.Size;
 import enums.Sex;
@@ -22,8 +23,9 @@ public class Animal {
     protected Size size;
     protected Sex sex;
     private ArrayList<Vaccine> vaccines;
+    private ClinicalHistory clinicalHistory;
 
-    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, ArrayList<Vaccine> vaccines) {
+    public Animal(String name, String species, String race, LocalDate birthDate, StageOfLife stageOfLife, double weight, Size size, Sex sex, ArrayList<Vaccine> vaccines, ClinicalHistory clinicalHistory) {
         setName(name);
         setSpecies(species);
         setRace(race);
@@ -33,9 +35,16 @@ public class Animal {
         setSize(size);
         setSex(sex);
         setVaccines(vaccines);
-
+        setClinicalHistory(clinicalHistory);
     }
 
+    public ClinicalHistory getClinicalHistory() {
+        return clinicalHistory;
+    }
+
+    public void setClinicalHistory(ClinicalHistory clinicalHistory) {
+        this.clinicalHistory = clinicalHistory;
+    }
 
     public ArrayList<Vaccine> getVaccines() {
         return vaccines;
