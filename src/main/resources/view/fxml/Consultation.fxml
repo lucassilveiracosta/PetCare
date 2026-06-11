@@ -47,7 +47,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConsultationController">
+<SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ConsultationController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="622.0" prefWidth="281.0">
          <children>

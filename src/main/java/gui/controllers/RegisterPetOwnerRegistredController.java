@@ -54,27 +54,13 @@ public class RegisterPetOwnerRegistredController {
     }
 
     @FXML
-    public void onNextButton(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterPet.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("Register Pet");
-        stage.show();
+    public void onNextButton(ActionEvent event) {
+        gui.Navigator.navigate("Pet Details", "/view/fxml/RegisterPet.fxml");
     }
+
     @FXML
     public void onBackButton(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 800, 600));
-            stage.show();
-        } catch (IOException e) {
-            showAlert("Erro de Navegação", "Não foi possível voltar ao menu.", Alert.AlertType.ERROR);
-            e.printStackTrace();
-        }
+        gui.Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
     private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);

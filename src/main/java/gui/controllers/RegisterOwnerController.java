@@ -62,15 +62,7 @@ public class RegisterOwnerController {
 
     @FXML
     public void backButton(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 800, 600));
-            stage.show();
-        } catch (IOException e) {
-            showAlert("Erro de Navegação", "Não foi possível voltar ao menu.", Alert.AlertType.ERROR);
-            e.printStackTrace();
-        }
+        gui.Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
 
     private void showAlert(String title, String content, Alert.AlertType type) {

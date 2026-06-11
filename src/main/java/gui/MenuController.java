@@ -21,6 +21,11 @@ public class MenuController {
     }
 
     @FXML
+    public void openAttendant(ActionEvent event) {
+        Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
+    }
+
+    @FXML
     public void openAdmin(ActionEvent event) {
         Navigator.navigate("Admin", "/view/fxml/AdminMenu.fxml");
     }

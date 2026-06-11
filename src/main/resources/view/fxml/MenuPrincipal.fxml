@@ -9,5 +9,6 @@
     <Button onAction="#openAgendamento" prefHeight="40" prefWidth="220" text="Scheduling" />
     <Button onAction="#openConsultas" prefHeight="40" prefWidth="220" text="Consultations" />
     <Button onAction="#openDashboard" prefHeight="40" prefWidth="220" text="Appointment Dashboard" />
+    <Button onAction="#openAttendant" prefHeight="40" prefWidth="220" text="Attendant" />
     <Button onAction="#openAdmin" prefHeight="40" prefWidth="220" text="Admin" />
 </VBox>

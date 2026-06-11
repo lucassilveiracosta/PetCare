@@ -59,6 +59,10 @@ public class AppointmentViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         server = ControllerPetCareServer.getInstance();
 
+        // This controller is (mistakenly) shared by several placeholder screens that
+        // don't have the scheduling controls. Only initialize for the real Scheduling screen.
+        if (appointmentScheduling == null) return;
+
         // Service types: medical (ProcedureType) + pet shop (PetShopServices)
         appointmentScheduling.getItems().addAll(ProcedureType.values());
         appointmentScheduling.getItems().addAll(PetShopServices.values());
@@ -122,21 +126,12 @@ public class AppointmentViewController implements Initializable {
     }
     @FXML
     public void onBackButton(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root, 800, 600));
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Deu erro ao tentar abrir a tela anterior: " + e.getMessage());
-            e.printStackTrace();
-        }
+        gui.Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
 
     @FXML
     protected void onScheduleClick(ActionEvent event) {
+        if (appointmentScheduling == null) return; // placeholder screen sharing this controller
         int ownerIdx   = nameTutorScheduling.getSelectionModel().getSelectedIndex();
         int animalIdx  = nameAnimalScheduling.getSelectionModel().getSelectedIndex();
         int profIdx    = nameVeterianarianScheduling.getSelectionModel().getSelectedIndex();

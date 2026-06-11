@@ -84,6 +84,34 @@ public class PdfReportService {
         }
     }
 
+    // ── Pet shop stock / receipt ──────────────────────────────────────────────
+    public void generateStockReport(List<Product> products, File dest) throws IOException {
+        try (Document doc = openDocument(dest)) {
+            title(doc, "PetCare — Pet Shop Products");
+
+            double total = 0.0;
+            Table table = new Table(UnitValue.createPercentArray(new float[]{3, 1, 1, 1, 2})).useAllAvailableWidth();
+            header(table, "Name", "Qty", "Price", "Subtotal", "Type");
+            if (products != null) {
+                for (Product p : products) {
+                    double price = p.getPrice() != null ? p.getPrice() : 0.0;
+                    double subtotal = price * p.getQuantity();
+                    total += subtotal;
+                    String type = p.isVet()
+                            ? (p.getMedicineType() != null ? p.getMedicineType().name() : "VET")
+                            : "PET SHOP";
+                    cell(table, p.getName());
+                    cell(table, String.valueOf(p.getQuantity()));
+                    cell(table, money(price));
+                    cell(table, money(subtotal));
+                    cell(table, type);
+                }
+            }
+            doc.add(table);
+            doc.add(new Paragraph("TOTAL: " + money(total)).setBold().setFontSize(14));
+        }
+    }
+
     // ── REQ13 — Clinical history ──────────────────────────────────────────────
     public void generateClinicalHistory(Animal animal, List<Appointment> appts, File dest) throws IOException {
         try (Document doc = openDocument(dest)) {

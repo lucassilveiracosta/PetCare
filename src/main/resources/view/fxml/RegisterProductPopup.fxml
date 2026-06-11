@@ -43,14 +43,14 @@
                      <left>
                         <BorderPane prefHeight="60.0" prefWidth="193.0" BorderPane.alignment="CENTER">
                            <center>
-                              <Button fx:id="yesButtonPdf" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="123.0" text="Yes" BorderPane.alignment="CENTER" />
+                              <Button fx:id="yesButtonPdf" mnemonicParsing="false" onAction="#onYesPdf" prefHeight="42.0" prefWidth="123.0" text="Yes" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </left>
                      <center>
                         <BorderPane prefHeight="75.0" prefWidth="227.0" BorderPane.alignment="CENTER">
                            <center>
-                              <Button fx:id="noButtonPdf" mnemonicParsing="false" onAction="#onScheduleClick" prefHeight="42.0" prefWidth="127.0" text="No!" BorderPane.alignment="CENTER" />
+                              <Button fx:id="noButtonPdf" mnemonicParsing="false" onAction="#onNoPdf" prefHeight="42.0" prefWidth="127.0" text="No!" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </center>

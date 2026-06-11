@@ -12,33 +12,13 @@ import java.io.IOException;
 
 public class RegisterPetController {
     @FXML
-    public void onNextButton(ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterPetVaccine.fxml"));
-
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("AttendantMenu");
-        stage.show();
-
+    public void onNextButton(ActionEvent event) {
+        gui.Navigator.navigate("Pet Vaccines", "/view/fxml/RegisterPetVaccine.fxml");
     }
+
     @FXML
-    public void backButton(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/AttendantMenu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
-            stage.setScene(new Scene(root, 800, 600));
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println("Deu erro ao tentar abrir a tela anterior: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public void onBackButton(ActionEvent event) {
+        gui.Navigator.navigate("Attendant", "/view/fxml/AttendantMenu.fxml");
     }
 
 }
