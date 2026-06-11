@@ -1,0 +1,4 @@
+id;name;email;password;birth;cpf;phone;position;workShift
+7;Olivia Brooks;olivia.brooks@petcare.com;password123;14/09/1992;555.666.777-88;(11) 95555-1122;Groomer;Morning
+8;Daniel Reed;daniel.reed@petcare.com;password123;30/01/1988;666.777.888-99;(11) 94444-3344;Bather;Afternoon
+9;Sophia Lima;sophia.lima@petcare.com;password123;02/05/1995;888.999.000-11;(11) 93333-5566;Groomer;Afternoon

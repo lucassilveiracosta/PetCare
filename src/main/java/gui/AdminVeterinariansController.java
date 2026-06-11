@@ -81,6 +81,7 @@ public class AdminVeterinariansController implements Initializable {
             fieldSpecDescription.clear();
             loadSpecialties(vet);
             tableVets.refresh();
+            ControllerPetCareServer.getInstance().saveAll(); // persist to the CSV database
         } catch (IllegalArgumentException ex) {
             showAlert(Alert.AlertType.ERROR, "Invalid Specialty", ex.getMessage());
         }
@@ -94,6 +95,7 @@ public class AdminVeterinariansController implements Initializable {
         vet.getSpecialties().remove(selected);
         loadSpecialties(vet);
         tableVets.refresh();
+        ControllerPetCareServer.getInstance().saveAll(); // persist to the CSV database
     }
 
     @FXML
@@ -116,6 +118,11 @@ public class AdminVeterinariansController implements Initializable {
     @FXML
     private void handleRefresh() {
         refresh();
+    }
+
+    @FXML
+    private void handleProductivity() {
+        Navigator.navigate("Productivity", "/view/fxml/VetProductivity.fxml");
     }
 
     private void refresh() {

@@ -15,6 +15,9 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1150, 740);
         stage.setTitle("PetCare");
         stage.setScene(scene);
+        // Persist the whole in-memory state to the CSV database when the app closes
+        stage.setOnCloseRequest(e ->
+                business.controller.ControllerPetCareServer.getInstance().saveAll());
         stage.show();
     }
 }

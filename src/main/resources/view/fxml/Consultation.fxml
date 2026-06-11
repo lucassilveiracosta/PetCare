@@ -148,6 +148,18 @@
                         <Label text="Vital notes:" />
                         <TextArea fx:id="fieldVitalNotes" prefHeight="50.0" wrapText="true" />
 
+                        <!-- Procedure / Referral -->
+                        <Separator />
+                        <Label style="-fx-font-weight: bold;" text="Procedure" />
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label text="Procedure type:" />
+                              <ChoiceBox fx:id="cbProcedure" prefWidth="200.0" />
+                              <CheckBox fx:id="chkHospitalization" mnemonicParsing="false" text="Needs hospitalization" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="btnSurgeryCenter" mnemonicParsing="false" onAction="#openSurgeryCenter" text="Open Surgery / Hospitalization Center" />
+
                         <!-- Actions -->
                         <Separator />
                         <HBox alignment="CENTER_LEFT" spacing="8.0">

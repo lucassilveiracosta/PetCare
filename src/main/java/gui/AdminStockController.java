@@ -1,37 +1,50 @@
 package gui;
 
 import business.controller.ControllerPetCareServer;
+import business.interfaces.IControllerExpense;
 import business.interfaces.IControllerStock;
+import business.model.invoice.Expense;
 import business.model.invoice.Product;
-import enums.MedicineType;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
+import business.report.PdfReportService;
+import enums.ExpenseType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Admin stock management: pick a product (radio), increase/decrease its quantity
+ * with the −/+ counter, add new products (same form the attendant uses), see the
+ * total stock value and generate a stock finance report.
+ */
 public class AdminStockController implements Initializable {
 
     @FXML private ToggleButton btnPetShop, btnVet;
-    @FXML private TableView<Product> tableProducts;
-    @FXML private TableColumn<Product, String> colName, colQty, colPrice, colType, colDescription;
-
-    @FXML private TextField fieldName, fieldQuantity, fieldPrice;
-    @FXML private TextArea fieldDescription;
-    @FXML private CheckBox chkIsVet;
-    @FXML private ChoiceBox<MedicineType> cbMedicineType;
-    @FXML private Button btnAdd, btnSave, btnDelete;
+    @FXML private VBox productRadios;
+    @FXML private Label lblSelectedName, lblCount, lblTotalValue;
 
     private IControllerStock stockCtrl;
+    private IControllerExpense expenseCtrl;
     private ToggleGroup viewGroup;
+    private ToggleGroup productGroup;
+    private Product selectedProduct;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         stockCtrl = ControllerPetCareServer.getInstance().getStock();
+        expenseCtrl = ControllerPetCareServer.getInstance().getExpense();
 
         viewGroup = new ToggleGroup();
         btnPetShop.setToggleGroup(viewGroup);
@@ -39,21 +52,8 @@ public class AdminStockController implements Initializable {
         btnPetShop.setSelected(true);
         viewGroup.selectedToggleProperty().addListener((obs, old, nw) -> {
             if (nw == null) viewGroup.selectToggle(old);
-            else refresh();
+            else { selectedProduct = null; refresh(); }
         });
-
-        cbMedicineType.setItems(FXCollections.observableArrayList(MedicineType.values()));
-        cbMedicineType.getSelectionModel().select(MedicineType.COMUM);
-        cbMedicineType.disableProperty().bind(chkIsVet.selectedProperty().not());
-
-        colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName()));
-        colQty.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().getQuantity())));
-        colPrice.setCellValueFactory(c -> new SimpleStringProperty(money(c.getValue().getPrice())));
-        colType.setCellValueFactory(c -> new SimpleStringProperty(
-                c.getValue().getMedicineType() != null ? c.getValue().getMedicineType().name() : "-"));
-        colDescription.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDescription()));
-
-        tableProducts.getSelectionModel().selectedItemProperty().addListener((obs, old, p) -> populateForm(p));
 
         refresh();
     }
@@ -64,83 +64,111 @@ public class AdminStockController implements Initializable {
 
     private void refresh() {
         List<Product> items = isVetView() ? stockCtrl.filterVeterinarianProducts() : stockCtrl.filterPetShopProducts();
-        tableProducts.setItems(FXCollections.observableArrayList(items));
-        colType.setVisible(isVetView());
-        handleClear();
+
+        productGroup = new ToggleGroup();
+        productRadios.getChildren().clear();
+        for (Product p : items) {
+            double price = p.getPrice() != null ? p.getPrice() : 0.0;
+            RadioButton rb = new RadioButton(String.format("%s   (qty: %d)   R$ %.2f", p.getName(), p.getQuantity(), price));
+            rb.setToggleGroup(productGroup);
+            rb.setUserData(p);
+            productRadios.getChildren().add(rb);
+            if (p == selectedProduct) rb.setSelected(true);
+        }
+        productGroup.selectedToggleProperty().addListener((o, ov, nv) -> {
+            selectedProduct = nv != null ? (Product) nv.getUserData() : null;
+            updateCounter();
+        });
+
+        double total = 0.0;
+        for (Product p : stockCtrl.getAll()) total += value(p);
+        lblTotalValue.setText(money(total));
+
+        updateCounter();
     }
 
-    private void populateForm(Product p) {
-        if (p == null) { btnDelete.setDisable(true); btnSave.setDisable(true); return; }
-        fieldName.setText(p.getName());
-        fieldQuantity.setText(String.valueOf(p.getQuantity()));
-        fieldPrice.setText(String.valueOf(p.getPrice()));
-        fieldDescription.setText(p.getDescription());
-        chkIsVet.setSelected(p.isVet());
-        // isVet and medicine type are immutable after creation → lock while a product is selected
-        chkIsVet.setDisable(true);
-        if (p.getMedicineType() != null) cbMedicineType.getSelectionModel().select(p.getMedicineType());
-        btnDelete.setDisable(false);
-        btnSave.setDisable(false);
+    private void updateCounter() {
+        if (selectedProduct != null) {
+            lblSelectedName.setText(selectedProduct.getName());
+            lblCount.setText(String.valueOf(selectedProduct.getQuantity()));
+        } else {
+            lblSelectedName.setText("—");
+            lblCount.setText("0");
+        }
     }
 
     @FXML
-    private void handleAdd() {
+    private void handleIncrease() {
+        if (selectedProduct == null) return;
+        selectedProduct.setQuantity(selectedProduct.getQuantity() + 1);
+        ControllerPetCareServer.getInstance().saveAll();
+        refresh();
+    }
+
+    @FXML
+    private void handleDecrease() {
+        if (selectedProduct == null || selectedProduct.getQuantity() <= 0) return;
+        selectedProduct.setQuantity(selectedProduct.getQuantity() - 1);
+        ControllerPetCareServer.getInstance().saveAll();
+        refresh();
+    }
+
+    @FXML
+    private void handleAddProduct() {
         try {
-            boolean isVet = chkIsVet.isSelected();
-            MedicineType type = isVet ? cbMedicineType.getValue() : null;
-            Product p = new Product(
-                    fieldName.getText(),
-                    parseInt(fieldQuantity.getText()),
-                    blankToDash(fieldDescription.getText()),
-                    parseDouble(fieldPrice.getText()),
-                    isVet, type);
-            stockCtrl.post(p);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/RegisterProduct.fxml"));
+            Parent root = loader.load();
+            Stage popup = new Stage();
+            popup.setScene(new Scene(root));
+            popup.setTitle("Register Product");
+            popup.initModality(Modality.APPLICATION_MODAL);
+            popup.initOwner(productRadios.getScene().getWindow());
+            popup.showAndWait();
             refresh();
-        } catch (Exception ex) {
-            showAlert(Alert.AlertType.ERROR, "Could not add product", ex.getMessage());
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Could not open form", e.getMessage());
         }
     }
 
     @FXML
-    private void handleSave() {
-        Product p = tableProducts.getSelectionModel().getSelectedItem();
-        if (p == null) return;
+    private void handleReport() {
+        double spentThisMonth = stockSpentThisMonth();
+        double stockValue = 0.0;
+        for (Product p : stockCtrl.getAll()) stockValue += value(p);
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Save Stock Report (PDF)");
+        chooser.setInitialFileName("StockReport.pdf");
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+        File dest = chooser.showSaveDialog(productRadios.getScene().getWindow());
+        if (dest == null) return;
+
         try {
-            // name/qty/price/description are mutable; isVet and medicineType are not (model constraint)
-            p.setName(fieldName.getText());
-            p.setQuantity(parseInt(fieldQuantity.getText()));
-            p.setPrice(parseDouble(fieldPrice.getText()));
-            p.setDescription(blankToDash(fieldDescription.getText()));
-            tableProducts.refresh();
-        } catch (Exception ex) {
-            showAlert(Alert.AlertType.ERROR, "Could not save changes", ex.getMessage());
+            new PdfReportService().generateStockFinanceReport(stockCtrl.getAll(), spentThisMonth, stockValue, dest);
+            showAlert(Alert.AlertType.INFORMATION, "Report generated",
+                    String.format("Spent on stock this month: %s%nValue still in stock: %s%n%nPDF saved to:%n%s",
+                            money(spentThisMonth), money(stockValue), dest.getAbsolutePath()));
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Could not generate report", e.getMessage());
         }
     }
 
-    @FXML
-    private void handleDelete() {
-        Product p = tableProducts.getSelectionModel().getSelectedItem();
-        if (p == null) return;
-        try {
-            stockCtrl.delete(p.getId());
-            refresh();
-        } catch (Exception ex) {
-            showAlert(Alert.AlertType.ERROR, "Could not delete", ex.getMessage());
+    private double stockSpentThisMonth() {
+        LocalDate now = LocalDate.now();
+        double total = 0.0;
+        for (Expense e : expenseCtrl.filterByType(ExpenseType.ESTOQUE)) {
+            if (e.getDate() != null
+                    && e.getDate().getMonth() == now.getMonth()
+                    && e.getDate().getYear() == now.getYear()) {
+                total += e.getAmount() != null ? e.getAmount() : 0.0;
+            }
         }
+        return total;
     }
 
-    @FXML
-    private void handleClear() {
-        tableProducts.getSelectionModel().clearSelection();
-        fieldName.clear();
-        fieldQuantity.clear();
-        fieldPrice.clear();
-        fieldDescription.clear();
-        chkIsVet.setSelected(isVetView());
-        chkIsVet.setDisable(false);
-        cbMedicineType.getSelectionModel().select(MedicineType.COMUM);
-        btnDelete.setDisable(true);
-        btnSave.setDisable(true);
+    private static double value(Product p) {
+        double price = p.getPrice() != null ? p.getPrice() : 0.0;
+        return price * p.getQuantity();
     }
 
     @FXML
@@ -148,22 +176,8 @@ public class AdminStockController implements Initializable {
         refresh();
     }
 
-    private static String blankToDash(String s) {
-        return (s != null && !s.isBlank()) ? s.trim() : "-";
-    }
-
-    private static Integer parseInt(String s) {
-        if (s == null || s.isBlank()) return 0;
-        return Integer.valueOf(s.trim());
-    }
-
-    private static Double parseDouble(String s) {
-        if (s == null || s.isBlank()) return 0.0;
-        return Double.valueOf(s.trim().replace(',', '.'));
-    }
-
-    private static String money(Double v) {
-        return v != null ? String.format("R$ %.2f", v) : "-";
+    private static String money(double v) {
+        return String.format("R$ %.2f", v);
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {

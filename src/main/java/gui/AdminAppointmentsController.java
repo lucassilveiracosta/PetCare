@@ -135,7 +135,9 @@ public class AdminAppointmentsController implements Initializable {
             if (fieldPrice.getText() != null && !fieldPrice.getText().isBlank()) {
                 appt.setPrice(Double.valueOf(fieldPrice.getText().trim().replace(',', '.')));
             }
+            ControllerPetCareServer.getInstance().saveAll(); // persist the edit to the CSV database
             refresh();
+            showAlert(Alert.AlertType.INFORMATION, "Saved", "Appointment updated.");
         } catch (Exception ex) {
             showAlert(Alert.AlertType.ERROR, "Could not save", ex.getMessage());
         }

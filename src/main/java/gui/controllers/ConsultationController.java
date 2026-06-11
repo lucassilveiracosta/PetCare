@@ -16,6 +16,8 @@ import business.report.PdfReportService;
 import enums.AppointmentStatus;
 import enums.Conscience;
 import enums.Mucosa;
+import enums.ProcedureType;
+import gui.Navigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,6 +68,11 @@ public class ConsultationController implements Initializable {
     @FXML private TextField fieldDehydration;
     @FXML private TextArea fieldVitalNotes;
 
+    // Procedure / referral
+    @FXML private ChoiceBox<ProcedureType> cbProcedure;
+    @FXML private CheckBox chkHospitalization;
+    @FXML private Button btnSurgeryCenter;
+
     private IControllerAnimal animalController;
     private IControllerAppointment appointmentController;
 
@@ -87,6 +94,8 @@ public class ConsultationController implements Initializable {
         cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
         cbMucosa.setItems(FXCollections.observableArrayList(Mucosa.values()));
         cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
+        cbProcedure.setItems(FXCollections.observableArrayList(ProcedureType.values()));
+        cbProcedure.getSelectionModel().select(ProcedureType.GENERAL_CONSULTATION);
 
         medicalrecordpanel.setDisable(true);
         loadWaitingList();
@@ -204,6 +213,7 @@ public class ConsultationController implements Initializable {
 
     @FXML
     private void finishConsultation() {
+        boolean goToSurgery = false;
         if (selectedAppointment != null && selectedAnimal != null) {
             try {
                 String complaint = orDefault(fieldSymptoms.getText(), "No complaint recorded.");
@@ -235,6 +245,16 @@ public class ConsultationController implements Initializable {
                 selectedAppointment.setAnamnesis(
                         new Anamnesis(complaint, dietary, "Consultation finalized"));
 
+                // Procedure referral: surgery and/or hospitalization
+                boolean needsSurgery = cbProcedure.getValue() == ProcedureType.SURGERY;
+                boolean needsHosp = chkHospitalization.isSelected();
+                selectedAppointment.setNeedsSurgery(needsSurgery);
+                selectedAppointment.setNeedsHospitalization(needsHosp);
+                goToSurgery = needsSurgery || needsHosp;
+
+                // Persist the finalized consultation (diagnosis + exam + vitals) to the CSV database
+                business.controller.ControllerPetCareServer.getInstance().saveAll();
+
                 showAlert(Alert.AlertType.INFORMATION, "Consultation Finalized",
                         selectedAnimal.getName() + "'s appointment is now marked as Completed.\n"
                                 + "The Dashboard will reflect this change.");
@@ -257,6 +277,16 @@ public class ConsultationController implements Initializable {
         medicalrecordpanel.setDisable(true);
         listWait.getSelectionModel().clearSelection();
         loadWaitingList();
+
+        // If surgery/hospitalization was requested, go to the Surgery Center
+        if (goToSurgery) {
+            Navigator.navigate("Surgery Center", "/view/fxml/SurgeryCenter.fxml");
+        }
+    }
+
+    @FXML
+    private void openSurgeryCenter() {
+        Navigator.navigate("Surgery Center", "/view/fxml/SurgeryCenter.fxml");
     }
 
     private void clearConsultationFields() {
@@ -273,6 +303,8 @@ public class ConsultationController implements Initializable {
         chkEuvolemic.setSelected(true);
         cbConsciousness.getSelectionModel().select(Conscience.ALERTA);
         cbMucosa.getSelectionModel().select(Mucosa.NORMACORADAS);
+        cbProcedure.getSelectionModel().select(ProcedureType.GENERAL_CONSULTATION);
+        chkHospitalization.setSelected(false);
     }
 
     private static String orDefault(String value, String fallback) {

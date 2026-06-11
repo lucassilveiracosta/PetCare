@@ -5,6 +5,7 @@ import business.interfaces.IControllerInvoice;
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
 import business.model.invoice.Invoice;
+import data.SaveData;
 import data.interfaces.IRepositoryInvoice;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class ControllerInvoice implements IControllerInvoice {
         if (exists == null) throw new InvoiceNotFoundException("404 - ID not found");
 
         repositoryInvoice.update(id, invoice);
+        persist();
     }
 
     public void delete(int id) {
@@ -45,11 +47,17 @@ public class ControllerInvoice implements IControllerInvoice {
         if (exists == null) throw new InvoiceNotFoundException("404 - ID not found");
 
         repositoryInvoice.remove(exists);
+        persist();
     }
 
     public void post(Invoice invoice) {
         Invoice exists = repositoryInvoice.findById(invoice.getId());
         if (exists != null) throw new InvoiceConflictException("409 - This invoice already exists");
         repositoryInvoice.create(invoice);
+        persist();
+    }
+
+    private void persist() {
+        new SaveData().saveAllInvoices(repositoryInvoice.findAll());
     }
 }
