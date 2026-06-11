@@ -38,6 +38,7 @@ public class Surgery extends Procedure {
         for (Specialty s: responsebleVeterinarian.getSpecialties()) {
             if (s.getName().isBlank()) throw new IllegalArgumentException("400 - dont have active specialty");
         }
+        
         if(responsebleVeterinarian == null){
             throw new IllegalArgumentException("400 - Invalid responsable vatarinarian");
         }
