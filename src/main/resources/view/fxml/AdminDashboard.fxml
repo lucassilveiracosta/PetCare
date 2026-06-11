@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AdminDashboardController">
+    <padding>
+        <Insets bottom="16" left="16" right="16" top="16" />
+    </padding>
+
+    <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="System &amp; Financial Dashboard" />
+
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <!-- ── System Overview ── -->
+        <Tab text="System Overview">
+            <VBox spacing="12">
+                <padding>
+                    <Insets bottom="12" left="12" right="12" top="12" />
+                </padding>
+                <FlowPane fx:id="systemCards" hgap="12" vgap="12" />
+            </VBox>
+        </Tab>
+
+        <!-- ── Financial ── -->
+        <Tab text="Financial">
+            <VBox spacing="12">
+                <padding>
+                    <Insets bottom="12" left="12" right="12" top="12" />
+                </padding>
+
+                <HBox spacing="12">
+                    <VBox fx:id="cardIn" alignment="CENTER" prefWidth="200" style="-fx-background-color: #d4edda; -fx-background-radius: 8; -fx-padding: 12;">
+                        <Label text="Total Income" style="-fx-font-weight: bold;" />
+                        <Label fx:id="lblTotalIn" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="R$ 0.00" />
+                    </VBox>
+                    <VBox fx:id="cardOut" alignment="CENTER" prefWidth="200" style="-fx-background-color: #f8d7da; -fx-background-radius: 8; -fx-padding: 12;">
+                        <Label text="Total Expenses" style="-fx-font-weight: bold;" />
+                        <Label fx:id="lblTotalOut" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="R$ 0.00" />
+                    </VBox>
+                    <VBox fx:id="cardBalance" alignment="CENTER" prefWidth="200" style="-fx-background-color: #cce5ff; -fx-background-radius: 8; -fx-padding: 12;">
+                        <Label text="Balance" style="-fx-font-weight: bold;" />
+                        <Label fx:id="lblBalance" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="R$ 0.00" />
+                    </VBox>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="From:" />
+                    <DatePicker fx:id="dpFrom" />
+                    <Label text="To:" />
+                    <DatePicker fx:id="dpTo" />
+                    <Label text="Category:" />
+                    <ChoiceBox fx:id="cbCategory" prefWidth="180" />
+                    <Button onAction="#handleApplyFilter" text="Apply" />
+                    <Button onAction="#handleClearFilter" text="Clear" />
+                </HBox>
+
+                <Label style="-fx-font-weight: bold;" text="Transactions" />
+                <TableView fx:id="tableTransactions" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="colTxDate" prefWidth="120" text="Date" />
+                        <TableColumn fx:id="colTxDir" prefWidth="80" text="Type" />
+                        <TableColumn fx:id="colTxCategory" prefWidth="220" text="Category" />
+                        <TableColumn fx:id="colTxAmount" prefWidth="120" text="Amount" />
+                    </columns>
+                    <placeholder>
+                        <Label text="No transactions." />
+                    </placeholder>
+                </TableView>
+
+                <Separator />
+
+                <Label style="-fx-font-weight: bold;" text="Invoices" />
+                <TableView fx:id="tableInvoices" prefHeight="160">
+                    <columns>
+                        <TableColumn fx:id="colInvId" prefWidth="60" text="#" />
+                        <TableColumn fx:id="colInvOwner" prefWidth="170" text="Owner" />
+                        <TableColumn fx:id="colInvAnimal" prefWidth="140" text="Animal" />
+                        <TableColumn fx:id="colInvDate" prefWidth="150" text="Date" />
+                        <TableColumn fx:id="colInvTotal" prefWidth="120" text="Total" />
+                    </columns>
+                    <placeholder>
+                        <Label text="No invoices." />
+                    </placeholder>
+                </TableView>
+                <HBox spacing="10">
+                    <Button fx:id="btnExportInvoice" onAction="#handleExportInvoice" text="Export Invoice (PDF)" />
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

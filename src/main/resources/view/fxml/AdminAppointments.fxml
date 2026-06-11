@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AdminAppointmentsController">
+    <padding>
+        <Insets bottom="16" left="16" right="16" top="16" />
+    </padding>
+
+    <Label fx:id="lblTitle" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Manage Appointments" />
+
+    <HBox spacing="10">
+        <ToggleButton fx:id="btnAll" text="All" />
+        <ToggleButton fx:id="btnPending" text="Pending" />
+        <ToggleButton fx:id="btnInProgress" text="In Progress" />
+        <ToggleButton fx:id="btnExpired" text="Expired" />
+        <ToggleButton fx:id="btnCompleted" text="Completed" />
+        <Button onAction="#handleRefresh" text="Refresh" />
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Left: appointments table -->
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tableAppointments" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colStatus" prefWidth="110" text="Status" />
+                    <TableColumn fx:id="colAnimal" prefWidth="110" text="Animal" />
+                    <TableColumn fx:id="colVet" prefWidth="160" text="Veterinarian" />
+                    <TableColumn fx:id="colDate" prefWidth="140" text="Date / Time" />
+                    <TableColumn fx:id="colDesc" prefWidth="180" text="Description" />
+                </columns>
+                <placeholder>
+                    <Label text="No appointments found." />
+                </placeholder>
+            </TableView>
+            <HBox spacing="10">
+                <Button fx:id="btnDelete" onAction="#handleDelete" text="Delete Appointment" />
+            </HBox>
+        </VBox>
+
+        <!-- Right: reschedule / edit panel -->
+        <VBox spacing="8" prefWidth="300">
+            <Label style="-fx-font-weight: bold;" text="Edit / Reschedule" />
+            <Label text="Date:" />
+            <DatePicker fx:id="dateField" prefWidth="220" />
+            <Label text="Time:" />
+            <ChoiceBox fx:id="cbTime" prefWidth="220" />
+            <Label text="Veterinarian:" />
+            <ChoiceBox fx:id="cbVet" prefWidth="220" />
+            <Label text="Description:" />
+            <TextField fx:id="fieldDescription" />
+            <Label text="Price:" />
+            <TextField fx:id="fieldPrice" />
+            <Button fx:id="btnSave" onAction="#handleSave" text="Save Changes" />
+        </VBox>
+    </HBox>
+</VBox>

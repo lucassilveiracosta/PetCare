@@ -22,6 +22,7 @@ public class ControllerPetCareServer {
     private IControllerAppointment controllerAppointment;
     private IControllerInvoice controllerInvoice;
     private IControllerStock controllerStock;
+    private IControllerExpense controllerExpense;
 
 
 
@@ -50,6 +51,7 @@ public class ControllerPetCareServer {
         
         RepositoryInvoice repInvoice = new RepositoryInvoice(new ArrayList<>());
         RepositoryStock repStock = new RepositoryStock(new ArrayList<>());
+        RepositoryExpense repExpense = new RepositoryExpense(new ArrayList<>());
 
 
         this.controllerPerson = new ControllerPerson(repPerson);
@@ -57,6 +59,7 @@ public class ControllerPetCareServer {
         this.controllerAppointment = new ControllerAppointment(repAppointment);
         this.controllerInvoice = new ControllerInvoice(repInvoice);
         this.controllerStock = new ControllerStock(repStock);
+        this.controllerExpense = new ControllerExpense(repExpense);
     }
 
     /**
@@ -90,5 +93,9 @@ public class ControllerPetCareServer {
 
     public IControllerStock getStock() {
         return controllerStock;
+    }
+
+    public IControllerExpense getExpense() {
+        return controllerExpense;
     }
 }
