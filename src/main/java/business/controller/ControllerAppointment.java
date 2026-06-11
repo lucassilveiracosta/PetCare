@@ -99,10 +99,10 @@ public class ControllerAppointment implements IControllerAppointment {
         Appointment appointment = repositoryAppointment.findById(id);
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
 
-        // REQ17 - a medical record with clinical entries (diagnosis) cannot be deleted
+        // REQ17
         if (appointment.getDiagnosis() != null && !appointment.getDiagnosis().isBlank()) {
-            throw new MedicalRecordDeletionException("Exclusão bloqueada: o prontuário de "
-                    + appointment.getPatient().getName() + " possui registros clínicos e não pode ser excluído.");
+            throw new MedicalRecordDeletionException("Deletion blocked: the medical record of "
+                    + appointment.getPatient().getName() + " has clinical registries and cannot be deleted.");
         }
 
         repositoryAppointment.remove(appointment);

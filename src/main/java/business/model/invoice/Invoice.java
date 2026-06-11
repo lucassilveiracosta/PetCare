@@ -15,7 +15,7 @@ public class Invoice {
     private LocalDateTime dateHour = LocalDateTime.now();
     private ArrayList<Procedure> procedures;
     private ArrayList<Product> products;
-    private boolean paid = false; // REQ16 - whether the invoice has been settled
+    private boolean paid = false;
 
     public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products) {
         setOwner(owner);

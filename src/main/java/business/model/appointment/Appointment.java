@@ -18,7 +18,7 @@ public class Appointment extends Procedure {
     private boolean needsSurgery = false;
     private boolean needsHospitalization = false;
 
-    // Constructor for completed appointments (has full medical data)
+    // Constructor for completed appointments
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsibleVeterinarian, String diagnosis,
                        String medicalPrescription, Anamnesis anamnesis, PhysicalExamination phisicalExam, AppointmentStatus status) {
@@ -43,14 +43,14 @@ public class Appointment extends Procedure {
         setStatus(status);
     }
 
-    // Constructor for scheduled (pending) appointments — no medical data yet
+    // Constructor for scheduled appointments
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsibleVeterinarian) {
         super(price, patient, dateHour, description);
         setResponsibleVeterinarian(responsibleVeterinarian);
     }
 
-    // Constructor for pending appointments with gambiarra (old appointments)
+    // Constructor for pending appointments
     public Appointment(Double price, Animal patient, LocalDateTime dateHour, String description,
                        Veterinarian responsibleVeterinarian, Boolean bool) {
         super(bool, price, patient, dateHour, description);

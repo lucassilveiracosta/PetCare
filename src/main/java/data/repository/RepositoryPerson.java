@@ -16,24 +16,24 @@ public class RepositoryPerson implements IRepositoryPerson {
 
     @Override
     public Person findById(int id) {
-        Person pessoa = null;
+        Person person = null;
         for (Person p : persons) {
             if (p.getId() == id) {
-                pessoa = p;
+                person = p;
             }
         }
-        return pessoa;
+        return person;
     }
 
     @Override
     public Person findByEmail(String email) {
-        Person pessoa = null;
+        Person person = null;
         for(Person p: persons) {
             if(p.getEmail().equals(email)) {
-                pessoa = p;
+                person = p;
             }
         }
-        return pessoa;
+        return person;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class RepositoryPerson implements IRepositoryPerson {
     @Override
     public void create(Person p) {
         Person exists = this.findByEmail(p.getEmail());
-        if (exists != null) throw new EmailConflictException("Esse email ja existe");
+        if (exists != null) throw new EmailConflictException("This email already exists");
         persons.add(p);
     }
 

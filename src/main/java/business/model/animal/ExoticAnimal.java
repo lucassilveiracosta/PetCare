@@ -20,7 +20,7 @@ public class ExoticAnimal extends Animal {
         setRegistrationNumber(registrationNumber);
         setMicroChipId(microChipId);
         setRequiresControlEnviroment(requiresControlEnviroment);
-        setDescricaoDieta(dietDescription);
+        setDietDescription(dietDescription);
         setOrigin(origin);
     }
 
@@ -50,7 +50,7 @@ public class ExoticAnimal extends Animal {
         return dietDescription;
     }
 
-    public void setDescricaoDieta(String dietDescription) {
+    public void setDietDescription(String dietDescription) {
         if(dietDescription == null || dietDescription.isBlank()){
             throw new IllegalArgumentException("400 - Invalid diet description");
         }
@@ -63,7 +63,7 @@ public class ExoticAnimal extends Animal {
 
     public void setMicroChipId(String microChipId) {
         if(microChipId == null || microChipId.isBlank()){
-            throw new IllegalArgumentException("Microchip inválido!");
+            throw new IllegalArgumentException("Invalid microchip!");
         }
         this.microChipId = microChipId;
     }

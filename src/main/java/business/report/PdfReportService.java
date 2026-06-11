@@ -31,9 +31,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Generates PDF documents with iText: detailed invoices (REQ11) and complete
- * clinical histories (REQ13).
+/*
+ * Generates PDF documents with iText: detailed invoices and complete
+ * clinical histories
  */
 public class PdfReportService {
 
@@ -231,7 +231,7 @@ public class PdfReportService {
             doc.add(new Paragraph("Species / Race: " + animal.getSpecies() + " · " + animal.getRace()));
             doc.add(new Paragraph("Sex / Size: " + animal.getSex().name() + " · " + animal.getSize().name()));
             doc.add(new Paragraph("Stage of life: " + animal.getStageOfLife().name()));
-            doc.add(new Paragraph("Birth date: " + animal.getbirthDate().format(DATE)));
+            doc.add(new Paragraph("Birth date: " + animal.getBirthDate().format(DATE)));
             doc.add(new Paragraph("Weight: " + animal.getWeight() + " kg"));
             if (animal instanceof DomesticAnimal da) {
                 doc.add(new Paragraph("Temperament: " + da.getTemperament().name()));

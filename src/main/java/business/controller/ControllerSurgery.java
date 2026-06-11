@@ -69,12 +69,6 @@ public class ControllerSurgery implements IControllerSurgery {
         persist();
     }
 
-    /**
-     * REQ18 - A surgery can only be assigned to a veterinarian that has at least
-     * one active (non-blank) specialty registered.
-     *
-     * @throws InactiveSpecialtyException when the surgeon has no active specialty.
-     */
     private void validateSurgeonSpecialty(Veterinarian vet) {
         boolean hasActive = false;
         if (vet != null && vet.getSpecialties() != null) {
@@ -86,9 +80,9 @@ public class ControllerSurgery implements IControllerSurgery {
             }
         }
         if (!hasActive) {
-            throw new InactiveSpecialtyException("Cirurgia bloqueada: o veterinário "
+            throw new InactiveSpecialtyException("Blocked surgery: hte vet "
                     + (vet != null ? vet.getName() : "")
-                    + " não possui especialidade ativa cadastrada.");
+                    + " does not have an active specialty.");
         }
     }
 

@@ -20,14 +20,13 @@ public class Vaccine {
 
     }
 
-
     public LocalDate getExpireVaccineDate() {
         return expireVaccineDate;
     }
 
     public void setExpireVaccineDate(LocalDate expireVaccineDate) {
         if (expireVaccineDate == null) throw new IllegalArgumentException("400 - Invalid expire date");
-        if (expireVaccineDate.isBefore(vaccineDate)) throw new VaccineException("400 - expire data must be after the vaccine date");
+        if (expireVaccineDate.isBefore(vaccineDate)) throw new VaccineException("400 - expire date must be after the vaccine date");
         this.expireVaccineDate = expireVaccineDate;
     }
 
@@ -35,8 +34,8 @@ public class Vaccine {
         return isRabiesVaccine;
     }
 
-    public void setRabiesVaccine(boolean rabbiesVaccine) {
-        isRabiesVaccine = rabbiesVaccine;
+    public void setRabiesVaccine(boolean rabiesVaccine) {
+        isRabiesVaccine = rabiesVaccine;
     }
 
     public String getVaccineName() {

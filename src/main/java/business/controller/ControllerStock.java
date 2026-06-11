@@ -69,7 +69,6 @@ public class ControllerStock implements IControllerStock {
     public void put(int id, Product newProduct) {
         if (id < 0) throw new IllegalArgumentException("400 - ID must be positive");
         if (newProduct == null) throw new IllegalArgumentException("400 - Product can't be null");
-
         Product exists = repositoryStock.findById(id);
         if (exists == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
@@ -102,13 +101,7 @@ public class ControllerStock implements IControllerStock {
         persist();
     }
 
-    /**
-     * Registers the sale of {@code quantity} units of a product, enforcing the
-     * business rules around stock and controlled medicines.
-     *
-     * @throws InsufficientStockException    REQ20 - not enough units in stock.
-     * @throws PrescriptionRequiredException REQ15 - controlled medicine sold without a prescription.
-     */
+
     @Override
     public void registerSale(Product product, int quantity, boolean hasPrescription) {
         if (product == null) throw new IllegalArgumentException("400 - Product can't be null");
@@ -117,15 +110,15 @@ public class ControllerStock implements IControllerStock {
         Product stored = repositoryStock.findById(product.getId());
         if (stored == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
 
-        // REQ20 - cannot bill more units than there are in stock
+        // cannot bill more units than there are in stock
         if (quantity > stored.getQuantity()) {
-            throw new InsufficientStockException("Estoque insuficiente para '" + stored.getName()
-                    + "': solicitado " + quantity + ", disponível " + stored.getQuantity() + ".");
+            throw new InsufficientStockException("Insufficient stock for '" + stored.getName()
+                    + "': requested " + quantity + ", available " + stored.getQuantity() + ".");
         }
-        // REQ15 - controlled medicine cannot be sold without a linked prescription
+        // controlled medicine cannot be sold without a linked prescription
         if (stored.isVet() && stored.getMedicineType() == MedicineType.CONTROLLED && !hasPrescription) {
-            throw new PrescriptionRequiredException("Venda bloqueada: '" + stored.getName()
-                    + "' é um medicamento controlado e exige receita vinculada.");
+            throw new PrescriptionRequiredException("Blocked sale: '" + stored.getName()
+                    + "' is a controlled medicine and requires a recipe.");
         }
 
         stored.setQuantity(stored.getQuantity() - quantity);

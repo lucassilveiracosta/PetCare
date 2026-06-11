@@ -15,13 +15,13 @@ public class RepositoryInvoice implements IRepositoryInvoice {
 
     @Override
     public Invoice findById(int id) {
-        Invoice notaFiscal = null;
+        Invoice invoice = null;
         for (Invoice nf: notasFiscais) {
             if (nf.getId() == id) {
-                notaFiscal = nf;
+                invoice = nf;
             }
         }
-        return notaFiscal;
+        return invoice;
     }
 
     @Override

@@ -90,7 +90,6 @@ public class ControllerInvoice implements IControllerInvoice {
         }
     }
 
-    /** Marks an invoice as settled (used to clear hospital costs before discharge). */
     @Override
     public void markAsPaid(int id) {
         Invoice invoice = getById(id);
@@ -98,19 +97,13 @@ public class ControllerInvoice implements IControllerInvoice {
         persist();
     }
 
-    /**
-     * REQ16 - Blocks the discharge (alta) of an animal while it still has an
-     * unpaid invoice.
-     *
-     * @throws UnpaidInvoiceException when the patient has at least one unpaid invoice.
-     */
     @Override
     public void validateDischarge(int animalId) {
         for (Invoice invoice : repositoryInvoice.findAll()) {
             if (invoice.getPatient().getId() == animalId && !invoice.isPaid()) {
-                throw new UnpaidInvoiceException("Alta bloqueada: o animal "
-                        + invoice.getPatient().getName() + " possui fatura pendente (#"
-                        + invoice.getId() + "). Quite os custos antes da alta.");
+                throw new UnpaidInvoiceException("Discharge blocked: the animal "
+                        + invoice.getPatient().getName() + " has pending bills (#"
+                        + invoice.getId() + "). pays the costs before discharge.");
             }
         }
     }
