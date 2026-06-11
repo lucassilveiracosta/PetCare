@@ -12,6 +12,7 @@ public interface IControllerStock {
     void put(int id, Product newProduct);
     void delete(int id);
     void post(Product newProduct);
+    void registerSale(Product product, int quantity, boolean hasPrescription);
 
     List<Product> filterByMedicineType(MedicineType medicineType);
     List<Product> filterPetShopProducts();

@@ -8,6 +8,7 @@ import exceptions.AnimalConflictException;
 import exceptions.AnimalNotFoundException;
 import business.model.animal.Animal;
 import data.interfaces.IRepositoryAnimal;
+import exceptions.InvalidAnimalAgeException;
 import exceptions.RabbiesVaccineExpired;
 
 import java.time.Duration;
@@ -133,6 +134,37 @@ public class ControllerAnimal implements IControllerAnimal {
      * @param id
      * @return boolean
      */
+    /**
+     * REQ14 - Blocks scheduling of grooming (banho/tosa) for animals that do not
+     * have a valid (non-expired) rabies vaccine.
+     *
+     * @throws RabbiesVaccineExpired when the animal has no valid rabies vaccine.
+     */
+    @Override
+    public void validateGroomingAllowed(int id) {
+        if (!checkIfHaveRabbiesVaccine(id)) {
+            Animal animal = repositoryAnimal.findById(id);
+            String name = (animal != null) ? animal.getName() : ("#" + id);
+            throw new RabbiesVaccineExpired("Banho/tosa bloqueado: " + name
+                    + " não possui vacina antirrábica válida.");
+        }
+    }
+
+    /**
+     * REQ19 - Validates the minimum age for a vaccination protocol. The rabies
+     * vaccine requires the animal to be at least 90 days old on the vaccine date.
+     *
+     * @throws InvalidAnimalAgeException when the animal is below the minimum age.
+     */
+    public static void validateVaccinationAge(LocalDate birthDate, LocalDate vaccineDate, boolean isRabies) {
+        if (birthDate == null || vaccineDate == null) return;
+        long ageInDays = ChronoUnit.DAYS.between(birthDate, vaccineDate);
+        if (isRabies && ageInDays < 90) {
+            throw new InvalidAnimalAgeException("Vacinação bloqueada: a antirrábica exige idade mínima "
+                    + "de 90 dias (o animal tem " + ageInDays + " dias na data da vacina).");
+        }
+    }
+
     public boolean checkIfHaveRabbiesVaccine(int id) {
         boolean check = false;
         Animal animal = repositoryAnimal.findById(id);

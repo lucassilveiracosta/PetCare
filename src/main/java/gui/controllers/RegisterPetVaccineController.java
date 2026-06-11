@@ -1,8 +1,10 @@
 package gui.controllers;
 
+import business.controller.ControllerAnimal;
 import business.controller.ControllerPetCareServer;
-import business.interfaces.IControllerAnimal;
+import business.model.animal.DomesticAnimal;
 import business.model.animal.Vaccine;
+import exceptions.InvalidAnimalAgeException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +22,6 @@ public class RegisterPetVaccineController {
 
     private boolean isRabbies = false;
 
-    private final IControllerAnimal backendController = ControllerPetCareServer.getInstance().getAnimal();
-
     @FXML
     public void onIsRabbiesToggle(ActionEvent event) {
         isRabbies = !isRabbies;
@@ -37,6 +37,11 @@ public class RegisterPetVaccineController {
     @FXML
     public void onAddMoreClick(ActionEvent event) {
         try {
+            DomesticAnimal pet = RegisterPetController.pendingAnimal;
+            if (pet == null) {
+                throw new IllegalStateException("Nenhum animal em cadastro. Volte e preencha os dados do pet primeiro.");
+            }
+
             String name = txtVaccineName.getText();
             LocalDate date = dpVaccineDate.getValue();
             String description = txtDescription.getText();
@@ -45,14 +50,23 @@ public class RegisterPetVaccineController {
             if (name == null || name.trim().isEmpty() || date == null) {
                 throw new IllegalArgumentException("Nome e Data da vacina são obrigatórios.");
             }
+            if (expireDate == null) {
+                throw new IllegalArgumentException("A data de validade da vacina é obrigatória.");
+            }
+            if (expireDate.isBefore(date)) {
+                throw new IllegalArgumentException("A data de validade deve ser posterior à data da vacina.");
+            }
+            ControllerAnimal.validateVaccinationAge(pet.getbirthDate(), date, isRabbies); // REQ19
 
-            Vaccine newVaccine = new Vaccine(name, date, description, isRabbies, expireDate);
+            String desc = (description == null || description.isBlank()) ? "-" : description.trim();
+            Vaccine newVaccine = new Vaccine(name.trim(), date, desc, isRabbies, expireDate);
+            pet.getVaccines().add(newVaccine);
 
-
-            showAlert("Sucesso!", "Vacina adicionada. Pode inserir a próxima.", Alert.AlertType.INFORMATION);
+            showAlert("Sucesso!", "Vacina adicionada (" + pet.getVaccines().size()
+                    + " no cartão). Pode inserir a próxima.", Alert.AlertType.INFORMATION);
             clearFields();
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | IllegalStateException | InvalidAnimalAgeException e) {
             showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
             showAlert("Erro no Sistema", "Não foi possível adicionar a vacina: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -62,13 +76,25 @@ public class RegisterPetVaccineController {
 
     @FXML
     public void onRegisterClick(ActionEvent event) {
-
         try {
+            DomesticAnimal pet = RegisterPetController.pendingAnimal;
+            if (pet == null) {
+                throw new IllegalStateException("Nenhum animal em cadastro. Volte e preencha os dados do pet primeiro.");
+            }
 
-            showAlert("Sucesso!", "Registro do Animal e Vacinas concluído!", Alert.AlertType.INFORMATION);
+            ControllerPetCareServer.getInstance().getAnimal().post(pet);
+            ControllerPetCareServer.getInstance().saveAll();
+
+            int vaccineCount = pet.getVaccines().size();
+            RegisterPetController.pendingAnimal = null;
+
+            showAlert("Sucesso!", "Registro do animal '" + pet.getName() + "' concluído com "
+                    + vaccineCount + " vacina(s).", Alert.AlertType.INFORMATION);
 
             gui.Navigator.navigate("Attendant Menu", "/view/fxml/AttendantMenu.fxml");
 
+        } catch (IllegalStateException e) {
+            showAlert("Erro de Validação", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
             showAlert("Erro no Sistema", "Falha ao registrar: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();

@@ -317,6 +317,7 @@ public class LoadData {
                 Invoice inv = new Invoice(owner, animal, procs, prods);
                 inv.setId(Integer.parseInt(d[0]));
                 inv.setDateHour(LocalDateTime.parse(d[3], DT));
+                if (d.length > 6) inv.setPaid(Boolean.parseBoolean(d[6])); // REQ16
                 invoices.add(inv);
             } catch (Exception e) { /* skip */ }
         }

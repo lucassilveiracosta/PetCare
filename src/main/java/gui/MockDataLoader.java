@@ -155,9 +155,13 @@ public class MockDataLoader {
             server.getInvoice().post(new Invoice(da.getOwner(), da, procs, sold));
         }
 
-        // Flag a couple consultations as needing surgery / hospitalization (Surgery Center)
+        // Flag a couple consultations as needing surgery / hospitalization (Surgery Center).
+        // Buddy gets both flags AND has an unpaid invoice → demonstrates REQ16 (discharge block).
         for (Appointment a : server.getAppointment().getAll()) {
-            if (a.getPatient().getName().equals("Buddy")) a.setNeedsSurgery(true);
+            if (a.getPatient().getName().equals("Buddy")) {
+                a.setNeedsSurgery(true);
+                a.setNeedsHospitalization(true);
+            }
             if (a.getPatient().getName().equals("Thor")) a.setNeedsHospitalization(true);
         }
     }

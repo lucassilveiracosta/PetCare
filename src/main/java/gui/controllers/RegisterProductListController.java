@@ -4,6 +4,9 @@ import business.controller.ControllerPetCareServer;
 import business.interfaces.IControllerStock;
 import business.model.invoice.Product;
 import business.report.PdfReportService;
+import enums.MedicineType;
+import exceptions.InsufficientStockException;
+import exceptions.PrescriptionRequiredException;
 import gui.Navigator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -148,10 +151,33 @@ public class RegisterProductListController implements Initializable {
         confirm.setTitle("Payment");
         if (confirm.showAndWait().filter(b -> b == ButtonType.OK).isEmpty()) return;
 
-        // Decrease the stock for every cart item (attendant selling)
-        for (Map.Entry<Product, Integer> e : cart.entrySet()) {
-            Product p = e.getKey();
-            p.setQuantity(Math.max(0, p.getQuantity() - e.getValue()));
+        // REQ15 — a cart with controlled medicine requires a prescription
+        boolean hasControlled = cart.keySet().stream()
+                .anyMatch(p -> p.isVet() && p.getMedicineType() == MedicineType.CONTROLADO);
+        boolean hasPrescription = false;
+        if (hasControlled) {
+            Alert presc = new Alert(Alert.AlertType.CONFIRMATION,
+                    "O carrinho contém medicamento controlado. O cliente apresentou a receita?",
+                    ButtonType.YES, ButtonType.NO);
+            presc.setHeaderText(null);
+            presc.setTitle("Receita");
+            hasPrescription = presc.showAndWait().filter(b -> b == ButtonType.YES).isPresent();
+            if (!hasPrescription) {
+                showAlert(Alert.AlertType.WARNING, "Venda bloqueada",
+                        "Há medicamento controlado no carrinho e nenhuma receita foi apresentada.");
+                return;
+            }
+        }
+
+        // Register each sale through the controller (enforces REQ15 + REQ20)
+        try {
+            for (Map.Entry<Product, Integer> e : cart.entrySet()) {
+                stockController.registerSale(e.getKey(), e.getValue(), hasPrescription);
+            }
+        } catch (InsufficientStockException | PrescriptionRequiredException ex) {
+            showAlert(Alert.AlertType.WARNING, "Venda bloqueada", ex.getMessage());
+            loadProducts();
+            return; // keep the cart so the attendant can adjust
         }
         ControllerPetCareServer.getInstance().saveAll(); // persist the stock change
 

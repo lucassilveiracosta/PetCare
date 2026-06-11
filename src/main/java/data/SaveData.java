@@ -242,7 +242,7 @@ public class SaveData {
             invLines.add(String.join(";",
                     String.valueOf(inv.getId()), String.valueOf(inv.getOwner().getId()),
                     String.valueOf(inv.getPatient().getId()), inv.getDateHour().format(DT),
-                    procs.toString(), prods.toString()));
+                    procs.toString(), prods.toString(), String.valueOf(inv.isPaid())));
         }
 
         List<String> svcLines = new ArrayList<>();
@@ -255,6 +255,6 @@ public class SaveData {
         }
 
         write("petshopServices.csv", "id;price;animalId;dateHour;description;serviceType;employeeId", svcLines);
-        write("invoices.csv", "id;ownerId;animalId;dateHour;procedureRefs;productRefs", invLines);
+        write("invoices.csv", "id;ownerId;animalId;dateHour;procedureRefs;productRefs;paid", invLines);
     }
 }

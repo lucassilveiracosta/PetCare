@@ -15,6 +15,7 @@ public class Invoice {
     private LocalDateTime dateHour = LocalDateTime.now();
     private ArrayList<Procedure> procedures;
     private ArrayList<Product> products;
+    private boolean paid = false; // REQ16 - whether the invoice has been settled
 
     public Invoice(Owner owner, Animal patient, ArrayList<Procedure> procedures, ArrayList<Product> products) {
         setDono(owner);
@@ -82,5 +83,13 @@ public class Invoice {
             throw new IllegalArgumentException("400 - Invalid products");
         }
         this.products = products;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

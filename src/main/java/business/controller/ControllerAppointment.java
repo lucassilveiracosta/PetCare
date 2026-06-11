@@ -6,6 +6,7 @@ import data.SaveData;
 import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
+import exceptions.MedicalRecordDeletionException;
 import enums.AppointmentStatus;
 
 
@@ -96,6 +97,12 @@ public class ControllerAppointment implements IControllerAppointment {
 
         Appointment appointment = repositoryAppointment.findById(id);
         if (appointment == null) throw new AppointmentNotFoundException("404 - ID not found");
+
+        // REQ17 - a medical record with clinical entries (diagnosis) cannot be deleted
+        if (appointment.getDiagnosis() != null && !appointment.getDiagnosis().isBlank()) {
+            throw new MedicalRecordDeletionException("Exclusão bloqueada: o prontuário de "
+                    + appointment.getPatient().getName() + " possui registros clínicos e não pode ser excluído.");
+        }
 
         repositoryAppointment.remove(appointment);
         persist();

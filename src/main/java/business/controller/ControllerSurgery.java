@@ -2,8 +2,11 @@ package business.controller;
 
 import business.interfaces.IControllerSurgery;
 import business.model.invoice.Surgery;
+import business.model.person.Specialty;
+import business.model.person.Veterinarian;
 import data.SaveData;
 import data.interfaces.IRepositorySurgery;
+import exceptions.InactiveSpecialtyException;
 
 import java.util.ArrayList;
 
@@ -59,10 +62,34 @@ public class ControllerSurgery implements IControllerSurgery {
     @Override
     public void post(Surgery surgery) {
         if (surgery == null) throw new IllegalArgumentException("400 - Surgery can't be null");
+        validateSurgeonSpecialty(surgery.getResponsebleVeterinarian()); // REQ18
         Surgery exists = repositorySurgery.findById(surgery.getId());
         if (exists != null) throw new IllegalArgumentException("409 - This surgery already exists");
         repositorySurgery.create(surgery);
         persist();
+    }
+
+    /**
+     * REQ18 - A surgery can only be assigned to a veterinarian that has at least
+     * one active (non-blank) specialty registered.
+     *
+     * @throws InactiveSpecialtyException when the surgeon has no active specialty.
+     */
+    private void validateSurgeonSpecialty(Veterinarian vet) {
+        boolean hasActive = false;
+        if (vet != null && vet.getSpecialties() != null) {
+            for (Specialty s : vet.getSpecialties()) {
+                if (s != null && s.getName() != null && !s.getName().isBlank()) {
+                    hasActive = true;
+                    break;
+                }
+            }
+        }
+        if (!hasActive) {
+            throw new InactiveSpecialtyException("Cirurgia bloqueada: o veterinário "
+                    + (vet != null ? vet.getName() : "")
+                    + " não possui especialidade ativa cadastrada.");
+        }
     }
 
     private void persist() {

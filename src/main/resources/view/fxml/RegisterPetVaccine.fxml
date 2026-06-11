@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AppointmentViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.RegisterPetVaccineController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -62,7 +62,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <DatePicker fx:id="dpVaccineDate" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                                    <DatePicker fx:id="dpVaccineDate" editable="false" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </left>
@@ -119,7 +119,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <TextField prefHeight="57.0" prefWidth="178.0" BorderPane.alignment="CENTER" />
+                                    <TextField fx:id="txtDescription" prefHeight="57.0" prefWidth="178.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>
@@ -135,7 +135,7 @@
                                     </Text>
                                  </left>
                                  <right>
-                                    <DatePicker fx:id="dpExpireDate" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
+                                    <DatePicker fx:id="dpExpireDate" editable="false" prefHeight="25.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
                                  </right>
                               </BorderPane>
                            </center>

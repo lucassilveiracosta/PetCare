@@ -158,6 +158,7 @@ public class AppointmentViewController implements Initializable {
                 // Pet shop service → responsible Employee, stored as an invoice procedure
                 Employee employee = allEmployees.get(profIdx);
                 String description = petShopLabel(ps) + " — " + reason;
+                server.getAnimal().validateGroomingAllowed(animal.getId()); // REQ14
                 ServicoPetShop servico = new ServicoPetShop(80.0, animal, dateTime, description, ps, employee);
                 ArrayList<Procedure> procedures = new ArrayList<>();
                 procedures.add(servico);

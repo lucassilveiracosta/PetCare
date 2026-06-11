@@ -25,6 +25,9 @@
                 <Label style="-fx-font-weight: bold;" text="Needs Surgery / Hospitalization" />
                 <ListView fx:id="listFlagged" VBox.vgrow="ALWAYS" />
                 <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRefresh" text="Refresh" />
+                <Label style="-fx-font-weight: bold;" text="Internação (REQ16)" />
+                <Button fx:id="btnPayInvoices" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePayInvoices" text="Registrar Pagamento (quitar)" />
+                <Button fx:id="btnDischarge" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDischarge" text="Dar Alta (Discharge)" />
                 <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBack" text="Back to Consultations" />
              </children>
           </VBox>

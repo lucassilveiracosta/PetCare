@@ -9,4 +9,7 @@ public interface IControllerInvoice {
     void patch(int id, Invoice nf);
     void delete(int id);
     void post(Invoice nf);
+
+    void markAsPaid(int id);
+    void validateDischarge(int animalId);
 }

@@ -32,13 +32,13 @@ O PetCare facilita o acompanhamento de longo prazo da saúde animal, automatizan
 - **REQ13**: Exportar histórico clínico completo em PDF para o tutor. 
 
 ### 6. Regras e Restrições
-- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada. 
-- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada. 
-- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅ ajuste
-- **REQ17**: **Bloquear a exclusão** de prontuários com registros de cirurgias realizadas. ✅ ajuste
-- **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa. 
-- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação. (joao)
-- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema. ✅
+- **REQ14**: **Bloquear o agendamento** de banho e tosa para animais sem vacina antirrábica atualizada. ✅ (`RabbiesVaccineExpired`)
+- **REQ15**: **Não permitir a venda** de medicamentos controlados sem receita vinculada. ✅ (`PrescriptionRequiredException`)
+- **REQ16**: **Impedir a alta** do animal internado sem a quitação dos custos hospitalares. ✅ (`UnpaidInvoiceException`)
+- **REQ17**: **Bloquear a exclusão** de prontuários com registros clínicos. ✅ (`MedicalRecordDeletionException`)
+- **REQ18**: **Garantir** que cirurgias só sejam agendadas para veterinários com especialidade ativa. ✅ (`InactiveSpecialtyException`)
+- **REQ19**: **Validar** a idade mínima do animal para protocolos específicos de vacinação. ✅ (`InvalidAnimalAgeException`)
+- **REQ20**: **Bloquear o faturamento** de produtos com estoque zerado no sistema. ✅ (`InsufficientStockException`)
 
 ## Possíveis APIs/Bibliotecas
 - **JFreeChart** – Evolução de peso.

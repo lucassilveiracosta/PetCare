@@ -113,6 +113,8 @@ public class AttendantController implements Initializable {
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.parse(time, TIME_FMT));
             String description = petShopLabel(service) + (reason != null && !reason.isBlank() ? " — " + reason : "");
 
+            server.getAnimal().validateGroomingAllowed(animal.getId()); // REQ14
+
             ServicoPetShop servico = new ServicoPetShop(80.0, animal, dateTime, description, service, employee);
             ArrayList<Procedure> procedures = new ArrayList<>();
             procedures.add(servico);

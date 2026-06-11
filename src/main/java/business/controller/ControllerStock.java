@@ -6,6 +6,8 @@ import data.SaveData;
 import data.interfaces.IRepositoryStock;
 import enums.MedicineType;
 import exceptions.AppointmentNotFoundException;
+import exceptions.InsufficientStockException;
+import exceptions.PrescriptionRequiredException;
 import exceptions.StockGeneralProductsConflictException;
 import exceptions.StockGeneralProductsNotFoundException;
 import business.model.invoice.Product;
@@ -97,6 +99,36 @@ public class ControllerStock implements IControllerStock {
         }
 
         repositoryStock.create(newProduct);
+        persist();
+    }
+
+    /**
+     * Registers the sale of {@code quantity} units of a product, enforcing the
+     * business rules around stock and controlled medicines.
+     *
+     * @throws InsufficientStockException    REQ20 - not enough units in stock.
+     * @throws PrescriptionRequiredException REQ15 - controlled medicine sold without a prescription.
+     */
+    @Override
+    public void registerSale(Product product, int quantity, boolean hasPrescription) {
+        if (product == null) throw new IllegalArgumentException("400 - Product can't be null");
+        if (quantity <= 0) throw new IllegalArgumentException("400 - Quantity must be positive");
+
+        Product stored = repositoryStock.findById(product.getId());
+        if (stored == null) throw new StockGeneralProductsNotFoundException("404 - ID not found");
+
+        // REQ20 - cannot bill more units than there are in stock
+        if (quantity > stored.getQuantity()) {
+            throw new InsufficientStockException("Estoque insuficiente para '" + stored.getName()
+                    + "': solicitado " + quantity + ", disponível " + stored.getQuantity() + ".");
+        }
+        // REQ15 - controlled medicine cannot be sold without a linked prescription
+        if (stored.isVet() && stored.getMedicineType() == MedicineType.CONTROLADO && !hasPrescription) {
+            throw new PrescriptionRequiredException("Venda bloqueada: '" + stored.getName()
+                    + "' é um medicamento controlado e exige receita vinculada.");
+        }
+
+        stored.setQuantity(stored.getQuantity() - quantity);
         persist();
     }
 

@@ -4,6 +4,7 @@ import business.interfaces.IControllerInvoice;
 
 import exceptions.InvoiceConflictException;
 import exceptions.InvoiceNotFoundException;
+import exceptions.UnpaidInvoiceException;
 import business.model.invoice.Invoice;
 import data.SaveData;
 import data.interfaces.IRepositoryInvoice;
@@ -55,6 +56,31 @@ public class ControllerInvoice implements IControllerInvoice {
         if (exists != null) throw new InvoiceConflictException("409 - This invoice already exists");
         repositoryInvoice.create(invoice);
         persist();
+    }
+
+    /** Marks an invoice as settled (used to clear hospital costs before discharge). */
+    @Override
+    public void markAsPaid(int id) {
+        Invoice invoice = getById(id);
+        invoice.setPaid(true);
+        persist();
+    }
+
+    /**
+     * REQ16 - Blocks the discharge (alta) of an animal while it still has an
+     * unpaid invoice.
+     *
+     * @throws UnpaidInvoiceException when the patient has at least one unpaid invoice.
+     */
+    @Override
+    public void validateDischarge(int animalId) {
+        for (Invoice invoice : repositoryInvoice.findAll()) {
+            if (invoice.getPatient().getId() == animalId && !invoice.isPaid()) {
+                throw new UnpaidInvoiceException("Alta bloqueada: o animal "
+                        + invoice.getPatient().getName() + " possui fatura pendente (#"
+                        + invoice.getId() + "). Quite os custos antes da alta.");
+            }
+        }
     }
 
     private void persist() {
