@@ -36,6 +36,14 @@ public abstract class Person {
     public int getId(){
         return id;
     }
+    
+    // Metodo set do ID (usado ao carregar do CSV)
+    public void setId(int id){
+        this.id = id;
+        if (id >= countId) {
+            countId = id + 1;
+        }
+    }
     // Metodo get do Nome
     public String getName(){
         return name;
