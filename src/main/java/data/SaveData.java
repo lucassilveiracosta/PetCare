@@ -94,10 +94,10 @@ public class SaveData {
             // Tratamento de campos que podem ser nulos em consultas pendentes
             String diag = app.getDiagnosis() != null ? app.getDiagnosis() : "null";
             String pres = app.getMedicalPrescription() != null ? app.getMedicalPrescription() : "null";
-            
+            String stts = app.getStatus() != null ? app.getStatus().name() : "null";
             bw.write(diag + ",");
             bw.write(pres + ",");
-            bw.write(app.getStatus().name() + "");
+            bw.write(stts + "");
             
             bw.newLine();
 

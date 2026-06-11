@@ -30,7 +30,7 @@ public class LoadData {
             String line;
             while ((line = br.readLine()) != null) {
                 if(line.trim().isEmpty()) continue;
-                String[] data = line.split(",");
+                String[] data = line.split(",", -1);
                 
                 int id = Integer.parseInt(data[0]);
                 String name = data[1];
@@ -90,10 +90,7 @@ public class LoadData {
             String line;
             while ((line = br.readLine()) != null) {
                 if(line.trim().isEmpty()) continue;
-                String[] data = line.split(",");
-                // pet.getId(), pet.getName(), pet.getSpecies(), pet.getRace(), pet.getTemperament().name(),
-                // pet.getWeight(), pet.getSex().name(), pet.getSize().name(), pet.getbirthDate(),
-                // pet.getStageOfLife().name(), pet.getOwner().getId()
+                String[] data = line.split(",", -1);
 
                 int id = Integer.parseInt(data[0]);
                 String name = data[1];
@@ -117,7 +114,6 @@ public class LoadData {
                 }
 
                 if (petOwner != null) {
-                    // Inicializamos 'castrated' como falso e vacinas como vazias por enquanto
                     DomesticAnimal animal = new DomesticAnimal(name, species, race, birthDate, stageOfLife, weight, size, sex, petOwner, temperament, false, new ArrayList<Vaccine>());
                     animal.setId(id);
                     animals.add(animal);
@@ -139,7 +135,7 @@ public class LoadData {
             String line;
             while ((line = br.readLine()) != null) {
                 if(line.trim().isEmpty()) continue;
-                String[] data = line.split(",");
+                String[] data = line.split(",", -1);
                 // id, price, patientId, dateHourScheduled, description, veterinarianId, diagnosis, medicalPrescription, status
 
                 int id = Integer.parseInt(data[0]);
@@ -148,9 +144,13 @@ public class LoadData {
                 LocalDateTime dateHour = LocalDateTime.parse(data[3], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
                 String description = data[4];
                 int vetId = Integer.parseInt(data[5]);
-                String diagnosis = data[6].equals("null") ? null : data[6];
-                String prescription = data[7].equals("null") ? null : data[7];
-                AppointmentStatus status = AppointmentStatus.valueOf(data[8]);
+                String diagnosis = data[6].equals("null") || data[6].isEmpty() ? null : data[6];
+                String prescription = data[7].equals("null") || data[7].isEmpty() ? null : data[7];
+                
+                AppointmentStatus status = null;
+                if (data.length > 8 && data[8] != null && !data[8].trim().isEmpty() && !data[8].equals("null")) {
+                    status = AppointmentStatus.valueOf(data[8]);
+                }
 
                 // Busca o animal pelo ID
                 DomesticAnimal patient = null;
@@ -171,9 +171,32 @@ public class LoadData {
                 }
 
                 if (patient != null && vet != null) {
-                    Appointment app = new Appointment(price, patient, dateHour, description, vet, diagnosis, prescription, null, null, status);
-                    app.setId(id);
-                    appointments.add(app);
+
+                    if (diagnosis == null) {
+
+                        Appointment app;
+                        if (dateHour.isBefore(LocalDateTime.now())) {
+                            app = new Appointment(price, patient, dateHour, description, vet, true);
+                        } else {
+                            app = new Appointment(price, patient, dateHour, description, vet);
+                        }
+                        app.setId(id);
+                        if (status != null) app.setStatus(status);
+                        appointments.add(app);
+                    } else {
+
+                        if (dateHour.isBefore(LocalDateTime.now())) {
+                            Appointment app = new Appointment(price, patient, dateHour, description, vet, diagnosis, prescription, null, null, status, true);
+                            app.setId(id);
+                            appointments.add(app);
+                        } else {
+                            Appointment app = new Appointment(price, patient, dateHour, description, vet, diagnosis, prescription, null, null, status);
+                            app.setId(id);
+                            appointments.add(app);
+                        }
+                    }
+
+
                 }
             }
         } catch (IOException e) {
