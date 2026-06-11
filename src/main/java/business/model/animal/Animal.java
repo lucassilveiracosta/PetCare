@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Animal {
+public abstract class Animal {
     protected static int contadorId = 1;
 
     protected int id = contadorId++;
@@ -42,6 +42,7 @@ public class Animal {
     }
 
     public void setVaccines(ArrayList<Vaccine> vaccines) {
+
         this.vaccines = vaccines;
     }
 

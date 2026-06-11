@@ -1,5 +1,6 @@
 package business.model.animal;
 
+import enums.StageOfLife;
 import exceptions.VaccineException;
 
 import java.time.LocalDate;
@@ -10,16 +11,26 @@ public class Vaccine {
     private LocalDate expireVaccineDate;
     private String description;
     private boolean isRabbiesVaccine;
+    private StageOfLife minAge;
 
-    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine, LocalDate expireVaccineDate){
+    public Vaccine(String vaccineName, LocalDate vaccineDate, String description, boolean isRabbiesVaccine, LocalDate expireVaccineDate, StageOfLife minAge) {
         setVaccineName(vaccineName);
         setVaccineDate(vaccineDate);
         this.description = description;
         setRabbiesVaccine(isRabbiesVaccine);
         setExpireVaccineDate(expireVaccineDate);
-
+        setMinAge(minAge);
     }
 
+    public StageOfLife getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(StageOfLife minAge) {
+        if (minAge == null) throw new IllegalArgumentException("minAge cannot be null");
+        if (minAge == StageOfLife.RECEMNASCIDO) throw new IllegalArgumentException("minAge cannot be RECEMNASCIDO"); //aqui vai dar conflito
+        this.minAge = minAge;
+    }
 
     public LocalDate getExpireVaccineDate() {
         return expireVaccineDate;
