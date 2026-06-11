@@ -59,7 +59,7 @@ public class RegisterPetController {
             Double weight = Double.parseDouble(weightBox.getText());
             Size size = Size.valueOf(sizeBox.getText().toUpperCase());
             Sex sex = Sex.valueOf(sexBox.getText().toUpperCase());
-            
+
             Owner owner = RegisterOwnerController.lastRegisteredOwner;
             
             if (owner == null) {
