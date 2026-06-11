@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import gui.MenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -99,7 +100,7 @@ public class AttendantMenuController {
     @FXML
         public void backButton(ActionEvent event) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/Menu.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/view/fxml/MenuPrincipal.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 
