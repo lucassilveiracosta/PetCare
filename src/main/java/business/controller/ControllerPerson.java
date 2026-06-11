@@ -93,7 +93,7 @@ public class ControllerPerson implements IControllerPerson {
     public ArrayList<Animal> filterOwnersByEmail(String email) {
         ArrayList<Animal> filter = new ArrayList<>();
 
-        for (Animal a: repositoryAnimal.findAll()) {
+        for (Animal a: ControllerPetCareServer.getInstance().getAnimal().getAll()) {
             if (a instanceof DomesticAnimal da) {
                 if (da.getOwner().getEmail().contains(email)) {
                     filter.add(a);
