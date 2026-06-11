@@ -59,8 +59,7 @@ public class RegisterPetController {
             Double weight = Double.parseDouble(weightBox.getText());
             Size size = Size.valueOf(sizeBox.getText().toUpperCase());
             Sex sex = Sex.valueOf(sexBox.getText().toUpperCase());
-
-            // Como o dono foi cadastrado na tela anterior, nós o resgatamos diretamente da variável estática
+            
             Owner owner = RegisterOwnerController.lastRegisteredOwner;
             
             if (owner == null) {
