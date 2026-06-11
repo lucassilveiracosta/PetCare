@@ -2,6 +2,7 @@ package business.controller;
 
 import business.interfaces.IControllerAppointment;
 import business.model.appointment.Appointment;
+import data.SaveData;
 import data.interfaces.IRepositoryAppointment;
 import exceptions.AppointmentConflictException;
 import exceptions.AppointmentNotFoundException;
@@ -108,6 +109,9 @@ public class ControllerAppointment implements IControllerAppointment {
         }
 
         repositoryAppointment.create(appointment);
+        
+        // Salva no CSV logo após adicionar no repositório
+        new SaveData().saveAppointment(appointment);
     }
 
     @Override

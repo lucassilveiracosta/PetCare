@@ -21,8 +21,8 @@ public abstract class Procedure {
     }
 
     //Allows past appointments
-    public Procedure(Float price, Animal patient, LocalDateTime dateHourScheduled, String description) {
-        this.price = (double) price;
+    public Procedure(Boolean bool, Double price, Animal patient, LocalDateTime dateHourScheduled, String description) {
+        this.price = price;
         setPatient(patient);
         this.dateHourScheduled = dateHourScheduled;
         setDescription(description);
@@ -73,5 +73,12 @@ public abstract class Procedure {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        if (id >= countId) {
+            countId = id + 1;
+        }
     }
 }
