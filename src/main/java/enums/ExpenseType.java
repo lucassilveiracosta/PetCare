@@ -1,10 +1,10 @@
 package enums;
 
 public enum ExpenseType {
-    ESTOQUE,
-    SALARIO,
-    ALUGUEL,
-    EQUIPAMENTO,
-    SERVICOS,
-    OUTROS
+    STOCK,
+    SALARY,
+    RENT,
+    EQUIPMENT,
+    SERVICES,
+    OTHERS
 }

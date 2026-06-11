@@ -1,8 +1,8 @@
 package enums;
 
 public enum Mucosa {
-    NORMACORADAS,
-    PALIDAS,
-    ICTERICIAS,
-    CIANOTICAS
+    NORMOCHROMIC,
+    PALE,
+    ICTERIC,
+    CYANOTIC
 }
