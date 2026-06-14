@@ -46,7 +46,7 @@
                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
               </padding>
               <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Hospitalization (REQ07)" />
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Hospitalization" />
 
                 <!-- Admit -->
                 <Label style="-fx-font-weight: bold;" text="Admit (select from the 'To admit' list)" />
@@ -105,7 +105,7 @@
                 <Separator />
 
                 <!-- Discharge (REQ16) -->
-                <Label style="-fx-font-weight: bold;" text="Discharge (REQ16)" />
+                <Label style="-fx-font-weight: bold;" text="Discharge" />
                 <Button fx:id="btnPay" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePayInvoices" text="Register Payment (settle invoices)" />
                 <Button fx:id="btnDischarge" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDischarge" text="Discharge" />
               </children>
