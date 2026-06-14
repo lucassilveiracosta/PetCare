@@ -115,9 +115,10 @@ public class SurgeryCenterController implements Initializable {
                 server.getInvoice().post(new Invoice(da.getOwner(), da, procs, new ArrayList<>()));
             }
 
-            // clear the referral flags and persist
+            // Clear only the surgery referral. Registering a surgery must NOT
+            // discharge the patient from hospitalization: leaving the ward is only
+            // allowed through handleDischarge(), which enforces invoice payment (REQ16).
             selected.setNeedsSurgery(false);
-            selected.setNeedsHospitalization(false);
             server.saveAll();
 
             showAlert(Alert.AlertType.INFORMATION, "Surgery Registered",
