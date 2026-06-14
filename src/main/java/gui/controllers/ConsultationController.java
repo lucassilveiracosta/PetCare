@@ -49,16 +49,13 @@ public class ConsultationController implements Initializable {
     @FXML private Button registerVaccine;
     @FXML private Button issuePrescriptionPDF;
 
-    // Medical record / vet visit
     @FXML private TextArea fieldDiagnosis;
     @FXML private TextArea fieldPrescription;
     @FXML private TextField fieldDietary;
 
-    // Physical examination
     @FXML private ChoiceBox<Conscience> cbConsciousness;
     @FXML private TextArea fieldExamNotes;
 
-    // Vital parameters
     @FXML private TextField fieldHeartRate;
     @FXML private TextField fieldRespiratoryRate;
     @FXML private TextField fieldTemperature;
@@ -68,10 +65,8 @@ public class ConsultationController implements Initializable {
     @FXML private TextField fieldDehydration;
     @FXML private TextArea fieldVitalNotes;
 
-    // Procedure / referral
     @FXML private ChoiceBox<ProcedureType> cbProcedure;
     @FXML private CheckBox chkHospitalization;
-    @FXML private Button btnSurgeryCenter;
 
     private IControllerAnimal animalController;
     private IControllerAppointment appointmentController;
@@ -284,10 +279,7 @@ public class ConsultationController implements Initializable {
         }
     }
 
-    @FXML
-    private void openSurgeryCenter() {
-        Navigator.navigate("Surgery Center", "/view/fxml/SurgeryCenter.fxml");
-    }
+
 
     private void clearConsultationFields() {
         fieldDiagnosis.clear();

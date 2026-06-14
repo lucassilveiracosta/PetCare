@@ -65,7 +65,7 @@
          <children>
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <VBox fx:id="medicalrecordpanel" spacing="8.0">
+                  <VBox fx:id="medicalrecordpanel" prefWidth="627.0" spacing="8.0">
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
@@ -158,7 +158,6 @@
                               <CheckBox fx:id="chkHospitalization" mnemonicParsing="false" text="Needs hospitalization" />
                            </children>
                         </HBox>
-                        <Button fx:id="btnSurgeryCenter" mnemonicParsing="false" onAction="#openSurgeryCenter" text="Open Surgery / Hospitalization Center" />
 
                         <!-- Actions -->
                         <Separator />

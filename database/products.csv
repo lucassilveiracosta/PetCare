@@ -1,9 +1,9 @@
 id;name;quantity;price;description;isVet;medicineType
 1;Premium Dog Food 10kg;40;120.0;Dry food for adult large dogs;false;null
 2;Hypoallergenic Cat Shampoo;25;22.5;Gentle shampoo for cats;false;null
-3;Rubber Chew Toy;12;18.0;Durable chew toy for dogs;false;null
+3;Rubber Chew Toy;26;18.0;Durable chew toy for dogs;false;null
 4;Cat Litter 5kg;30;35.9;Clumping litter;false;null
-5;Dog Collar M;3;27.0;Adjustable nylon collar;false;null
+5;Dog Collar M;16;27.0;Adjustable nylon collar;false;null
 6;Amoxicillin 500mg;50;15.5;Broad-spectrum antibiotic;true;COMMON
 7;Tramadol 50mg;20;28.0;Controlled analgesic;true;CONTROLLED
 8;V8 Vaccine;8;45.0;Polyvalent canine vaccine;true;COMMON
