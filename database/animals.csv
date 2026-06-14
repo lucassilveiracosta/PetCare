@@ -6,3 +6,4 @@ id;name;species;race;temperament;weight;sex;size;birth;stage;ownerId;vaccines
 5;Luna;Cat;Tabby;ANXIOUS;3.8;FEMALE;SMALL;14/08/2022;ADULT;4;Rabies~01/03/2023~Antirabies vaccine expired~true~01/03/2024
 6;Mia;Cat;Siamese;DOCILE;3.5;FEMALE;SMALL;05/05/2023;ADULT;5;
 7;Bella;Dog;Poodle;DOCILE;8.0;FEMALE;MEDIUM;20/09/2022;ADULT;6;
+8;Josue;Josue;Pastor Alemão;DOCILE;21.0;FEMALE;SMALL;08/06/2026;NEWBORN;5;Raquitico~07/06/2026~Não~false~08/06/2026

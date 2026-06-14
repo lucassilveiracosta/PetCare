@@ -1,1 +1,4 @@
 id;price;patientId;dateHour;description;vetId;surgeryRisk;anesthesiaType;supplies
+13;300.0;3;14/06/2026 16:22;loucura total;1;MEDIUM;cancer;tipo 2
+14;300.0;7;14/06/2026 16:30;oi;1;MEDIUM;brother ´u tá fazendo uma cirurgia;oi
+17;300.0;6;14/06/2026 16:37;aaaaaaaaaa;1;MEDIUM;aaaaaaa;aaaaaaaa
